@@ -1,0 +1,30 @@
+site:
+  name: Documentation
+
+  ui_locale: en # only for the locomotive editor, not used by the engine
+  locales: [en, fr, de]
+
+  seo_title: documentation
+  meta_keywords: "some meta keywords"
+  meta_description: "some meta description"
+
+  pages:
+    - "index": # page path (the template can edited here app/views/pages/index.liquid)
+        title: "Home page"
+        published: true
+    - "404":
+        title: "Page not found"
+        published: true
+    - "installation":
+        title: "Installation guide"
+        listed: true
+        published: true
+    - "howtos":
+        title: "How-to's"
+        listed: true
+    - "editor":
+        title: "Editor"
+        listed: true
+    - "liquid":
+        title: "Liquid API"
+        listed: true

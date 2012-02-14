@@ -1,0 +1,71 @@
+{% extends '/index' %}
+
+{% block 'main' %}
+
+.hero-unit
+
+  %h1 Installation for developers
+
+  %br
+
+  %p
+    Wants to contribute or simply tweak the engine ? Here is the guide to run the engine
+
+/ === 1 ===
+
+%h3 1. prepare the environment on your machine
+
+%br
+
+%pre
+  cd ~/Documents
+  mdkir LocomotiveCMS
+  cd LocomotiveCMS
+  mkdir gems
+
+%br
+
+.alert.alert-block
+  Replace the "~/Documents" folder by what you want.
+
+%hr
+
+/ === 2 ===
+
+%h3 2. clone the engine and the core gems
+
+%br
+
+%pre
+  cd gems
+  git clone git://github.com/locomotivecms/custom_fields.git
+  cd ..
+  git clone git://github.com/locomotivecms/engine.git
+
+%hr
+
+/ === 3 ===
+
+%h3 3. install the gems
+
+%br
+
+%pre
+  bundle install
+
+%hr
+
+/ === 4 ===
+
+%h3 4. run the application
+
+%br
+
+%pre
+  cd spec/dummy
+  bundle exec unicorn_rails
+
+/ === 5 ===
+
+
+{% endblock %}

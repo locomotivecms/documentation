@@ -6,7 +6,7 @@
     %title LocomotiveCMS &mdash; {{ site.name }}
 
     %meta{:content => "", :name => "description"}
-    %meta{:content => "", :name => "author"}
+    %meta{:content => "Didier Lafforgue", :name => "author"}
 
     / Le HTML5 shim, for IE6-8 support of HTML elements
 
@@ -15,55 +15,83 @@
 
     / Le styles
     {{ 'twitter_bootstrap.min.css' | stylesheet_tag }}
-
-    :css
-      body {
-        padding-top: 60px;
-      }
+    {{ 'site.css' | stylesheet_tag }}
 
   %body
-    .navbar.navbar-fixed
+    #head.navbar
       .navbar-inner
         .container
-          %a.brand{:href => "#"} {{ site.name }}
+          %a.brand{ :href => "/" }
+            %img{ :src => '/images/logo.jpg', :alt => '{{ site.name }}' }
 
-          %ul.nav
-            %li.active
-              %a{:href => "/"} Home
-            {% nav site, no_wrapper: true %}
+          %a.back.pull-right{ :href => "http://www.locomotivecms.com" } back to the LocomotiveCMS website &rarr;
+
+          -# %ul.nav
+          -#   %li.active
+          -#     %a{ :href => "/" } Home
+          -#   %li
+          -#     %a{ :href => "mailto:support@locomotivecms.com" } Contact us
+          -#   %li
+          -#     %a
 
     .container
-
-      {% block 'main' %}
-      / Main hero unit for a primary marketing message or call to action
-
-      .hero-unit
-        %h1 Welcome to the new documentation center
-        %p
-          This is the place where you will find all the resources about the LocomotiveCMS. However, if you do not find what you were looking for, we strongly suggest you to send us an email (
-          %a{ :href => 'mailto:support@locomotivecms.com'} support at locomotivecms dot com
-          ).
-        %p
-          %a.btn.primary.large{ :href => '/installation' } Install now »
-      / Example row of columns
       .row
-        .span4
-          %h2 Heading
-          %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-          %p
-            %a.btn{:href => "#"} View details »
-        .span4
-          %h2 Heading
-          %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-          %p
-            %a.btn{:href => "#"} View details »
-        .span4
-          %h2 Heading
-          %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          %p
-            %a.btn{:href => "#"} View details »
+        #sidebar.span3
+          .well.sidebar-nav
+            {% block 'sidebar' %}
 
-      {% endblock %}
+            %ul.nav.nav-list
+              {% for mainpage in site.index.children %}
+
+              %li.nav-header {{ mainpage.title }}
+
+              {% for subpage in mainpage.children %}
+
+              {% capture subpage_fullpath %}/{{ subpage.fullpath }}{% endcapture %}
+
+              %li{ :class => '{% if subpage_fullpath == path %}active{% endif %}' }
+                %a{ :href => '/{{ subpage.fullpath }}' } {{ subpage.title }}
+              {% endfor %}
+
+              {% endfor %}
+
+
+            {% endblock %}
+
+        #main.span9
+          {% block 'main' %}
+          / Main hero unit for a primary marketing message or call to action
+
+          .hero-unit
+            %h1 Welcome to the new documentation center
+            %br
+            %p
+              This is the place where you will find all the resources about the LocomotiveCMS. However, if you do not find what you were looking for, we strongly suggest you to send us an email (
+              %a{ :href => 'mailto:support@locomotivecms.com'} support at locomotivecms dot com
+              ).
+            %p
+              %a.btn.btn-primary.btn-large.pull-right{ :href => '/installation' } Install now »
+            .clear
+
+          / Example row of columns
+          .row
+            .span3
+              %h2 Heading
+              %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+              %p
+                %a.btn{:href => "#"} View details »
+            .span3
+              %h2 Heading
+              %p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+              %p
+                %a.btn{:href => "#"} View details »
+            .span3
+              %h2 Heading
+              %p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+              %p
+                %a.btn{:href => "#"} View details »
+
+          {% endblock %}
 
       %footer
         {% include 'footer' %}

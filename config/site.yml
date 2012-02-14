@@ -2,7 +2,7 @@ site:
   name: Documentation
 
   ui_locale: en # only for the locomotive editor, not used by the engine
-  locales: [en, fr, de]
+  locales: [en]
 
   seo_title: documentation
   meta_keywords: "some meta keywords"
@@ -15,16 +15,37 @@ site:
     - "404":
         title: "Page not found"
         published: true
+
     - "installation":
         title: "Installation guide"
         listed: true
         published: true
+        redirect_url: "installation/requirements"
+    - "installation/requirements":
+        listed: true
+    - "installation/getting_started":
+        listed: true
+    - "installation/developers":
+        title: "For developers"
+        listed: true
+
     - "howtos":
         title: "How-to's"
         listed: true
+
     - "editor":
         title: "Editor"
         listed: true
+        redirect_url: "editor/installation"
+
+    - "editor/installation":
+        listed: true
+    - "editor/create_a_site":
+        listed: true
+    - "editor/templates":
+        title: "Site templates"
+        listed: true
+
     - "liquid":
         title: "Liquid API"
         listed: true

@@ -1,0 +1,111 @@
+{% extends '/index' %}
+
+{% block 'main' %}
+
+.hero-unit
+
+  %h1 Requirements
+
+  %br
+
+  %p
+    Whether you are a ninja or a newbie Ruby on Rails developer, it's better to know about what LocomotiveCMS relies on.
+
+.alert
+  Let us know if you have any
+  %strong
+    %a{ :href => 'mailto:support@locomotivecms.com' } suggestions.
+
+%h3 Ruby
+
+%br
+
+%p
+  For performance concerns, we only support the last version of Ruby meaning the
+  %strong 1.9.3.
+  The 1.9.2 one should also work though.
+
+%p
+  Ruby can be installed by following the instructions here:
+  %a{ :href => 'http://www.ruby-lang.org/en/downloads' } http://www.ruby-lang.org/en/downloads
+
+%p
+  However, we recommend people to install a Ruby version management system, such as
+  %a{ :href => 'https://github.com/sstephenson/rbenv' } RBENV
+  or
+  %a{ :href => 'http://beginrescueend.com/' } RVM
+
+%hr
+
+%h3 Ruby on Rails
+
+%br
+
+%p
+  Our CMS is a
+  %a{ :href => 'http://www.rubyonrails.org' } Ruby on Rails
+  engine which allows you to wrap it into your main application. Ruby on Rails supports engines since its 3.0 version but in order to enjoy the full power of it, you
+  have to install the last version which is
+  %strong 3.2.x
+
+%p
+  Once you get Ruby installed, install Ruby on Rails with the following command:
+
+%pre
+  gem install rails --version=3.2.1
+
+%hr
+
+%h3 MongoDB
+
+%br
+
+%p LocomotiveCMS does not use a classic SQL database such as MySQL or PostgreSQL but rather a nosql database named mongoDB. Because we let users create their own content types, it occurred to us that using a schema-free database was the perfect fit.
+
+%p
+  We support versions above
+  %strong 2.0.0
+  (the current stable version is 2.0.1).
+
+%p
+  mongoDB is available on many OS. Check this
+  %a{ :href => 'http://www.mongodb.org/downloads'} link out
+  for more information.
+
+%hr
+
+%h3 ImageMagick
+
+%br
+
+%p
+  Our CMS takes benefits of ImageMagick to crop images on the fly. Again,
+  %a{ :href => 'http://www.imagemagick.org/script/index.php' } ImageMagick
+  is available on a large set of OS.
+
+.alert.alert-info
+  %strong Note:
+  on Mac OS X, try
+  %a{ :href => 'http://mxcl.github.com/homebrew/' } Homebrew
+  or
+  %a{ :href => 'https://github.com/maddox/magick-installer' } MagickInstaller
+  to install it. This will save you a couple of hours because its installation can be really painful sometimes.
+
+%hr
+
+%h3 Browsers (back-office)
+
+%br
+
+%p
+  For both practical and ideological reasons, we decided to support only
+  %strong Firefox, Safari and Google Chrome.
+  But, it should not be so tough to override the default stylesheets in order to offer a different but working version of Internet Explorer.
+
+
+%br
+
+%p
+  %a.btn.btn-primary.pull-right{ :href => '/installation/getting_started' } Let's start !
+
+{% endblock %}

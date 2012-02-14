@@ -1,0 +1,24 @@
+.clear { clear: both; }
+
+#head {
+  .navbar-inner {
+    background: transparent url(/images/head_bg.jpg) repeat-x;
+  }
+
+  .back {
+    margin-top: 20px;
+  }
+}
+
+.hero-unit {
+  padding: 24px;
+  h1 {
+    font-size: 24px;
+  }
+}
+
+footer {
+  margin-top: 45px;
+  padding: 35px 0 36px;
+  border-top: 1px solid #E5E5E5;
+}

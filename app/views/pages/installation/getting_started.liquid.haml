@@ -1,0 +1,118 @@
+{% extends '/index' %}
+
+{% block 'main' %}
+
+.hero-unit
+
+  %h1 Getting started
+
+  %br
+
+  %p
+    We suggest you to start by reading the
+    %a{ :href => 'requirements' }requirements section
+    \. If you want to test the engine and sneak into the code, we recommend you to install from
+    %a{ :ref => 'developers' } the source.
+
+/ === 1 ===
+
+%h3 1. create a Ruby on Rails application
+
+%br
+
+%pre
+  rails new myapp -O -T -J
+  cd myapp
+
+%br
+
+.alert.error-alert
+  Make sure you installed
+  %strong Ruby on Rails 3.2.x
+
+%hr
+
+/ === 2 ===
+
+%h3 2. include the LocomotiveCMS engine gem
+
+%br
+
+%p You have to tell your Ruby on Rails app that you want to include the LocomotiveCMS gem available on Gemcutter. Edit your application Gemfile and add these lines if missing.
+
+%pre
+  gem 'locomotive_cms', '~> 2.0.0.beta', :require => 'locomotive/engine'
+  gem 'unicorn', :group => 'development'
+
+%hr
+
+/ === 3 ===
+
+%h3 3. install the gems
+
+%br
+
+%pre
+  bundle install
+
+%hr
+
+/ === 4 ===
+
+%h3 4. add the editable engine config files
+
+%br
+
+%p The following command also inserts the engine routes to the main application
+
+%pre
+  bundle exec rails g locomotive:install
+
+%hr
+
+/ === 5 ===
+
+%h3 5. edit the engine settings
+
+%br
+
+%pre
+  mate config/initializers/locomotive.rb
+  mate config/initializers/mongoid.yml
+
+%p
+  By default, LocomotiveCMS uses Amazon S3 in production. To change it, modify the carrierwave initialization file.
+
+%pre
+  mate config/initializers/carrierwave.rb
+
+%hr
+
+/ === 6 ===
+
+%h3 6. run the application server
+
+%br
+
+%pre
+  bundle exec unicorn_rails
+
+%hr
+
+/ === 7 ===
+
+%h3 7. open your browser
+
+%br
+
+%pre
+  open http://localhost:8080/locomotive
+
+%p
+  Follow the instructions in order to create your first administrator account and your first website.
+
+%hr
+
+
+
+{% endblock %}

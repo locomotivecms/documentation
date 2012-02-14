@@ -1,0 +1,48 @@
+{% extends '/index' %}
+
+{% block 'main' %}
+
+.hero-unit
+
+  %h1 Installation
+
+  %br
+
+  %p
+    The LocomotiveEditor is our in-house tool to build LocomotiveCMS websites very quickly
+
+.alert.info-alert
+  %strong Important.
+  We decided to release it as a low-paid application. Visit this
+  %a{ :href => 'http://www.locomotivecms.com/modules/locomotive_editor' } page
+  to learn more about our application and buy it.
+
+/ === 1 ===
+
+%h3 1. add our modules gems source
+
+%br
+
+%pre
+  gem sources -a http://&lt;your id&gt;:&lt;your license key &gt;@modules.locomotivecms.com
+
+%hr
+
+/ === 2 ===
+
+%h3 2. install the application
+
+%br
+
+%pre
+  gem install locomotive_editor
+
+%hr
+
+%br
+
+%p
+  %a.btn.btn-primary.pull-right{ :href => 'create_a_site' } Create your first website
+
+
+{% endblock %}

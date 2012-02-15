@@ -1,0 +1,109 @@
+{% extends '/index' %}
+
+{% block 'main' %}
+
+.hero-unit
+
+  %h1 Deployment
+
+  %br
+
+  %p
+    Once you are satisfied by your site, it is time to deploy it on an online instance of the LocomotiveCMS.
+
+.alert.info-alert
+  %strong Important.
+  The only requirement is to have somewhere (it can be online or locally) a running engine. Check out our
+  %a{ :href => '/installation' } installation procedure
+  for more information.
+
+/ === 1 ===
+
+%h3 1. Edit your deployment settings
+
+%br
+
+.alert.info-alert
+  We assume that your LocomotiveEditor sites are located under ~/Documents/LocomotiveCMS/sites. If not, please correct it accordingly.
+
+%pre
+  cd ~/Documents/LocomotiveCMS/sites
+  mate my_first_website/config/deploy.yml
+
+%p Here is what your deploy.yml file should look like:
+
+%pre
+  :plain
+    development:
+      host: dev.example.com
+      email: john@doe.net
+      password: easyone
+    staging:
+      host: staging.example.com
+      email: john@doe.net
+      password: easyone
+    production:
+      host: www.example.com
+      email: john@doe.net
+      password: easyone
+
+%p
+  The email/password credentials are owned by one of your
+  %strong LocomotiveCMS administrator accounts.
+
+.alert.alert-info
+  You can as many targets (test, ...etc) as you want.
+
+%hr
+
+/ === 2 ===
+
+%h3 2. Push
+
+%br
+
+%h4 the whole site:
+
+%br
+
+%pre
+  locomotive_editor push --name=my_first_website --resources=all --target=staging
+
+%p or
+
+%pre
+  locomotive_editor push -n my_first_website -r all -t staging
+
+%br
+
+%h4 only a specify type of resource:
+
+%br
+
+%p In some cases, you do not want to push all the whole site. For instance, if you have just modified a single page, you do not need to push the assets too.
+
+%p
+  The available resource types are:
+  %strong theme_assets, snippets, content_types and pages.
+
+%p Example:
+
+%pre
+  locomotive_editor push --name=my_first_website --resources=pages --target=staging
+
+%br
+
+%h4 when the resource already exists within your target engine
+
+%br
+
+%p
+  By default, the push command will not let you erase your target resources. That is why you will see the "skipped" label beside your resource name if you try to run the push command.
+
+%p
+  Unless you force it:
+
+%pre
+  locomotive_editor push --name=my_first_website --resources=pages --target=staging --force
+
+{% endblock %}

@@ -42,10 +42,10 @@ site:
         listed: true
     - "editor/create_a_site":
         listed: true
-    - "editor/templates":
-        title: "Site templates"
+    - "editor/deployment":
         listed: true
-
+    - "editor/site_templates":
+        listed: true
     - "liquid":
         title: "Liquid API"
         listed: true

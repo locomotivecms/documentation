@@ -17,6 +17,10 @@
     {{ 'twitter_bootstrap.min.css' | stylesheet_tag }}
     {{ 'site.css' | stylesheet_tag }}
 
+    {{ 'jquery.min.js' | javascript_tag }}
+    {{ 'stickysidebar.jquery.min.js' | javascript_tag }}
+    {{ 'application.js' | javascript_tag }}
+
   %body
     #head.navbar
       .navbar-inner
@@ -25,14 +29,6 @@
             %img{ :src => '/images/logo.jpg', :alt => '{{ site.name }}' }
 
           %a.back.pull-right{ :href => "http://www.locomotivecms.com" } back to the LocomotiveCMS website &rarr;
-
-          -# %ul.nav
-          -#   %li.active
-          -#     %a{ :href => "/" } Home
-          -#   %li
-          -#     %a{ :href => "mailto:support@locomotivecms.com" } Contact us
-          -#   %li
-          -#     %a
 
     .container
       .row

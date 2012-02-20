@@ -1,4 +1,4 @@
-{% extends '/index' %}
+{% extends 'index' %}
 
 {% block 'main' %}
 
@@ -21,7 +21,7 @@
 %br
 
 %pre
-  rails new myapp -O -T -J
+  rails new myapp -O -T -J --skip-bundle
   cd myapp
 
 %br
@@ -42,7 +42,10 @@
 
 %pre
   gem 'locomotive_cms', '~> 2.0.0.beta', :require => 'locomotive/engine'
+
   gem 'unicorn', :group => 'development'
+
+  gem 'compass-rails', '~> 1.0.0.rc.3', :group => 'assets'
 
 %hr
 

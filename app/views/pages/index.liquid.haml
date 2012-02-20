@@ -8,6 +8,8 @@
     %meta{:content => "", :name => "description"}
     %meta{:content => "Didier Lafforgue", :name => "author"}
 
+    <link rel="icon" type="image/png" href="{{ 'favicon.png' | theme_image_url }}" />
+
     / Le HTML5 shim, for IE6-8 support of HTML elements
 
     /[if lt IE 9]
@@ -26,7 +28,7 @@
       .navbar-inner
         .container
           %a.brand{ :href => "/" }
-            %img{ :src => '/images/logo.jpg', :alt => '{{ site.name }}' }
+            %img{ :src => "{{ 'logo.jpg' | theme_image_url }}", :alt => '{{ site.name }}' }
 
           %a.back.pull-right{ :href => "http://www.locomotivecms.com" } back to the LocomotiveCMS website &rarr;
 

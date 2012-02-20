@@ -1,12 +1,12 @@
 development:
-  host: dev.example.com
-  email: john@doe.net
-  password: easyone
+  host: doc.engine.dev
+  email: did@nocoffee.fr
+  password: test31
 staging:
   host: staging.example.com
   email: john@doe.net
   password: easyone
 production:
-  host: www.example.com
-  email: john@doe.net
-  password: easyone
+  host: locomotivedummy.herokuapp.com
+  email: didier@nocoffee.fr
+  password: test31

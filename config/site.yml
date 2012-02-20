@@ -20,14 +20,18 @@ site:
         title: "Installation guide"
         listed: true
         published: true
-        redirect_url: "installation/requirements"
+        redirect_url: "/installation/requirements"
     - "installation/requirements":
         listed: true
     - "installation/getting_started":
         listed: true
+    - "installation/heroku":
+        title: "Heroku hosting"
+        listed: true
     - "installation/developers":
         title: "For developers"
         listed: true
+
 
     - "howtos":
         title: "How-to's"

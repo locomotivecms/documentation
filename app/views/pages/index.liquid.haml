@@ -23,6 +23,8 @@
     {{ 'stickysidebar.jquery.min.js' | javascript_tag }}
     {{ 'application.js' | javascript_tag }}
 
+    {% include 'google_analytics' %}
+
   %body
     #head.navbar
       .navbar-inner

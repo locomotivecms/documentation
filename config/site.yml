@@ -50,6 +50,10 @@ site:
         listed: true
     - "editor/site_templates":
         listed: true
-    - "liquid":
-        title: "Liquid API"
+
+    - "templates":
+        title: "Templates"
+        listed: true
+        redirect_url: "/templates/basics"
+    - "templates/basics":
         listed: true

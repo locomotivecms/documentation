@@ -168,6 +168,11 @@
 
 %br
 
+%p
+  Unless you modified your
+  %strong config/initializers/carrierwave.rb
+  file, Carrierwave should be set up for Amazon S3 in the production environment.
+
 %pre
   heroku config:add S3_KEY_ID=&lt;YOUR S3 KEY ID&gt;
   heroku config:add S3_SECRET_KEY=&lt;YOUR S3 SECRET KEY&gt;

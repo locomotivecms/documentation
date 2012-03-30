@@ -25,6 +25,13 @@
 
 .alert.info-alert
   We assume that your LocomotiveEditor sites are located under ~/Documents/LocomotiveCMS/sites. If not, please correct it accordingly.
+  %br
+  %br
+  %strong Important.
+  Make sure your locomotive engine and your site have the same locales.  
+  The Locomotive engine defaults to `en`, so to keep english as your locale, open my_first_website/config/site.yml and 
+  %br
+  change locales: [en, fr, de] to locales: [en]
 
 %pre
   cd ~/Documents/LocomotiveCMS/sites

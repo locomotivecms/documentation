@@ -22,242 +22,331 @@
 -#     %a{ :href => 'https://github.com/locomotivecms/liquid' } enhanced version
 -#   of the original engine.
 
+.tabbable
 
-- # --- Site ---
+  %ul.nav.nav-tabs
+    %li.active
+      %a{ :href => '#global-section', :'data-toggle' => 'tab' } Global variables
+    %li
+      %a{ :href => '#site-section', :'data-toggle' => 'tab' } Site
+    %li
+      %a{ :href => '#page-section', :'data-toggle' => 'tab' } Page
+    %li
+      %a{ :href => '#content-type-section', :'data-toggle' => 'tab' } Content Type
+    %li
+      %a{ :href => '#content-entry-section', :'data-toggle' => 'tab' } Content Entry
 
-%h3
-  Site
+  .tab-content
 
-%br
+    #global-section.tab-pane.active
+      %h3 Global variables
 
-%pre
-  :plain
-    &#123;&#123; site.name &#125;&#125;
-%p
-  %strong Example:
-  Display the name of the current site
+      %br
 
-%br
+      %pre
+        :plain
+          &#123;&#123; now &#125;&#125;
+      %p
+        %strong Example:
+        Display the current date
 
-%h4 Attributes
+      %br
 
-%br
+      %h4 List of all the global variables
 
-%table.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Name
-      %th Type
-      %th Description
-  %tbody
-    %tr
-      %td name
-      %td String
-      %td Name of the site
-    %tr
-      %td index
-      %td Page
-      %td Root page of the site
-    %tr
-      %td pages
-      %td Array
-      %td All the pages including even sub pages
-    %tr
-      %td seo_title
-      %td String
-      %td Alternative title for the site used for SEO purpose
-    %tr
-      %td meta_keywords
-      %td String
-      %td Keywords used for SEO purpose
-    %tr
-      %td meta_description
-      %td String
-      %td Description used for SEO purpose
+      %br
 
-%br
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td site
+            %td Site
+            %td current site
+          %tr
+            %td page
+            %td Page
+            %td current page
+          %tr
+            %td params
+            %td Hash
+            %td All the GET params of the current request
+          %tr
+            %td path
+            %td String
+            %td HTTP request path
+          %tr
+            %td fullpath
+            %td String
+            %td HTTP request full path
+          %tr
+            %td url
+            %td String
+            %td HTTP request url
+          %tr
+            %td now
+            %td Time
+            %td current time (UTC)
+          %tr
+            %td today
+            %td Date
+            %td current date
+          %tr
+            %td locale
+            %td String
+            %td current locale
+          %tr
+            %td default_locale
+            %td String
+            %td default locale of the current site
+          %tr
+            %td locales
+            %td Array
+            %td All the locales handled by the current site
 
-%hr
+    #site-section.tab-pane
+      - # --- Site ---
 
-- # --- Page ---
+      %h3
+        Site
 
-%h3
-  Page
+      %br
 
-%br
+      %pre
+        :plain
+          &#123;&#123; site.name &#125;&#125;
+      %p
+        %strong Example:
+        Display the name of the current site
 
-%pre
-  :plain
-    &#123;&#123; page.title &#125;&#125;
-%p
-  %strong Example:
-  Display the title of the current page
+      %br
 
-%br
+      %h4 Attributes
 
-%h4 Attributes
+      %br
 
-%br
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td name
+            %td String
+            %td Name of the site
+          %tr
+            %td index
+            %td Page
+            %td Root page of the site
+          %tr
+            %td pages
+            %td Array
+            %td All the pages including even sub pages
+          %tr
+            %td seo_title
+            %td String
+            %td Alternative title for the site used for SEO purpose
+          %tr
+            %td meta_keywords
+            %td String
+            %td Keywords used for SEO purpose
+          %tr
+            %td meta_description
+            %td String
+            %td Description used for SEO purpose
 
-%table.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Name
-      %th Type
-      %th Description
-  %tbody
-    %tr
-      %td title
-      %td String
-      %td Title of the page
-    %tr
-      %td fullpath
-      %td String
-      %td The complete full path
-    %tr
-      %td slug
-      %td String
-      %td Unique identifier for urls, the same as a permalink
-    %tr
-      %td parent
-      %td Page
-      %td The parent page. Nil if the page is the root
-    %tr
-      %td children
-      %td Array
-      %td The direct children
-    %tr
-      %td depth
-      %td Integer
-      %td The depth in the tree of pages
-    %tr
-      %td listed
-      %td Boolean
-      %td True if the page is included in the menu
-    %tr
-      %td published
-      %td Boolean
-      %td True if the page is published
-    %tr
-      %td seo_title
-      %td String
-      %td Alternative title for the page used for SEO purpose
-    %tr
-      %td meta_keywords
-      %td String
-      %td Keywords used for SEO purpose
-    %tr
-      %td meta_description
-      %td String
-      %td Description used for SEO purpose
+      %br
 
-%br
+      %hr
 
-%hr
+    #page-section.tab-pane
+      - # --- Page ---
 
-- # --- Content Types ---
+      %h3#page.section
+        Page
 
-%h3
-  Content Type (or model)
+      %br
 
-%br
+      %pre
+        :plain
+          &#123;&#123; page.title &#125;&#125;
+      %p
+        %strong Example:
+        Display the title of the current page
 
-%pre
-  :plain
-    &#123;&#123; content_types.projects.size &#125;&#125;
-%p
-  %strong Example:
-  Display the number of elements of the entries stored in the Projects model.
+      %br
 
-%br
+      %h4 Attributes
 
-%h4 Attributes
+      %br
 
-%br
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td title
+            %td String
+            %td Title of the page
+          %tr
+            %td fullpath
+            %td String
+            %td The complete full path
+          %tr
+            %td slug
+            %td String
+            %td Unique identifier for urls, the same as a permalink
+          %tr
+            %td parent
+            %td Page
+            %td The parent page. Nil if the page is the root
+          %tr
+            %td children
+            %td Array
+            %td The direct children
+          %tr
+            %td depth
+            %td Integer
+            %td The depth in the tree of pages
+          %tr
+            %td listed
+            %td Boolean
+            %td True if the page is included in the menu
+          %tr
+            %td published
+            %td Boolean
+            %td True if the page is published
+          %tr
+            %td seo_title
+            %td String
+            %td Alternative title for the page used for SEO purpose
+          %tr
+            %td meta_keywords
+            %td String
+            %td Keywords used for SEO purpose
+          %tr
+            %td meta_description
+            %td String
+            %td Description used for SEO purpose
 
-%table.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Name
-      %th Type
-      %th Description
-  %tbody
-    %tr
-      %td
-        %i name
-      %td String
-      %td Slug of the content type
+      %br
 
-%br
+      %hr
 
-%hr
+    #content-type-section.tab-pane
+      - # --- Content Types ---
 
-- # --- Content entries ---
+      %h3
+        Content Type (or model)
 
-%h3
-  Content Entry
+      %br
 
-%br
+      %pre
+        :plain
+          &#123;&#123; content_types.projects.size &#125;&#125;
+      %p
+        %strong Example:
+        Display the number of elements of the entries stored in the Projects model.
 
-%pre
-  :plain
-    &#123;&#123; content_types.projects.first.name &#125;&#125;
-%p
-  %strong Example:
-  Display the name of the first projects. "name" being one of the custom fields described in the content type "Projects".
+      %br
 
-%br
+      %h4 Attributes
 
-%h4 Attributes
+      %br
 
-%br
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td
+              %i name
+            %td String
+            %td Slug of the content type
 
-%table.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Name
-      %th Type
-      %th Description
-  %tbody
-    %tr
-      %td _label
-      %td String
-      %td The label as displayed in the back-office to identify the entry
-    %tr
-      %td _permalink
-      %td String
-      %td Unique identifier for urls
-    %tr
-      %td _slug
-      %td String
-      %td Alias for _permalink
-    %tr
-      %td next
-      %td ContentEntry
-      %td The next entry for the parent content type based on the order defined in the back-office. Nil if no entry found
-    %tr
-      %td previous
-      %td ContentEntry
-      %td The next entry for the parent content type based on the order defined in the back-office. Nil if no entry found
-    %tr
-      %td seo_title
-      %td String
-      %td Alternative title for the entry used for SEO purpose
-    %tr
-      %td meta_keywords
-      %td String
-      %td Keywords used for SEO purpose
-    %tr
-      %td meta_description
-      %td String
-      %td Description used for SEO purpose
+      %br
+
+      %hr
+
+    #content-entry-section.tab-pane
+      - # --- Content entries ---
+
+      %h3
+        Content Entry
+
+      %br
+
+      %pre
+        :plain
+          &#123;&#123; content_types.projects.first.name &#125;&#125;
+      %p
+        %strong Example:
+        Display the name of the first projects. "name" being one of the custom fields described in the content type "Projects".
+
+      %br
+
+      %h4 Attributes
+
+      %br
+
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td _label
+            %td String
+            %td The label as displayed in the back-office to identify the entry
+          %tr
+            %td _permalink
+            %td String
+            %td Unique identifier for urls
+          %tr
+            %td _slug
+            %td String
+            %td Alias for _permalink
+          %tr
+            %td next
+            %td ContentEntry
+            %td The next entry for the parent content type based on the order defined in the back-office. Nil if no entry found
+          %tr
+            %td previous
+            %td ContentEntry
+            %td The next entry for the parent content type based on the order defined in the back-office. Nil if no entry found
+          %tr
+            %td seo_title
+            %td String
+            %td Alternative title for the entry used for SEO purpose
+          %tr
+            %td meta_keywords
+            %td String
+            %td Keywords used for SEO purpose
+          %tr
+            %td meta_description
+            %td String
+            %td Description used for SEO purpose
 
 
-%br
+      %br
 
-.alert.alert-info
-  The previous table of attributes does not include all the dynamically generated attributes described by the custom fields of the related content type.
+      .alert.alert-info
+        The previous table of attributes does not include all the dynamically generated attributes described by the custom fields of the related content type.
 
-%hr
+      %hr
 
 {% endblock %}

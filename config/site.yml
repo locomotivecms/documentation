@@ -32,7 +32,6 @@ site:
         title: "For developers"
         listed: true
 
-
     - "howtos":
         title: "How-to's"
         listed: true
@@ -56,4 +55,8 @@ site:
         listed: true
         redirect_url: "/templates/basics"
     - "templates/basics":
+        listed: true
+    - "templates/objects":
+        listed: true
+    - "templates/filters":
         listed: true

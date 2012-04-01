@@ -60,3 +60,5 @@ site:
         listed: true
     - "templates/filters":
         listed: true
+    - "templates/tags":
+        listed: true

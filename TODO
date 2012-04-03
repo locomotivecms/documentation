@@ -1,0 +1,4 @@
+undocumented:
+
+  - filters:
+    - strip_html

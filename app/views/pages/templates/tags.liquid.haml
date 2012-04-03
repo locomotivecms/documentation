@@ -1,0 +1,1036 @@
+{% extends 'index' %}
+
+{% block 'main' %}
+
+.hero-unit
+
+  %h1 Templates &rarr; Tags
+
+.tabbable
+
+  %ul.nav.nav-tabs
+    %li.dropdown
+      %a{ :href => '#', :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' }
+        Logic
+        %b.caret
+      %ul.dropdown-menu
+        %li
+          %a{ :href => '#if-else-unless-section', :'data-toggle' => 'tab' } if/else/unless
+        %li
+          %a{ :href => '#case-section', :'data-toggle' => 'tab' } case
+        %li
+          %a{ :href => '#for-section', :'data-toggle' => 'tab' } for
+        %li
+          %a{ :href => '#assigns-section', :'data-toggle' => 'tab' } assigns
+        %li
+          %a{ :href => '#capture-section', :'data-toggle' => 'tab' } capture
+        %li
+          %a{ :href => '#cycle-section', :'data-toggle' => 'tab' } cycle
+
+    %li.dropdown
+      %a{ :href => '#', :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' }
+        Layout
+        %b.caret
+      %ul.dropdown-menu
+        %li
+          %a{ :href => '#extends-section', :'data-toggle' => 'tab' } extends
+        %li
+          %a{ :href => '#block-section', :'data-toggle' => 'tab' } block
+        %li
+          %a{ :href => '#include-section', :'data-toggle' => 'tab' } include
+        %li
+          %a{ :href => '#editable-short-text-section', :'data-toggle' => 'tab' } editable_short_text
+        %li
+          %a{ :href => '#editable-long-text-section', :'data-toggle' => 'tab' } editable_long_text
+        %li
+          %a{ :href => '#editable-file-section', :'data-toggle' => 'tab' } editable_file
+        %li
+          %a{ :href => '#editable-control-section', :'data-toggle' => 'tab' } editable_control
+
+    %li.dropdown
+      %a{ :href => '#', :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' }
+        Content
+        %b.caret
+      %ul.dropdown-menu
+        %li
+          %a{ :href => '#paginate-section', :'data-toggle' => 'tab' } paginate
+        %li
+          %a{ :href => '#with-scope-section', :'data-toggle' => 'tab' } with_scope
+        %li
+          %a{ :href => '#consume-section', :'data-toggle' => 'tab' } consume
+
+    %li.dropdown
+      %a{ :href => '#', :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' }
+        Misc
+        %b.caret
+      %ul.dropdown-menu
+        %li
+          %a{ :href => '#nav-section', :'data-toggle' => 'tab' } nav
+        %li
+          %a{ :href => '#locale-switcher-section', :'data-toggle' => 'tab' } locale_switcher
+        %li
+          %a{ :href => '#google-analytics-section', :'data-toggle' => 'tab' } google_analytics
+        %li
+          %a{ :href => '#seo-section', :'data-toggle' => 'tab' } seo
+        %li
+          %a{ :href => '#inline-editor-section', :'data-toggle' => 'tab' } inline_editor
+
+
+  .tab-content
+
+    .tab-pane.active
+
+    - # inline_editor
+    #inline-editor-section.tab-pane
+
+      %h3 inline_editor
+
+      %br
+
+      %p
+        The inline_editor tag
+        %b mandatory
+        to enable the inline editing feature (Aloha Editor) directly from the pages.
+
+      %br
+
+      .alert.alert-info
+        Put your inline_editor tag just before the
+        %b closing HEAD tag.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; inline_editor &#37;&#125;
+
+    - # seo
+    #seo-section.tab-pane
+
+      %h3 seo
+
+      %br
+
+      %p
+        Output the meta tags and associated content for keywords and description. Depending on the current page, the following fallback is applied:
+
+      %ul
+        %li if the page is "templatized", check first for the keywords / description of the related content entry.
+        %li if the keywords / description of the page are filled up, use them.
+        %li finally, use those of the site if the previous objects failed to return non-blank keywords / description.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; seo &#37;&#125;
+
+      %br
+
+      %p Alternatively, you can access the keywords and description directly from an object among those: site, page, content_entry.
+
+      %pre
+        :preserve
+          &#123;&#123; title.keywords &#125;&#125;
+          &#123;&#123; title.description &#125;&#125;
+
+          &#123;&#123; page.keywords &#125;&#125;
+          &#123;&#123; page.description &#125;&#125;
+
+          &#123;&#123; content_entry.keywords &#125;&#125;
+          &#123;&#123; content_entry.description &#125;&#125;
+
+    - # google-analytics
+    #google-analytics-section.tab-pane
+
+      %h3 google_analytics
+
+      %br
+
+      %p
+        It is simply a helper tag which includes the snippet code that it is asked by Google Analytics to enable traffic analytics.
+        %br
+        Just provide your Google account id.
+
+      %br
+
+      .alert.alert-info
+        Put your google_analytics tag just before the
+        %b closing BODY tag.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; google_analytics 'UA-424242' &#37;&#125;
+
+    - # locale-switcher
+    #locale-switcher-section.tab-pane
+
+      %h3 locale_switcher
+
+      %br
+
+      %p
+        Display the links to change the locale of the current page. The links are wrapped inside a
+        %b DIV
+        tag.
+        %br
+        The link to the current locale owns the class
+        %b current
+        which makes it possible to customize through CSS.
+
+      %br
+
+      .alert.warning-info
+        Nothing will be displayed if you do not select at least 2 locales for your site.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; locale_switcher label: locale, sep: ' - ' &#37;&#125;
+
+      %br
+
+      %h4 Options
+
+      %br
+
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td label
+            %td String
+            %td
+              takes one of the following options:
+              %b iso
+              (de, fr, en, ...etc),
+              %b locale
+              (Deutsch, Français, English, ...etc),
+              %b title
+              (page title). By default, "iso".
+          %tr
+            %td sep
+            %td String
+            %td piece of html code separating 2 locales. By default, " | ".
+
+    - # nav
+    #nav-section.tab-pane
+
+      %h3 nav
+
+      %br
+
+      %p
+        Render a list of links pointing to your pages. You can specify a context from where the pages will be pulled out. The context takes the following values:
+        %b site, parent or page.
+        %br
+        Moreover, it is also possible to include the nested pages.
+
+      %br
+
+      .alert.warning-info
+        Your pages must fill 2 conditions to be part of the navigation: be
+        %b published
+        and be
+        %b listed.
+
+      %br
+
+      .alert.alert-info
+        The order is based on the one you specify in your LocomotiveCMS back-office.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; nav 'parent', depth: 1, no_wrapper: false, exlude: nil, icon: false &#37;&#125;
+
+      %br
+
+      %h5 A more complex example:
+
+      %pre
+        :preserve
+          &#123;&#37; nav site, exclude: '\.*\-bottom', depth: 2, snippet: menu_entry &#37;&#125;
+          &#123;&#37; block misc_properties &#37;&#125;
+            &#123;&#37; editable_short_text menu_teaser &#37;&#125;&#123;&#37; endeditable_short_text &#37;&#125;
+            &#123;&#37; editable_file menu_image &#37;&#125;&#123;&#37; endeditable_file &#37;&#125;
+          &#123;&#37; endblock &#37;&#125;
+      %p nav tag in the page
+
+      %pre
+        :preserve
+          &#123;&#123; page.menu_teaser &#125;&#125;
+          &#123;&#123; page.menu_image &#125;&#125;
+      %p snippet named "menu-entry"
+
+      %br
+
+      %h4 Options
+
+      %br
+
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td depth
+            %td Integer
+            %td how many levels of children to display. 1 by default.
+          %tr
+            %td snippet
+            %td String
+            %td name of the snippet which will be used to render a page entry. Optional.
+          %tr
+            %td no_wrapper
+            %td Boolean
+            %td do not output the ul wrapper. false by default.
+          %tr
+            %td exclude
+            %td String
+            %td regexp string of slugs to be ignored.
+          %tr
+            %td icon
+            %td String
+            %td ouput a span to be used as an icon.
+          %tr
+            %td id
+            %td String
+            %td css unique identifier for the ul tag. "nav" by default.
+          %tr
+            %td class
+            %td String
+            %td class of the ul tag.
+          %tr
+            %td active_class
+            %td String
+            %td name of the css class when the current page is the one in the menu.
+          %tr
+            %td bootstrap
+            %td Boolean
+            %td use the twitter bootstrap classes. false by default
+
+    - # consume
+    #consume-section.tab-pane
+
+      %h3 consume
+
+      %br
+
+      %p
+        Read an external datasource (either JSON or XML), cache the content and allow you to iterate over the objects.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; consume blog from 'http://blog.locomotivecms.com/api/read/json?num=3&type=text', expires_in: 3000 &#37;&#125;
+            &#123;&#37; if blog == null &#37;&#125;
+            the Tumblr API seems to be broken now.
+            &#123;&#37; else &#37;&#125;
+              &#123;&#37; for article in blog.posts &#37;&#125;
+                &#123;&#123; article.title &#125;&#125;
+              &#123;&#37; endfor &#37;&#125;
+            &#123;&#37; endif &#37;&#125;
+          &#123;&#37; endconsume &#37;&#125;
+
+
+      %br
+
+      %h4 Options
+
+      %br
+
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td expires_in
+            %td Integer
+            %td Delay in seconds during the content will be cached. 0 means no cache.
+          %tr
+            %td username
+            %td String
+            %td username if the external API requires an HTTP authentication.
+          %tr
+            %td password
+            %td String
+            %td password if the external API requires an HTTP authentication.
+
+    - # with_scope
+    #with-scope-section.tab-pane
+
+      %h3 with_scope
+
+      %br
+
+      %p
+        The with_scope tag is used to filter a list of entries. The filter is applied directly to the MongoDB request which makes it very performant.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; with_scope author: 'John Doe' &#37;&#125;
+            &#123;&#37; for post in content_type.posts &#37;&#125;
+              &#123;&#123; post.title &#125;&#125;
+            &#123;&#37; endfor &#37;&#125;
+          &#123;&#37; endwith_scope &#37;&#125;
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; with_scope active: true &#37;&#125;
+            &#123;&#37; paginate content_type.projects by 10 &#37;&#125;
+              &#123;&#37; for project in paginate.collection &#37;&#125;
+                &#123;&#123; project.title &#125;&#125;
+              &#123;&#37; endfor &#37;&#125;
+            &#123;&#37; endpaginate &#37;&#125;
+          &#123;&#37; endwith_scope &#37;&#125;
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; with_scope posted_at.gte: '2012/01/01', posted_at.lte: '2012/02/1' &#37;&#125;
+            &#123;&#37; for post in content_type.posts &#37;&#125;
+              &#123;&#123; post.title &#125;&#125;
+            &#123;&#37; endfor &#37;&#125;
+          &#123;&#37; endwith_scope &#37;&#125;
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; with_scope price.lt: 42 &#37;&#125;
+            &#123;&#37; for product in content_type.products &#37;&#125;
+              &#123;&#123; product.name &#125;&#125;
+            &#123;&#37; endfor &#37;&#125;
+          &#123;&#37; endwith_scope &#37;&#125;
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; with_scope price.lt: params.min_price &#37;&#125;
+            &#123;&#37; for product in content_type.products &#37;&#125;
+              &#123;&#123; product.name &#125;&#125;
+            &#123;&#37; endfor &#37;&#125;
+          &#123;&#37; endwith_scope &#37;&#125;
+
+    - # paginate
+    #paginate-section.tab-pane
+
+      %h3 paginate
+
+      %br
+
+      %p
+        The paginate tag is responsible for pagination within the LocomotiveCMS engine. It is currently applicable to the entries of content types.
+        %br
+        %br
+        It can be combined with the
+        %b with_scope
+        tag.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; paginate content_type.projects by 10 &#37;&#125;
+            &#123;&#37; for project in paginate.collection &#37;&#125;
+              &#123;&#123; project.title &#125;&#125;
+            &#123;&#37; endfor &#37;&#125;
+          &#123;&#37; endpaginate &#37;&#125;
+
+      %br
+
+      %h4 The paginate object
+
+      %br
+
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td collection
+            %td Array
+            %td list of elements
+          %tr
+            %td current_page
+            %td Integer
+            %td the index of the current page
+          %tr
+            %td previous_page
+            %td Integer
+            %td the index of the previous page. Nil if there is no previous page
+          %tr
+            %td next_page
+            %td Integer
+            %td the index of the next page. Nil if there is no next page
+          %tr
+            %td total_entries
+            %td Integer
+            %td total number of entries
+          %tr
+            %td per_page
+            %td Integer
+            %td number of entries per page
+          %tr
+            %td total_pages
+            %td Integer
+            %td total number of pages
+          %tr
+            %td parts
+            %td Array
+            %td list of all the parts which make up a good navigation for this pagination. Each element will have any of these three elements: title (String), url (String), is_link (Boolean).
+          %tr
+            %td previous
+            %td String
+            %td url to the previous page. Nil if there is no previous page
+          %tr
+            %td next
+            %td String
+            %td url to the next page. Nil if there is no next page
+
+    - # editable_control
+    #editable-control-section.tab-pane
+
+      %h3 editable_control
+
+      %br
+
+      %p
+        Editable areas contain content you want a user to be able to change. The content within the tag will be the default one.
+        %br
+        %br
+        In the back-office, the editable element will be found under the tab corresponding to the block wrapping it. It is possible to associate the element to another block.
+        %br
+        The input field in the back-office used to edit the content is a
+        %b select field.
+        %br
+        %br
+        An element can be inherited by children, each page keeping its own version of the content. However, in some cases, it may be a requirement to have the element to be editable in one place. If so, just set the "fixed" option to true.
+
+      %br
+
+      .alert.alert-info
+        You must give these sections a unique name because they will be inherited by children.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; capture menu_enabled &#37;&#125;
+            &#123;&#37; editable_control "menu", options: 'true=Yes,false=No', hint: "Tell if the menu is displayed or not", priority: 1 &#37;&#125;
+            false
+            &#123;&#37; endeditable_control &#37;&#125;
+          &#123;&#37; endcapture &#37;&#125;
+
+          &#123;&#37; if menu_enabled == 'true' &#37;&#125;
+          DISPLAYED
+          &#123;&#37; endif &#37;&#125;
+
+      %br
+
+      %h4 Options
+
+      %br
+
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td options
+            %td String
+            %td options are separated by comma and value/label by a the "equals" sign. Ex: v1=l1,v2=l2,v3=l3,..etc.
+          %tr
+            %td block
+            %td String
+            %td associate the element with a block other than the current one.
+          %tr
+            %td fixed
+            %td Boolean
+            %td make the element editable in one place. The default value is false.
+          %tr
+            %td hint
+            %td String
+            %td text displayed in the back-office just below the select field.
+          %tr
+            %td priority
+            %td Integer
+            %td used to position the file field in the back-office. Elements with the highest priority are displayed first.
+
+    - # editable_file
+    #editable-file-section.tab-pane
+
+      %h3 editable_file
+
+      %br
+
+      %p
+        Editable areas contain content you want a user to be able to change. The content within the tag will be the default one.
+        %br
+        %br
+        In the back-office, the editable element will be found under the tab corresponding to the block wrapping it. It is possible to associate the element to another block.
+        %br
+        The input field in the back-office used to edit the content is a
+        %b file field.
+        %br
+        %br
+        An element can be inherited by children, each page keeping its own version of the content. However, in some cases, it may be a requirement to have the element to be editable in one place. If so, just set the "fixed" option to true.
+
+      %br
+
+      .alert.alert-info
+        You must give these sections a unique name because they will be inherited by children.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; editable_file "banner", hint: "Upload a banner (perfect size: 300px by 100px)", priority: 1 &#37;&#125;
+          http://placehold.it/300x100
+          &#123;&#37; editable_file &#37;&#125;
+
+      %br
+
+      %h4 Options
+
+      %br
+
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td block
+            %td String
+            %td associate the element with a block other than the current one.
+          %tr
+            %td fixed
+            %td Boolean
+            %td make the element editable in one place. The default value is false.
+          %tr
+            %td hint
+            %td String
+            %td text displayed in the back-office just below the file field.
+          %tr
+            %td priority
+            %td Integer
+            %td used to position the file field in the back-office. Elements with the highest priority are displayed first.
+
+    - # editable_long_text
+    #editable-long-text-section.tab-pane
+
+      %h3 editable_long_text
+
+      %br
+
+      %p
+        Editable areas contain content you want a user to be able to change. The content within the tag will be the default one.
+        %br
+        %br
+        In the back-office, the editable element will be found under the tab corresponding to the block wrapping it. It is possible to associate the element to another block.
+        %br
+        The input field in the back-office used to edit the content is a
+        %b textarea.
+        %br
+        %br
+        An element can be inherited by children, each page keeping its own version of the content. However, in some cases, it may be a requirement to have the element to be editable in one place. If so, just set the "fixed" option to true.
+
+      %br
+
+      .alert.alert-info
+        You must give these sections a unique name because they will be inherited by children.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; editable_long_text "tagline", hint: "The tagline below the big title", priority: 1 &#37;&#125;
+          Lorem ipsum (default content)
+          &#123;&#37; endeditable_short_text &#37;&#125;
+
+      %br
+
+      %h4 Options
+
+      %br
+
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td block
+            %td String
+            %td associate the element with a block other than the current one.
+          %tr
+            %td fixed
+            %td Boolean
+            %td make the element editable in one place. The default value is false.
+          %tr
+            %td hint
+            %td String
+            %td text displayed in the back-office just below the textarea.
+          %tr
+            %td priority
+            %td Integer
+            %td used to position the textarea in the back-office. Elements with the highest priority are displayed first.
+
+    - # editable_short_text
+    #editable-short-text-section.tab-pane
+
+      %h3 editable_short_text
+
+      %br
+
+      %p
+        Editable areas contain content you want a user to be able to change. The content within the tag will be the default one.
+        %br
+        %br
+        In the back-office, the editable element will be found under the tab corresponding to the block wrapping it. It is possible to associate the element to another block.
+        %br
+        The input field in the back-office used to edit the content is a
+        %b short-size textarea,
+        without the ability to insert new paragraphs for instance.
+        %br
+        %br
+        An element can be inherited by children, each page keeping its own version of the content. However, in some cases, it may be a requirement to have the element to be editable in one place. If so, just set the "fixed" option to true.
+
+      %br
+
+      .alert.alert-info
+        You must give these sections a unique name because they will be inherited by children.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; editable_short_text "title", hint: "The big title", priority: 10 &#37;&#125;
+          Lorem ipsum (default content)
+          &#123;&#37; endeditable_short_text &#37;&#125;
+
+      %br
+
+      %h4 Options
+
+      %br
+
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td block
+            %td String
+            %td associate the element with a block other than the current one.
+          %tr
+            %td fixed
+            %td Boolean
+            %td make the element editable in one place. The default value is false.
+          %tr
+            %td hint
+            %td String
+            %td text displayed in the back-office just below the textarea.
+          %tr
+            %td priority
+            %td Integer
+            %td used to position the textarea in the back-office. Elements with the highest priority are displayed first.
+
+    - # include
+    #include-section.tab-pane
+
+      %h3 include
+
+      %br
+
+      %p
+        Include sections of content you would like to repeat across the website. The optional
+        %b with
+        clause lets you specify a value which is bound to the snippet's name within the snippet's context.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; include 'footer' &#37;&#125;
+          &#123;&#37; include 'product_information' with product &#37;&#125;
+
+    - # block
+    #block-section.tab-pane
+
+      %h3 block
+
+      %br
+
+      %p
+        Blocks are regions of content that you may want to override in children layouts.
+        %br
+        Their names are used to define the tabs in the backend and segment editable regions.
+
+      %br
+
+      .alert.alert-info
+        Nesting blocks is fine. However, their names must be unique.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; block sidebar &#37;&#125;
+            Sidebar goes here
+          &#123;&#37; endblock &#37;&#125;
+
+          &#123;&#37; block content &#37;&#125;
+            Content goes here
+          &#123;&#37; endblock &#37;&#125;
+
+    - # extends
+    #extends-section.tab-pane
+
+      %h3 extends
+
+      %br
+
+      .alert.warning-info
+        The extends tag must be
+        %b ALWAYS
+        the first statement.
+
+      %p
+        Set the layout of the current page. A page can be a layout for another page. The tag needs a single parameter which can take two values:
+      %ul
+        %li
+          %b parent
+          the layout for the parent url
+        %li
+          %b some/page/path
+          a specific pages layout
+
+      %br
+
+      .alert.alert-info
+        You do not need to close this tag.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; extends parent &#37;&#125;
+          &#123;&#37; extends 'support/index' &#37;&#125;
+
+    - # cycle
+    #cycle-section.tab-pane
+
+      %h3 cycle
+
+      %br
+
+      %p
+        Output the next option in a group on each call.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; cycle 'group 1': 'blue', 'green', 'red' &#125;&#125;
+          &#123;&#37; cycle 'group 1': 'blue', 'green', 'red' &#125;&#125;
+          &#123;&#37; cycle 'group 2': 'blue', 'green', 'red' &#125;&#125;
+          &#123;&#37; cycle 'group 1': 'blue', 'green', 'red' &#125;&#125;
+
+          will result in
+
+          blue
+          green
+          blue
+          red
+
+    - # capture
+    #capture-section.tab-pane
+
+      %h3 capture
+
+      %br
+
+      %p
+        Combine a number of strings into a single string and save it to a variable.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; capture full_name &#37;&#125;&#123;&#123; person.first_name &#125;&#125; &#123;&#123; person.last_name &#125;&#125;&#123;&#37; endcapture &#37;&#125;
+          &#123;&#123; full_name &#125;&#125;
+
+    - # assigns
+    #assigns-section.tab-pane
+
+      %h3 assigns
+
+      %br
+
+      %p
+        Used to assign a value to a variable.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; assign article = contents.news.first &#37;&#125;
+          &#123;&#123; article.title &#125;&#125;
+          &#123;&#123; article.body &#125;&#125;
+
+    - # case
+    #case-section.tab-pane
+
+      %h3 case
+
+      %br
+
+      %p
+        When evaluating a large number of conditions.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; case condition &#37;&#125;
+            &#123;&#37; when 1 &#37;&#125;
+              hit 1
+            &#123;&#37; when 2 &#37;&#125;
+              hit 2
+            &#123;&#37; else &#37;&#125;
+              hit else
+          &#123;&#37; endcase &#37;&#125;
+
+
+    -# if/else/unless
+    #if-else-unless-section.tab-pane
+
+      %h3 if / else / unless
+
+      %br
+
+      %p
+        Boolean logic operations are available on all objects.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; if feature.title &#37;&#125;
+            &#123;&#123; feature.title &#125;&#125;
+          &#123;&#37; unless feature.body &#37;&#125;
+            feature has no content
+          &#123;&#37; else &#37;&#125;
+            &#123;&#123; feature.body &#125;&#125;
+          &#123;&#37; endif &#37;&#125;
+
+    -# for
+    #for-section.tab-pane
+
+      %h3 for
+
+      %br
+
+      %p
+        Loop over a collection.
+
+      %br
+
+      %pre
+        :preserve
+          &#123;&#37; for item in array &#37;&#125;
+            &#123;&#123; item &#125;&#125;
+          &#123;&#37; endfor &#37;&#125;
+
+      %br
+
+      %p
+        Instead of looping over an existing collection, you can define a range of numbers to loop through. The range can be defined by both literal and variable numbers:
+
+      %pre
+        :preserve
+          # if item.quantity is 4...
+          &#123;&#37; for i in (1..item.quantity) &#37;&#125;
+            &#123;&#123; i &#125;&#125;
+          &#123;&#37; endfor &#37;&#125;
+          # results in 1,2,3,4
+
+      %br
+
+      %p
+        During every for loop there are following helper variables available for extra styling needs:
+
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Type
+            %th Description
+        %tbody
+          %tr
+            %td forloop.length
+            %td Integer
+            %td length of the entire for loop
+          %tr
+            %td forloop.index
+            %td Integer
+            %td index of the current iteration
+          %tr
+            %td forloop.index0
+            %td Integer
+            %td index of the current iteration (zero based)
+          %tr
+            %td forloop.rindex
+            %td Integer
+            %td how many items are still left?
+          %tr
+            %td forloop.rindex0
+            %td Integer
+            %td how many items are still left? (zero based)
+          %tr
+            %td forloop.first
+            %td Boolean
+            %td is this the first iteration?
+          %tr
+            %td forloop.last
+            %td Boolean
+            %td is this the last iteration?
+
+{% endblock %}

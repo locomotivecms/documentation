@@ -27,39 +27,32 @@
     {% include 'google_analytics' %}
 
   %body
-    #head.navbar
+    #head.navbar.navbar-fixed-top
       .navbar-inner
         .container
-          %a.brand{ :href => "/" }
+
+          %a.logo.pull-left{ :href => "http://www.locomotivecms.com", :title => 'Back to the LocomotiveCMS website' }
             %img{ :src => "{{ 'logo.jpg' | theme_image_url }}", :alt => '{{ site.name }}' }
 
-          %a.back.pull-right{ :href => "http://www.locomotivecms.com" } back to the LocomotiveCMS website &rarr;
+          %ul.nav.pull-right
+            %li{ :class => '{% if page.fullpath == "index" %}active{% endif %}'}
+              %a{ :href => '/' } Home
+            {% for mainpage in site.index.children %}
+            {% capture mainpage_fullpath %}/{{ mainpage.fullpath }}{% endcapture %}
+            %li{ :class => 'dropdown {% if path contains mainpage_fullpath %}active{% endif %}' }
+              %a{ :href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
+                {{ mainpage.title }}
+                %b.caret
+              %ul.dropdown-menu
+                {% for subpage in mainpage.children %}
+                %li
+                  %a{ :href => '/{{ subpage.fullpath }}' } {{ subpage.title }}
+                {% endfor %}
+            {% endfor %}
 
     .container
       .row
-        #sidebar.span3
-          .well.sidebar-nav
-            {% block 'sidebar' %}
-
-            %ul.nav.nav-list
-              {% for mainpage in site.index.children %}
-
-              %li.nav-header {{ mainpage.title }}
-
-              {% for subpage in mainpage.children %}
-
-              {% capture subpage_fullpath %}/{{ subpage.fullpath }}{% endcapture %}
-
-              %li{ :class => '{% if subpage_fullpath == path %}active{% endif %}' }
-                %a{ :href => '/{{ subpage.fullpath }}' } {{ subpage.title }}
-              {% endfor %}
-
-              {% endfor %}
-
-
-            {% endblock %}
-
-        #main.span9
+        #main.span12
           {% block 'main' %}
           / Main hero unit for a primary marketing message or call to action
 
@@ -76,17 +69,17 @@
 
           / Example row of columns
           .row
-            .span3
+            .span4
               %h2 Ask the community
               %p You have a question, do not be shy, post it to our Google group. Someone will answer you for sure.
               %p
                 %a.btn{:href => "https://groups.google.com/forum/?fromgroups#!forum/locomotivecms"} Visit »
-            .span3
+            .span4
               %h2 Contributing
               %p You coded a top notch new feature for the CMS or you found a bug. Please visit our Github project page.
               %p
                 %a.btn{:href => "https://github.com/locomotivecms/engine"} Visit »
-            .span3
+            .span4
               %h2 Support
               %p You are looking for some help on your LocomotiveCMS client project. We can help you.
               %p

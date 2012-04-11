@@ -1,12 +1,18 @@
 .clear { clear: both; }
+.centered { text-align: center; }
+
+body {
+  padding-top: 60px;
+}
 
 #head {
-  .navbar-inner {
-    background: transparent url(/images/head_bg.jpg) repeat-x;
+  .logo {
+    position: relative;
+    top: 7px;
   }
 
-  .back {
-    margin-top: 20px;
+  .navbar-inner {
+    background: transparent url(/images/head_bg.jpg) repeat-x;
   }
 }
 

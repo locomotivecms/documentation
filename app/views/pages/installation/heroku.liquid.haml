@@ -182,9 +182,25 @@
 
 %p
   We suggest you to compile your assets locally so that if there is an issue with your assets, you will be able to debug it more easily.
+  %br
+  It is very important that you disable the
+  %b initialize_on_precompile
+  option in the
+  %b config/application.rb
+  file of your application:
+
+%pre
+  :plain
+    module YourApplication
+      class Application < Rails::Application
+        ...
+        config.assets.initialize_on_precompile = false
+        ...
+      end
+    end
 
 %p
-  In your terminal, run the following command
+  Then, in your terminal, run the following command
 
 %pre
   bundle exec rake assets:precompile

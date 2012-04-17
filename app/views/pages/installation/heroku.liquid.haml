@@ -68,44 +68,6 @@
 
 %hr
 
-/ === 3 ===
-
-%h3 Custom domains
-
-%br
-
-%p
-  Whether you want to use domain aliases for your website or if you enable the multi-sites option, you will have to tell Heroku to respond to requests at your domains.
-
-%p
-  All you need to do is to require the
-  %a{ :href => 'http://devcenter.heroku.com/articles/custom-domains' } custom_domain add-on.
-
-%h4 You disabled the multi-sites option
-
-%br
-
-%pre
-  heroku addons:add custom_domains
-
-%br
-
-%h4 You enabled the multi-sites option
-
-%br
-
-%pre
-  heroku addons:add custom_domains:wildcard
-
-%br
-
-.alert.alert-info
-  %strong Important note:
-  Unfortunately, the wilcard domains option is not free in Heroku, you will have to pay
-  %strong $5/mo.
-
-%hr
-
 / === 4 ===
 
 %h3 4. Set up a remote Mongodb database

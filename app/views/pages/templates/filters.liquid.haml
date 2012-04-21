@@ -335,11 +335,23 @@
 
       %pre
         :plain
-          &#123;&#123; today | localized_date: format: '%d/%B', locale: 'fr' &#125;&#125;
+          &#123;&#123; today | localized_date: '%d %B' &#125;&#125;
       %p
         %strong Example:
         Returns
-        %b 31 mars
+        %b 21 december
+
+      %br
+
+      %pre
+        :plain
+          &#123;&#123; today | localized_date: '%d %B', 'fr' &#125;&#125;
+      %p
+        %strong Example:
+        Returns
+        %b 29 juin
+
+      %br
 
       %h4 Options
 
@@ -359,7 +371,7 @@
           %tr
             %td locale
             %td String
-            %td By default, it is the current locale
+            %td <i>Optional</i>. By default, it is the current locale.
 
     -# format_date
     #format-date-section.tab-pane

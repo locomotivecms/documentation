@@ -1,5 +1,5 @@
 # Please, be careful when editing these settings, it may break the theme assets API push
-project_path      = '/Users/didier/Documents/LocomotiveCMS/documentation/public'
+project_path      = File.join(File.dirname(__FILE__), '..', 'public')
 http_path         = '/'
 css_dir           = '../tmp/stylesheets'
 sass_dir          = 'stylesheets'

@@ -1,0 +1,82 @@
+{% extends 'index' %}
+
+{% block 'main' %}
+
+.hero-unit
+
+  %h1 Upgrade from 1.0 to the new 2.0 version
+
+  %br
+
+  %p
+    We provide a ruby script to upgrade your old LocomotiveCMS installation whether it runs locally or on Heroku.
+
+.alert
+  %b Important:
+  At any cases, we will not be held as responsible if something goes wrong with the upgrade procedure.
+
+
+/ === 1 ===
+
+%h3 1. Backup your data
+
+%br
+
+%p
+  In order to avoid a big drama, please make sure you backup <b>ALL</b> your LocomotiveCMS data including the MongoDB database as well as the assets.
+
+%p
+  <b>For MongoDB</b>, read the <a href="http://www.mongodb.org/display/DOCS/Import+Export+Tools">MongoDB documentation page</a> about how to make a dump of your database.
+
+.alert.alert-info
+  If you host your sites on a Heroku instance, please take a look at the <a href="https://github.com/alexkravets/heroku-mongo-backup">heroku-mongo-backup gem</a>.
+
+%p
+  <b>For the assets</b>, it depends on the storage you set in your carrierwave config file. If you picked up Amazon S3, you may consider <a href="http://cyberduck.ch">cyberduck</a> to get a copy of your online files. Otherwise, if you store them on a classical filesystem, just copy your <i>public/sites</i> folder.
+
+%hr
+
+/ === 2 ===
+
+%h3 2. Get the upgrade script
+
+%br
+
+%p
+  Before going further, make sure you installed the new version of the engine and you modified the right config files (mongoid.yml and carrierwave.rb). Do not forget to copy the assets of your old engine to the new one.
+
+%pre
+  :escaped
+    cd <your new locomotivecms engine>/script
+    curl -O https://raw.github.com/gist/2475341/d993b602bd30125d8ccf9c7804686a762d22f6c6/upgrade.rb
+
+%hr
+
+/ === 3 ===
+
+%h3 3. Edit the script
+
+%br
+
+%p
+  Open the <b>script/upgrade.rb</b> file and look for the section named <b>"Global variables"</b>. Then, modify the information about your MongoDB connection and your S3 settings if you use Amazon S3 for your assets.
+
+%hr
+
+/ === 4 ===
+
+%h3 4. Run it !
+
+%br
+
+%pre
+  :escaped
+    cd <your new locomotivecms engine>
+    ruby script/upgrade.rb
+
+%br
+
+%p
+  Once it is done, <b>restart</b> your server.
+
+{% endblock %}

@@ -38,6 +38,9 @@ site:
     - "guides/multisites":
         title: "Multi-sites"
         listed: true
+    - "guides/upgrade_v1":
+        title: "Upgrade to 2.0"
+        listed: true
 
     - "editor":
         title: "Editor"

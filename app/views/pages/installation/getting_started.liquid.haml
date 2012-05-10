@@ -12,7 +12,7 @@
     We suggest you to start by reading the
     %a{ :href => 'requirements' }requirements section
     \. If you want to test the engine and sneak into the code, we recommend you to install from
-    %a{ :ref => 'developers' } the source.
+    %a{ :href => 'developers' } the source.
 
 / === 1 ===
 
@@ -20,15 +20,13 @@
 
 %br
 
-%pre
-  rails new myapp -O -T -J --skip-bundle
-  cd myapp
-
-%br
-
 .alert.error-alert
   Make sure you installed
   %strong Ruby on Rails 3.2.x
+
+%pre
+  rails new myapp --skip-active-record --skip-test-unit --skip-javascript --skip-bundle
+  cd myapp
 
 %hr
 
@@ -41,7 +39,7 @@
 %p You have to tell your Ruby on Rails app that you want to include the LocomotiveCMS gem available on Gemcutter. Edit your application Gemfile and add these lines if missing.
 
 %pre
-  gem 'locomotive_cms', '~> 2.0.0.rc4', :require => 'locomotive/engine'
+  gem 'locomotive_cms', '~> 2.0.0.rc7', :require => 'locomotive/engine'
 
   gem 'unicorn', :group => 'development'
 
@@ -49,9 +47,13 @@
 
 %br
 
-.alert.alert-info
-  %strong Note:
-  There is no need to add the Mongoid gem since it is embedded like the others (carrierwave, ...etc) with the engine.
+%p
+  If you run your engine on
+  %strong Linux,
+  you also have to add the following gem
+
+%pre
+  gem 'therubyracer', '>= 0.8.2'
 
 %hr
 
@@ -121,7 +123,5 @@
   Follow the instructions in order to create your first administrator account and your first website.
 
 %hr
-
-
 
 {% endblock %}

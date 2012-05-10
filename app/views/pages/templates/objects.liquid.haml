@@ -163,8 +163,6 @@
 
       %br
 
-      %hr
-
     #page-section.tab-pane
       - # --- Page ---
 
@@ -240,8 +238,6 @@
 
       %br
 
-      %hr
-
     #content-type-section.tab-pane
       - # --- Content Types ---
 
@@ -259,6 +255,22 @@
 
       %br
 
+      %h4 Syntax
+
+      %br
+
+      %pre
+        :plain
+          &#123;&#123; content_types.&lt;name&gt; &#125;&#125;
+
+      %p
+        %i name
+        is the
+        %b slug
+        attribute of your content type.
+
+      %br
+
       %h4 Attributes
 
       %br
@@ -267,18 +279,72 @@
         %thead
           %tr
             %th Name
-            %th Type
-            %th description
+            %th Returning type
+            %th{ :style => 'width: 60%' } description
         %tbody
           %tr
-            %td
-              %i name
+            %td first
+            %td ContentEntry
+            %td First entry of the collection
+          %tr
+            %td last
+            %td ContentEntry
+            %td Last entry of the collection
+          %tr
+            %td empty
+            %td Boolean
+            %td True if the collection of entries is empty
+          %tr
+            %td any
+            %td Boolean
+            %td True if the collection of entries is NOT empty
+          %tr
+            %td size
+            %td Integer
+            %td The total number of entries
+          %tr
+            %td count
+            %td Integer
+            %td Alias for <b>size</b>
+          %tr
+            %td length
+            %td Integer
+            %td Alias for <b>size</b>
+          %tr
+            %td public_submission_url
             %td String
-            %td slug of the content type
+            %td The url for the form allowing public visitors to create a new entry of the content type (ex: Contact form). The "Public submission" option for the content type has to be enabled within the back-office.
+          %tr
+            %td group_by_&lt;field name&gt;
+            %td Array
+            %td The <b>field name</b> is the name of a "Select" type field of the content type. The method returns an ordered Array of Hash. Each Hash stores 2 keys, <b>name</b> which is the name of the option and <b>entries</b> which is the list of the ordered entries for the option. The Array is ordered based on the order of the options set in the back-office.
+
+      %h4 Usage
 
       %br
 
-      %hr
+      %p
+        In order to iterate over the entries, use the
+        %b
+          %a{ :href => '/templates/tags#for-section' } for
+        tag
+
+      %pre
+        :preserve
+          &#123;&#37; for article in contents.articles &#37;&#125;
+            &#123;&#123; article.title &#125;&#125;
+          &#123;&#37; endfor &#37;&#125;
+
+      %br
+
+      .alert.alert-info
+        There are also other tags that you could use to
+        %b
+          %a{ :href => '/templates/tags#paginate-section' } paginate
+        or
+        %b
+          %a{ :href => '/templates/tags#with-scope-section' } filter
+        your collection of entries
 
     #content-entry-section.tab-pane
       - # --- Content entries ---
@@ -346,7 +412,5 @@
 
       .alert.alert-info
         The previous table of attributes does not include all the dynamically generated attributes described by the custom fields of the related content type.
-
-      %hr
 
 {% endblock %}

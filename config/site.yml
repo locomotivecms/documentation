@@ -1,10 +1,9 @@
 site:
   name: Documentation
 
-  ui_locale: en # only for the locomotive editor, not used by the engine
   locales: [en]
 
-  seo_title: documentation
+  seo_title: LocomotiveCMS - Documentation
   meta_keywords: "some meta keywords"
   meta_description: "some meta description"
 
@@ -32,8 +31,15 @@ site:
         title: "For developers"
         listed: true
 
-    - "howtos":
-        title: "How-to's"
+    - "guides":
+        title: "Guides"
+        listed: true
+        redirect_url: "guides/multisites"
+    - "guides/multisites":
+        title: "Multi-sites"
+        listed: true
+    - "guides/upgrade_v1":
+        title: "Upgrade to 2.0"
         listed: true
 
     - "editor":

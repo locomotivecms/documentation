@@ -1,3 +1,4 @@
 .sass-cache/
 /tmp
 config/deploy.yml
+/config/deploy.yml

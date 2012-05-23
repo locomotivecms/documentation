@@ -74,11 +74,94 @@
           %a{ :href => '#seo-section', :'data-toggle' => 'tab' } seo
         %li
           %a{ :href => '#inline-editor-section', :'data-toggle' => 'tab' } inline_editor
+        %li
+          %a{ :href => '#csrf-param-section', :'data-toggle' => 'tab' } csrf_param
+        %li
+          %a{ :href => '#csrf-meta-section', :'data-toggle' => 'tab' } csrf_meta
 
 
   .tab-content
 
     .tab-pane.active
+
+    - # csrf_param
+    #csrf-param-section.tab-pane
+
+      %h3 csrf_param
+
+      %br
+
+      %p
+        Forms inside the Liquid templates, such as a contact form for instance, can be protected from
+        %b Cross-Site Request Forgery (CSRF)
+        attacks.
+
+      %pre
+        :preserve
+          &lt;form action="/contact"&gt;
+            &#123;&#37; csrf_param &#37;&#125;
+            ...
+          &lt;/form&gt;
+
+      %br
+
+      %p
+        By default, that protection is
+        %b disabled
+        in order to keep backwards compatibility with the existing public forms.
+        %br
+        If you want to enable it, open your
+        %b config/initializers/locomotive.rb
+        file and toggle the csrf property on.
+
+      %pre
+        config.csrf_protection = true
+
+      %br
+
+      .alert.alert-info
+        For <b>AJAX</b> requests, please consider the
+        %b
+          %a{ :href => '#csrf-meta-section' } csrf_meta
+        tag.
+
+    - # csrf_meta
+    #csrf-meta-section.tab-pane
+
+      %h3 csrf_meta
+
+      %br
+
+      %p
+        The
+        %b csrf_meta
+        tag gives the information the javascript code has to include for each AJAX POST request
+        in order to prevent
+        %b Cross-Site Request Forgery (CSRF)
+        attacks.
+
+      %pre
+        :preserve
+          &lt;html&gt;
+            &lt;head&gt;
+              &#123;&#37; csrf_meta &#37;&#125;
+            &lt;/head&gt;
+            ...
+          &lt;/html&gt;
+
+      %br
+
+      %p
+        By default, that protection is
+        %b disabled
+        in order to keep backwards compatibility with the existing public forms.
+        %br
+        If you want to enable it, open your
+        %b config/initializers/locomotive.rb
+        file and toggle the csrf property on.
+
+      %pre
+        config.csrf_protection = true
 
     - # inline_editor
     #inline-editor-section.tab-pane

@@ -44,9 +44,16 @@
   gem 'thin', :group => 'production'
 
 %p
+  While you're at it, add the following line right before your first gem entry
+
+%pre
+  ruby '1.9.3'
+
+%p
   Then, in your terminal, run
 
 %pre
+  gem install bundler --pre
   bundle install
 
 %hr
@@ -61,16 +68,12 @@
   git init .
   heroku create &lt;YOUR APP NAME&gt; --stack cedar
   heroku config:add BUNDLE_WITHOUT=development:test
-  heroku plugins:install https://github.com/heroku/heroku-labs.git
-  heroku labs:enable user_env_compile -a &lt;YOUR APP NAME&gt;
-  heroku config:add RUBY_VERSION=ruby-1.9.3-p125
-  heroku config:add PATH=bin:vendor/bundle/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin
 
 %hr
 
-/ === 4 ===
+/ === 3 ===
 
-%h3 4. Set up a remote Mongodb database
+%h3 3. Set up a remote Mongodb database
 
 %br
 
@@ -93,9 +96,9 @@
 
 %hr
 
-/ === 5 ===
+/ === 4 ===
 
-%h3 5. Enable emails
+%h3 4. Enable emails
 
 %br
 
@@ -126,9 +129,9 @@
 
 %hr
 
-/ === 6 ===
+/ === 5 ===
 
-%h3 6. Configure Heroku to work with your Amazon S3 credentials
+%h3 5. Configure Heroku to work with your Amazon S3 credentials
 
 %br
 
@@ -144,9 +147,9 @@
 
 %hr
 
-/ === 7 ===
+/ === 6 ===
 
-%h3 7. Edit your Locomotive config file.
+%h3 6. Edit your Locomotive config file.
 
 %br
 
@@ -179,9 +182,9 @@
 
 %hr
 
-/ === 8 ===
+/ === 7 ===
 
-%h3 8. Pre-compile your assets
+%h3 7. Pre-compile your assets
 
 %br
 
@@ -212,9 +215,9 @@
 
 %hr
 
-/ === 9 ===
+/ === 8 ===
 
-%h3 9. Launch it !
+%h3 8. Launch it !
 
 %br
 

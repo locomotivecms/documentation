@@ -79,4 +79,13 @@
 %p
   Once it is done, <b>restart</b> your server.
 
+%br
+
+.alert
+  %b Important:
+  You also have to invalidate all the session cookies. In order to achieve it automatically, you have to change your secret token key. This can be changed from your
+  %b
+    config/initializers/secret_token.rb
+  file. Do not forget to restart your server after.
+
 {% endblock %}

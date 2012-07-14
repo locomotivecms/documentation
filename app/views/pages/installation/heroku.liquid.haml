@@ -66,7 +66,7 @@
 
 %pre
   git init .
-  heroku create &lt;YOUR APP NAME&gt; --stack cedar
+  heroku create &lt;YOUR APP NAME&gt;
   heroku config:add BUNDLE_WITHOUT=development:test
 
 %hr

@@ -1,0 +1,22 @@
+- ! 'How do I update / change the credit card on my account?':
+    _permalink: item-1
+    answer: To change your credit card you must be logged in as the Account Owner, as only she or he has access to that section of the shop admin.
+      Once logged in as the Account Owner, go to the Account area and use the "Change or update" link beside the Payment Method.
+    category: General
+- ! 'Item #1 bis':
+    _permalink: item-1bis
+    answer: Omnis non velit eum inventore. Officiis consequuntur necessitatibus quia
+      voluptatem ullam quam sit. Sint molestias saepe error aut. Et consectetur voluptas
+      voluptatem.
+    category: General
+- ! 'Item #2':
+    _permalink: item-2
+    answer: Inventore expedita voluptatum non maiores velit molestias quasi. Vitae
+      aut accusantium pariatur. Est vero quia sunt veniam quisquam. Odio quo deleniti
+      sunt non. Velit illum quia omnis in.
+    category: Installation / Upgrade
+- ! 'Item #3':
+    _permalink: item-3
+    answer: In ab vel voluptas. Temporibus magni adipisci quod sequi a. Est ad quisquam
+      voluptatum est aut eos. Distinctio sint et ipsa vero fuga voluptates ad nesciunt.
+    category: Templates

@@ -1,0 +1,23 @@
+name: Faq
+description: Frequently Answered Questions
+slug: faq_entries
+label_field_name: question
+fields:
+- question:
+    label: Question
+    type: string
+    hint: Should be enough explicit
+    required: true
+- answer:
+    label: Answer
+    type: text
+    hint: The answer to the previous question
+    required: true
+- category:
+    label: Category
+    type: select
+    hint: General is the default category
+    required: true
+public_submission_enabled: false
+group_by: category
+order_by: manually

@@ -38,6 +38,7 @@
               %a{ :href => '/' } Home
             {% for mainpage in site.index.children %}
             {% capture mainpage_fullpath %}/{{ mainpage.fullpath }}{% endcapture %}
+            {% if mainpage.children.size > 0 %}
             %li{ :class => 'dropdown {% if path contains mainpage_fullpath %}active{% endif %}' }
               %a{ :href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
                 {{ mainpage.title }}
@@ -47,6 +48,11 @@
                 %li
                   %a{ :href => '/{{ subpage.fullpath }}' } {{ subpage.title }}
                 {% endfor %}
+            {% else %}
+            %li{ :class => '{% if path == mainpage_fullpath %}active{% endif %}' }
+              %a{ :href => '/{{ mainpage.fullpath }}' }
+                {{ mainpage.title }}
+            {% endif %}
             {% endfor %}
 
     .container

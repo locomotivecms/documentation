@@ -15,9 +15,9 @@
 .tabbable
 
   %ul.nav.nav-tabs
-    {% for name in contents.faq_entries.category_options %}
+    {% for category in contents.faq_entries.group_by_category %}
     %li
-      %a{ href: '#{{ name | dasherize }}', data: { toggle: 'tab' } } {{ name }}
+      %a{ href: '#{{ category.name | dasherize }}', data: { toggle: 'tab' } } {{ category.name }}
 
     {% endfor %}
 

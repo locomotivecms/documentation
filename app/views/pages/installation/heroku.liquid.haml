@@ -144,6 +144,44 @@
   heroku config:add S3_KEY_ID=&lt;YOUR S3 KEY ID&gt;
   heroku config:add S3_SECRET_KEY=&lt;YOUR S3 SECRET KEY&gt;
   heroku config:add S3_BUCKET=&lt;YOUR S3 BUCKET NAME&gt;
+  heroku config:add S3_BUCKET_REGION=&lt;YOUR S3 BUCKET REGION&gt;
+.alert.alert-info
+  %strong Note:
+  For S3 Bucket Region var, here is the 
+  %a{ :href => "http://docs.amazonwebservices.com/general/latest/gr/rande.html" }
+    correspondance table 
+  between your 'human' bucket region name, and it's endpoint :
+  
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Region
+      %th Location Constraint
+  %tbody
+    %tr
+      %td US Standard *
+      %td --
+    %tr
+      %td US West (Oregon) Region
+      %td us-west-2
+    %tr
+      %td US West (Northern California) Region
+      %td us-west-1
+    %tr
+      %td EU (Ireland) Region
+      %td eu-west-1
+    %tr
+      %td Asia Pacific (Singapore) Region
+      %td ap-southeast-1
+    %tr 
+      %td Asia Pacific (Tokyo) Region
+      %td ap-northeast-1
+    %tr
+      %td South America (Sao Paulo) Region
+      %td sa-east-1
+
+
+  
 
 %hr
 
@@ -162,17 +200,11 @@
   :plain
     config.hosting = {
       :target     => :heroku,
-      :api_key    => '&lt;YOUR HEROKU API KEY>',
-      :app_name   => '&lt;YOUR HEROKU APP NAME>'
+      :api_key    => ENV['HEROKU_API_KEY'],
+      :app_name   => ENV['HEROKU_APP_NAME']
     }
+    
 
-%br
-
-.alert.alert-info
-  %strong Note:
-  Go to your
-  %a{ :href => 'https://api.heroku.com/account' } Heroku account
-  to get your API key.
 
 %br
 
@@ -184,7 +216,27 @@
 
 / === 7 ===
 
-%h3 7. Pre-compile your assets
+%h3 7. Configure Heroku credentials
+
+%br
+
+%p Specify your credentials :
+
+%pre
+  heroku config:add HEROKU_API_KEY=&lt;YOUR HEROKU API KEY&gt;
+  heroku config:add HEROKU_APP_NAME=&lt;YOUR APP NAME&gt;
+
+%br
+
+.alert.alert-info
+  %strong Note:
+  Go to your
+  %a{ :href => 'https://api.heroku.com/account' } Heroku account
+  to get your API key.
+
+/ === 8 ===
+
+%h3 8. Pre-compile your assets
 
 %br
 
@@ -215,9 +267,9 @@
 
 %hr
 
-/ === 8 ===
+/ === 9 ===
 
-%h3 8. Launch it !
+%h3 9. Launch it !
 
 %br
 

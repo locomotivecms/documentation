@@ -1,0 +1,19 @@
+@import "compass"
+
+// TYPO
+$base-font-size       : 16px
+$base-line-height     : 20px
+$relative-font-sizing : true
++establish-baseline
+
+// GRIDS & VARS
+$total-columns  : 5               // a 12-column grid
+$column-width   : 170px           // each column is 4em wide
+$gutter-width   : 25px            // gutters between columns
+$grid-padding   : $gutter-width   // grid-padding equal to gutters
+
+
+
+// Don't move this @import above the GRID variables.
+@import "../susy/susy"
+

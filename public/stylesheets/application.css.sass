@@ -1,0 +1,100 @@
+@import "compass/reset"
+@import "compass/css3"
+@import "compass/utilities/lists/bullets"
+@import "compass/typography/links"
+@import "modules/defaults"
+@import "modules/base"
+@import "modules/color"
+@import "modules/typography"
+@import "modules/form"
+@import "modules/gallery"
+
+
+*
+  +box-sizing(border-box)
+
+body
+  line-height: 22px
+  
+  code
+    +global-reset
+
+  .inner-container
+    +container
+
+  
+  #banner
+    padding: 35px 0 35px 0
+    background-color: $banner-bg
+    
+    h1
+      color: white
+      font-family: Futura
+      font-size: 20px
+      float: left
+      width: 30%
+    nav
+      float: left
+      width: 70%
+      ul
+        li
+          display: inline
+          color: white
+          
+
+  #page-title
+    padding: 50px 0 50px 0
+    margin-bottom: 40px
+    border-bottom: 1px solid $border
+    +proximanova-light
+    header
+      font-size: 30px
+      line-height: 36px
+      color: $fourth-black
+    p
+      font-size: 20px
+      line-height: 27px
+      color: $third-blue
+
+  #content
+    +container
+  #main
+    +span-columns(3,5)
+  #sidebar
+    +span-columns(2 omega,5)
+    font-size: 13px
+  #footer
+    background-color: $footer-blue
+    padding-top: 1px
+    margin-top: 50px
+    #inner-footer
+      +container
+      border-top: 1px solid white
+      padding-top: 50px
+      padding-bottom: 30px
+      .back-to-top
+        +open-sans-semi-bold
+        font-size: 10px
+        color: $footer-back-to-top
+        display: block
+        float: left
+        width: 100%
+        text-align: center
+        margin-top: 100px
+        margin-bottom: 100px
+      .footer-item
+        float: left
+        width: 25%
+        padding-right: 3%
+        header
+          +proximanova-semi-bold
+          font-size: 17px
+          margin-bottom: 15px
+          color: $dark-black
+        +open-sans-regular
+        font-size: 13px
+        color: $footer-font-blue
+        ul
+          +pretty-bullets("images/bullet-blue.png", 4px, 6px)
+          
+

@@ -1,98 +1,86 @@
 !!!
-%html{:lang => "en"}
+/ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en">
+/[if IE 7] <html class="no-js lt-ie9 lt-ie8" lang="en">
+/[if IE 8] <html class="no-js lt-ie9" lang="en">
+/ Consider adding a manifest.appcache: h5bp.com/d/Offline
+/ [if gt IE 8]><!
+%html.no-js{:lang => "en"}
+  / <![endif]
+  
   %head
-    %meta{:charset => "utf-8"}
-
-    %title LocomotiveCMS &mdash; {{ site.name }}
-
-    %meta{:content => "", :name => "description"}
-    %meta{:content => "Didier Lafforgue", :name => "author"}
-
-    <link rel="icon" type="image/png" href="{{ 'favicon.png' | theme_image_url }}" />
-
-    / Le HTML5 shim, for IE6-8 support of HTML elements
-
-    /[if lt IE 9]
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-
-    / Le styles
-    {{ 'twitter_bootstrap.min.css' | stylesheet_tag }}
-    {{ 'site.css' | stylesheet_tag }}
-
-    {{ 'jquery.min.js' | javascript_tag }}
-    {{ 'twitter_bootstrap.min.js' | javascript_tag }}
-    {{ 'application.js' | javascript_tag }}
-
-    {% include 'google_analytics' %}
-
+    %meta{ :charset => "utf-8" }
+    / More info: h5bp.com/i/378
+    %meta{ "http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }
+    / Set the viewport width to device width for mobile
+    %meta{ :name => "viewport", :content => "initial-scale=1, width=device-width" }
+    
+    %title {{ page.title }}
+    %meta{ :content => "{{ page.meta_description }}", :name => "description" }
+    %meta{ :content => "{{ page.meta_keywords }}", :name => "keywords" }
+    
+    {{ 'application' | stylesheet_tag }} 
+    {{ 'github' | stylesheet_tag }} 
+    {{ 'jquery.min' | stylesheet_tag }} 
+    
+    :javascript
+      $(document).ready(function() {
+      hljs.tabReplace = '  '; // 2 spaces
+      hljs.initHighlightingOnLoad();
+      });
+      
+      
   %body
-    #head.navbar.navbar-fixed-top
-      .navbar-inner
-        .container
+    %header#banner
+      .inner-container
+        %h1 LOCOMOTIVE CMS
+        %nav
+          %ul
+            %li
+              %a{ :href => "/typography" } 
+                Typography
+            %li
+              %a{ :href => "/guide" } 
+                Guide
+    {% block 'main-content' %}
+    %section#page-title
+      .inner-container
+        %header
+          Create beautiful sites blabla
+        %p
+          Duis mollis, est non commodo luctus, <a>Vestibulum</a> ligula porta feliid ligula porta felis e
+    %section#content
+      #main
+        INDEX
+    
 
-          %a.logo.pull-left{ :href => "http://www.locomotivecms.com", :title => 'Back to the LocomotiveCMS website' }
-            %img{ :src => "{{ 'logo.jpg' | theme_image_url }}", :alt => '{{ site.name }}' }
-
-          %ul.nav.pull-right
-            %li{ :class => '{% if page.fullpath == "index" %}active{% endif %}'}
-              %a{ :href => '/' } Home
-            {% for mainpage in site.index.children %}
-            {% capture mainpage_fullpath %}/{{ mainpage.fullpath }}{% endcapture %}
-            {% if mainpage.children.size > 0 %}
-            %li{ :class => 'dropdown {% if path contains mainpage_fullpath %}active{% endif %}' }
-              %a{ :href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
-                {{ mainpage.title }}
-                %b.caret
-              %ul.dropdown-menu
-                {% for subpage in mainpage.children %}
-                %li
-                  %a{ :href => '/{{ subpage.fullpath }}' } {{ subpage.title }}
-                {% endfor %}
-            {% else %}
-            %li{ :class => '{% if path == mainpage_fullpath %}active{% endif %}' }
-              %a{ :href => '/{{ mainpage.fullpath }}' }
-                {{ mainpage.title }}
-            {% endif %}
-            {% endfor %}
-
-    .container
-      .row
-        #main.span12
-          {% block 'main' %}
-          / Main hero unit for a primary marketing message or call to action
-
-          .hero-unit
-            %h1 Welcome to the new documentation center
-            %br
-            %p
-              This is the place where you will find all the resources about the LocomotiveCMS. However, if you do not find what you were looking for, we strongly suggest you to send us an email (
-              %a{ :href => 'mailto:support@locomotivecms.com'} support at locomotivecms dot com
-              ).
-            %p
-              %a.btn.btn-primary.btn-large.pull-right{ :href => '/installation' } Install now »
-            .clear
-
-          / Example row of columns
-          .row
-            .span4
-              %h2 Ask the community
-              %p You have a question, do not be shy, post it to our Google group. Someone will answer you for sure.
-              %p
-                %a.btn{:href => "https://groups.google.com/forum/?fromgroups#!forum/locomotivecms"} Visit »
-            .span4
-              %h2 Contributing
-              %p You coded a top notch new feature for the CMS or you found a bug. Please visit our Github project page.
-              %p
-                %a.btn{:href => "https://github.com/locomotivecms/engine"} Visit »
-            .span4
-              %h2 Support
-              %p You are looking for some help on your LocomotiveCMS client project. We can help you.
-              %p
-                %a.btn{:href => "mailto:support@locomotivecms.com"} Contact us »
-
-          {% endblock %}
-
-      %footer
-        {% include 'footer' %}
-
-    / /container
+    {% endblock %}
+    %footer#footer
+      #inner-footer
+        %section.footer-item
+          %header
+            Locomotive Quick Links
+          %ul
+            %li
+              Company
+            %li
+              Privacy Policy
+            %li
+              etc
+        %section.footer-item
+          %header
+            Follow @locomotivecms
+        %section.footer-item
+          %header
+            Locomotive News
+          %p
+            Stay on top of Locomotive updates, subscribe to our news
+        %section.footer-item
+          %header
+            LOCOMOTIVECMS
+          %p
+            %em LocomotiveCMS is developed by NoCoffee. LocomotiveCMS is free software under the MIT license.
+          %p
+            %strong © {{ today | localized_date: '%Y' }} Locomotive CMS
+        %a.back-to-top{ :href => "#" }
+          BACK TO TOP

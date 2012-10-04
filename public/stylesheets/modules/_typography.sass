@@ -1,0 +1,111 @@
++font-face("ProximaNova-Light", font-files("/fonts/ProximaNova-Light.otf"))
++font-face("ProximaNova-Regular", font-files("/fonts/ProximaNova-Regular.otf"))
++font-face("ProximaNova-Sbold", font-files("/fonts/ProximaNova-Sbold.otf"))
++font-face("OpenSans-Bold", font-files("/fonts/OpenSans-Bold.ttf"))
++font-face("OpenSans-Regular", font-files("/fonts/OpenSans-Regular.ttf"))
++font-face("OpenSans-Italic", font-files("/fonts/OpenSans-Italic.ttf"))
++font-face("OpenSans-Semibold", font-files("/fonts/OpenSans-Semibold.ttf"))
+
+
+
+=proximanova-light
+  font-family: ProximaNova-Light
+=proximanova-regular
+  font-family: ProximaNova-Regular
+=proximanova-semi-bold
+  font-family: ProximaNova-Sbold
+=open-sans-regular
+  font-family: OpenSans-Regular
+=open-sans-bold
+  font-family: OpenSans-Bold
+=open-sans-italic
+  font-family: OpenSans-Italic
+=open-sans-semi-bold
+  font-family: OpenSans-Semibold
+
+
+h1, h2, h3, h4, h5, h6
+  margin-bottom: 10px
+  margin-top: 10px
+  +proximanova-semi-bold
+h1
+  font-size: 20px
+  color: $dark-black
+
+h2
+  font-size: 20px
+  color: $third-black
+  +proximanova-regular
+h3
+  font-size: 16px
+  color: $third-black
+h4
+  font-size: 16px
+  color: $light-blue
+
+h5
+  font-size: 14px
+h6
+  font-size: 14px
+  color: $main-blue
+
+a
+  color: inherit
+  &:hover
+    color: $main-blue
+
+p
+  color: $light-black
+  font-size: 13px
+  +open-sans-regular
+
+em
+  color: $light-black
+  font-size: 13px
+  +open-sans-italic
+
+span
+  color: $light-black
+  font-size: 13px
+  +open-sans-regular
+
+strong
+  +open-sans-bold
+
+ul
+  +pretty-bullets("images/bullet.png", 5px, 5px)
+  +open-sans-regular
+  color: $light-black
+ol
+  counter-reset: li
+  +open-sans-regular
+  color: $light-black
+  li
+    list-style: none
+    position:relative
+    &:before
+      content: counter(li)"."
+      counter-increment: li
+      width: 20px
+      margin-right: 4px
+      margin-left: 2px
+      +open-sans-bold
+
+.floating-panel
+  background-color: $floating-panel
+  +border-radius(15px)
+  padding: 2px
+  margin-top: 25px
+  margin-bottom: 25px
+  +open-sans-regular
+  .inner-floating-panel
+    +border-radius(15px)
+    border: 2px solid white
+    padding: 25px 20px
+    header
+      color: $dark-black
+      font-size: 20px
+      margin-bottom: 20px
+    p
+      color: $light-black
+      font-size: 12px

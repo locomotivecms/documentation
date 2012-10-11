@@ -56,10 +56,6 @@ site:
     - "editor/site_templates":
         listed: true
 
-    - "faq":
-      title: "FAQ"
-      listed: true
-
     - "templates":
         title: "Templates"
         listed: true
@@ -72,3 +68,7 @@ site:
         listed: true
     - "templates/tags":
         listed: true
+
+    - "faq":
+        title: "FAQ"
+        listed: false

@@ -37,9 +37,11 @@
             %li{ :class => '{% if page.fullpath == "index" %}active{% endif %}'}
               %a{ :href => '/' } Home
             {% for mainpage in site.index.children %}
+            {% if mainpage.listed? %}
             {% capture mainpage_fullpath %}/{{ mainpage.fullpath }}{% endcapture %}
             {% if mainpage.children.size > 0 %}
-            %li{ :class => 'dropdown {% if path contains mainpage_fullpath %}active{% endif %}' }
+            {% capture strict_mainpage_fullpath %}{{ mainpage.fullpath }}/{% endcapture %}
+            %li{ :class => 'dropdown {% if path contains strict_mainpage_fullpath %}active{% endif %}' }
               %a{ :href => '#', :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' }
                 {{ mainpage.title }}
                 %b.caret
@@ -52,6 +54,7 @@
             %li{ :class => '{% if path == mainpage_fullpath %}active{% endif %}' }
               %a{ :href => '/{{ mainpage.fullpath }}' }
                 {{ mainpage.title }}
+            {% endif %}
             {% endif %}
             {% endfor %}
 

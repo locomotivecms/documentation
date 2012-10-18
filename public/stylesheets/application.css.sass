@@ -22,12 +22,34 @@ body
     +global-reset
 
 
-  // nav
-  
-
   .inner-container
     +container
-    
+  
+  #page-title
+    padding: 50px 0 50px 0
+    margin-bottom: 40px
+    border-bottom: 1px solid $border
+    +proximanova-light
+    header
+      font-size: 30px
+      line-height: 36px
+      color: $fourth-black
+    p
+      font-size: 16px
+      line-height: 27px
+      color: $third-blue
+      +proximanova-light
+      a
+        color: $dark-black
+    #grid-four
+      aside
+        +span-columns(1 omega,4)
+        a
+          +big-orange-button
+      header
+        +span-columns(3,4)
+      p
+        +span-columns(3,4)  
   
   #banner
     padding: 35px 0 35px 0
@@ -55,24 +77,17 @@ body
         li.active
           +menu-button
 
-    
-          
-
-  #page-title
-    padding: 50px 0 50px 0
-    margin-bottom: 40px
-    border-bottom: 1px solid $border
-    +proximanova-light
-    header
-      font-size: 30px
-      line-height: 36px
-      color: $fourth-black
-    p
-      font-size: 20px
-      line-height: 27px
-      color: $third-blue
-      +proximanova-light
-
+  // home page
+  .home-item
+    +span-columns(1,3)
+    a
+      +small-orange-button
+      
+  #sidebar
+    .inner-floating-panel
+      padding-top: 0
+    li.active
+      color: $orange-border
   
   // typography page
   .menu-btn
@@ -89,6 +104,9 @@ body
     ul, ol
       margin-top: 10px
       margin-bottom: 10px
+
+    a
+      color: $dark-black
 
   #footer
     background-color: $footer-blue
@@ -125,3 +143,6 @@ body
           +pretty-bullets("images/bullet-blue.png", 4px, 6px)
           
 
+
+  .last
+    +omega

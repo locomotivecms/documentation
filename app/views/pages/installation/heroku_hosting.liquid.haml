@@ -10,10 +10,10 @@
   #main
     :markdown
       <div class="alert">
-      We assume that you installed <strong>Heroku</strong> on your machine. Follow this [link][] if you have not.
+      We assume that you installed <strong>Heroku</strong> on your machine. Follow this <a href="http://devcenter.heroku.com/articles/quickstart">link</a> if you have not.
       </div>
       <div class="alert">
-      We also assume that you followed the <strong>[instructions][]</strong> to install the engine.
+      We also assume that you followed the <strong><a href="/installation/getting_started">instructions</a></strong> to install the engine.
       </div>
       
       # 1. Add the Heroku extension
@@ -40,7 +40,7 @@
 
       # 3. Set up a remote Mongodb database
 
-      You can find more information [here.][]
+      You can find more information [here.](http://docs.heroku.com/mongohq)
 
           heroku addons:add mongohq:free
 
@@ -51,7 +51,7 @@
 
       # 4. Enable emails
 
-      LocomotiveCMS needs to send emails and Heroku provides a nice way to send emails for free without configuring a  whole mail server on your own. You can find more information [here.][1]
+      LocomotiveCMS needs to send emails and Heroku provides a nice way to send emails for free without configuring a  whole mail server on your own. You can find more information [here.](http://docs.heroku.com/sendgrid)
 
           heroku addons:add sendgrid:starter
 
@@ -76,9 +76,9 @@
           heroku config:add S3_BUCKET=<YOUR S3 BUCKET NAME>
           heroku config:add S3_BUCKET_REGION=<YOUR S3 BUCKET REGION>
 
-      <div class="alert alert-info">
-      <strong>Note:</strong> For S3 Bucket Region var, here is the [correspondance table][] between your ‘human’ bucket region name, and it’s endpoint :
-      </div>
+      
+      **Note:** For S3 Bucket Region var, here is the [correspondance table](http://docs.amazonwebservices.com/general/latest/gr/rande.html) between your ‘human’ bucket region name, and it’s endpoint :
+      
       
       <table>
         <thead>
@@ -96,7 +96,7 @@
             <td>US West (Oregon) Region</td>
             <td>us-west-2</td>
           </tr>
-          <tr>
+          <tr class="stripped-row">
             <td>US West (Northern California) Region</td>
             <td>us-west-1</td>
           </tr>
@@ -104,7 +104,7 @@
             <td>EU (Ireland) Region</td>
             <td>eu-west-1</td>
           </tr>
-          <tr>
+          <tr class="stripped-row">
             <td>Asia Pacific (Singapore) Region</td>
             <td>ap-southeast-1</td>
           </tr>
@@ -112,7 +112,7 @@
             <td>Asia Pacific (Tokyo) Region</td>
             <td>ap-northeast-1</td>
           </tr>
-          <tr>
+          <tr class="stripped-row">
             <td>South America (Sao Paulo) Region</td>
             <td>sa-east-1</td>
           </tr>
@@ -131,8 +131,7 @@
           }
 
       <div class="alert alert-info">
-      <strong>Note:</strong> the following configuration is in the case you host a single
-      website. If you want to use LocomotiveCMS as a multi-sites platform, you have to uncomment the lines relative to the multi-sites option and set your main domain name (ex: mycmsplatform.com).
+      <strong>Note:</strong> the following configuration is in the case you host a single website. If you want to use LocomotiveCMS as a multi-sites platform, you have to uncomment the lines relative to the multi-sites option and set your main domain name (ex: mycmsplatform.com).
       </div>
 
       # 7. Configure Heroku credentials
@@ -141,15 +140,45 @@
 
           heroku config:add HEROKU_API_KEY=<YOUR HEROKU API KEY>
           heroku config:add HEROKU_APP_NAME=<YOUR APP NAME>
-
-      <div class="alert alert-info">
+      
+      <div class='alert alert-info'>
       <strong>Note:</strong>
-      [link]: http://devcenter.heroku.com/articles/quickstart
-      [instructions]: getting_started
-      [here.]: http://docs.heroku.com/mongohq
-      [1]: http://docs.heroku.com/sendgrid
-      [correspondance table]: http://docs.amazonwebservices.com/general/latest/gr/rande.html
+      Go to your <a href='https://api.heroku.com/account'>Heroku account</a> to get your API key.
       </div>
+
+      # 8. Pre-compile your assets
+
+      We suggest you to compile your assets locally so that if there is an issue with your assets, you will be able to debug it more easily.
+  
+      It is very important that you disable the **initialize_on_precompile** option in the **config/application.rb** file of your application:
+
+          module YourApplication
+            class Application < Rails::Application
+              ...
+              config.assets.initialize_on_precompile = false
+              ...
+            end
+          end
+
+
+      Then, in your terminal, run the following command
+
+          bundle exec rake assets:precompile
+
+      # 9. Launch it !
+
+      In your terminal,
+
+          git add .
+          git commit -am "launch it"
+          git push heroku master
+
+      Then, visit your application
+
+          heroku open
+
+
+
   {% include 'installation_summary' %}
 
 {% endblock %}

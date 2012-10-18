@@ -1,3 +1,7 @@
+.gist
+  margin-top: 10px
+  margin-bottom: 10px
+
 .floating-panel
   background-color: $floating-panel
   +border-radius(15px)
@@ -44,11 +48,8 @@
     +background-image( linear-gradient($orange-gradient-end, $orange-gradient-start) )
     border-bottom: 1px solid $orange-border
 
-
-.menu-btn
-  
+=menu-button  
   padding: 2px 20px
-  margin: 10px
   cursor: pointer
   +background-image( linear-gradient($menu-gradient-start, $menu-gradient-end) )
   border: 1px solid $menu-border
@@ -60,19 +61,15 @@
   +proximanova-light
   display: inline-block
   font-size: 16px
+  a
+    color: white
+    &:hover
+      color: white
+      text-decoration: none
   &:hover
     +background-image( linear-gradient($menu-gradient-end, $menu-gradient-start) )
 
-
-
-.big-btn
-  +big-orange-button  
-
-.small-btn
-  +small-orange-button
-
-
-.readmore
+=readmore-button
   +open-sans-regular
   font-size: 12px
   display: inline-block
@@ -86,6 +83,3 @@
   &:hover
     background-color: $read-more-bg-hover
     color: $read-more-text-hover
-.readmore.hover
-  background-color: $read-more-bg-hover
-  color: $read-more-text-hover

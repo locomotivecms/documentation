@@ -20,14 +20,17 @@
     %meta{ :content => "{{ page.meta_keywords }}", :name => "keywords" }
     
     {{ 'application' | stylesheet_tag }} 
-    {{ 'github' | stylesheet_tag }} 
-    {{ 'jquery.min' | stylesheet_tag }} 
-    
+    //{{ 'github' | stylesheet_tag }} 
+    {{ 'jquery.min' | javascript_tag }} 
+    //{{ 'highlight.pack' | javascript_tag }} 
+    //{{ 'prettify' | javascript_tag }} 
+    //{{ 'sunburst' | stylesheet_tag }} 
+
     :javascript
-      $(document).ready(function() {
-      hljs.tabReplace = '  '; // 2 spaces
-      hljs.initHighlightingOnLoad();
-      });
+      //$(document).ready(function() {
+      //hljs.tabReplace = '  '; // 2 spaces
+      //hljs.initHighlightingOnLoad();
+      //});
       
       
   %body
@@ -36,12 +39,16 @@
         %h1 LOCOMOTIVE CMS
         %nav
           %ul
-            %li
+            
+            %li.active
               %a{ :href => "/typography" } 
                 Typography
             %li
               %a{ :href => "/guide" } 
                 Guide
+            %li
+              %a{ :href => "/index" } 
+                Index
     {% block 'main-content' %}
     %section#page-title
       .inner-container
@@ -49,10 +56,10 @@
           Create beautiful sites blabla
         %p
           Duis mollis, est non commodo luctus, <a>Vestibulum</a> ligula porta feliid ligula porta felis e
-    %section#content#grid-five
+    %section#content#grid-three
       #main
-        INDEX
-    
+        %h1 Index
+        
 
     {% endblock %}
     %footer#footer

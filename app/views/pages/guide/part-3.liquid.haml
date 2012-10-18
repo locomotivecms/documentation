@@ -1,0 +1,65 @@
+{% extends 'index' %}
+
+{% block 'main-content' %}
+%section#page-title
+  .inner-container
+    %header
+      Templating
+    %p
+
+      Duis mollis, est non commodo luctus, <a>Vestibulum</a> ligula porta feliid ligula porta felis e
+%section#content#grid-three
+  #main
+    :markdown      
+      ### Templating Logic
+
+      #### Basics of inheritance
+
+      The logic in LocomotiveCMS is differs a bit from what you are certainly used to, it may be weird a first, but it's actually very simple.
+
+      In the classic, Rails way, you have the following architecture, with page's content integrated in the application layout using the ``` yield ``` statement :
+
+      <script src="https://gist.github.com/3912077.js?file=1- classic templating"></script>
+
+      In Locomotive, it's a bit different :
+
+      <script src="https://gist.github.com/3912077.js?file=2- loco templating"></script>
+
+      All pages inherit from index. This way, the index contains the application's layout and the index page content. How do you re-use the layout without re-using the index page content ? By introducing 
+          
+      since all pages inherit from index, you declare blocks of content inside the layout (index), which will be overwritten in child pages. Here is a the simplest example :
+
+      Index page :
+
+      <script src="https://gist.github.com/3912077.js?file=3- indexpage.html"></script>
+
+      A page, which inherits from index :
+
+      <script src="https://gist.github.com/3912077.js?file=4- inherits"></script>
+
+      By extending index, 'a-page' re-use all of its content, except the content inside the 
+          
+      tag which is overwritten. This tag is written with the Liquid syntax which will is explained later.
+
+      You can have as many 
+          
+      tags as you want, everywhere in the layout, as long as the name of each block is unique. For a basic application which only have one layout, that's all you need to know.
+
+      src: http://doc.locomotivecms.com/templates/tags#block-section
+
+      #### Going further
+
+      **Several levels of inheritance**
+
+      The principle of page's inheritance can be applied to every page.
+      When you create a page, it automatically inherits from index, but you can also make it inherits from another page, by specifying it's parent :
+
+      ![Specifying parent](Locomotive-fundamentals/raw/master/images/specifying_parent.png)
+
+      By doing so, you can define as many levels as you want :
+
+      <script src="https://gist.github.com/3912077.js?file=5- several levels"></script>
+
+  {% include 'guide_summary' %}
+
+{% endblock %}

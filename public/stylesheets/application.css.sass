@@ -2,7 +2,7 @@
 @import "compass/css3"
 @import "compass/utilities/lists/bullets"
 @import "compass/typography/links"
-@import "modules/defaults"
+@import "modules/grids"
 @import "modules/base"
 @import "modules/color"
 @import "modules/typography"
@@ -22,9 +22,12 @@ body
     +global-reset
 
 
+  // nav
+  
+
   .inner-container
     +container
-    +susy-grid-background
+    
   
   #banner
     padding: 35px 0 35px 0
@@ -37,12 +40,22 @@ body
       float: left
       width: 30%
     nav
-      float: left
       width: 70%
+      float: left
       ul
         li
-          display: inline
+          display: block
+          float: right
           color: white
+          background: none
+          font-size: 16px
+          +proximanova-light
+          padding: 2px 20px
+          margin: 10px
+        li.active
+          +menu-button
+
+    
           
 
   #page-title
@@ -58,8 +71,25 @@ body
       font-size: 20px
       line-height: 27px
       color: $third-blue
+      +proximanova-light
 
   
+  // typography page
+  .menu-btn
+    +menu-button
+  .big-btn
+    +big-orange-button  
+  .small-btn
+    +small-orange-button
+  .readmore
+    +readmore-button
+
+  // doc page
+  #main
+    ul, ol
+      margin-top: 10px
+      margin-bottom: 10px
+
   #footer
     background-color: $footer-blue
     padding-top: 1px

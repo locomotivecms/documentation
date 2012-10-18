@@ -6,6 +6,7 @@
 @import "modules/base"
 @import "modules/color"
 @import "modules/typography"
+@import "modules/elements"
 @import "modules/form"
 @import "modules/gallery"
 
@@ -15,13 +16,15 @@
 
 body
   line-height: 22px
+  font-size: 12px
   
   code
     +global-reset
 
+
   .inner-container
     +container
-
+    +susy-grid-background
   
   #banner
     padding: 35px 0 35px 0
@@ -56,13 +59,7 @@ body
       line-height: 27px
       color: $third-blue
 
-  #content
-    +container
-  #main
-    +span-columns(3,5)
-  #sidebar
-    +span-columns(2 omega,5)
-    font-size: 13px
+  
   #footer
     background-color: $footer-blue
     padding-top: 1px

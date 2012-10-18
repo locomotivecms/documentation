@@ -1,6 +1,6 @@
 @import "compass/reset"
 @import "compass/css3"
-@import "compass/utilities/lists/bullets"
+@import "compass/typography/lists/bullets"
 @import "compass/typography/links"
 @import "modules/grids"
 @import "modules/base"
@@ -17,22 +17,22 @@
 body
   line-height: 22px
   font-size: 12px
-  
+
   code
     +global-reset
 
 
   // nav
-  
+
 
   .inner-container
     +container
-    
-  
+
+
   #banner
     padding: 35px 0 35px 0
     background-color: $banner-bg
-    
+
     h1
       color: white
       font-family: Futura
@@ -55,8 +55,8 @@ body
         li.active
           +menu-button
 
-    
-          
+
+
 
   #page-title
     padding: 50px 0 50px 0
@@ -73,12 +73,12 @@ body
       color: $third-blue
       +proximanova-light
 
-  
+
   // typography page
   .menu-btn
     +menu-button
   .big-btn
-    +big-orange-button  
+    +big-orange-button
   .small-btn
     +small-orange-button
   .readmore
@@ -122,6 +122,6 @@ body
         font-size: 13px
         color: $footer-font-blue
         ul
-          +pretty-bullets("images/bullet-blue.png", 4px, 6px)
-          
+          +pretty-bullets("/images/bullet-blue.png", 4px, 6px)
+
 

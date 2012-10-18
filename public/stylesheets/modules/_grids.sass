@@ -1,0 +1,44 @@
+@import "compass"
+
+// TYPO
+$base-font-size       : 16px
+$base-line-height     : 20px
+$relative-font-sizing : true
++establish-baseline
+
+// Don't move this @import above the GRID variables.
+@import "susy"
+
+
+#grid-three
+  $total-columns  : 3
+  $column-width   : 295px
+  $gutter-width   : 50px
+  $grid-padding   : 20px
+  +container
+  //+susy-grid-background
+
+
+  #main
+    +span-columns(2,3)
+  #sidebar
+    +span-columns(1 omega,3)
+
+#grid-four
+  $total-columns  : 4
+  $column-width   : 217px
+  $gutter-width   : 39px
+  $grid-padding   : 20px
+  +container
+
+#grid-five
+  $total-columns  : 5
+  $column-width   : 175px
+  $gutter-width   : 27px
+  $grid-padding   : 20px
+  +container
+
+  #main
+    +span-columns(3,5)
+  #sidebar
+    +span-columns(2 omega,5)

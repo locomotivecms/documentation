@@ -1,0 +1,19 @@
+table
+  border: 1px solid white
+  +box-shadow(0px 0px 9px $table-header)
+  thead
+    background-color: $table-header
+    th
+      border-right: 1px solid white
+      border-left: 1px solid $table-col-border
+      padding: 15px 25px 5px 25px
+  tbody
+    td
+      border-left: 1px solid $table-col-border
+      padding: 15px 25px 5px 25px
+      &:first
+        border-left: none
+    .stripped-row
+      background-color: $table-row
+      border-right: 1px solid white
+

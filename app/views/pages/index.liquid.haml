@@ -39,27 +39,49 @@
         %h1 LOCOMOTIVE CMS
         %nav
           %ul
-
-            %li.active
-              %a{ :href => "/typography" }
-                Typography
-            %li
-              %a{ :href => "/guide" }
-                Guide
-            %li
+            %li{ :class => '{% if page.fullpath == "faq" %}active{% endif %}'}
+              %a{ :href => "/faq" }
+                Faq
+            %li{ :class => '{% if page.fullpath == "reference" %}active{% endif %}'}
+              %a{ :href => "/reference" }
+                Reference
+            %li{ :class => '{% if page.fullpath == "guides" %}active{% endif %}'}
+              %a{ :href => "/guides" }
+                Guides
+            %li{ :class => '{% if page.fullpath == "installation" %}active{% endif %}'}
+              %a{ :href => "/installation" }
+                Installation
+            %li{ :class => '{% if page.fullpath == "index" %}active{% endif %}'}
               %a{ :href => "/index" }
-                Index
+                Home
     {% block 'main-content' %}
     %section#page-title
-      .inner-container
+      #grid-four
+        %aside
+          %a{ :href => "#" }
+            Install now
         %header
-          Create beautiful sites blabla
+          Welcome to the new documentation center
         %p
-          Duis mollis, est non commodo luctus, <a>Vestibulum</a> ligula porta feliid ligula porta felis e
-    %section#content#grid-three
-      #main
-        %h1 Index
+          This is the place where you will find all the resources about the LocomotiveCMS. However, if you do not find what you were looking for, we strongly suggest you to send us an email ( support at locomotivecms dot com ).
 
+    %section#content#grid-three
+
+      %section.home-item
+        %h1 Ask the community
+        %p You have a question, do not be shy, post it to our Google group. Someone will answer you for sure.
+        %a{ :href => "https://groups.google.com/forum/?fromgroups#!forum/locomotivecms" }
+          Visit »
+      %section.home-item
+        %h1 Contributing
+        %p You coded a top notch new feature for the CMS or you found a bug. Please visit our Github project page.
+        %a{ :href => "https://github.com/locomotivecms/engine" }
+          Visit »
+      %section.home-item.last
+        %h1 Support
+        %p You are looking for some help on your LocomotiveCMS client project. We can help you.
+        %a{ :href => "mailto:support@locomotivecms.com" }
+          Contact us »
 
     {% endblock %}
     %footer#footer

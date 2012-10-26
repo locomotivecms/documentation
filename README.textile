@@ -12,7 +12,7 @@ You can help us to have a better documentation with this method :
 * Clone it on your work station
 * Install "!http://www.locomotivecms.com/modules/locomotive-editor!":Locomotive Editor
 * Modify the pages with your favorit editor
-* Visualize your modification withe Locomotive Editor
+* Visualize your modification with Locomotive Editor
 * Submit a Pull Request on github
 
 Thank you for your help

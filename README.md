@@ -1,6 +1,6 @@
 # Locomotive CMS documentation
 
-[http://doc.locomotivecms.com]([http://doc.locomotivecms.com)
+Visit this [link]([http://doc.locomotivecms.com) to find the official documentation
 
 
 ## [en] English version, french version follow 

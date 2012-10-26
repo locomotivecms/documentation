@@ -2,3 +2,7 @@
 /tmp
 config/deploy.yml
 /config/deploy.yml
+
+# pNE 26/10/2012 ignore rbenv conf and macfile
+.DS_Store
+.rbenv-version

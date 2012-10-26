@@ -51,6 +51,7 @@
 %br
 
 %pre
+  cd engine
   bundle install
 
 %hr
@@ -71,7 +72,13 @@
 
 %h3 5. run the test suite
 
-%br
+%br 
+  Caution: for all tests pass, you need
+  %a{ :href => 'http://phantomjs.org'} PhantomJS 
+
+.alert.alert-info
+  If you have homebrew on your Mac OSx :
+  %pre brew update && brew install phantomjs
 
 %pre
   bundle exec rake

@@ -4,7 +4,7 @@
 
 
 ## [en] English version, french version follow 
-- - -
+
 This repository is for hosting the documentation for Locomotive CMS.
 
 You can help us to have a better documentation with this method :
@@ -20,7 +20,7 @@ Thank you for your help
 
 
 ## [fr] Version française
-- - -
+
 Ce dépôt est pour héberger la documentation de Locomotive CMS.
 
 Vous pouvez nous aider afin d'obtenir une meilleure documentation avec cette méthode :

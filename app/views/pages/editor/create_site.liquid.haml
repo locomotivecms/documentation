@@ -1,0 +1,59 @@
+{% extends 'editor' %}
+
+{% block 'left' %}
+:markdown
+  # 1. prepare your environment
+
+  We recommend you to store all the websites built with the editor into a same parent folder.
+
+    mkdir -p ~/Documents/LocomotiveCMS/sites
+    cd ~/Documents/LocomotiveCMS/sites
+
+  # 2. generate a website
+
+    locomotive_editor create -n my_first_website --template=twitter_bootstrap_haml
+
+  This will create a folder named my\_first\_website populated a default index page and all the twitter bootstrap resources (javascripts, stylesheets and images).
+
+  <div class="alert alert-info">
+  **Note:** In the example above, we decided to not start from scratch but instead with a pre-existing site template (ie: twitter\_bootstrap\_haml). Check this [link][] to learn more about this functionality.
+  </div>
+  Structure of the generated website
+
+  File / Folder        Purpose
+  -------------------- ----------------------------------------------------------------------------------------------------
+  app/content\_types   The definitions of the content types are stored here (file extension: .yml)
+  app/views/pages      The liquid files for the pages (file extensions: .liquid or .liquid.haml)
+  app/views/snippets   The liquid files for the snippets (file extensions: .liquid or .liquid.haml)
+  config/site.yml      Your site config file. It describes the information about your site (meta) and your pages
+  config/deploy.yml    It describes the targets where to push your site
+  data                 Each content type can have its own set of data. They are described in Yaml files under this folder
+  public/fonts         The font files here (from FontSquirrel for instance)
+  public/images        All the images needed by your layouts
+  public/javascripts   The javascript files (file extensions: .js or .js.coffee)
+  public/stylesheets   The stylesheets files (file extensions: .css or .css.scss)
+  public/samples       The files you use for your content types or the editable contents inside pages
+
+  # 3. edit your website
+
+    mate my_first_website
+
+  <div class="alert alert-info">
+  **Note:** At this point, you could version your website with [GIT][] ,[SUBVERSION][] or any SCM.
+  </div>
+
+  # 4. launch the LocomotiveEditor webserver
+
+    locomotive_editor run -n my_first_website
+    open http://0.0.0.0:4567
+
+  Here you go, you can now modify your sites within your IDE. By simply refresh your browser, you will able to see the changes you have just made !
+
+  <div class="alert alert-info">
+  **Note:** You can ommit the **“-n my\_first\_website”** parameter if you already are in the **my\_first\_website** folder. That also goes for all the commands which require to pass the site name.
+  </div>
+  
+  [Deploy your website](/editor/deployment)
+
+
+{% endblock %}

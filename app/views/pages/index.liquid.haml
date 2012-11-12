@@ -7,109 +7,60 @@
 / [if gt IE 8]><!
 %html.no-js{:lang => "en"}
   / <![endif]
-
+  
   %head
     %meta{ :charset => "utf-8" }
-    / More info: h5bp.com/i/378
     %meta{ "http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }
-    / Set the viewport width to device width for mobile
     %meta{ :name => "viewport", :content => "initial-scale=1, width=device-width" }
-
+    
     %title {{ page.title }}
     %meta{ :content => "{{ page.meta_description }}", :name => "description" }
     %meta{ :content => "{{ page.meta_keywords }}", :name => "keywords" }
+    
+    {{ 'screen' | stylesheet_tag }}
+    {{ 'jquery-1.8.2.min' | javascript_tag }} 
+    {{ 'home' | javascript_tag }} 
 
-    {{ 'application' | stylesheet_tag }}
-    //{{ 'github' | stylesheet_tag }}
-    {{ 'jquery.min' | javascript_tag }}
-    //{{ 'highlight.pack' | javascript_tag }}
-    //{{ 'prettify' | javascript_tag }}
-    //{{ 'sunburst' | stylesheet_tag }}
+    {% block 'head' %}
 
-    :javascript
-      //$(document).ready(function() {
-      //hljs.tabReplace = '  '; // 2 spaces
-      //hljs.initHighlightingOnLoad();
-      //});
-
-
+    {% endblock %}
   %body
-    %header#banner
-      .inner-container
-        %h1 LOCOMOTIVE CMS
-        %nav
-          %ul
-            %li{ :class => '{% if page.fullpath == "faq" %}active{% endif %}'}
-              %a{ :href => "/faq" }
-                Faq
-            %li{ :class => '{% if page.fullpath == "reference" %}active{% endif %}'}
-              %a{ :href => "/reference" }
-                Reference
-            %li{ :class => '{% if page.fullpath == "guides" %}active{% endif %}'}
-              %a{ :href => "/guides" }
-                Guides
-            %li{ :class => '{% if page.fullpath == "installation" %}active{% endif %}'}
-              %a{ :href => "/installation" }
-                Installation
-            %li{ :class => '{% if page.fullpath == "index" %}active{% endif %}'}
-              %a{ :href => "/index" }
-                Home
-    {% block 'main-content' %}
-    %section#page-title
-      #grid-four
-        %aside
-          %a{ :href => "#" }
-            Install now
-        %header
-          Welcome to the new documentation center
-        %p
-          This is the place where you will find all the resources about the LocomotiveCMS. However, if you do not find what you were looking for, we strongly suggest you to send us an email ( support at locomotivecms dot com ).
 
-    %section#content#grid-three
+    {% include 'nav' %}
 
+    {% block 'main' %}
+    {% include 'page_head' %}
+    #main-generic
       %section.home-item
-        %h1 Ask the community
+        %h1 
+          {% editable_short_text "tierce-first-title", priority: 7 %}
+          Ask the community
+          {% endeditable_short_text %}
+        {% editable_long_text "tierce-first-content", priority: 6 %}
         %p You have a question, do not be shy, post it to our Google group. Someone will answer you for sure.
+        {% endeditable_long_text %}
         %a{ :href => "https://groups.google.com/forum/?fromgroups#!forum/locomotivecms" }
           Visit »
       %section.home-item
-        %h1 Contributing
+        %h1 
+          {% editable_short_text "tierce-second-title", priority: 5 %}
+          Contributing
+          {% endeditable_short_text %}
+        {% editable_long_text "tierce-second-content", priority: 4 %}
         %p You coded a top notch new feature for the CMS or you found a bug. Please visit our Github project page.
+        {% endeditable_long_text %}
         %a{ :href => "https://github.com/locomotivecms/engine" }
           Visit »
-      %section.home-item.last
-        %h1 Support
+      %section.home-item
+        %h1 
+          {% editable_short_text "tierce-third-title", priority: 3 %}
+          Support
+          {% endeditable_short_text %}
+        {% editable_long_text "tierce-third-content", priority: 2 %}
         %p You are looking for some help on your LocomotiveCMS client project. We can help you.
+        {% endeditable_long_text %}
         %a{ :href => "mailto:support@locomotivecms.com" }
           Contact us »
-
     {% endblock %}
-    %footer#footer
-      #inner-footer
-        %section.footer-item
-          %header
-            Locomotive Quick Links
-          %ul
-            %li
-              Company
-            %li
-              Privacy Policy
-            %li
-              etc
-        %section.footer-item
-          %header
-            Follow @locomotivecms
-        %section.footer-item
-          %header
-            Locomotive News
-          %p
-            Stay on top of Locomotive updates, subscribe to our news
-        %section.footer-item
-          %header
-            LOCOMOTIVECMS
-          %p
-            %em LocomotiveCMS is developed by NoCoffee. LocomotiveCMS is free software under the MIT license.
-          %p
-            %strong © {{ today | localized_date: '%Y' }} Locomotive CMS
-        %a.back-to-top{ :href => "#" }
-          BACK TO TOP
+
+    {% include "footer" %}

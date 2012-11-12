@@ -1,79 +1,68 @@
-{% extends 'index' %}
+{% extends 'guides' %}
 
-{% block 'main-content' %}
-%section#page-title
-  .inner-container
-    %header
-      Foreword
-    %p
+{% block 'left' %}
 
-      Duis mollis, est non commodo luctus, <a>Vestibulum</a> ligula porta feliid ligula porta felis e
-%section#content#grid-three
-  #main
-    :markdown
-      # Why this guide ?
+:markdown
+  # Why this guide ?
 
-      There is already an official documentation reference, which lists almost everything. Still, a pragmatic guide to LocomotiveCMS is missing, especially for beginners.
+  There is already an official documentation reference, which lists almost everything. Still, a pragmatic guide to LocomotiveCMS is missing, especially for beginners.
 
-      What's more, since there is a lot of goodness in the LocomotiveCMS's <a href="http://groups.google.com/forum/?fromgroups#!forum/locomotivecms">Google Group</a>, it seems relevant to gather good practices & hacks in one place.
+  What's more, since there is a lot of goodness in the LocomotiveCMS's <a href="http://groups.google.com/forum/?fromgroups#!forum/locomotivecms">Google Group</a>, it seems relevant to gather good practices & hacks in one place.
 
-      TBR: This guide isn't the official one, even if some members of the LocomotiveCMS core team have reviewed some parts of it.
+  TBR: This guide isn't the official one, even if some members of the LocomotiveCMS core team have reviewed some parts of it.
 
-      <a name="foreword_2"></a>
-      # Philosophy
+  <a name="foreword_2"></a>
+  # Philosophy
 
-      Let's start first with a little bit of history.
+  Let's start first with a little bit of history.
 
-      When I was a developer at a Chicago web agency, I built numerous custom and unique content management system applications for each of our clients. Even though I enjoyed crafting unique back-offices for our clients, it was clear to me that I should spend less time on those kinds of projects so that I may tackle larger ones. At this time, there were no open source Rails CMSes fitting both my needs and my vision of ideal CMS.
+  When I was a developer at a Chicago web agency, I built numerous custom and unique content management system applications for each of our clients. Even though I enjoyed crafting unique back-offices for our clients, it was clear to me that I should spend less time on those kinds of projects so that I may tackle larger ones. At this time, there were no open source Rails CMSes fitting both my needs and my vision of ideal CMS.
 
-      Upon returning to France, I kept thinking about what the perfect CMS should be. My thoughts were also enhanced by my experiences as a Rails developer in other companies. I began coding a prototype which have constantly improved ever since. I also spent a lot of time experimenting with many concepts and through process learned a lot about what the perfect CMS should look like.
+  Upon returning to France, I kept thinking about what the perfect CMS should be. My thoughts were also enhanced by my experiences as a Rails developer in other companies. I began coding a prototype which have constantly improved ever since. I also spent a lot of time experimenting with many concepts and through process learned a lot about what the perfect CMS should look like.
 
-      However, I stayed true to what were the basic requirements of my dream CMS and never moved away from them. These requirements are:
+  However, I stayed true to what were the basic requirements of my dream CMS and never moved away from them. These requirements are:
 
-      - A single instance of LocomotiveCMS should host many sites. Once LocomotiveCMS is installed, setting up a new site has to be quick and will not have to require the help of an admin system guy.
-      - It should be effortless for the content editors to edit the site without ruining the layout or, worse, crashing the site.
-      - Developing a LocomotiveCMS site should not require Ruby on Rails knowledge.
-      - It should be possible and easy to extend and customize LocomotiveCMS in elegant ways.
-      - The back-office should be sexy as hell.
-      - The code of LocomotiveCMS should not "smell". Thus, refactoring the code is a continuous process during all the development. That also means using standard components like for instance "Devise" for the authentication part.
+  - A single instance of LocomotiveCMS should host many sites. Once LocomotiveCMS is installed, setting up a new site has to be quick and will not have to require the help of an admin system guy.
+  - It should be effortless for the content editors to edit the site without ruining the layout or, worse, crashing the site.
+  - Developing a LocomotiveCMS site should not require Ruby on Rails knowledge.
+  - It should be possible and easy to extend and customize LocomotiveCMS in elegant ways.
+  - The back-office should be sexy as hell.
+  - The code of LocomotiveCMS should not "smell". Thus, refactoring the code is a continuous process during all the development. That also means using standard components like for instance "Devise" for the authentication part.
 
-      <a name="foreword_3"></a>
-      # Why should you use LocomotiveCMS ?
+  <a name="foreword_3"></a>
+  # Why should you use LocomotiveCMS ?
 
-      LocomotiveCMS is a CMS that has been created with a main guideline: keep it simple !
+  LocomotiveCMS is a CMS that has been created with a main guideline: keep it simple !
 
-      - Keep it simple, for the developer who shouldn't have to go deep in architecture, and should be able to edit a website quickly.
-      - Keep it simple, for the author who needs to be focused on content, and shouldn't have to go through several pages to edit.
+  - Keep it simple, for the developer who shouldn't have to go deep in architecture, and should be able to edit a website quickly.
+  - Keep it simple, for the author who needs to be focused on content, and shouldn't have to go through several pages to edit.
 
-      If you recognize yourself in on of the case listed above, you should use LocomotiveCMS.
+  If you recognize yourself in on of the case listed above, you should use LocomotiveCMS.
 
-      ///
+  ///
 
-      From a "business" point of view, LocomotiveCMS have several benefits to sell :
+  From a "business" point of view, LocomotiveCMS have several benefits to sell :
 
-      - Front-end editing of static texts, using Aloha editor
-      - Hosting on Heroku / AWS very cheap, almost free
-      - Finally, a great looking back-office !
+  - Front-end editing of static texts, using Aloha editor
+  - Hosting on Heroku / AWS very cheap, almost free
+  - Finally, a great looking back-office !
 
-      <a name="foreword_4"></a>
-      # Assumptions
+  <a name="foreword_4"></a>
+  # Assumptions
 
-      During this reading, it is assumed that:
+  During this reading, it is assumed that:
 
-      - You know what is Ruby and Rails and you've a good feeling with terms like Gem, Bundler, deployment
-      - You know what is a data model, and ideally what is a document-oriented storage like Mongo
-      - You have basic knowledge about shell and command-line interface
+  - You know what is Ruby and Rails and you've a good feeling with terms like Gem, Bundler, deployment
+  - You know what is a data model, and ideally what is a document-oriented storage like Mongo
+  - You have basic knowledge about shell and command-line interface
 
-      <a name="foreword_5"></a>
-      ### Organization of this book
+  <a name="foreword_5"></a>
+  ### Organization of this book
 
-      This guide is structured as follow :
+  This guide is structured as follow :
 
-      First, an *Overview* of the CMS aims to introduce the environment and the main things to know about.
+  First, an *Overview* of the CMS aims to introduce the environment and the main things to know about.
 
-      *Getting something running in 5 minutes* may help LocomotiveCMS's beginners walking through the
-
-
-  {% include 'guide_summary' %}
+  *Getting something running in 5 minutes* may help LocomotiveCMS's beginners walking through the
 
 {% endblock %}

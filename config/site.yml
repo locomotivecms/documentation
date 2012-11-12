@@ -8,11 +8,35 @@ site:
   meta_description: "some meta description"
 
   pages:
-    - "index": # page path (the template can edited here app/views/pages/index.liquid)
+    - index:
         title: "Home page"
         published: true
-    - "404":
+    - 404:
         title: "Page not found"
         published: true
-
-    
+    - installation:
+        title: "Installation"
+        published: true
+    - installation/for_developpers:
+        title: "For developpers"
+        published: true
+    - installation/getting_started:
+        title: "Getting started"
+        published: true
+    - installation/heroku_hosting:
+        title: "Heroku hosting"
+        published: true
+    - installation/requirements:
+        title: "Requirements"
+        published: true
+    - guides:
+        title: "Guides"
+        published: true
+    - guide/pat-1:
+        published: true
+    - guide/pat-2:
+        published: true
+    - guide/pat-3:
+        published: true
+    - guide/pat-4:
+        published: true

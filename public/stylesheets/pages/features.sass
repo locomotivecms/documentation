@@ -1,0 +1,49 @@
+// Feature page
+.feature
+  +five-cols-grid
+  border-bottom: 1px solid $blue-border
+  .feature-text
+    padding-top: $section-padding
+    padding-bottom: $section-padding
+  .feature-icon
+    display: none  
+  .feature-illustrations
+    padding-bottom: $section-padding
+.feature.last
+  border-bottom: none
+
+@media #{$desktop}
+  #features  
+    background: url(/images/dotted_pattern.png) repeat-y center
+  .feature
+    .feature-text
+      +span-columns(2,5)
+      padding-bottom: $section-padding
+    .feature-icon
+      display: block
+      +span-columns(1,5)
+      padding-top: 85px
+      text-align: center
+    .feature-illustrations
+      +span-columns(2,5)
+      padding-top: $section-padding
+      
+  // handle left right orientation
+  .feature.left
+    .feature-illustrations
+      +omega
+  .feature.right
+    .feature-icon
+      float: right
+    .feature-text
+      +omega
+  // hide the stripped background above icon for the first item
+  .feature.first
+    .feature-icon
+      background-color: white  
+  // same principle for the last item
+  .feature.last
+    background-color: white  
+    .feature-icon
+      background: url(/images/dotted_pattern.png) repeat-y center
+  

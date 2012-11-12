@@ -1,0 +1,22 @@
+%aside{ :class => "sidebar"}
+  .floating-panel
+    .inner-floating-panel
+      %header
+        %h1
+          Guide summary
+      %ol
+        %li{ :class => "{% if page.fullpath == 'guide/part-1' %}active{% endif %}"}
+          %a{ :href => "/guide/part-1" }
+            Foreword
+        %li{ :class => "{% if page.fullpath == 'guide/part-2' %}active{% endif %}"}
+          %a{ :href => "/guide/part-2" }
+            Overview
+        %li{ :class => "{% if page.fullpath == 'guide/part-3' %}active{% endif %}"}
+          %a{ :href => "/guide/part-3" }
+            Templating
+        %li{ :class => "{% if page.fullpath == 'guide/part-4' %}active{% endif %}"}
+          %a{ :href => "/guide/part-4" }  
+            Models
+        %li{ :class => "{% if page.fullpath == 'guide/part-5' %}active{% endif %}"}
+          %a{ :href => "/guide/part-5" }
+            Tips

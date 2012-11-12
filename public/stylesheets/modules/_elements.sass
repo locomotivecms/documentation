@@ -1,13 +1,66 @@
+// Page header
+#page-head
+  +four-cols-grid
+  border-bottom: 1px solid $blue-border
+  padding-top: 40px
+  padding-bottom: 40px
+  +proximanova-light
+  #page-head-content
+    +span-columns(4 omega,4)
+    header  
+      font-size: 36px
+      line-height: 30px
+      color: $fourth-black
+      margin-bottom: 15px
+    p
+      +span-columns(4 omega,4)
+      font-size: 20px
+      line-height: 27px
+      color: $third-blue
+      +proximanova-light
+      margin: 0
+      a
+        color: $dark-black
+  aside
+    +span-columns(4 omega,4)
+    margin-top: 20px
+    a
+      text-transform: uppercase
+      +big-button
+  @media #{$desktop}
+    #page-head-content
+      +span-columns(3,4)
+    aside
+      +span-columns(1 omega,4)
+      margin-top: -5px
+      a
+        width: 100%
+
+
+// Sidebar
+.sidebar
+  +span-columns(3 omega,3)
+  .active
+    color: $orange-gradient-end
+.sidebar.desktop
+  display: none
+.sidebar.mobile
+  display: block
+@media #{$desktop}
+  .sidebar
+    +span-columns(1 omega,3)
+
+// Floating panel in sidebar
 .floating-panel
   background-color: $floating-panel
   +border-radius(15px)
   padding: 2px
-  //margin-top: 25px
+  margin-top: 10px
   margin-bottom: 25px
   +open-sans-regular
   .inner-floating-panel
     +border-radius(15px)
-    border: 2px solid white
+    border: 3px solid white
     padding: 25px 20px
     header
       color: $dark-black
@@ -17,63 +70,3 @@
       color: $light-black
       font-size: 12px
 
-=big-orange-button
-  +orange-button
-  padding: 15px 30px
-
-=small-orange-button
-  +orange-button
-  padding: 7px 15px
-
-=orange-button
-  cursor: pointer
-  +background-image( linear-gradient($orange-gradient-start, $orange-gradient-end) )
-  border: 1px solid $orange-border
-  border-bottom: 1px solid $orange-gradient-end
-  border-radius: 5px
-  +box-shadow(inset 0 1px 0 0 $orange-white)
-  color: #fff
-  text-align: center
-  text-shadow: 0 1px 1px $dark-black
-  +proximanova-light
-  display: inline-block
-  font-size: 16px
-  //+box-shadow($dark-black 1px 1px 2px)
-  &:hover
-    +background-image( linear-gradient($orange-gradient-end, $orange-gradient-start) )
-    border-bottom: 1px solid $orange-border
-
-=menu-button  
-  padding: 2px 20px
-  cursor: pointer
-  +background-image( linear-gradient($menu-gradient-start, $menu-gradient-end) )
-  border: 1px solid $menu-border
-  border-radius: 12px
-  +box-shadow(inset 0 1px 0 0 $menu-white)
-  color: white
-  text-align: center
-  text-shadow: 0 1px 1px $dark-black
-  +proximanova-light
-  display: inline-block
-  font-size: 16px
-  a
-    color: white
-    &:hover
-      color: white
-      text-decoration: none
-  &:hover
-    +background-image( linear-gradient($menu-gradient-end, $menu-gradient-start) )
-
-=readmore-button
-  +open-sans-regular
-  font-size: 12px
-  display: inline-block
-  +border-radius(5px)
-  cursor: pointer
-  background-color: $read-more-bg
-  padding: 0px 10px
-  color: $read-more-text
-  
-  &:hover
-    background-color: $read-more-bg-hover
-    color: $read-more-text-hover

@@ -1,0 +1,19 @@
+%aside{ :class => "sidebar"}
+  .floating-panel
+    .inner-floating-panel
+      %header
+        %h1
+          Editor summary
+      %ol
+        %li{ :class => "{% if page.fullpath == 'editor/installation' %}active{% endif %}"}
+          %a{ :href => "/editor/installation" }
+            Installation
+        %li{ :class => "{% if page.fullpath == 'editor/create_site' %}active{% endif %}"}
+          %a{ :href => "/editor/create_site" }
+            Create a site
+        %li{ :class => "{% if page.fullpath == 'editor/deployment' %}active{% endif %}"}
+          %a{ :href => "/editor/deployment" }
+            Deployment
+        %li{ :class => "{% if page.fullpath == 'editor/site_templates' %}active{% endif %}"}
+          %a{ :href => "/editor/site_templates" }
+            Site templates

@@ -1,0 +1,19 @@
+%aside{ :class => "sidebar"}
+  .floating-panel
+    .inner-floating-panel
+      %header
+        %h1
+          Installation Summary
+      %ul
+        %li{ :class => "{% if page.fullpath == 'installation/requirements' %}active{% endif %}"}
+          %a{ :href => "/installation/requirements" }
+            Requirements
+        %li{ :class => "{% if page.fullpath == 'installation/getting_started' %}active{% endif %}"}
+          %a{ :href => "/installation/getting_started" }
+            Getting started
+        %li{ :class => "{% if page.fullpath == 'installation/heroku_hosting' %}active{% endif %}"}
+          %a{ :href => "/installation/heroku_hosting" }
+            Heroku hosting
+        %li{ :class => "{% if page.fullpath == 'installation/for_developers' %}active{% endif %}"}
+          %a{ :href => "/installation/for_developers" }
+            For developers

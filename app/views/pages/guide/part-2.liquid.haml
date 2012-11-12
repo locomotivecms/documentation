@@ -1,51 +1,39 @@
-{% extends 'index' %}
+{% extends 'guides' %}
 
-{% block 'main-content' %}
-%section#page-title
-  .inner-container
-    %header
-      Overview
-    %p
+{% block 'left' %}
 
-      Duis mollis, est non commodo luctus, <a>Vestibulum</a> ligula porta feliid ligula porta felis e
-%section#content#grid-three
-  #main
-    :markdown
-      ### Anatomy of a LocomotiveCMS app
+:markdown
+  ### Anatomy of a LocomotiveCMS app
 
-      LocomotiveCMS is crafted as an engine.
+  LocomotiveCMS is crafted as an engine.
 
-      <em>
-      A Rails engine is an application packaged as a ruby gem that is able to be run or mounted within another Rails application. An engine can have its own models, views, controllers, generators and publicly served static files.
-      </em>
-      ([more about engines](http://guides.rubyonrails.org/engines.html))
+  <em>
+  A Rails engine is an application packaged as a ruby gem that is able to be run or mounted within another Rails application. An engine can have its own models, views, controllers, generators and publicly served static files.
+  </em>
+  ([more about engines](http://guides.rubyonrails.org/engines.html))
 
-      What's inside ?
+  What's inside ?
 
-      - [Rails 3](http://www.rubyonrails.org)
-      - [Mongoid](http://www.mongoid.org)
-      - [Devise](http://blog.plataformatec.com.br/tag/devise)
-      - [Liquid](http://www.liquidmarkup.org)
-      - [Haml](http://haml-lang.com)
-      - [Formtastic](https://github.com/justinfrench/formtastic)
-      - [Carrierwave](http://carrierwave.rubyforge.org)
+  - [Rails 3](http://www.rubyonrails.org)
+  - [Mongoid](http://www.mongoid.org)
+  - [Devise](http://blog.plataformatec.com.br/tag/devise)
+  - [Liquid](http://www.liquidmarkup.org)
+  - [Haml](http://haml-lang.com)
+  - [Formtastic](https://github.com/justinfrench/formtastic)
+  - [Carrierwave](http://carrierwave.rubyforge.org)
 
-      <a name="overview_2"></a>
-      ### Key features
+  <a name="overview_2"></a>
+  ### Key features
 
-      You have out of the box :
+  You have out of the box :
 
-      - Multi sites : manage multiple websites with one application instance
-      - Flexible content types
-      - Front-end inline editing (Aloha editor)
-      - Content localization
-      - Restful API
-      - Haml / Sass support
-      - Liquid templating langage
-      - A very nice User Interface
-
-      
-
-  {% include 'guide_summary' %}
+  - Multi sites : manage multiple websites with one application instance
+  - Flexible content types
+  - Front-end inline editing (Aloha editor)
+  - Content localization
+  - Restful API
+  - Haml / Sass support
+  - Liquid templating langage
+  - A very nice User Interface
 
 {% endblock %}

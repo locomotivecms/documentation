@@ -1,54 +1,43 @@
-{% extends 'index' %}
+{% extends 'installation' %}
 
-{% block 'main-content' %}
-%section#page-title
-  .inner-container
-    %header
-      Installation for developers
-    %p Wants to contribute or simply tweak the engine ? Here is the guide to run the engine
-%section#content#grid-three
-  #main
-    :markdown
-      # 1. prepare the environment on your machine
+{% block 'left' %}
 
-          cd ~/Documents
-          mkdir LocomotiveCMS
-          cd LocomotiveCMS
-          mkdir gems
+:markdown
+  # 1. prepare the environment on your machine
 
-      <div class="alert alert-info">
-      Replace the “\~/Documents” folder by what you want.
-      </div>
+      cd ~/Documents
+      mkdir LocomotiveCMS
+      cd LocomotiveCMS
+      mkdir gems
 
-      # 2. clone the engine and the core gems
+  <div class="alert alert-info">
+  Replace the “\~/Documents” folder by what you want.
+  </div>
 
-          cd gems
-          git clone git://github.com/locomotivecms/custom_fields.git
-          cd ..
-          git clone git://github.com/locomotivecms/engine.git
+  # 2. clone the engine and the core gems
 
-      # 3. install the gems
+      cd gems
+      git clone git://github.com/locomotivecms/custom_fields.git
+      cd ..
+      git clone git://github.com/locomotivecms/engine.git
 
-          bundle install
+  # 3. install the gems
 
-      # 4. run the application
+      bundle install
 
-        cd spec/dummy
-        bundle exec unicorn_rails
+  # 4. run the application
 
-      # 5. run the test suite
+    cd spec/dummy
+    bundle exec unicorn_rails
 
-          bundle exec rake
+  # 5. run the test suite
 
-      You can also run only the cucumber or rspec tests
+      bundle exec rake
 
-          bundle exec rake cucumber
-          bundle exec rake spec
-          bundle exec rake rspec spec/models/locomotive/page_spec.rb
+  You can also run only the cucumber or rspec tests
 
-
-
-
-  {% include 'installation_summary' %}
+      bundle exec rake cucumber
+      bundle exec rake spec
+      bundle exec rake rspec spec/models/locomotive/page_spec.rb
 
 {% endblock %}

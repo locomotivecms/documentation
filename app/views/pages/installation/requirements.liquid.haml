@@ -1,56 +1,48 @@
-{% extends 'index' %}
+{% extends 'installation' %}
 
-{% block 'main-content' %}
-%section#page-title
-  .inner-container
-    %header
-      Requirements
-    %p Whether you are a ninja or a newbie Ruby on Rails developer, it's better to know about what LocomotiveCMS relies on.
-%section#content#grid-three
-  #main
-    :markdown
-      # Ruby
+{% block 'left' %}
 
-      For performance concerns, we only support the last version of Ruby meaning the 1.9.3. The 1.9.2 one should also work though.
+:markdown
+  # Ruby
 
-      Ruby can be installed by following the instructions here: [http://www.ruby-lang.org/en/downloads](http://www.ruby-lang.org/en/downloads)
+  For performance concerns, we only support the last version of Ruby meaning the 1.9.3. The 1.9.2 one should also work though.
 
-      However, we recommend people to install a Ruby version management system, such as [RBENV](https://github.com/sstephenson/rbenv) or [RVM](http://beginrescueend.com/)
+  Ruby can be installed by following the instructions here: [http://www.ruby-lang.org/en/downloads](http://www.ruby-lang.org/en/downloads)
 
-      <div class="alert alert-info">
-      <strong>For OS X Lion users,</strong> there are conflicts between RVM and MacPorts causing weird <strong>Segmentation Fault</strong> bugs. Everything is explained in this <strong><a href="http://www.seqmedia.com/2012/05/08/frustrations-abound-rvm-vs-macports-and-the-bug-segmentation-fault/">post</a></strong>
-      </div>
+  However, we recommend people to install a Ruby version management system, such as [RBENV](https://github.com/sstephenson/rbenv) or [RVM](http://beginrescueend.com/)
 
-      # Ruby on Rails
+  <div class="alert alert-info">
+  <strong>For OS X Lion users,</strong> there are conflicts between RVM and MacPorts causing weird <strong>Segmentation Fault</strong> bugs. Everything is explained in this <strong><a href="http://www.seqmedia.com/2012/05/08/frustrations-abound-rvm-vs-macports-and-the-bug-segmentation-fault/">post</a></strong>
+  </div>
 
-      Our CMS is a [Ruby on Rails](http://www.rubyonrails.org/) engine which allows you to wrap it into your main application. Ruby on Rails supports engines since its 3.0 version but in order to enjoy the full power of it, you have to install the last version which is **3.2.x**
+  # Ruby on Rails
 
-      Once you get Ruby installed, install Ruby on Rails with the following command:
+  Our CMS is a [Ruby on Rails](http://www.rubyonrails.org/) engine which allows you to wrap it into your main application. Ruby on Rails supports engines since its 3.0 version but in order to enjoy the full power of it, you have to install the last version which is **3.2.x**
 
-          gem install rails --version=3.2.5
+  Once you get Ruby installed, install Ruby on Rails with the following command:
 
-      # MongoDB
+      gem install rails --version=3.2.5
 
-      LocomotiveCMS does not use a classic SQL database such as MySQL or PostgreSQL but rather a nosql database named mongoDB. Because we let users create their own content types, it occurred to us that using a schema-free database was the perfect fit.
+  # MongoDB
 
-      We support versions above **2.0.0** (the current stable version is 2.0.1).
+  LocomotiveCMS does not use a classic SQL database such as MySQL or PostgreSQL but rather a nosql database named mongoDB. Because we let users create their own content types, it occurred to us that using a schema-free database was the perfect fit.
 
-      MongoDB is available on many OS. Check this [link out](http://www.mongodb.org/downloads) for more information.
+  We support versions above **2.0.0** (the current stable version is 2.0.1).
 
-      # ImageMagick
+  MongoDB is available on many OS. Check this [link out](http://www.mongodb.org/downloads) for more information.
 
-      Our CMS takes benefits of ImageMagick to crop images on the fly. Again, [ImageMagick](http://www.imagemagick.org/script/index.php) is available on a large set of OS.
+  # ImageMagick
 
-      <div class="alert alert-info">
-      <strong>Note:</strong> on Mac OS X, try <a href="http://mxcl.github.com/homebrew/">Homebrew</a> or <a href="https://github.com/maddox/magick-installer">MagickInstaller</a> to install it. This will save you a couple of hours because its installation can be really painful sometimes.
-      </div>
+  Our CMS takes benefits of ImageMagick to crop images on the fly. Again, [ImageMagick](http://www.imagemagick.org/script/index.php) is available on a large set of OS.
 
-      # Browsers (back-office)
+  <div class="alert alert-info">
+  <strong>Note:</strong> on Mac OS X, try <a href="http://mxcl.github.com/homebrew/">Homebrew</a> or <a href="https://github.com/maddox/magick-installer">MagickInstaller</a> to install it. This will save you a couple of hours because its installation can be really painful sometimes.
+  </div>
 
-      For both practical and ideological reasons, we decided to support only <strong>Firefox, Safari and Google Chrome.</strong> But, it should not be so tough to override the default stylesheets in order to offer a different but working version of Internet Explorer.
+  # Browsers (back-office)
 
-      [Let’s start !](/installation/getting_started)
+  For both practical and ideological reasons, we decided to support only <strong>Firefox, Safari and Google Chrome.</strong> But, it should not be so tough to override the default stylesheets in order to offer a different but working version of Internet Explorer.
 
-  {% include 'installation_summary' %}
+  [Let’s start !](/installation/getting_started)
 
 {% endblock %}

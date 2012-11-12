@@ -1,14 +1,9 @@
 {% extends 'index' %}
 
-{% block 'main-content' %}
-%section#page-title
-  .inner-container
-    %header
-      Create beautiful sites blabla
-    %p
-      Duis mollis, est non commodo luctus, <a>Vestibulum</a> ligula porta feliid ligula porta felis e
-%section#content#grid-three
-  #main
+{% block 'main' %}
+{% include 'page_head' %}
+#main-generic
+  %section#container-sidebar
     %h1 H1 Heading
     %p 
       p Cras mattis consectetur purus sit amet fermentum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras mattis consectetur purus sit amet fermentum.
@@ -35,34 +30,22 @@
     %span Duis mollis, est non com Vivamus sagittis lacus vel augue laoreet.
     %span Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 
-  %aside#sidebar
-    %header
-      %h1
-        Sidebar Heading
-    %ul
-      %li Unordered list example
-      %li Unordered list example
-      %li Unordered list example
-      %li Unordered list example
-    %ol
-      %li  Ordered list example
-      %li  Ordered list example
-      %li  Ordered list example
-      %li  Ordered list example
-      %li  Ordered list example
+  %aside{ :class => "sidebar"}
     .floating-panel
       .inner-floating-panel
         %header
-          Floating panel
-        %p
-          Floating panel texte style blabla bla blablabla
-    .btn.big-btn
-      BIG BTN
-    .btn.small-btn
-      SMALL BTN
-    .readmore
-      Read More
-    .menu-btn
-      Menu Btn
-    
+          %h1
+            Sidebar Heading
+        %ul
+          %li Unordered list example
+          %li Unordered list example
+          %li Unordered list example
+          %li Unordered list example
+        %ol
+          %li  Ordered list example
+          %li  Ordered list example
+          %li  Ordered list example
+          %li  Ordered list example
+          %li  Ordered list example
+        
 {% endblock %}

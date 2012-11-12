@@ -1,0 +1,41 @@
+.company-section
+  +four-cols-grid
+  border-bottom: 1px solid $blue-border
+  padding-top: $section-padding
+  padding-bottom: $section-padding
+  
+.company-crew
+  +four-cols-grid
+  padding-top: $section-padding
+  padding-bottom: $section-padding
+  header
+    h1 
+      margin-bottom: 40px
+
+
+.company-crew-person
+  +span-columns(4 omega, 4)
+  text-align: center
+  margin-bottom: 20px
+  .rounded-picture
+    +rounded-picture
+  header
+    margin-bottom: 20px
+    h1
+      color: $light-blue
+      +open-sans-semi-bold
+      font-size: 16px
+      margin: 15px 0 5px 0
+    .position
+      +open-sans-bold
+      color: $light-black
+      font-size: 13px
+
+@media #{$desktop}
+  .content
+    +two-columns
+  .company-crew-person
+    +span-columns(1, 4)
+    +nth-omega(4)
+    margin-bottom: 0px
+    

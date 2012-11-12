@@ -1,0 +1,54 @@
+.princing-detail-container
+  +five-cols-grid
+  border-bottom: 1px solid $blue-border
+  padding-top: $section-padding
+
+.princing-faq-container
+  +four-cols-grid
+  padding-top: 40px // minus h1 margin-top: 10px
+  
+.pricing-detail-item
+  +span-columns(5 omega, 5)
+  img
+    float: right
+  b
+    color: $light-blue
+  .paypal
+    //+span-columns(3 omega, 5)
+    +paypal-button
+    margin-bottom: 30px
+    
+  .slideshow
+    +span-columns(5 omega, 5)
+    +shadowed-border
+    img
+      +border-radius(5px)
+      width: 100%
+
+.pricing-faq-item
+  +span-columns(4 omega, 4)
+  header
+    h1
+      font-size: 16px
+      color: $third-black
+  p
+    color: $light-black
+    font-size: 13px
+
+
+@media #{$desktop}
+  .pricing-detail-item
+    section
+      +span-columns(3, 5)
+      padding-bottom: 30px
+    aside
+      +span-columns(2 omega, 5)
+      .paypal
+        float: right
+
+@media #{$desktop}
+  .princing-faq-container
+    .pricing-faq-item
+      +span-columns(2, 4)
+      +nth-omega(2n)
+    

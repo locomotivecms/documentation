@@ -1,0 +1,52 @@
+#main-blog
+  +three-cols-grid
+
+.full-article 
+  blockquote
+    width: 100%
+    float: right
+    margin-left: 20px
+    color: $light-blue
+    font-size: 18px
+    line-height: 28px
+    +open-sans-regular
+    &:before
+      content: "“"
+      color: $light-blue
+      font-size: 30px
+      line-height: 28px
+      +open-sans-bold
+    &:after
+      content: "”"
+      color: $light-blue
+      font-size: 18px
+      line-height: 28px
+      +open-sans-regular
+    @media #{$desktop}
+      width: 30%
+
+
+article
+  +span-columns(3 omega,3)
+  margin-top: $section-padding
+  padding-bottom: $section-padding
+  border-bottom: 1px solid $blue-border
+  color: $light-black
+  font-size: 13px
+  +open-sans-regular
+  header
+    +proximanova-semi-bold
+    font-size: 12px
+    color: $main-blue
+    margin-bottom: 15px
+    h1
+      margin-bottom: 5px
+  .bottom
+    margin-top: 20px
+    .meta
+      color: $blog-meta
+    a
+      +readmore-button
+      margin-right: 20px
+  @media #{$desktop}
+    +span-columns(2,3)

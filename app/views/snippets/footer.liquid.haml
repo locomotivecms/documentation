@@ -1,10 +1,44 @@
-%br
+%footer#footer
+  #inner-footer
+    %section.footer-item
+      %header
+        Locomotive Quick Links
+      %ul
+        %li
+          %a{ :href => "/company" }
+            Company
+        %li
+          %a{ :href => "/privacy-policy" }
+            Privacy Policy
+        %li
+          %a{ :href => "/terms-of-use" }
+            Terms of use
+        %li
+          %a{ :href => "/license" }
+            License Agreement
+        %li
+          %a{ :href => "mailto:didier@nocoffee.fr" }
+            Contact us
 
-%p.pull-right
-  %a{ :href => 'mailto:support@locomotivecms.com' } Contact us
-
-%p
-  LocomotiveCMS is an open source CMS released under the MIT license
-  %br
-  LocomotiveCMS, LocomotiveCMS Editor, LocomotiveEditor are all trademarks of
-  %a{ :href => 'http://www.nocoffee.fr' } NoCoffee SARL
+    %section.footer-item
+      %header
+        Follow 
+        %a{ :href => "https://twitter.com/locomotivecms" }
+          @locomotivecms
+    %section.footer-item
+      %header
+        Locomotive News
+      %p
+        Stay on top of Locomotive updates, subscribe to our news.
+      %form
+        %input{ :placeholder => "Email adress" }
+        %input{ :type => :submit, :value => "SUBSCRIBE" }
+    %section.footer-item
+      %header.logo
+        LOCOMOTIVECMS
+      %p
+        %em LocomotiveCMS is developed by NoCoffee. LocomotiveCMS is free software under the MIT license.
+      %p
+        %strong © {{ today | localized_date: '%Y' }} Locomotive CMS
+    %a.back-to-top{ :href => "#" }
+      BACK TO TOP

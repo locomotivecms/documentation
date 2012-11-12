@@ -1,75 +1,60 @@
-{% extends 'index' %}
+{% extends 'installation' %}
 
-{% block 'main-content' %}
-%section#page-title
-  .inner-container
-    %header
-      Getting started
-    %p 
-      We suggest you to start by reading the 
-      %a{ :href => "installation/requirements" } 
-        requirements
-      section. If you want to test the engine and sneak into the code, we recommend you to install from 
-      %a{ :href => "installation/for_developers" }
-        the source.
-%section#content#grid-three
-  #main
-    :markdown
-      # 1. Create a Ruby on Rails application
+{% block 'left' %}
 
-      <div class="alert error-alert">
-      Make sure you installed <strong>Ruby on Rails 3.2.x</strong>
-      </div>
-    
-          rails new myapp --skip-active-record --skip-test-unit --skip-javascript --skip-bundle
-          cd myapp
+:markdown
+  # 1. Create a Ruby on Rails application
+
+  <div class="alert error-alert">
+  Make sure you installed <strong>Ruby on Rails 3.2.x</strong>
+  </div>
+
+      rails new myapp --skip-active-record --skip-test-unit --skip-javascript --skip-bundle
+      cd myapp
 
 
-      # 2. Include the LocomotiveCMS engine gem
+  # 2. Include the LocomotiveCMS engine gem
 
-      You have to tell your Ruby on Rails app that you want to include the LocomotiveCMS gem available on Gemcutter. Edit your application Gemfile and add these lines if missing.
+  You have to tell your Ruby on Rails app that you want to include the LocomotiveCMS gem available on Gemcutter. Edit your application Gemfile and add these lines if missing.
 
-          gem 'locomotive_cms', '~> 2.0.0.rc12', :require => 'locomotive/engine'
-          gem 'unicorn', :group => 'development'
-          gem 'compass-rails',  '~> 1.0.2', :group => 'assets'
-          gem 'sass-rails',     '~> 3.2.4', :group => 'assets'
-          gem 'coffee-rails',   '~> 3.2.2', :group => 'assets'
-          gem 'uglifier',       '~> 1.2.4', :group => 'assets'
+      gem 'locomotive_cms', '~> 2.0.0.rc12', :require => 'locomotive/engine'
+      gem 'unicorn', :group => 'development'
+      gem 'compass-rails',  '~> 1.0.2', :group => 'assets'
+      gem 'sass-rails',     '~> 3.2.4', :group => 'assets'
+      gem 'coffee-rails',   '~> 3.2.2', :group => 'assets'
+      gem 'uglifier',       '~> 1.2.4', :group => 'assets'
 
-      If you run your engine on **Linux,** you also have to add the following gem
+  If you run your engine on **Linux,** you also have to add the following gem
 
-          gem 'therubyracer', '>= 0.8.2'
+      gem 'therubyracer', '>= 0.8.2'
 
-      # 3. Install the gems
+  # 3. Install the gems
 
-          bundle install
+      bundle install
 
-      # 4. Add the editable engine config files
+  # 4. Add the editable engine config files
 
-      The following command also inserts the engine routes to the main application
+  The following command also inserts the engine routes to the main application
 
-          bundle exec rails g locomotive:install
+      bundle exec rails g locomotive:install
 
-      # 5. Edit the engine settings
+  # 5. Edit the engine settings
 
-          mate config/initializers/locomotive.rb
-          mate config/mongoid.yml
+      mate config/initializers/locomotive.rb
+      mate config/mongoid.yml
 
-      By default, LocomotiveCMS uses Amazon S3 in production. To change it, modify the carrierwave initialization file.
+  By default, LocomotiveCMS uses Amazon S3 in production. To change it, modify the carrierwave initialization file.
 
-          mate config/initializers/carrierwave.rb
+      mate config/initializers/carrierwave.rb
 
-      # 6. Run the application server
+  # 6. Run the application server
 
-          bundle exec unicorn_rails
+      bundle exec unicorn_rails
 
-      # 7. Open your browser
+  # 7. Open your browser
 
-          open http://localhost:8080/locomotive
+      open http://localhost:8080/locomotive
 
-      Follow the instructions in order to create your first administrator account and your first website.
-
-
-  {% include 'installation_summary' %}
+  Follow the instructions in order to create your first administrator account and your first website.
 
 {% endblock %}

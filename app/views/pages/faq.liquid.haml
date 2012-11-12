@@ -1,17 +1,11 @@
 {% extends 'index' %}
 
-{% block 'main-content' %}
-%section#page-title
-  .inner-container
-    %header
-      Faq
-    %p
-      Duis mollis, est non commodo luctus, <a>Vestibulum</a> ligula porta feliid ligula porta felis e
-%section#content#grid-three
-  #main
-    %p
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nisl augue, laoreet ac rutrum sit amet, accumsan ut felis. Sed sagittis justo vitae tellus tempor sed posuere lectus facilisis. Donec dapibus scelerisque posuere. Aenean pellentesque, leo non euismod pellentesque, purus mauris commodo leo, a aliquet turpis ante ac mauris. Nulla auctor felis at erat ultricies eu tempor sapien volutpat. Nulla sapien neque, bibendum elementum pulvinar sed, luctus a est. 
-
-  
-
+{% block 'main' %}
+{% include 'page_head' %}
+#main-generic
+  %section#container-generic
+  {% editable_long_text "faq-text", priority: 8 %}
+  %p
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nisl augue, laoreet ac rutrum sit amet, accumsan ut felis. Sed sagittis justo vitae tellus tempor sed posuere lectus facilisis. Donec dapibus scelerisque posuere. Aenean pellentesque, leo non euismod pellentesque, purus mauris commodo leo, a aliquet turpis ante ac mauris. Nulla auctor felis at erat ultricies eu tempor sapien volutpat. Nulla sapien neque, bibendum elementum pulvinar sed, luctus a est. 
+  {% endeditable_long_text %}
 {% endblock %}

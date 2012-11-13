@@ -1,0 +1,19 @@
+:markdown
+  # last(input)
+
+  Return the last occurrence of the input object. 
+  If the object is a String, it returns the last letter. 
+  If it is an Array, the last entry is returned. 
+  If the input is a collection, the last method is called on that collection.
+
+  {% raw %}
+      {{ [42, 0] | last }}
+  {% endraw %}
+
+  **Example**: Returns 0
+
+  {% raw %}
+      {{ 'Hello World' | last }}
+  {% endraw %}
+
+  **Example**: Returns "d"

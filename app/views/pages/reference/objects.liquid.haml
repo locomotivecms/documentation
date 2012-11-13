@@ -1,6 +1,19 @@
 {% extends 'reference' %}
 
-{% block 'left' %}
-:markdown
+{% block 'left' %}  
+
+%section#container-sidebar
+  %section
+    {% include 'reference/objects_global_variables' %}
+  %section
+    {% include 'reference/objects_site' %}
+  %section
+    {% include 'reference/objects_page' %}
+  %section
+    {% include 'reference/objects_content_type' %}
+  %section
+    {% include 'reference/objects_content_entry' %}
+
+{% include 'sidebars/reference_objects' %}
 
 {% endblock %}

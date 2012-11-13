@@ -36,12 +36,47 @@
       a
         width: 100%
 
+// Subnav below a page-head
+nav.subnav
+  +four-cols-grid
+  border-bottom: 1px solid $blue-border
+  padding-top: 15px
+  padding-bottom: 15px
+  ul
+    margin: 0
+    float: left
+  li
+    display: inline-block
+    background: none
+    padding-left: 0
+    margin-right: 10px
+  a
+    float: left
+    display: block
+    padding: 2px 23px
+    color: $third-blue
+    font-size: 14px
+    +proximanova-semi-bold
+    +border-radius(20px)
+    &:hover
+      color: $main-blue
+      background-color: $subnav-button-bg
+      text-decoration: none
+  a.current
+    color: $main-blue
+    background-color: $subnav-button-bg
+
 
 // Sidebar
 .sidebar
   +span-columns(3 omega,3)
   .active
     color: $orange-gradient-end
+  ul.dropdown
+    ul
+      display: none
+    ul.block
+      display: block
 .sidebar.desktop
   display: none
 .sidebar.mobile

@@ -1,0 +1,38 @@
+:markdown
+  # resize(input, resize_string)
+
+  Resize any image on the fly by calling behind the scene the DragonFly gem. 
+  The url to the dynamically resized image is returned. The processing relies on ImageMagick.
+
+  {% raw %}
+      {{ project.screenshot | resize: '100x100' }}
+      {{ 'http://example.com/images/banner.png' | resize: '300x50#' }}
+  {% endraw %}
+
+  <div class="alert alert-info">
+    By default, the Rack::Cache middleware is called for the caching. If you host your LocomotiveCMS on Heroku, Varnish is used instead. For more information, please visit this
+    <a href="http://markevans.github.com/dragonfly/file.Caching.html">page.</a>
+  </div>
+
+  ### Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>resize_string</td>
+        <td>String</td>
+        <td>
+          The ImageMagick geometry string. See the following
+          <a href="http://markevans.github.com/dragonfly/file.ImageMagick.html">link</a>
+          for examples.
+        </td>
+      </tr>
+    </tbody>
+  </table>

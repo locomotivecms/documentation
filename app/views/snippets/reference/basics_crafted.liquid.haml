@@ -1,0 +1,11 @@
+:markdown
+  <div class="alert alert-info">
+  You can find the source of the Liquid template engine on **[github.][]** However, we used an **[enhanced version][]** of the original engine.
+  </div>
+  
+  # It was crafted for very specific requirements:
+
+  - It has to have simple markup and beautiful results Template engines which don’t produce good looking results are no fun to use.            
+  - It needs to be non-evaling and secure. Liquid templates are made so that users can edit them. You don’t want to run code on your server which your users wrote.   
+  - It has to be stateless. The compile and render steps have to be separate, so that the expensive parsing and compiling can be done once; later on, you can just render it by passing in a hash with local variables and objects.
+  - It needs to be able to style emails as well as HTML.

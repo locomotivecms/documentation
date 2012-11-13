@@ -2,13 +2,26 @@
 
 {% block 'main' %}
 {% include 'page_head' %}
+%nav.subnav
+  %ul
+    %li
+      %a{ :href => "/reference/basics", :class => "{% if page.fullpath == 'reference/basics' %}current{% endif %}" }
+        Basics
+    %li
+      %a{ :href => "/reference/objects", :class => "{% if page.fullpath == 'reference/objects' %}current{% endif %}" }
+        Objects
+    %li
+      %a{ :href => "/reference/filters", :class => "{% if page.fullpath == 'reference/filters' %}current{% endif %}" }
+        Filters
+    %li
+      %a{ :href => "/reference/tags", :class => "{% if page.fullpath == 'reference/tags' %}current{% endif %}" }
+        Tags
 #main-generic
+  {% block 'left' %}
   %section#container-sidebar
-    {% block 'left' %}
     {% editable_long_text "installation-text", priority: 8 %}
     %p
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nisl augue, laoreet ac rutrum sit amet, accumsan ut felis. Sed sagittis justo vitae tellus tempor sed posuere lectus facilisis. Donec dapibus scelerisque posuere. Aenean pellentesque, leo non euismod pellentesque, purus mauris commodo leo, a aliquet turpis ante ac mauris. Nulla auctor felis at erat ultricies eu tempor sapien volutpat. Nulla sapien neque, bibendum elementum pulvinar sed, luctus a est. 
     {% endeditable_long_text %}
-    {% endblock %}
-  {% include 'summary_reference' %}
+  {% endblock %}
 {% endblock %}

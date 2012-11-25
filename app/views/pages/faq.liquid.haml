@@ -3,9 +3,10 @@
 {% block 'main' %}
 {% include 'page_head' %}
 #main-generic
-  %section#container-generic
-  {% editable_long_text "faq-text", priority: 8 %}
-  %p
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nisl augue, laoreet ac rutrum sit amet, accumsan ut felis. Sed sagittis justo vitae tellus tempor sed posuere lectus facilisis. Donec dapibus scelerisque posuere. Aenean pellentesque, leo non euismod pellentesque, purus mauris commodo leo, a aliquet turpis ante ac mauris. Nulla auctor felis at erat ultricies eu tempor sapien volutpat. Nulla sapien neque, bibendum elementum pulvinar sed, luctus a est. 
-  {% endeditable_long_text %}
+  %section#container-generic.princing-faq-container
+    {% for question in contents.questions %}
+    {% include 'pricing_faq_item' %}
+    {{ forloop.length/2 }}
+    {% endfor %}
+
 {% endblock %}

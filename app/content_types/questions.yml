@@ -1,0 +1,14 @@
+description: Faq
+name: questions
+order_by: manually
+slug: questions
+label_field_name: title
+fields:
+- title:
+    label: Question
+    type: string
+    hint: Question
+- answer:
+    label: Answer
+    type: text
+    hint: Answer to the question

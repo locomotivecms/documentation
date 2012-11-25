@@ -13,6 +13,11 @@ site:
     - 404:
         title: "Page not found"
         published: true
+        listed: true
+    - faq:
+        title: "Faq"
+        published: true
+        listed: true
     - reference:
         title: "Reference"
         published: true
@@ -160,9 +165,6 @@ site:
         published: true
         listed: true
         redirect_url: /reference/tags/logic/if_else_unless
-    
-
-
     - reference/tags/logic:
         title: "Logic"
         published: true
@@ -275,24 +277,8 @@ site:
         title: "Csrf meta"
         published: true
         listed: true
-    - installation:
-        title: "Installation"
-        published: true
-        listed: true
-    - installation/for_developpers:
-        title: "For developpers"
-        published: true
-        listed: true
-    - installation/getting_started:
-        title: "Getting started"
-        published: true
-        listed: true
-    - installation/heroku_hosting:
-        title: "Heroku hosting"
-        published: true
-        listed: true
-    - installation/requirements:
-        title: "Requirements"
+    - editor:
+        title: "Editor"
         published: true
         listed: true
     - guides:
@@ -315,3 +301,24 @@ site:
         title: "part 4"
         published: true
         listed: true
+    - installation:
+        title: "Installation"
+        published: true
+        listed: true
+    - installation/for_developpers:
+        title: "For developpers"
+        published: true
+        listed: true
+    - installation/getting_started:
+        title: "Getting started"
+        published: true
+        listed: true
+    - installation/heroku_hosting:
+        title: "Heroku hosting"
+        published: true
+        listed: true
+    - installation/requirements:
+        title: "Requirements"
+        published: true
+        listed: true
+    

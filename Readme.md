@@ -1,6 +1,5 @@
 ## Locomotive Documentation Site
 
-
 ## Notes
 
 - almost every page includes snippet 'page head' which contains 2 editable_texts with a priority of [8,9], so every editable_text 

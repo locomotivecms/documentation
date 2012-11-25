@@ -1,0 +1,20 @@
+{% extends 'reference/tags' %}
+
+{% block 'content' %}
+
+:markdown
+  # google_analytics
+  
+  It is simply a helper tag which includes the snippet code that it is asked by Google Analytics to enable traffic analytics.
+  
+  Just provide your Google account id.
+  
+  <div class="alert alert-info">
+    Put your google_analytics tag just before the
+    <b>closing BODY tag.</b>
+  </div>
+      
+      {% google_analytics 'UA-424242' %}
+  
+{% endblock %}
+  

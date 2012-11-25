@@ -1,15 +1,13 @@
 site:
   name: Documentation
-
   locales: [en]
-
   seo_title: LocomotiveCMS - Documentation
   meta_keywords: "some meta keywords"
   meta_description: "some meta description"
 
   pages:
     - index:
-        title: "Home page"
+        title: "Home"
         published: true
         listed: true
     - 404:
@@ -157,6 +155,127 @@ site:
         title: "Default"
         published: true
         listed: true
+    - reference/tags:
+        title: "Tags"
+        published: true
+        listed: true
+        redirect_url: /reference/tags/logic/if_else_unless
+    
+
+
+    - reference/tags/logic:
+        title: "Logic"
+        published: true
+        listed: true
+        redirect_url: /reference/tags/logic/if_else_unless
+    - reference/tags/logic/if_else_unless:
+        title: "If/Else/Unless"
+        published: true
+        listed: true
+    - reference/tags/logic/case:
+        title: "Case"
+        published: true
+        listed: true
+    - reference/tags/logic/for:
+        title: "For"
+        published: true
+        listed: true
+    - reference/tags/logic/assigns:
+        title: "Assigns"
+        published: true
+        listed: true
+    - reference/tags/logic/capture:
+        title: "Capture"
+        published: true
+        listed: true
+    - reference/tags/logic/cycle:
+        title: "Cycle"
+        published: true
+        listed: true
+    - reference/tags/layout:
+        title: "Layout"
+        published: true
+        listed: true
+        redirect_url: /reference/tags/layout/extends
+    - reference/tags/layout/extends:
+        title: "Extends"
+        published: true
+        listed: true
+    - reference/tags/layout/block:
+        title: "Block"
+        published: true
+        listed: true
+    - reference/tags/layout/include:
+        title: "Include"
+        published: true
+        listed: true
+    - reference/tags/layout/editable_short_text:
+        title: "Editable short text"
+        published: true
+        listed: true
+    - reference/tags/layout/editable_long_text:
+        title: "Editable long text"
+        published: true
+        listed: true
+    - reference/tags/layout/editable_file:
+        title: "Editable file"
+        published: true
+        listed: true
+    - reference/tags/layout/editable_control:
+        title: "Editable control"
+        published: true
+        listed: true
+    - reference/tags/content:
+        title: "Content"
+        published: true
+        listed: true
+        redirect_url: /reference/tags/content/paginate
+    - reference/tags/content/paginate:
+        title: "Paginate"
+        published: true
+        listed: true
+    - reference/tags/content/with_scope:
+        title: "With scope"
+        published: true
+        listed: true
+    - reference/tags/content/consume:
+        title: "Consume"
+        published: true
+        listed: true
+    - reference/tags/misc:
+        title: "Misc"
+        published: true
+        listed: true
+        redirect_url: /reference/tags/misc/nav
+    - reference/tags/misc/nav:
+        title: "Nav"
+        published: true
+        listed: true
+    - reference/tags/misc/locale_switcher:
+        title: "Locale switcher"
+        published: true
+        listed: true
+    - reference/tags/misc/google_analytics:
+        title: "Google analytics"
+        published: true
+        listed: true
+    - reference/tags/misc/seo:
+        title: "Seo"
+        published: true
+        listed: true
+    - reference/tags/misc/inline_editor:
+        title: "Inline editor"
+        published: true
+        listed: true
+    - reference/tags/misc/csrf_param:
+        title: "Csrf param"
+        published: true
+        listed: true
+    - reference/tags/misc/csrf_meta:
+        title: "Csrf meta"
+        published: true
+        listed: true
+        
     
     - installation:
         title: "Installation"

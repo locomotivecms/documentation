@@ -1,0 +1,16 @@
+{% extends 'reference/tags' %}
+
+{% block 'content' %}
+
+:markdown
+  # include
+  
+  Include sections of content you would like to repeat across the website. The optional *with* clause lets you specify a value which is bound to the snippet's name within the snippet's context.
+  
+  {% raw %}
+      {% include 'footer' %}
+      {% include 'product_information' with product %}
+  {% endraw %}
+
+{% endblock %}
+  

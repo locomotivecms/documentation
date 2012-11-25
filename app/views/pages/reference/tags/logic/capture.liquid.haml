@@ -1,0 +1,16 @@
+{% extends 'reference/tags' %}
+
+{% block 'content' %}
+
+:markdown  
+  # capture
+  
+  Combine a number of strings into a single string and save it to a variable.
+  
+  {% raw %}
+      {% capture full_name %}{{ person.first_name }} {{ person.last_name }}{% endcapture %}
+      {{ full_name }}
+  {% endraw %}
+
+{% endblock %}
+  

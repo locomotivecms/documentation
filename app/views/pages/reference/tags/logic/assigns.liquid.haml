@@ -1,0 +1,17 @@
+{% extends 'reference/tags' %}
+
+{% block 'content' %}
+
+:markdown
+  # assigns
+  
+  Used to assign a value to a variable.
+  
+  {% raw %}
+      {% assign article = contents.news.first %}
+      {{ article.title }}
+      {{ article.body }}
+  {% endraw %}  
+  
+{% endblock %}
+  

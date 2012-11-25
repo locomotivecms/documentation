@@ -1,0 +1,26 @@
+{% extends 'reference/tags' %}
+
+{% block 'content' %}
+
+:markdown
+  # block
+  
+  Blocks are regions of content that you may want to override in children layouts.
+  Their names are used to define the tabs in the backend and segment editable regions.
+  
+  <div class="alert alert-info">
+  Nesting blocks is fine. However, their names must be unique.
+  </div>
+  
+  {% raw %}
+      {% block sidebar %}
+      Sidebar goes here
+      {% endblock %}
+
+      {% block content %}
+        Content goes here
+      {% endblock %}
+  {% endraw %}
+
+{% endblock %}
+  

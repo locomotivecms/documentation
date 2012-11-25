@@ -1,0 +1,22 @@
+{% extends 'reference/tags' %}
+
+{% block 'content' %}
+
+:markdown
+  # case
+  
+  When evaluating a large number of conditions.
+  
+  {% raw %}
+      {% case condition %}
+      {% when 1 %}
+        hit 1
+      {% when 2 %}
+        hit 2
+      {% else %}
+        hit else
+      {% endcase %}
+  {% endraw %}
+
+{% endblock %}
+  

@@ -10,6 +10,27 @@
 
   In the classic, Rails way, you have the following architecture, with page's content integrated in the application layout using the ``` yield ``` statement :
 
+  {% raw %}
+      <html>
+        <head>
+          <title>My index page</title>
+        </head>
+        <body>
+          <header>
+            layout header
+          </header>
+          <div id="content">
+            {% block content %}
+              the content of the index page
+            {% endblock %}
+          </div>
+          <footer>
+            layout footer
+          </footer>
+        </body>
+      </html>
+  {% endraw %}
+
   <script src="https://gist.github.com/3912077.js?file=1- classic templating"></script>
 
   In Locomotive, it's a bit different :

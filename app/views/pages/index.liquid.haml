@@ -17,15 +17,14 @@
     
     {{ 'screen' | stylesheet_tag }}
     {{ 'jquery-1.8.2.min' | javascript_tag }}
+    {{ 'highlight.pack' | javascript_tag }}
     {{ 'home' | javascript_tag }} 
+    
+    %script
+      hljs.initHighlightingOnLoad();
 
-    {% block 'head' %}
-
-    {% endblock %}
   %body
-
     {% include 'nav' %}
-
     {% block 'main' %}
     {% include 'page_head' %}
     #main-generic
@@ -60,5 +59,4 @@
         %a{ :href => "mailto:support@locomotivecms.com" }
           Contact us »
     {% endblock %}
-
     {% include "footer" %}

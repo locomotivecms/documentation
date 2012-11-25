@@ -1,19 +1,28 @@
 table
-  border: 1px solid white
-  +box-shadow(0px 0px 9px $table-header)
+  width: 100%
+  border: 2px solid white
+  +box-shadow(0px 0px 9px $table-background)
+  +border-radius(3x)
+  border-collapse: separate
   thead
-    background-color: $table-header
+    background-color: $table-background
+    +border-radius(3x 3x 0 0)
     th
-      border-right: 1px solid white
-      border-left: 1px solid $table-col-border
-      padding: 15px 25px 5px 25px
-  tbody
-    td
-      border-left: 1px solid $table-col-border
-      padding: 15px 25px 5px 25px
-      &:first
-        border-left: none
-    .stripped-row
-      background-color: $table-row
-      border-right: 1px solid white
+      border-bottom: 1px solid $table-row-border
+  tr
+    border-bottom: 1px solid $table-row-border
+    &:nth-child(2n)
+      background-color: $table-background
+    &:last-child
+      +border-radius(0 0 3x 3x)
+  td,
+  th
+    border-right: 1px solid white
+    border-left: 1px solid $table-col-border
+    padding: 12px 15px 12px 15px
+    &:first-child
+      border-left: none
+    &:last-child
+      border-right: none
+    
 

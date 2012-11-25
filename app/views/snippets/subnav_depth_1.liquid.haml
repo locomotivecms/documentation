@@ -1,0 +1,7 @@
+%nav.subnav
+  %ul
+    {% for child in page.children %}
+    %li
+      %a{ :href => "{{ fullpath }}/{{ child.slug }}" }
+        {{ child.title }}
+    {% endfor %}

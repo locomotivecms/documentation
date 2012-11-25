@@ -1,4 +1,4 @@
-%nav#main-nav{ :class => '{% if page.fullpath == "index" %}home-nav{% endif %}'}
+%nav#main-nav
   .inner-container
     %h1
       %a{ :href => "/" }
@@ -6,20 +6,10 @@
     #nav-toggle
       %a.icon-th-list
     %ul
-      // We add an "active" class to the current active nav element by simply matching the full path.
-      %li{ :class => '{% if page.fullpath == "faq" %}active{% endif %}'}
-        %a{ :href => "/faq" }
-          Faq
-      %li{ :class => '{% if page.fullpath == "editor" %}active{% endif %}'}
-        %a{ :href => "/editor" }
-          Editor
-      %li{ :class => '{% if page.fullpath == "reference" %}active{% endif %}'}
-        %a{ :href => "/reference" }
-          Reference
-      %li{ :class => '{% if page.fullpath == "guides" %}active{% endif %}'}
-        %a{ :href => "/guides" }
-          Guides
-      %li{ :class => '{% if page.fullpath == "installation" %}active{% endif %}'}
-        %a{ :href => "/installation" }
-          Installation
+      {% assign path_segments = path | split: '/' %}
+      {% for main_page in site.index.children %}
+      %li{ :class => '{% if page.fullpath == main_page.slug %}active{% endif %}{% if path_segments[0] == main_page.slug %}active{% endif %}'}
+        %a{ :href => "{{ main_page.fullpath }}" }
+          {{ main_page.title }}
+      {% endfor %}
       

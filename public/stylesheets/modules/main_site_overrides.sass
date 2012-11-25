@@ -1,0 +1,73 @@
+// Home page
+.home-item
+  +span-columns(1,3)
+  +nth-omega(3n)
+  a
+    +small-button
+
+// Shared container
+#main-generic
+  +three-cols-grid
+  margin-top: $section-padding
+  #container-generic
+    margin-top: 18px
+    +span-columns(3 omega,3)
+  #container-sidebar
+    margin-top: 18px
+    +span-columns(2 ,3)
+@media #{$desktop}
+  #main-generic
+    #container-generic
+      +span-columns(2,3)
+
+// Sidebar
+.sidebar
+  margin-top: 0
+  +span-columns(3 omega,3)
+  .active
+    color: $orange-gradient-end
+  .dropdown-menu
+    display: none
+  .dropdown-menu.expanded
+    display: block
+@media #{$desktop}
+  .sidebar
+    +span-columns(1 omega,3)
+
+// main contents
+h1,
+h2,
+h3
+  margin-top: 20px
+
+code
+  +global-reset
+  font-family: 'Bitstream Vera Sans Mono', 'Courier', monospace
+  background-color: ghostWhite
+  border: 1px solid #DDD
+  padding: 1px 4px
+  display: block
+  margin-bottom: 10px
+
+.alert
+  margin-bottom: 10px
+  padding: 15px 20px
+  +open-sans-regular
+  +border-radius(3px)
+  background-color: $orange-white
+  border: 1px solid $orange-gradient-start
+  border-bottom: 1px solid $orange-gradient-end
+
+.alert-info
+  background-color: $footer-blue
+  border: 1px solid $third-blue
+  border-bottom: 1px solid $third-blue
+  
+.pricing-faq-item
+  header
+    h1
+      font-size: 16px
+      color: $third-black
+  p
+    color: $light-black
+    font-size: 13px

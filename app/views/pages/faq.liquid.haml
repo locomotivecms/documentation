@@ -5,8 +5,7 @@
 #main-generic
   %section#container-generic.princing-faq-container
     {% for question in contents.questions %}
-    {% include 'pricing_faq_item' %}
-    {{ forloop.length/2 }}
+    {% include 'faq_item' %}
     {% endfor %}
 
 {% endblock %}

@@ -67,3 +67,7 @@
   locomotive_editor push --name=my_first_website --resources=pages --target=staging --force
 
 {% endblock %}
+
+{% block 'sidebar' %}
+{% include 'sidebar_depth_1' %}
+{% endblock %}

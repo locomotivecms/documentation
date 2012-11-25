@@ -2,16 +2,9 @@
 
 {% block 'main' %}
 {% include 'page_head' %}
-%nav.subnav
-  
-  {% block 'subnav' %}
-  %ul
-    {% for child in page.children %}
-    %li
-      %a{ :href => "{{ fullpath }}/{{ child.slug }}" }
-        {{ child.title }}
-    {% endfor %}
-  {% endblock %}
+{% block 'subnav' %}
+{% include 'subnav_depth_1' %}
+{% endblock %}
 
 #main-generic
   {% block 'left' %}

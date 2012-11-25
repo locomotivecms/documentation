@@ -5,6 +5,13 @@
 - multi site, upgrade to 2.0 in guides
 - fix typos due to html 2 markdown / \ + links
 
+- images in guide  <img src="/samples/pages/truc.png"> ?
+- samples : samples/
+   chapitre_1/
+       truc.png
+   chapitre_2/
+      mchin.png
+
 undocumented:
 
   - filters:

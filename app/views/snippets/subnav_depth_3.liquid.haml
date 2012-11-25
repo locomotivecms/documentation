@@ -1,0 +1,7 @@
+%ul
+  {% assign path_segments = path | split: '/' %}
+  {% for child in page.parent.parent.parent.children %}
+  %li
+    %a{ :href => "{{ fullpath }}/{{ child.slug }}", :class => "{% if child.slug == path_segments[3] %}current{% endif %}" }
+      {{ child.title }}
+  {% endfor %}

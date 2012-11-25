@@ -1,0 +1,17 @@
+{% extends 'reference/filters' %}
+
+{% block 'content' %}
+
+
+:markdown
+  # multi_line(input)
+
+  Inserts a <br /> tag in front of every \n linebreak character.
+
+  {% raw %}
+      {{ "hello\nworld" | multi_line }}
+  {% endraw %}
+  
+  **Example**: Returns hello<br/>world 
+
+{% endblock %}

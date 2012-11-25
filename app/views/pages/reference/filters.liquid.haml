@@ -1,54 +1,12 @@
 {% extends 'reference' %}
 
-{% block 'left' %}  
+{% block 'subnav' %}
+{% include 'subnav_depth_3' %}
+{% endblock %}
 
+{% block 'left' %}
 %section#container-sidebar
-  %section#filters_html_auto_discovery_link_tag
-    {% include 'reference/filters_html_auto_discovery_link_tag' %}
-  %section#filters_flash_tag
-    {% include 'reference/filters_flash_tag' %}
-  %section#filters_image_tag
-    {% include 'reference/filters_image_tag' %}
-  %section#filters_javascript_url
-    {% include 'reference/filters_javascript_url' %}
-  %section#filters_javascript_tag
-    {% include 'reference/filters_javascript_tag' %}
-  %section#filters_stylesheet_url
-    {% include 'reference/filters_stylesheet_url' %}
-  %section#filters_stylesheet_tag
-    {% include 'reference/filters_stylesheet_tag' %}
-  %section#filters_theme_image_url
-    {% include 'reference/filters_theme_image_url' %}
-  %section#filters_theme_image_tag
-    {% include 'reference/filters_theme_image_tag' %}
-  %section#text_underscore
-    {% include 'reference/text_underscore' %}
-  %section#text_dasherize
-    {% include 'reference/text_dasherize' %}
-  %section#text_multi_line
-    {% include 'reference/text_multi_line' %}
-  %section#text_concat
-    {% include 'reference/text_concat' %}
-  %section#text_textile
-    {% include 'reference/text_textile' %}
-  %section#date_localized_date
-    {% include 'reference/date_localized_date' %}
-  %section#date_format_date
-    {% include 'reference/date_format_date' %}
-  %section#misc_default_pagination
-    {% include 'reference/misc_default_pagination' %}
-  %section#misc_resize
-    {% include 'reference/misc_resize' %}
-  %section#misc_modulo
-    {% include 'reference/misc_modulo' %}
-  %section#misc_first
-    {% include 'reference/misc_first' %}
-  %section#misc_last
-    {% include 'reference/misc_last' %}
-  %section#misc_default
-    {% include 'reference/misc_default' %}
-  
-
-{% include 'sidebars/reference_filters' %}
-
+  {% block 'content' %}
+  {% endblock %}
+{% include 'sidebar_reference_depth_2' %}
 {% endblock %}

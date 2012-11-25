@@ -72,11 +72,12 @@ nav.subnav
   +span-columns(3 omega,3)
   .active
     color: $orange-gradient-end
-  ul.dropdown
-    ul
-      display: none
-    ul.block
-      display: block
+  
+  .dropdown-menu
+    display: none
+  .dropdown-menu.expanded
+    display: block
+
 .sidebar.desktop
   display: none
 .sidebar.mobile
@@ -84,6 +85,10 @@ nav.subnav
 @media #{$desktop}
   .sidebar
     +span-columns(1 omega,3)
+
+
+
+
 
 // Floating panel in sidebar
 .floating-panel

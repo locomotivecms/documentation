@@ -11,32 +11,186 @@ site:
     - index:
         title: "Home page"
         published: true
+        listed: true
     - 404:
         title: "Page not found"
         published: true
+    - reference:
+        title: "Reference"
+        published: true
+        listed: true
+    - reference/objects:
+        title: "Objects"
+        published: true
+        listed: true
+        redirect_url: /reference/objects/global_variables
+    - reference/objects/global_variables:
+        title: "Global variables"
+        published: true
+        listed: true
+    - reference/objects/site:
+        title: "Site"
+        published: true
+        listed: true
+    - reference/objects/page:
+        title: "Page"
+        published: true
+        listed: true
+    - reference/objects/content_type:
+        title: "Content types"
+        published: true
+        listed: true
+    - reference/objects/content_entry:
+        title: "Content entry"
+        published: true
+        listed: true
+    - reference/filters:
+        title: "Filters"
+        published: true
+        listed: true
+        redirect_url: /reference/filters/html/auto_discovery_link_tag
+    - reference/filters/html:
+        title: "Html"
+        published: true
+        listed: true
+        redirect_url: /reference/filters/html/auto_discovery_link_tag
+    - reference/filters/html/auto_discovery_link_tag:
+        title: "Auto discovery link tag"
+        published: true
+        listed: true
+    - reference/filters/html/flash_tag:
+        title: "Flash tag"
+        published: true
+        listed: true
+    - reference/filters/html/image_tag:
+        title: "Image tag"
+        published: true
+        listed: true
+    - reference/filters/html/javascript_url:
+        title: "Javascript url"
+        published: true
+        listed: true
+    - reference/filters/html/javascript_tag:
+        title: "Javascript tag"
+        published: true
+        listed: true
+    - reference/filters/html/stylesheet_url:
+        title: "Stylesheet url"
+        published: true
+        listed: true
+    - reference/filters/html/stylesheet_tag:
+        title: "Stylesheet tag"
+        published: true
+        listed: true
+    - reference/filters/html/theme_image_url:
+        title: "Theme image url"
+        published: true
+        listed: true
+    - reference/filters/html/theme_image_tag:
+        title: "Theme image tag"
+        published: true
+        listed: true
+    - reference/filters/text:
+        title: "Text"
+        published: true
+        listed: true
+        redirect_url: /reference/filters/text/underscore
+    - reference/filters/text/underscore:
+        title: "Underscore"
+        published: true
+        listed: true
+    - reference/filters/text/dasherize:
+        title: "Dasherize"
+        published: true
+        listed: true
+    - reference/filters/text/multi_line:
+        title: "Multi-line"
+        published: true
+        listed: true
+    - reference/filters/text/concat:
+        title: "Concat"
+        published: true
+        listed: true
+    - reference/filters/text/textile:
+        title: "Textile"
+        published: true
+        listed: true
+    - reference/filters/date:
+        title: "Date"
+        published: true
+        listed: true
+        redirect_url: /reference/filters/date/localized_date
+    - reference/filters/date/localized_date:
+        title: "Localized date"
+        published: true
+        listed: true
+    - reference/filters/date/format_date:
+        title: "Format date"
+        published: true
+        listed: true
+    - reference/filters/misc:
+        title: "Misc"
+        published: true
+        listed: true
+        redirect_url: /reference/filters/misc/default_pagination
+    - reference/filters/misc/default_pagination:
+        title: "Default pagination"
+        published: true
+        listed: true
+    - reference/filters/misc/resize:
+        title: "Resize"
+        published: true
+        listed: true
+    - reference/filters/misc/modulo:
+        title: "Modulo"
+        published: true
+        listed: true
+    - reference/filters/misc/first:
+        title: "First"
+        published: true
+        listed: true
+    - reference/filters/misc/last:
+        title: "Last"
+        published: true
+        listed: true
+    - reference/filters/misc/default:
+        title: "Default"
+        published: true
+        listed: true
+    
     - installation:
         title: "Installation"
         published: true
+        listed: true
     - installation/for_developpers:
         title: "For developpers"
         published: true
+        listed: true
     - installation/getting_started:
         title: "Getting started"
         published: true
+        listed: true
     - installation/heroku_hosting:
         title: "Heroku hosting"
         published: true
+        listed: true
     - installation/requirements:
         title: "Requirements"
         published: true
+        listed: true
     - guides:
         title: "Guides"
         published: true
+        listed: true
     - guide/pat-1:
         published: true
+        listed: true
     - guide/pat-2:
         published: true
+        listed: true
     - guide/pat-3:
         published: true
+        listed: true
     - guide/pat-4:
         published: true
+        listed: true

@@ -1,0 +1,18 @@
+{% extends 'reference/filters' %}
+
+{% block 'content' %}
+
+
+:markdown
+  # textile(input)
+
+  Convert a Markdown-formatted string into HTML.
+
+  {% raw %}
+      {{ '### Header' | textile }}
+  {% endraw %}
+
+  **Example**: Returns 
+      <h3>Header</h3>
+
+{% endblock %}

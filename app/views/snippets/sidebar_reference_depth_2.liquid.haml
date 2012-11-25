@@ -1,0 +1,20 @@
+%aside{ :class => "sidebar"}
+  .floating-panel
+    .inner-floating-panel
+      %header
+        %h1
+          {{ page.parent.parent.title }}
+      %ul.dropdown
+        {% for child in page.parent.parent.children %}
+        %li
+          %a{ :href => "/{{ child.fullpath }}", :class => "{% if page.fullpath == child.fullpath %}active{% endif %} dropdown-toggle", "data-toggle" => "dropdown" }
+            {{ child.title }}
+          {% if child.children %}
+          %ul.dropdown-menu
+            {% for grand_child in child.children %}
+            %li
+              %a{ :href => "/{{ grand_child.fullpath }}" }
+                {{ grand_child.title }}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}

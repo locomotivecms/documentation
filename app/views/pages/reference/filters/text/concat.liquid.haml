@@ -1,0 +1,17 @@
+{% extends 'reference/filters' %}
+
+{% block 'content' %}
+
+
+:markdown
+  # concat(input, args)
+
+  Append strings passed in args to the input
+
+  {% raw %}
+      {{ 'hello' | concat: 'world', 'yeah' }}
+  {% endraw %}
+  
+  **Example**: Returns helloworldyeah
+
+{% endblock %}

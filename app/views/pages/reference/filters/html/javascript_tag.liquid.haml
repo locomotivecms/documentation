@@ -1,0 +1,16 @@
+{% extends 'reference/filters' %}
+
+{% block 'content' %}
+
+:markdown
+  # javascript_tag(input)
+
+  Return the link tag of a theme stylesheet
+
+  {% raw %}
+      {{ 'application.js' | javascript_tag }}
+  {% endraw %}
+
+  **Example**: Returns <script src="/sites/<site_id>javascripts/application.js" type="text/javascript"></script>
+
+{% endblock %}

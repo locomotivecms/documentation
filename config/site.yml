@@ -275,8 +275,6 @@ site:
         title: "Csrf meta"
         published: true
         listed: true
-        
-    
     - installation:
         title: "Installation"
         published: true
@@ -301,15 +299,19 @@ site:
         title: "Guides"
         published: true
         listed: true
-    - guide/pat-1:
+    - guides/part-1:
+        title: "part 1"
         published: true
         listed: true
-    - guide/pat-2:
+    - guides/part-2:
+        title: "part 2"
         published: true
         listed: true
-    - guide/pat-3:
+    - guides/part-3:
+        title: "part 3"
         published: true
         listed: true
-    - guide/pat-4:
+    - guides/part-4:
+        title: "part 4"
         published: true
         listed: true

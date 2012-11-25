@@ -1,0 +1,14 @@
+%aside{ :class => "sidebar"}
+  .floating-panel
+    .inner-floating-panel
+      %header
+        %h1
+          {{ page.title }}
+      %ul
+        {% for child in page.children %}
+        %li
+          %a{ :href => "/{{ child.fullpath }}", :class => "{% if page.fullpath == child.fullpath %}active{% endif %}" }
+            {{ child.title }}
+        {% endfor %}
+
+      

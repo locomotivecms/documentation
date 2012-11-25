@@ -36,6 +36,7 @@
       a
         width: 100%
 
+
 // Subnav below a page-head
 nav.subnav
   +four-cols-grid
@@ -67,17 +68,24 @@ nav.subnav
     background-color: $subnav-button-bg
 
 
+// Pagination
+.pagination
+  +span-columns($total-columns omega,$total-columns)
+  margin-top: $section-padding
+  color: $third-blue
+  +proximanova-semi-bold
+  font-size: 14px
+  .page
+
+  #pagination-left
+    float: left
+  #pagination-right
+    float: right
+
 // Sidebar
 .sidebar
   +span-columns(3 omega,3)
-  .active
-    color: $orange-gradient-end
-  
-  .dropdown-menu
-    display: none
-  .dropdown-menu.expanded
-    display: block
-
+  margin-top: $section-padding
 .sidebar.desktop
   display: none
 .sidebar.mobile
@@ -85,10 +93,11 @@ nav.subnav
 @media #{$desktop}
   .sidebar
     +span-columns(1 omega,3)
-
-
-
-
+    margin-top: 35px
+  .sidebar.desktop
+    display: block
+  .sidebar.mobile
+    display: none
 
 // Floating panel in sidebar
 .floating-panel

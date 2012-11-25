@@ -78,6 +78,8 @@
     content: '\2715'
     font-size: 20px
 
+#main-nav.home-nav
+  border-bottom: none
   
 @media #{$desktop}
   #main-nav
@@ -89,21 +91,21 @@
         padding: 4px 20px
     #nav-toggle
       display: none
+  #main-nav.home-nav
+    background: none
+    background-color: $banner-bg
     
 
 
 // Shared container
 #main-generic
   +three-cols-grid
-  margin-top: $section-padding
-  #container-generic
+  #terms-of-use, #license, #privacy-policy
     +span-columns(3 omega,3)
-  #container-sidebar
-    +span-columns(2 ,3)
-    
+    margin-top: 35px
 @media #{$desktop}
   #main-generic
-    #container-generic
+    #terms-of-use, #license, #privacy-policy
       +span-columns(2,3)
 
 // Footer

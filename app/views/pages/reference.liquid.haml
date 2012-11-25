@@ -8,7 +8,7 @@
   %ul
     {% for child in page.children %}
     %li
-      %a{ :href => "{{ fullpath }}{{ child.slug }}" }
+      %a{ :href => "{{ fullpath }}/{{ child.slug }}" }
         {{ child.title }}
     {% endfor %}
   {% endblock %}

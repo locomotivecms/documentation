@@ -1,15 +1,15 @@
-{% extends 'guides' %}
+{% extends 'guides/overview' %}
 
-{% block 'left' %}
+{% block 'content' %}
 
 :markdown
-  ### Anatomy of a LocomotiveCMS app
-
+  # Anatomy of a LocomotiveCMS app
+  
   LocomotiveCMS is crafted as an engine.
 
-  <em>
+  <i>
   A Rails engine is an application packaged as a ruby gem that is able to be run or mounted within another Rails application. An engine can have its own models, views, controllers, generators and publicly served static files.
-  </em>
+  </i>
   ([more about engines](http://guides.rubyonrails.org/engines.html))
 
   What's inside ?
@@ -22,22 +22,5 @@
   - [Formtastic](https://github.com/justinfrench/formtastic)
   - [Carrierwave](http://carrierwave.rubyforge.org)
 
-  <a name="overview_2"></a>
-  ### Key features
 
-  You have out of the box :
-
-  - Multi sites : manage multiple websites with one application instance
-  - Flexible content types
-  - Front-end inline editing (Aloha editor)
-  - Content localization
-  - Restful API
-  - Haml / Sass support
-  - Liquid templating langage
-  - A very nice User Interface
-
-{% endblock %}
-
-{% block 'sidebar' %}
-{% include 'sidebar_depth_1' %}
 {% endblock %}

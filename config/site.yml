@@ -281,32 +281,89 @@ site:
         title: "Editor"
         published: true
         listed: true
+        redirect_url: /editor/installation
+    - editor/installation:
+        title: "Installation"
+        published: true
+        listed: true
+    - editor/create_site:
+        title: "Create a site"
+        published: true
+        listed: true
+    - editor/deployment:
+        title: "Deployment"
+        published: true
+        listed: true
+    - editor/site_templates:
+        title: "Site templates"
+        published: true
+        listed: true
     - guides:
         title: "Guides"
         published: true
         listed: true
-    - guides/part-1:
-        title: "part 1"
+    - guides/foreword:
+        title: "Foreword"
         published: true
         listed: true
-    - guides/part-2:
-        title: "part 2"
+        redirect_url: /guides/foreword/philosophy
+    - guides/foreword/philosophy:
+        title: "Philosophy"
         published: true
         listed: true
-    - guides/part-3:
-        title: "part 3"
+    - guides/foreword/why_choose_locomotive:
+        title: "Why you should choose LocomotiveCMS ?"
         published: true
         listed: true
-    - guides/part-4:
-        title: "part 4"
+    - guides/foreword/assumptions:
+        title: "Assumptions"
         published: true
         listed: true
+    - guides/foreword/organisation:
+        title: "Organisation"
+        published: true
+        listed: true
+    - guides/overview:
+        title: "Overview"
+        published: true
+        listed: true
+        redirect_url: /guides/overview/anatomy_locomotive_app
+    - guides/overview/anatomy_locomotive_app:
+        title: "Anatomy of a LocomotiveCMS app"
+        published: true
+        listed: true
+    - guides/overview/key_features:
+        title: "Key features"
+        published: true
+        listed: true
+    - guides/templating:
+        title: "Templating"
+        published: true
+        listed: true
+        redirect_url: /guides/templating/templating_logic
+    - guides/templating/templating_logic:
+        title: "Templating logic"
+        listed: true
+    - guides/templating/liquid_syntax:
+        title: "Liquid syntax"
+        published: true
+        listed: true
+    - guides/templating/creating_page:
+        title: "Creating a page"
+        published: true
+        listed: true
+    - guides/templating/rss_feed:
+        title: "Recipe : create a RSS feed"
+        published: true
+        listed: true
+
     - installation:
         title: "Installation"
         published: true
         listed: true
-    - installation/for_developpers:
-        title: "For developpers"
+        redirect_url: /installation/requirements
+    - installation/requirements:
+        title: "Requirements"
         published: true
         listed: true
     - installation/getting_started:
@@ -317,8 +374,7 @@ site:
         title: "Heroku hosting"
         published: true
         listed: true
-    - installation/requirements:
-        title: "Requirements"
+    - installation/for_developpers:
+        title: "For developpers"
         published: true
         listed: true
-    

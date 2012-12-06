@@ -9,11 +9,8 @@
     
   Moreover, it is also possible to include the nested pages.
   
-  <div class="alert warning-info">
-  Your pages must fill 2 conditions to be part of the navigation: be
-  <b>published</b>
-  and be
-  <b>listed.</b>
+  <div class="alert alert-warning">
+  Your pages must fill 2 conditions to be part of the navigation: be <b>published</b> and be <b>listed.</b>
   </div>
   
   <div class="alert alert-info">
@@ -24,7 +21,7 @@
       {% nav 'parent', depth: 1, no_wrapper: false, exlude: nil, icon: false %}
   {% endraw %}
 
-  #### A more complex example:
+  ### A more complex example:
   
   {% raw %}
       {% nav site, exclude: '\.*\-bottom', depth: 2, snippet: menu_entry %}

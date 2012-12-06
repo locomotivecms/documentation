@@ -323,19 +323,6 @@ site:
         title: "Organisation"
         published: true
         listed: true
-    - guides/overview:
-        title: "Overview"
-        published: true
-        listed: true
-        redirect_url: /guides/overview/anatomy_locomotive_app
-    - guides/overview/anatomy_locomotive_app:
-        title: "Anatomy of a LocomotiveCMS app"
-        published: true
-        listed: true
-    - guides/overview/key_features:
-        title: "Key features"
-        published: true
-        listed: true
     - guides/templating:
         title: "Templating"
         published: true

@@ -1,3 +1,10 @@
+// Nav
+#main-nav, 
+.subnav,
+.sidebar
+  a
+    text-decoration: none
+
 // Home page
 .home-item
   +span-columns(1,3)
@@ -20,6 +27,16 @@
     #container-generic
       +span-columns(2,3)
 
+// Four cols container
+#main-four
+  +four-cols-grid
+  margin-top: $section-padding
+  @media #{$desktop}
+    .faq-item
+      +span-columns(2,4)
+      +nth-omega(2n)
+
+
 // Sidebar
 .sidebar
   margin-top: 0
@@ -40,23 +57,22 @@ h2,
 h3
   margin-top: 20px
 
+a
+  text-decoration: underline
+  
 
-#main-generic
-  pre
-    border: 1px solid $blue-border
-    +border-radius(3px)
-    code
-      +border-radius(3px)
+
+
 
 .alert
   margin-bottom: 10px
   padding: 15px 20px
   +open-sans-regular
   +border-radius(3px)
+.alert-warning
   background-color: $orange-white
   border: 1px solid $orange-gradient-start
   border-bottom: 1px solid $orange-gradient-end
-
 .alert-info
   background-color: $footer-blue
   border: 1px solid $third-blue

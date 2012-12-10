@@ -4,13 +4,27 @@
 {% include 'page_head' %}
 #main-generic
   %section#container-sidebar
-    {% block 'left' %}
-    {% editable_long_text "guides-text", priority: 8 %}
-    %p
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nisl augue, laoreet ac rutrum sit amet, accumsan ut felis. Sed sagittis justo vitae tellus tempor sed posuere lectus facilisis. Donec dapibus scelerisque posuere. Aenean pellentesque, leo non euismod pellentesque, purus mauris commodo leo, a aliquet turpis ante ac mauris. Nulla auctor felis at erat ultricies eu tempor sapien volutpat. Nulla sapien neque, bibendum elementum pulvinar sed, luctus a est. 
-    {% endeditable_long_text %}
+    {% block 'content' %}
+    %h1 Guides summary
+
+    {% assign path_segments = path | split: '/' %}
+    
+    {% for child in page.children %}
+    %ul
+      %li
+        %a{ :href => "{{ fullpath }}/{{ child.slug }}", :class => "{% if child.slug == path_segments[1] %}current{% endif %}" }
+          {{ child.title }}
+        {% if child.children %}
+        %ul
+          {% for grand_child in child.children %}
+          %li
+            %a{ :href => "/{{ grand_child.fullpath }}" }
+              {{ grand_child.title }}
+          {% endfor %}
+        {% endif %}
+    {% endfor %}
     {% endblock %}
-  {% block 'sidebar' %}
-  {% include 'sidebar_depth_0' %}
-  {% endblock %}
+  
+  {% block 'sidebar' %}{% endblock %}
+
 {% endblock %}

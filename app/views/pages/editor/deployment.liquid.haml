@@ -2,19 +2,18 @@
 
 {% block 'left' %}
 :markdown
-  <div class="alert">
-  **Important.** The only requirement is to have somewhere (it can be online or locally) a running engine. Check out our [installation procedure](/installation) for more information.
+  <div class="alert alert-warning">
+  <strong>Important.</strong> The only requirement is to have somewhere (it can be online or locally) a running engine. Check out our <a href="/installation">installation procedure</a> for more information.
   </div>
 
   # 1. Edit your deployment settings
 
   <div class="alert alert-info">
-  We assume that your LocomotiveEditor sites are located under
-  \~/Documents/LocomotiveCMS/sites. If not, please correct it accordingly.
+  We assume that your LocomotiveEditor sites are located under ~/Documents/LocomotiveCMS/sites. If not, please correct it accordingly.
   </div>
   
-  cd ~/Documents/LocomotiveCMS/sites
-  mate my_first_website/config/deploy.yml
+      cd ~/Documents/LocomotiveCMS/sites
+      mate my_first_website/config/deploy.yml
 
   Here is what your deploy.yml file should look like:
 
@@ -41,11 +40,11 @@
 
   ### the whole site:
 
-    locomotive_editor push --name=my_first_website --resources=all --target=staging
+      locomotive_editor push --name=my_first_website --resources=all --target=staging
 
   or
 
-    locomotive_editor push -n my_first_website -r all -t staging
+      locomotive_editor push -n my_first_website -r all -t staging
 
   ### only a specify type of resource:
 
@@ -64,7 +63,8 @@
 
   Unless you force it:
 
-  locomotive_editor push --name=my_first_website --resources=pages --target=staging --force
+      locomotive_editor push --name=my_first_website --resources=pages --target=staging --force
+
 
 {% endblock %}
 

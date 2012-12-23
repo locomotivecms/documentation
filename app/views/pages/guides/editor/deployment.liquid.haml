@@ -1,6 +1,6 @@
-{% extends 'editor' %}
+{% extends 'guides/editor' %}
 
-{% block 'left' %}
+{% block 'content' %}
 :markdown
   <div class="alert alert-warning">
   <strong>Important.</strong> The only requirement is to have somewhere (it can be online or locally) a running engine. Check out our <a href="/installation">installation procedure</a> for more information.
@@ -66,8 +66,4 @@
       locomotive_editor push --name=my_first_website --resources=pages --target=staging --force
 
 
-{% endblock %}
-
-{% block 'sidebar' %}
-{% include 'sidebar_depth_1' %}
 {% endblock %}

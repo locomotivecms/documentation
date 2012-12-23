@@ -11,6 +11,7 @@
   +nth-omega(3n)
   a
     +small-button
+    text-decoration: none
 
 // Shared container
 #main-generic
@@ -22,8 +23,7 @@
   #container-sidebar
     margin-top: 18px
     +span-columns(2 ,3)
-@media #{$desktop}
-  #main-generic
+  @media #{$desktop}
     #container-generic
       +span-columns(2,3)
 

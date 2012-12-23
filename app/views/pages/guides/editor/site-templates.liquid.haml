@@ -1,6 +1,6 @@
-{% extends 'editor' %}
+{% extends 'guides/editor' %}
 
-{% block 'left' %}
+{% block 'content' %}
 :markdown
   # Listing the existing site templates
 
@@ -93,8 +93,4 @@
 
       locomotive_editor create -n another_site --template=my_template.rb --lib=./site_templates/my_template.rb
 
-{% endblock %}
-
-{% block 'sidebar' %}
-{% include 'sidebar_depth_1' %}
 {% endblock %}

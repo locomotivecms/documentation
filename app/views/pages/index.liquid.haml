@@ -30,33 +30,28 @@
     #main-generic
       %section.home-item
         %h1 
-          {% editable_short_text "tierce-first-title", priority: 7 %}
-          Ask the community
-          {% endeditable_short_text %}
+          Guides
         {% editable_long_text "tierce-first-content", priority: 6 %}
-        %p You have a question, do not be shy, post it to our Google group. Someone will answer you for sure.
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
         {% endeditable_long_text %}
-        %a{ :href => "https://groups.google.com/forum/?fromgroups#!forum/locomotivecms" }
-          Visit »
+        %a{ :href => "/guides" }
+          See »
       %section.home-item
         %h1 
-          {% editable_short_text "tierce-second-title", priority: 5 %}
-          Contributing
-          {% endeditable_short_text %}
+          Reference
         {% editable_long_text "tierce-second-content", priority: 4 %}
-        %p You coded a top notch new feature for the CMS or you found a bug. Please visit our Github project page.
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
         {% endeditable_long_text %}
-        %a{ :href => "https://github.com/locomotivecms/engine" }
-          Visit »
+        %a{ :href => "/reference" }
+          See »
       %section.home-item
         %h1 
-          {% editable_short_text "tierce-third-title", priority: 3 %}
-          Support
-          {% endeditable_short_text %}
+          Recipes and best practices
         {% editable_long_text "tierce-third-content", priority: 2 %}
-        %p You are looking for some help on your LocomotiveCMS client project. We can help you.
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
         {% endeditable_long_text %}
-        %a{ :href => "mailto:support@locomotivecms.com" }
-          Contact us »
+        %a{ :href => "/use-cases" }
+          See »
+      
     {% endblock %}
     {% include "footer" %}

@@ -14,8 +14,8 @@ site:
         title: "Page not found"
         published: true
         listed: true
-    - faq:
-        title: "Faq"
+    - use-cases:
+        title: "Use Cases"
         published: true
         listed: true
     - reference:
@@ -277,51 +277,34 @@ site:
         title: "Csrf meta"
         published: true
         listed: true
-    - editor:
-        title: "Editor"
-        published: true
-        listed: true
-        redirect_url: /editor/installation
-    - editor/installation:
-        title: "Installation"
-        published: true
-        listed: true
-    - editor/create_site:
-        title: "Create a site"
-        published: true
-        listed: true
-    - editor/deployment:
-        title: "Deployment"
-        published: true
-        listed: true
-    - editor/site_templates:
-        title: "Site templates"
-        published: true
-        listed: true
     - guides:
         title: "Guides"
         published: true
         listed: true
-    - guides/foreword:
-        title: "Foreword"
+    - guides/getting-started:
+        title: "Getting started"
         published: true
         listed: true
-        redirect_url: /guides/foreword/philosophy
-    - guides/foreword/philosophy:
-        title: "Philosophy"
+        redirect_url: /guides/getting-started/requirements
+    - guides/getting-started/requirements:
+        title: "Requirements"
+        listed: true
+    - guides/editor:
+        title: "Editor"
         published: true
         listed: true
-    - guides/foreword/why_choose_locomotive:
-        title: "Why you should choose LocomotiveCMS ?"
-        published: true
+        redirect_url: /guides/editor/installation
+    - guides/editor/installation:
+        title: "Installation"
         listed: true
-    - guides/foreword/assumptions:
-        title: "Assumptions"
-        published: true
+    - guides/editor/create-site:
+        title: "Create a site"
         listed: true
-    - guides/foreword/organisation:
-        title: "Organisation"
-        published: true
+    - guides/editor/deployment:
+        title: "Deployment"
+        listed: true
+    - guides/editor/site-templates:
+        title: "Site templates"
         listed: true
     - guides/templating:
         title: "Templating"
@@ -341,27 +324,5 @@ site:
         listed: true
     - guides/templating/rss_feed:
         title: "Recipe : create a RSS feed"
-        published: true
-        listed: true
-
-    - installation:
-        title: "Installation"
-        published: true
-        listed: true
-        redirect_url: /installation/requirements
-    - installation/requirements:
-        title: "Requirements"
-        published: true
-        listed: true
-    - installation/getting_started:
-        title: "Getting started"
-        published: true
-        listed: true
-    - installation/heroku_hosting:
-        title: "Heroku hosting"
-        published: true
-        listed: true
-    - installation/for_developpers:
-        title: "For developpers"
         published: true
         listed: true

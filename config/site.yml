@@ -41,6 +41,9 @@ site:
     - "guides/upgrade_v1":
         title: "Upgrade to 2.0"
         listed: true
+    - "guides/public_form_submission":
+        title: "Public Form Submission"
+        listed: true
 
     - "editor":
         title: "Editor"

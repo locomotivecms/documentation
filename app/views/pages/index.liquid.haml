@@ -32,7 +32,8 @@
         %h1 
           Guides
         {% editable_long_text "tierce-first-content", priority: 6 %}
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+        %p 
+          Here's a good place to start. Get on rails to become a LocomotiveCMS addict!
         {% endeditable_long_text %}
         %a{ :href => "/guides" }
           See »
@@ -52,6 +53,29 @@
         {% endeditable_long_text %}
         %a{ :href => "/use-cases" }
           See »
-      
+    
+      %h2
+        Can’t find what you’re looking for ? Let’s get you some help
+      %ul
+        %li 
+          
+          Ask the community : 
+          / todo formulaire de recherche dans le forum (pour l'instant il n'y a rien dans le forum donc inutile)
+          %a{ :href => ""} search the forum
+          or 
+          %a{ :href => ""} post your question
+        %li 
+          Ask us : we’ll be glad to help you, 
+          %a{ :href => ""} contact the support
+
+      %h2
+        You want to help us making a better documentation ?
+      %ul
+        %li
+          Guess what, this is a LocomotiveCMS site ! Contribute on our github repo.
+          %br
+          See how to 
+          %a{ :href => ""} contribute to the documentation
+
     {% endblock %}
     {% include "footer" %}

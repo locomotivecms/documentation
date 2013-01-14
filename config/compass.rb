@@ -6,5 +6,5 @@ sass_dir          = 'stylesheets'
 images_dir        = 'images'
 javascripts_dir   = 'javascripts'
 project_type      = :stand_alone
-output_style      = :nested
-line_comments     = false
+output_style      = :expanded
+line_comments     = true

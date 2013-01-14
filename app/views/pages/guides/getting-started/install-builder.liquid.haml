@@ -1,0 +1,26 @@
+{% extends 'guides/getting-started' %}
+
+{% block 'main/content' %}
+:markdown
+
+  # 1. Install the bundler and rake gems
+
+  These are standard ruby gems (libraries).
+
+  <div class="alert alert-warning">
+  Make sure you have installed <strong>Ruby</strong>. If not, please read the “Ruby” section in the following <a href="/guides/getting-started/requirements">page</a>.   
+  The editor runs fine with these ruby versions: <strong>1.8.7, 1.9.2 and 1.9.3.</strong>
+  </div>
+  
+      gem install bundler
+      gem install rake
+
+  # 2. Add our modules gems source
+  
+      gem sources -a http://<your id>:<your license key >@modules.locomotivecms.com
+
+  # 3. Install the application
+
+      gem install locomotive_editor -v 1.0.0.rc15
+
+{% endblock %}

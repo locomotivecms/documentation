@@ -1,60 +1,120 @@
 {% extends 'index' %}
 
 {% block 'main' %}
-{% include 'page_head' %}
+
+%section#page-head
+  %section#page-head-content
+    %header
+      {{ page.title }}
+    {% block catch %}
+    %p Get on the rails of LocomotiveCMS. Everything you need to know to make the coolest sites is here.
+    {% endblock %}
+    
 #main-generic
   %section#container-sidebar
     {% block 'content' %}
     
-    %h1 Start here
+    %h1 Getting Started
+    %p Install and run your first LocomoticeCMS site by following these steps:
+    
+    %ul
+      %li
+        %a{ :href => "/guides/getting-started/requirements" }
+          Requirements
+        %p You will require a few things to be installed on your system before you get started : Ruby, Ruby On Rails, Mongodb and Imagemagick.
+      %li
+        %a{ :href => "/guides/getting-started/install-locomotivecms" }
+          LocomotiveCMS installation
+        %p LocomotiveCMS runs on a Ruby On Rails site. Follow the instructions to install Ruby On Rails and create your first site.
+      %li
+        %a{ :href => "/guides/getting-started/install-builder" }
+          Builder installation
+        %p The builder is THE command line tool that allows you to develop locally.
+      %li
+        %a{ :href => "/guides/getting-started/create-site" }
+          Create your first site
+      %li
+        %a{ :href => "/guides/getting-started/development-workflow" }
+          The ideal development workflow
+
+    %h1 How assets work
+    %p Discover how you manage your images, stylesheets, javascripts...
+    
+    %ul
+      %li
+        %a{ :href => "guides/assets/adding-assets" }
+          Adding assets
+      %li
+        %a{ :href => "guides/assets/sass" }
+          Using Sass
+
+    %h1 Content types
 
     %ul
       %li
-        %a{ :href => "/guides/getting-started" }
-          Getting Started
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+        %a{ :href => "guides/content-types/create" }
+          Create a content type
+      %li
+        %a{ :href => "guides/content-types/listing" }
+          List content entries on a page
+        %p Including how to paginate entries, scope your result, display grouped by.
+      %li
+        %a{ :href => "guides/content-types/template" }
+          Create a template for a content entry
+      %li
+        %a{ :href => "guides/content-types/translate" }
+          Manage content entries translations
+      %li
+        %a{ :href => "guides/content-types/customize-backoffice" }
+          Customize the backoffice user interface
+      %li
+        %a{ :href => "guides/content-types/relationships" }
+          Create relationships
+      %li
+        %a{ :href => "guides/content-types/public-form-submission" }
+          Using public form submissions
+        %p Create a contact form, store the messages and receive emails.
 
-    %h1 Making
+    %h1 Multilingual
 
     %ul
       %li
-        %a{ :href => "guides/editor" }
-          Editor
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
-      %li
-        %a{ :href => "guides/templating" }
-          Views
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
-      %li
-        %a{ :href => "guides/models" }
-          Models
+        %a{ :href => "/guides/multilingual/setup" }
+          Set up multilingual
         %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
 
-    %h1 Deploying
+
+      %li
+        %a{ :href => "/guides/multilingual/templates" }
+          Multiple templates
+        %p Create a different template for each language, or create one template and manage translations.
+
+
+      %li
+        %a{ :href => "/guides/multilingual/add-language" }
+          Add another language
+        %p Create a different template for each language, or create one template and manage translations.
+
+      %li
+        %a{ :href => "/guides/content-types/translate" }
+          Translated content entries
+        %p Manage content entries translations
 
     %h1 Hosting
 
     %ul
       %li
         %a{ :href => "/guides/heroku-hosting" }
-          Heroku
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+          Heroku hosting
+        %p Setting up LocomotiveCMS hosting on Heroku is very handy.
 
-    %h1 Digging deeper
+    %h1 Multisite
 
     %ul
       %li
         %a{ :href => "/guides/multi-sites" }
-          Multi Sites
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.    
-      %li
-        %a{ :href => "#" }
-          Upgrade to 2.0
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.    
-      %li
-        %a{ :href => "#" }
-          For developpers
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.    
+          Setup multisites
+        %p Manage multiple sites with one LocomotiveCMS installation.
 
     / %h1 Guides summary
 

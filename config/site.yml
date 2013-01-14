@@ -7,7 +7,7 @@ site:
 
   pages:
     - index:
-        title: "Home"
+        title: "LocomotiveCMS developers site"
         published: true
         listed: true
     - 404:
@@ -289,16 +289,19 @@ site:
     - guides/getting-started/requirements:
         title: "Requirements"
         listed: true
+    - guides/getting-started/install-locomotivecms:
+        title: "Install LocomotiveCMS on a Ruby On Rails site"
+        listed: true
+    - guides/getting-started/install-builder:
+        title: "Install LocomotiveCMS builder"
+        listed: true
     - guides/editor:
         title: "Editor"
         published: true
         listed: true
         redirect_url: /guides/editor/installation
-    - guides/editor/installation:
-        title: "Installation"
-        listed: true
-    - guides/editor/create-site:
-        title: "Create a site"
+    - guides/getting-started/create-site:
+        title: "Create your first site"
         listed: true
     - guides/editor/deployment:
         title: "Deployment"

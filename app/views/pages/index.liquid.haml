@@ -26,15 +26,18 @@
   %body
     {% include 'nav' %}
     {% block 'main' %}
-    {% include 'page_head' %}
+    %section#page-head
+      %section#page-head-content
+        %header
+          {{ page.title }}
+        %p Get on the rails of LocomotiveCMS. Everything you need to know to make the coolest sites is here.
+      
     #main-generic
       %section.home-item
         %h1 
           Guides
-        {% editable_long_text "tierce-first-content", priority: 6 %}
         %p 
-          Here's a good place to start. Get on rails to become a LocomotiveCMS addict!
-        {% endeditable_long_text %}
+          Here's a good place to start becoming a LocomotiveCMS addict!
         %a{ :href => "/guides" }
           See »
       %section.home-item

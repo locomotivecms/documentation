@@ -1,8 +1,9 @@
 {% extends 'guides' %}
-
+{% block main/catch %}{% endblock %}
 {% block 'left' %}
 %section#container-sidebar
-  {% block 'content' %}{% endblock %}
+
+  {% block 'main/content' %}{% endblock %}
 
 {% block 'sidebar' %}
 {% include 'sidebar_depth_2' %}

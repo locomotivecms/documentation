@@ -9,7 +9,7 @@
       {% assign path_segments = path | split: '/' %}
       {% for main_page in site.index.children %}
       %li{ :class => '{% if page.fullpath == main_page.slug %}active{% endif %}{% if path_segments[0] == main_page.slug %}active{% endif %}'}
-        %a{ :href => "{{ main_page.fullpath }}" }
+        %a{ :href => "/{{ main_page.fullpath }}" }
           {{ main_page.title }}
       {% endfor %}
       

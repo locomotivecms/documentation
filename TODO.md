@@ -4,7 +4,7 @@
 - main nav active when in sub child
   -> idem sub nav
     => JS ? plus simple
-
+- editor : configure git + gitignore (deploy, ds store etc)
 
 ## To write documentation
 

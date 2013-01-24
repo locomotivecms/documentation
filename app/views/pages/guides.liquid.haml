@@ -5,24 +5,75 @@
 #main-generic
   %section#container-sidebar
     {% block 'content' %}
-    %h1 Guides summary
-
-    {% assign path_segments = path | split: '/' %}
     
-    {% for child in page.children %}
+    %h1 Start here
+
     %ul
       %li
-        %a{ :href => "{{ fullpath }}/{{ child.slug }}", :class => "{% if child.slug == path_segments[1] %}current{% endif %}" }
-          {{ child.title }}
-        {% if child.children %}
-        %ul
-          {% for grand_child in child.children %}
-          %li
-            %a{ :href => "/{{ grand_child.fullpath }}" }
-              {{ grand_child.title }}
-          {% endfor %}
-        {% endif %}
-    {% endfor %}
+        %a{ :href => "/guides/getting-started" }
+          Getting Started
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+
+    %h1 Making
+
+    %ul
+      %li
+        %a{ :href => "guides/editor" }
+          Editor
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+      %li
+        %a{ :href => "guides/templating" }
+          Views
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+      %li
+        %a{ :href => "guides/models" }
+          Models
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+
+    %h1 Deploying
+
+    %h1 Hosting
+
+    %ul
+      %li
+        %a{ :href => "/guides/heroku-hosting" }
+          Heroku
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+
+    %h1 Digging deeper
+
+    %ul
+      %li
+        %a{ :href => "/guides/multi-sites" }
+          Multi Sites
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.    
+      %li
+        %a{ :href => "#" }
+          Upgrade to 2.0
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.    
+      %li
+        %a{ :href => "#" }
+          For developpers
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.    
+
+    / %h1 Guides summary
+
+    / {% assign path_segments = path | split: '/' %}
+    
+    / {% for child in page.children %}
+    / %ul
+    /   %li
+    /     %a{ :href => "{{ fullpath }}/{{ child.slug }}", :class => "{% if child.slug == path_segments[1] %}current{% endif %}" }
+    /       {{ child.title }}
+    /     {% if child.children %}
+    /     %ul
+    /       {% for grand_child in child.children %}
+    /       %li
+    /         %a{ :href => "/{{ grand_child.fullpath }}" }
+    /           {{ grand_child.title }}
+    /       {% endfor %}
+    /     {% endif %}
+    / {% endfor %}
     {% endblock %}
   
   {% block 'sidebar' %}{% endblock %}

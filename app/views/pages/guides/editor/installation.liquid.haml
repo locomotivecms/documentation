@@ -1,6 +1,6 @@
-{% extends 'editor' %}
+{% extends 'guides/editor' %}
 
-{% block 'left' %}
+{% block 'content' %}
 :markdown
   <div class="alert alert-info">
     <strong>Important.</strong> We decided to release it as a low-paid application. Visit this <a href="http://www.locomotivecms.com/pricing">page</a> to learn more about our application and buy it.
@@ -24,10 +24,4 @@
 
       gem install locomotive_editor -v 1.0.0.rc15
 
-  
-
-{% endblock %}
-
-{% block 'sidebar' %}
-{% include 'sidebar_depth_1' %}
 {% endblock %}

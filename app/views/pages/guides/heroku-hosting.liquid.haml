@@ -1,6 +1,9 @@
-{% extends 'installation' %}
+---
+listed: false
+---
+{% extends 'guides' %}
 
-{% block 'left' %}
+{% block 'main/left' %}
 
 :markdown
   <div class="alert alert-info">
@@ -9,7 +12,7 @@
   <div class="alert alert-info">
   We also assume that you followed the <strong><a href="/installation/getting_started">instructions</a></strong> to install the engine.
   </div>
-  
+
   # 1. Add the Heroku extension
 
   Open your **Gemfile** file in your LocomotiveCMS application and add the following statement right after the one about the LocomotiveCMS engine.
@@ -70,10 +73,10 @@
       heroku config:add S3_BUCKET=<YOUR S3 BUCKET NAME>
       heroku config:add S3_BUCKET_REGION=<YOUR S3 BUCKET REGION>
 
-  
+
   **Note:** For S3 Bucket Region var, here is the [correspondance table](http://docs.amazonwebservices.com/general/latest/gr/rande.html) between your ‘human’ bucket region name, and it’s endpoint :
-  
-  
+
+
   <table>
     <thead>
       <tr>
@@ -134,7 +137,7 @@
 
       heroku config:add HEROKU_API_KEY=<YOUR HEROKU API KEY>
       heroku config:add HEROKU_APP_NAME=<YOUR APP NAME>
-  
+
   <div class='alert alert-info'>
   <strong>Note:</strong>
   Go to your <a href='https://api.heroku.com/account'>Heroku account</a> to get your API key.

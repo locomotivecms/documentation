@@ -2,16 +2,18 @@
 title: Getting started
 published: true
 listed: true
-redirect_url: /guides/getting-started/requirements
+position: 1
+redirect_url: /guides/getting-started/builder
+redirect_type: 302
 ---
 {% extends 'guides' %}
 
-{% block 'left' %}
+{% block 'main/left' %}
 %section#container-sidebar
   {% block 'content' %}{% endblock %}
 
 {% block 'sidebar' %}
-{% include 'sidebar_depth_2' %}
+{% include 'sidebar_depth' with depth: 2 %}
 {% endblock %}
 
 {% endblock %}

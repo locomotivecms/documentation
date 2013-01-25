@@ -6,15 +6,19 @@
           {{ page.parent.parent.title }}
       %ul.dropdown
         {% for child in page.parent.parent.children %}
+        {% if child.listed? %}
         %li
           %a{ :href => "/{{ child.fullpath }}", :class => "{% if page.fullpath == child.fullpath %}active{% endif %} dropdown-toggle", "data-toggle" => "dropdown" }
             {{ child.title }}
           {% if child.children %}
           %ul.dropdown-menu
             {% for grand_child in child.children %}
+            {% if grand_child.listed? %}
             %li
               %a{ :href => "/{{ grand_child.fullpath }}" }
                 {{ grand_child.title }}
+            {% endif %}
             {% endfor %}
           {% endif %}
+        {% endif %}
         {% endfor %}

@@ -8,8 +8,10 @@
     %ul
       {% assign path_segments = fullpath | split: '/' %}
       {% for main_page in site.index.children reversed %}
+      {% if main_page.listed? %}
       {% assign page_segments = main_page.fullpath | split: '/' %}
       %li{ :class => '{% if path_segments[1] == page_segments[0] %}active{% endif %}'}
         %a{ :href => "/{{ main_page.fullpath }}" }
           {{ main_page.title }}
+      {% endif %}
       {% endfor %}

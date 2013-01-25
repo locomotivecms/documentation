@@ -6,8 +6,10 @@
           {{ page.parent.title }}
       %ul
         {% for child in page.parent.children %}
+        {% if child.listed? %}
         %li
           %a{ :href => "/{{ child.fullpath }}", :class => "{% if page.fullpath == child.fullpath %}active{% endif %}" }
             {{ child.title }}
+        {% endif %}
         {% endfor %}
 

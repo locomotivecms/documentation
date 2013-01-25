@@ -2,16 +2,17 @@
 title: Templating
 published: true
 listed: true
-redirect_url: /guides/templating/templating_logic
+redirect_url: /guides/templating/templating-logic
+position: 2
 ---
 {% extends 'guides' %}
 
-{% block 'left' %}
+{% block 'main/left' %}
 %section#container-sidebar
   {% block 'content' %}{% endblock %}
 
 {% block 'sidebar' %}
-{% include 'sidebar_depth_2' %}
+{% include 'sidebar_depth' with depth: 2 %}
 {% endblock %}
 
 {% endblock %}

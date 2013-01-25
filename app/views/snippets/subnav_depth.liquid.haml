@@ -12,9 +12,11 @@
 %nav.subnav
   %ul
     {% for child in source.children %}
+    {% if child.listed? %}
     {% assign page_segments = child.fullpath | split: '/' %}
     %li
       %a{ :href => "/{{ child.fullpath }}", :class => "{% if page_segments[depth] == path_segments[_depth] %}current{% endif %}" }
         {{ child.title }}
+    {% endif %}
     {% endfor %}
 

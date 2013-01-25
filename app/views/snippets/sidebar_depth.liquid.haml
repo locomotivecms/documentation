@@ -1,0 +1,26 @@
+{% assign path_segments = path | split: '/' %}
+{% assign current_depth = path_segments | size | minus: 1 %}
+
+{% assign max_loop = current_depth | minus: depth %}
+{% assign source = page %}
+{% for i in (1..max_loop) %}
+{% assign source = source.parent %}
+{% endfor %}
+
+{% assign _depth = depth | plus: 1 %}
+
+%aside{ :class => "sidebar" }
+  .floating-panel
+    .inner-floating-panel
+      %header
+        %h1
+          {{ source.title }}
+      %ul
+        {% for child in source.children %}
+        {% if child.listed? %}
+        %li
+          %a{ :href => "/{{ child.fullpath }}", :class => "{% if page.fullpath == child.fullpath %}active{% endif %}" }
+            {{ child.title }}
+        {% endif %}
+        {% endfor %}
+

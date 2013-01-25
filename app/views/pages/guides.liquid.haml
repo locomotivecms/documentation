@@ -8,9 +8,16 @@ position: 1
 
 {% block 'main' %}
 {% include 'page_head' %}
+
+{% assign depth = path | split: '/' | size %}
+
+{% if depth > 2 %}
+{% include 'subnav_depth' with depth: 1 %}
+{% endif %}
+
 #main-generic
+  {% block 'left' %}
   %section#container-sidebar
-    {% block 'content' %}
 
     %h1 Start here
 
@@ -24,43 +31,43 @@ position: 1
 
     %ul
       %li
-        %a{ :href => "guides/editor" }
-          Editor
+        %a{ :href => "guides/builder" }
+          The builder
         %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
       %li
         %a{ :href => "guides/templating" }
           Views
         %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
-      %li
-        %a{ :href => "guides/models" }
-          Models
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+      / %li
+      /   %a{ :href => "guides/models" }
+      /     Models
+      /   %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
 
-    %h1 Deploying
+    / %h1 Deploying
 
-    %h1 Hosting
+    / %h1 Hosting
 
-    %ul
-      %li
-        %a{ :href => "/guides/heroku-hosting" }
-          Heroku
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+    / %ul
+    /   %li
+    /     %a{ :href => "/guides/heroku-hosting" }
+    /       Heroku
+    /     %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
 
-    %h1 Digging deeper
+    / %h1 Digging deeper
 
-    %ul
-      %li
-        %a{ :href => "/guides/multi-sites" }
-          Multi Sites
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
-      %li
-        %a{ :href => "#" }
-          Upgrade to 2.0
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
-      %li
-        %a{ :href => "#" }
-          For developpers
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+    / %ul
+    /   %li
+    /     %a{ :href => "/guides/multi-sites" }
+    /       Multi Sites
+    /     %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+    /   %li
+    /     %a{ :href => "#" }
+    /       Upgrade to 2.0
+    /     %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
+    /   %li
+    /     %a{ :href => "#" }
+    /       For developpers
+    /     %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
 
     / %h1 Guides summary
 

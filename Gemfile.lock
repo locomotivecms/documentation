@@ -1,5 +1,7 @@
-PATH
-  remote: /Users/didier/Documents/LocomotiveCMS/builder
+GIT
+  remote: git://github.com/locomotivecms/builder.git
+  revision: 808fd0aec189529a6c9da81f99645c3defc6d53a
+  branch: wip
   specs:
     locomotivecms_builder (0.0.1)
       RedCloth (~> 4.2.9)
@@ -15,8 +17,9 @@ PATH
       thor
       will_paginate (~> 3.0.3)
 
-PATH
-  remote: /Users/didier/Documents/LocomotiveCMS/gems/mounter
+GIT
+  remote: git://github.com/locomotivecms/mounter.git
+  revision: 96773ab067e0542e2f25ad61160188c56e0959df
   specs:
     locomotivecms_mounter (1.0.0)
       RedCloth (~> 4.2.3)

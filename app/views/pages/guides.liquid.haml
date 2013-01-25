@@ -1,3 +1,9 @@
+---
+title: Guides
+published: true
+listed: true
+position: 1
+---
 {% extends 'index' %}
 
 {% block 'main' %}
@@ -5,7 +11,7 @@
 #main-generic
   %section#container-sidebar
     {% block 'content' %}
-    
+
     %h1 Start here
 
     %ul
@@ -46,20 +52,20 @@
       %li
         %a{ :href => "/guides/multi-sites" }
           Multi Sites
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.    
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
       %li
         %a{ :href => "#" }
           Upgrade to 2.0
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.    
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
       %li
         %a{ :href => "#" }
           For developpers
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.    
+        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
 
     / %h1 Guides summary
 
     / {% assign path_segments = path | split: '/' %}
-    
+
     / {% for child in page.children %}
     / %ul
     /   %li
@@ -75,7 +81,7 @@
     /     {% endif %}
     / {% endfor %}
     {% endblock %}
-  
+
   {% block 'sidebar' %}{% endblock %}
 
 {% endblock %}

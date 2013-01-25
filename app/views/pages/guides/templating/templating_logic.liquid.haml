@@ -1,3 +1,7 @@
+---
+title: Templating logic
+listed: true
+---
 {% extends 'guides/templating' %}
 
 {% block 'content' %}
@@ -26,7 +30,7 @@
               +- first page
               +- second page
 
-  All pages inherit from index. This way, the index contains the application's layout and the index page content. How do you re-use the layout without re-using the index page content ? By introducing 
+  All pages inherit from index. This way, the index contains the application's layout and the index page content. How do you re-use the layout without re-using the index page content ? By introducing
 
   {% raw %}
       {% block 'block_name' %} ... {% endblock %}
@@ -169,7 +173,7 @@
   {% endraw %}
 
   Then the "alternate layout" page, which doesn't extends its parent, index :
-  
+
   {% raw %}
       <html>
         <head>
@@ -192,7 +196,7 @@
   {% endraw %}
 
   And finally, the "alternate page", which inherits from "alternate layout". You may notice the ```{% raw %} {% extends alternate_layout %} {% endraw %}``` instead of ```{% raw %} {% extends parent %} {% endraw %}```, as explained in the previous part.
-  
+
   {% raw %}
       {% extends alternate_layout %}
 
@@ -217,7 +221,7 @@
 
 
   Here is the index, which includes the sidebar, and also loops on products model and include the snippet "product_information" at each product item :
-  
+
   {% raw %}
       <html>
         <head>
@@ -241,7 +245,7 @@
   {% endraw %}
 
   Then the sidebar :
-  
+
   {% raw %}
       <div id="sidebar">
         the sidebar
@@ -249,12 +253,12 @@
   {% endraw %}
 
   And finally the product_information snippet which uses the context "product" :
-  
+
   {% raw %}
       <div class="product">
       {{ product.name }} :  {{ product.price }}$
       </div>
   {% endraw %}
-  
+
 
   {% endblock %}

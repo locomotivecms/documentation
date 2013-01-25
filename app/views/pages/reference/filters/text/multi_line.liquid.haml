@@ -1,7 +1,12 @@
+---
+title: Multi-line
+published: true
+listed: true
+position: 3
+---
 {% extends 'reference/filters' %}
 
-{% block 'content' %}
-
+{% block 'main/left/content' %}
 
 :markdown
   # multi_line(input)
@@ -11,8 +16,8 @@
   {% raw %}
       {{ "hello\nworld" | multi_line }}
   {% endraw %}
-  
-  **Example**: Returns 
-      hello<br/>world 
+
+  **Example**: Returns
+      hello<br/>world
 
 {% endblock %}

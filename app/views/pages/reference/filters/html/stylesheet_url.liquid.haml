@@ -1,6 +1,12 @@
+---
+title: Stylesheet url
+published: true
+listed: true
+position: 6
+---
 {% extends 'reference/filters' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # stylesheet_url(input)
@@ -10,7 +16,7 @@
   {% raw %}
       {{ 'application.css' | stylesheet_url }}
   {% endraw %}
-  
+
   **Example**: Returns "/sites/<site_id>/theme/stylesheets/application.css"
 
 {% endblock %}

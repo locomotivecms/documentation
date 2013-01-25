@@ -1,25 +1,31 @@
+---
+title: Csrf param
+published: true
+listed: true
+position: 6
+---
 {% extends 'reference/tags' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # csrf_param
 
   Forms inside the Liquid templates, such as a contact form for instance, can be protected from *Cross-Site Request Forgery (CSRF)* attacks.
-  
+
   {% raw %}
       <form action="/contact">
       {% csrf_param %}
       ...
       </form>
   {% endraw %}
-  
+
   By default, that protection is *disabled* in order to keep backwards compatibility with the existing public forms.
-    
+
   If you want to enable it, open your *config/initializers/locomotive.rb* file and toggle the csrf property on.
-  
+
       config.csrf_protection = true</pre>
-  
+
   <div class="alert alert-info">
   For <b>AJAX</b> requests, please consider the <a href="/reference/tags/misc/csrf_meta">csrf_meta</a> tag.
   </div>

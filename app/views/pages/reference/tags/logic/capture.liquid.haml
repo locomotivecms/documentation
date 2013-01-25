@@ -1,16 +1,21 @@
+---
+title: Capture
+published: true
+listed: true
+position: 5
+---
 {% extends 'reference/tags' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
-:markdown  
+:markdown
   # capture
-  
+
   Combine a number of strings into a single string and save it to a variable.
-  
+
   {% raw %}
       {% capture full_name %}{{ person.first_name }} {{ person.last_name }}{% endcapture %}
       {{ full_name }}
   {% endraw %}
 
 {% endblock %}
-  

@@ -1,22 +1,28 @@
+---
+title: "Editable control"
+published: true
+listed: true
+position: 7
+---
 {% extends 'reference/tags' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # editable_control
-  
+
   Editable areas contain content you want a user to be able to change. The content within the tag will be the default one.
-  
+
   In the back-office, the editable element will be found under the tab corresponding to the block wrapping it. It is possible to associate the element to another block.
-  
+
   The input field in the back-office used to edit the content is a *select field.*
-  
+
   An element can be inherited by children, each page keeping its own version of the content. However, in some cases, it may be a requirement to have the element to be editable in one place. If so, just set the "fixed" option to true.
-  
+
   <div class="alert alert-info">
   You must give these sections a unique name because they will be inherited by children.
   </div>
-  
+
   {% raw %}
       {% capture menu_enabled %}
         {% editable_control "menu", options: 'true=Yes,false=No', hint: "Tell if the menu is displayed or not", priority: 1 %}
@@ -29,7 +35,7 @@
       {% endif %}
   {% endraw %}
 
-      
+
   ### Options
 
   <table>
@@ -70,6 +76,5 @@
   </table>
 
 
-  
+
 {% endblock %}
-  

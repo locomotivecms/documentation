@@ -1,14 +1,20 @@
+---
+title: Paginate
+published: true
+listed: true
+position: 1
+---
 {% extends 'reference/tags' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # paginate
-    
+
   The paginate tag is responsible for pagination within the LocomotiveCMS engine. It is currently applicable to the entries of content types.
-  
+
   It can be combined with the *with_scope* tag.
-      
+
   {% raw %}
       {% paginate content_type.projects by 10 %}
         {% for project in paginate.collection %}
@@ -17,9 +23,9 @@
       {% endpaginate %}
   {% endraw %}
 
-  
+
   ### The paginate object
-  
+
   <table>
     <thead>
       <tr>
@@ -81,7 +87,6 @@
       </tr>
     </tbody>
   </table>
-  
-  
+
+
 {% endblock %}
-  

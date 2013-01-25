@@ -1,12 +1,18 @@
+---
+title: Consume
+published: true
+listed: true
+position: 3
+---
 {% extends 'reference/tags' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # consume
-  
+
   Read an external datasource (either JSON or XML), cache the content and allow you to iterate over the objects.
-  
+
   {% raw %}
       {% consume blog from 'http://blog.locomotivecms.com/api/read/json?num=3&amp;type=text', expires_in: 3000 %}
       {% if blog == null %}
@@ -18,9 +24,9 @@
         {% endif %}
       {% endconsume %}
   {% endraw %}
-  
+
   ### Options
-  
+
   <table>
     <thead>
       <tr>
@@ -47,7 +53,6 @@
       </tr>
     </tbody>
   </table>
-  
-  
+
+
 {% endblock %}
-  

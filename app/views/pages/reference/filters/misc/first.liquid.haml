@@ -1,13 +1,19 @@
+---
+title: First
+published: true
+listed: true
+position: 4
+---
 {% extends 'reference/filters' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # first(input)
 
-  Return the first occurrence of the input object. 
-  If the object is a String, it returns the first letter. 
-  If it is an Array, the first entry is returned. 
+  Return the first occurrence of the input object.
+  If the object is a String, it returns the first letter.
+  If it is an Array, the first entry is returned.
   If the input is a collection, the first method is called on that collection.
 
   {% raw %}

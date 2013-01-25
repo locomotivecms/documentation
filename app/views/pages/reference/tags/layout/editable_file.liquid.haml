@@ -1,18 +1,24 @@
+---
+title: Editable file
+published: true
+listed: true
+position: 6
+---
 {% extends 'reference/tags' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # editable_file
-  
+
   Editable areas contain content you want a user to be able to change. The content within the tag will be the default one.
-  
+
   In the back-office, the editable element will be found under the tab corresponding to the block wrapping it. It is possible to associate the element to another block.
-  
+
   The input field in the back-office used to edit the content is a *file field.*
-        
+
   An element can be inherited by children, each page keeping its own version of the content. However, in some cases, it may be a requirement to have the element to be editable in one place. If so, just set the "fixed" option to true.
-  
+
   <div class="alert alert-info">
     You must give these sections a unique name because they will be inherited by children.
   </div>
@@ -24,7 +30,7 @@
   {% endraw %}
 
   # Options
-    
+
   <table>
     <thead>
       <tr>
@@ -60,4 +66,3 @@
 
 
 {% endblock %}
-  

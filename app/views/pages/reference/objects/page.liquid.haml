@@ -1,6 +1,12 @@
+---
+title: Page
+published: true
+listed: true
+position: 3
+---
 {% extends 'reference/objects' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # Page
@@ -8,7 +14,7 @@
   {% raw %}
       {{ page.title }}
   {% endraw %}
-  
+
   **Example**: Display the title of the current page
 
   ### Attributes

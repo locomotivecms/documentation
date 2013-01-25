@@ -6,10 +6,10 @@
     #nav-toggle
       %a.icon-th-list
     %ul
-      {% assign path_segments = path | split: '/' %}
-      {% for main_page in site.index.children %}
-      %li{ :class => '{% if page.fullpath == main_page.slug %}active{% endif %}{% if path_segments[0] == main_page.slug %}active{% endif %}'}
+      {% assign path_segments = fullpath | split: '/' %}
+      {% for main_page in site.index.children reversed %}
+      {% assign page_segments = main_page.fullpath | split: '/' %}
+      %li{ :class => '{% if path_segments[1] == page_segments[0] %}active{% endif %}'}
         %a{ :href => "/{{ main_page.fullpath }}" }
           {{ main_page.title }}
       {% endfor %}
-      

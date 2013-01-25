@@ -1,7 +1,12 @@
+---
+title: Image tag
+published: true
+listed: true
+position: 2
+---
 {% extends 'reference/filters' %}
 
-{% block 'content' %}
-
+{% block 'main/left/content' %}
 
 :markdown
   # flash_tag(input, options)
@@ -11,7 +16,7 @@
   {% raw %}
       {{ 'http://youtube.com?...' | flash_tag: width: '100px', height: '50px' }}
   {% endraw %}
-  
+
   ### Options
 
   <table>

@@ -1,12 +1,18 @@
+---
+title: Auto discovery link tag
+published: true
+listed: true
+position: 1
+---
 {% extends 'reference/filters' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
-  # auto_discovery_link_tag(input, options)
+  # auto\_discovey\_link_tag(input, options)
 
   Return a link tag that browsers and news readers can use to auto-detect an RSS or ATOM feed.
-  
+
   {% raw %}
       {{ '/projects/atom' | auto_discovery_link_tag: 'rel:alternate', 'type:application/atom+xml', 'title:A title' }}
   {% endraw %}

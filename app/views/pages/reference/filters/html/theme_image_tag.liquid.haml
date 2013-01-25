@@ -1,9 +1,15 @@
+---
+title: Theme image tag
+published: true
+listed: true
+position: 9
+---
 {% extends 'reference/filters' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
-  # theme_image_tag(input, options)
+  # theme\_image\_tag(input, options)
 
   Return the image tag of a theme image
 
@@ -11,7 +17,7 @@
       {{ 'banner.png' | theme_image_tag: 'alt:hello world' }}
   {% endraw %}
 
-  Example: Returns 
+  Example: Returns
       <img src="/sites/<site_id>/theme/images/banner.png" alt="hello world" />
 
   ### Options

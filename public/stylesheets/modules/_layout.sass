@@ -8,13 +8,14 @@
   border-bottom: 2px solid rgba(255, 255, 255, 0.8)
   .inner-container
     +five-cols-grid
-    position: relative  
+    position: relative
   // Logo
   h1
     color: white
     +futura-lt
     letter-spacing: 3px
     font-size: 20px
+    margin-top: 7px
     a
       background: url(/images/logo-locomotive.png) no-repeat 0px 5px
       padding-left: 32px
@@ -54,11 +55,13 @@
     display: none
     li
       display: block
+      height: 28px
+      line-height: 26px
       color: white
       background: none
       font-size: 16px
       +proximanova-light
-      padding: 4px 32px
+      padding: 0px 32px
       margin: 3px 0
       a:hover
         color: white
@@ -80,7 +83,7 @@
 
 #main-nav.home-nav
   border-bottom: none
-  
+
 @media #{$desktop}
   #main-nav
     background: url(/images/home_halo_small.png) no-repeat bottom center
@@ -88,13 +91,13 @@
     ul
       display: block
       li
-        padding: 4px 20px
+        padding: 0px 20px
     #nav-toggle
       display: none
   #main-nav.home-nav
     background: none
     background-color: $banner-bg
-    
+
 
 
 // Shared container
@@ -151,7 +154,26 @@
       +pretty-bullets("/images/bullet-blue.png", 4px, 5px, 25px)
       li
         line-height: 25px
-        
+    ul.tweets
+      li
+        padding-left: 0
+        margin-bottom: 20px
+        background: none
+        clear: both
+        img
+          float: left
+          position: relative
+          top: 4px
+        p
+          padding-left: 32px
+          line-height: 18px
+          &.text
+            font-style: italic
+            margin-bottom: 5px
+          &.date
+            font-size: 11px
+            color: $footer-light-blue
+
 @media #{$desktop}
   #footer
     .footer-item
@@ -159,4 +181,3 @@
       +nth-omega(4)
       margin-top: 50px
 
-      

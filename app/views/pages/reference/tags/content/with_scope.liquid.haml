@@ -1,6 +1,12 @@
+---
+title: With scope
+published: true
+listed: true
+position: 2
+---
 {% extends 'reference/tags' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # with_scope
@@ -22,21 +28,21 @@
           {% endfor %}
         {% endpaginate %}
       {% endwith_scope %}
-      
+
 
       {% with_scope posted_at.gte: '2012/01/01', posted_at.lte: '2012/02/1' %}
         {% for post in content_type.posts %}
           {{ post.title }}
         {% endfor %}
       {% endwith_scope %}
-      
+
 
       {% with_scope price.lt: 42 %}
         {% for product in content_type.products %}
           {{ product.name }}
         {% endfor %}
       {% endwith_scope %}
-      
+
 
       {% with_scope price.lt: params.min_price %}
         {% for product in content_type.products %}
@@ -44,6 +50,5 @@
         {% endfor %}
       {% endwith_scope %}
   {% endraw %}
-  
+
 {% endblock %}
-  

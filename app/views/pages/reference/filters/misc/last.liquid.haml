@@ -1,13 +1,19 @@
+---
+title: Last
+published: true
+listed: true
+position: 5
+---
 {% extends 'reference/filters' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # last(input)
 
-  Return the last occurrence of the input object. 
-  If the object is a String, it returns the last letter. 
-  If it is an Array, the last entry is returned. 
+  Return the last occurrence of the input object.
+  If the object is a String, it returns the last letter.
+  If it is an Array, the last entry is returned.
   If the input is a collection, the last method is called on that collection.
 
   {% raw %}

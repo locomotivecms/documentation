@@ -1,12 +1,18 @@
+---
+title: For
+published: true
+listed: true
+position: 3
+---
 {% extends 'reference/tags' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # for
-  
+
   Loop over a collection.
-  
+
 
   {% raw %}
       {% for item in array %}
@@ -15,7 +21,7 @@
   {% endraw %}
 
   Instead of looping over an existing collection, you can define a range of numbers to loop through. The range can be defined by both literal and variable numbers:
-  
+
 
   {% raw %}
       # if item.quantity is 4...
@@ -24,9 +30,9 @@
       {% endfor %}
       # results in 1,2,3,4
   {% endraw %}
-  
+
   During every for loop there are following helper variables available for extra styling needs:
-  
+
   <table>
     <thead>
       <tr>
@@ -75,6 +81,5 @@
   </table>
 
 
-  
+
 {% endblock %}
-  

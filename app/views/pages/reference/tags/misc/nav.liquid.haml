@@ -1,28 +1,34 @@
+---
+title: Nav
+published: true
+listed: true
+position: 1
+---
 {% extends 'reference/tags' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # nav
-  
+
   Render a list of links pointing to your pages. You can specify a context from where the pages will be pulled out. The context takes the following values: *site, parent or page.*
-    
+
   Moreover, it is also possible to include the nested pages.
-  
+
   <div class="alert alert-warning">
   Your pages must fill 2 conditions to be part of the navigation: be <b>published</b> and be <b>listed.</b>
   </div>
-  
+
   <div class="alert alert-info">
   The order is based on the one you specify in your LocomotiveCMS back-office.
   </div>
-  
+
   {% raw %}
       {% nav 'parent', depth: 1, no_wrapper: false, exlude: nil, icon: false %}
   {% endraw %}
 
   ### A more complex example:
-  
+
   {% raw %}
       {% nav site, exclude: '\.*\-bottom', depth: 2, snippet: menu_entry %}
       {% block misc_properties %}
@@ -30,18 +36,18 @@
         {% editable_file menu_image %}{% endeditable_file %}
       {% endblock %}
   {% endraw %}
-  
+
   nav tag in the page
-  
+
   {% raw %}
       {{ page.menu_teaser }}
       {{ page.menu_image }}
   {% endraw %}
 
   snippet named "menu-entry"
-  
+
   ### Options
-  
+
   <table>
     <thead>
       <tr>

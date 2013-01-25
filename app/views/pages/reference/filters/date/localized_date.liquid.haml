@@ -1,6 +1,12 @@
+---
+title: Localized date
+published: true
+listed: true
+position: 1
+---
 {% extends 'reference/filters' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # localized_date(input, format, locale)
@@ -10,13 +16,13 @@
   {% raw %}
       {{ today | localized_date: '%d %B' }}
   {% endraw %}
-  
+
   **Example**: Returns 21 december
 
   {% raw %}
       {{ today | localized_date: '%d %B', 'fr' }}
   {% endraw %}
-  
+
   **Example**: Returns 29 juin
 
   ### Options

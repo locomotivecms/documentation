@@ -1,6 +1,12 @@
+---
+title: Modulo
+published: true
+listed: true
+position: 3
+---
 {% extends 'reference/filters' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # modulo(input, index, modulo)
@@ -10,13 +16,13 @@
   {% raw %}
       {{ 'odd' | modulo: 0, 2 }}
   {% endraw %}
-  
+
   **Example**: Returns ""
-  
+
   {% raw %}
       {{ 'odd' | modulo: 1, 2 }}
   {% endraw %}
-  
+
   **Example**: Returns "odd"
 
   ### Options

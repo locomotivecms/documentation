@@ -1,17 +1,24 @@
+---
+title: Reference
+published: true
+listed: true
+position: 3
+editable_elements:
+  main/page_head_title: "Reference"
+  main/page_head_content: "<p>LocomotiveCMS uses the exact same template engine as for Shopify, one of the best hosted e-commerce solution. The name of that open source template engine is Liquid.</p>"
+---
 {% extends 'index' %}
 
 {% block 'main' %}
 {% include 'page_head' %}
 
-{% block 'subnav' %}
-{% include 'subnav_depth_1' %}
-{% endblock %}
+{% include 'subnav_depth' with depth: 1 %}
 
 #main-generic
   {% block 'left' %}
   %section#container-sidebar
     :markdown
-      <div class="alert alert-info"> 
+      <div class="alert alert-info">
       You can find the source of the Liquid template engine on <strong> <a href="https://github.com/Shopify/liquid">github.</a> </strong> However, we used an <strong> <a href="https://github.com/locomotivecms/liquid">enhanced version</a> </strong> of the original engine.
       </div>
 

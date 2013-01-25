@@ -1,6 +1,12 @@
+---
+title: Javascript url
+published: true
+listed: true
+position: 4
+---
 {% extends 'reference/filters' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # javascript_url(input)
@@ -10,7 +16,7 @@
   {% raw %}
       {{ 'application.js' | javascript_url }}
   {% endraw %}
-  
+
   **Example**: Returns "/sites/<site_id>/theme/javascripts/application.js"
 
 {% endblock %}

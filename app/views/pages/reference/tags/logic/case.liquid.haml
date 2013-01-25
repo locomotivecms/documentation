@@ -1,12 +1,18 @@
+---
+title: Case
+published: true
+listed: true
+position: 2
+---
 {% extends 'reference/tags' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # case
-  
+
   When evaluating a large number of conditions.
-  
+
   {% raw %}
       {% case condition %}
       {% when 1 %}
@@ -19,4 +25,3 @@
   {% endraw %}
 
 {% endblock %}
-  

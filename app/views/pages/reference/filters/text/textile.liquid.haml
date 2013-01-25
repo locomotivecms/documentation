@@ -1,7 +1,12 @@
+---
+title: Textile
+published: true
+listed: true
+position: 6
+---
 {% extends 'reference/filters' %}
 
-{% block 'content' %}
-
+{% block 'main/left/content' %}
 
 :markdown
   # textile(input)
@@ -12,7 +17,7 @@
       {{ '### Header' | textile }}
   {% endraw %}
 
-  **Example**: Returns 
+  **Example**: Returns
       <h3>Header</h3>
 
 {% endblock %}

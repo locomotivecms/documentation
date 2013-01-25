@@ -1,6 +1,12 @@
+---
+title: Site
+published: true
+listed: true
+position: 2
+---
 {% extends 'reference/objects' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # Site
@@ -8,7 +14,7 @@
   {% raw %}
       {{ site.name }}
   {% endraw %}
-  
+
   **Example**: Display the name of the current site
 
   ### Attributes

@@ -1,24 +1,30 @@
+---
+title: Locale switcher
+published: true
+listed: true
+position: 2
+---
 {% extends 'reference/tags' %}
 
-{% block 'content' %}
+{% block 'main/left/content' %}
 
 :markdown
   # locale_switcher
-  
+
   Display the links to change the locale of the current page. The links are wrapped inside a *DIV* tag.
-  
+
   The link to the current locale owns the class *current* which makes it possible to customize through CSS.
-      
+
   <div class="alert alert-warning">
     Nothing will be displayed if you do not select at least 2 locales for your site.
   </div>
-  
+
   {% raw %}
       {% locale_switcher label: locale, sep: ' - ' %}
   {% endraw %}
-      
+
   ### Options
-      
+
   <table>
     <thead>
       <tr>
@@ -49,6 +55,5 @@
     </tbody>
   </table>
 
-  
+
 {% endblock %}
-  

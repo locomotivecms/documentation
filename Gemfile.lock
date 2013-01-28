@@ -1,3 +1,23 @@
+GIT
+  remote: git://github.com/locomotivecms/builder.git
+  revision: 2401eb4127b7700434b2447ca4c1af3a0f9bf036
+  ref: 2401eb4
+  specs:
+    locomotivecms_builder (1.0.0.alpha3)
+      RedCloth (~> 4.2.9)
+      dragonfly (~> 0.9.12)
+      faker (~> 0.9.5)
+      httmultiparty (~> 0.3.8)
+      listen (~> 0.7.0)
+      locomotive_liquid (~> 2.4.1)
+      locomotivecms_mounter (= 1.0.0.alpha2)
+      rack-cache (~> 1.1)
+      rack-rescue (~> 0.1.2)
+      rmagick (= 2.12.2)
+      thin
+      thor
+      will_paginate (~> 3.0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -47,20 +67,6 @@ GEM
     libv8 (3.3.10.4)
     listen (0.7.2)
     locomotive_liquid (2.4.2)
-    locomotivecms_builder (1.0.0.alpha3)
-      RedCloth (~> 4.2.9)
-      dragonfly (~> 0.9.12)
-      faker (~> 0.9.5)
-      httmultiparty (~> 0.3.8)
-      listen (~> 0.7.0)
-      locomotive_liquid (~> 2.4.1)
-      locomotivecms_mounter (= 1.0.0.alpha2)
-      rack-cache (~> 1.1)
-      rack-rescue (~> 0.1.2)
-      rmagick (= 2.12.2)
-      thin
-      thor
-      will_paginate (~> 3.0.3)
     locomotivecms_mounter (1.0.0.alpha2)
       RedCloth (~> 4.2.3)
       activesupport (~> 3.2.5)
@@ -138,7 +144,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  locomotivecms_builder (= 1.0.0.alpha3)
+  locomotivecms_builder!
   rb-fsevent (~> 0.9.1)
   redcarpet
   susy

@@ -1,33 +1,37 @@
 # This file is used by Rack-based servers to start the application.
 
-$:.unshift(File.expand_path(File.dirname(__FILE__) + '/lib'))
+require 'locomotive/builder/standalone_server'
 
-require 'bundler'
-Bundler.setup
+run Locomotive::Builder::StandaloneServer.new(File.expand_path('.'))
 
-require 'locomotive/builder/version'
-require 'locomotive/builder/exceptions'
-require 'locomotive/mounter'
+# $:.unshift(File.expand_path(File.dirname(__FILE__) + '/lib'))
 
-# set the working path
-path = File.expand_path('.')
+# require 'bundler'
+# Bundler.setup
 
-# setting the logger
-logfile = File.join(path, 'log', 'mounter.log')
-FileUtils.mkdir_p(File.dirname(logfile))
+# require 'locomotive/builder/version'
+# require 'locomotive/builder/exceptions'
+# require 'locomotive/mounter'
 
-Locomotive::Mounter.logger = ::Logger.new(logfile).tap do |log|
-  log.level = Logger::DEBUG
-end
+# # set the working path
+# path = File.expand_path('.')
 
-# get the reader
-reader = Locomotive::Mounter::Reader::FileSystem.instance
-reader.run!(path: path)
-reader
+# # setting the logger
+# logfile = File.join(path, 'log', 'mounter.log')
+# FileUtils.mkdir_p(File.dirname(logfile))
 
-# run the rack app
-Bundler.require 'misc'
+# Locomotive::Mounter.logger = ::Logger.new(logfile).tap do |log|
+#   log.level = Logger::DEBUG
+# end
 
-require 'locomotive/builder/server'
-run Locomotive::Builder::Server.new(reader, disable_listen: true)
+# # get the reader
+# reader = Locomotive::Mounter::Reader::FileSystem.instance
+# reader.run!(path: path)
+# reader
+
+# # run the rack app
+# Bundler.require 'misc'
+
+# require 'locomotive/builder/server'
+# run Locomotive::Builder::Server.new(reader, disable_listen: true)
 

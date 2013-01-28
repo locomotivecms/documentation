@@ -1,17 +1,14 @@
-GIT
-  remote: git://github.com/locomotivecms/builder.git
-  revision: bef6b64acfa18932bb8a6713e4843e66d5b8f580
-  ref: bef6b64acfa18932bb8a6713e4843e66d5b8f580
-  branch: master
+PATH
+  remote: /Users/didier/Documents/LocomotiveCMS/builder
   specs:
-    locomotivecms_builder (1.0.0.alpha1)
+    locomotivecms_builder (1.0.0.alpha3)
       RedCloth (~> 4.2.9)
       dragonfly (~> 0.9.12)
       faker (~> 0.9.5)
       httmultiparty (~> 0.3.8)
       listen (~> 0.7.0)
       locomotive_liquid (~> 2.4.1)
-      locomotivecms_mounter (= 1.0.0.alpha1)
+      locomotivecms_mounter (= 1.0.0.alpha2)
       rack-cache (~> 1.1)
       rack-rescue (~> 0.1.2)
       rmagick (= 2.12.2)
@@ -19,12 +16,10 @@ GIT
       thor
       will_paginate (~> 3.0.3)
 
-GIT
-  remote: git://github.com/locomotivecms/mounter.git
-  revision: 59b81bdad4ad1f02d823c7b739b1a8c1b4ff4355
-  ref: 59b81bdad4ad1f02d823c7b739b1a8c1b4ff4355
+PATH
+  remote: /Users/didier/Documents/LocomotiveCMS/gems/mounter
   specs:
-    locomotivecms_mounter (1.0.0.alpha1)
+    locomotivecms_mounter (1.0.0.alpha2)
       RedCloth (~> 4.2.3)
       activesupport (~> 3.2.5)
       coffee-script (~> 2.2.0)
@@ -83,9 +78,9 @@ GEM
     http_router (0.2.5)
       rack (>= 1.0)
       url_mount (>= 0.2.1)
-    httparty (0.10.0)
+    httparty (0.10.2)
       multi_json (~> 1.0)
-      multi_xml
+      multi_xml (>= 0.5.2)
     i18n (0.6.1)
     json (1.6.7)
     less (2.2.2)

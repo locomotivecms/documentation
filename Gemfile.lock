@@ -19,7 +19,8 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     daemons (1.1.9)
-    dragonfly (0.9.12)
+    dragonfly (0.9.13)
+      multi_json (~> 1.0)
       rack
     eventmachine (1.0.0)
     execjs (1.4.0)
@@ -27,7 +28,7 @@ GEM
     extlib (0.9.16)
     faker (0.9.5)
       i18n (~> 0.4)
-    fssm (0.2.9)
+    fssm (0.2.10)
     haml (3.2.0.rc.2)
       tilt
     hashie (1.2.0)
@@ -47,7 +48,7 @@ GEM
     libv8 (3.3.10.4)
     listen (0.7.2)
     locomotive_liquid (2.4.2)
-    locomotivecms_builder (1.0.0.alpha3)
+    locomotivecms_builder (1.0.0.alpha4)
       RedCloth (~> 4.2.9)
       dragonfly (~> 0.9.12)
       faker (~> 0.9.5)
@@ -95,7 +96,7 @@ GEM
       rack-test
       thor
       wrapt
-    rack (1.5.0)
+    rack (1.5.1)
     rack-accept-media-types (0.9)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -138,7 +139,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  locomotivecms_builder (= 1.0.0.alpha3)
+  locomotivecms_builder (= 1.0.0.alpha4)
   rb-fsevent (~> 0.9.1)
   redcarpet
   susy

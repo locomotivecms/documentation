@@ -1,7 +1,11 @@
 ---
-title: Build and edit a first site
+title: Create your first website
 listed: true
 position: 3
+
+editable_elements:
+  main/page_head_title: "Create your first site"
+  main/page_head_content: ""
 ---
 {% extends 'guides/getting-started' %}
 
@@ -20,6 +24,12 @@ position: 3
       builder init my_first_site -t bootstrap
 
     This will create a folder named **my\_first\_site** populated with a default index page and all the Twitter Bootstrap resources.
+    <div class="alert alert-info">
+    <strong>Note:</strong>You can list the available templates by typing:<br />
+    <code>builder list_templates</code>
+    </div>
+
+    Now you need to install the necessary gems:
 
       cd my_first_site
       bundle install
@@ -43,5 +53,9 @@ position: 3
   # 4. edit your site
 
     Your site can be edited with any text editor: Sublime Text 2, Textmate, vi, emacs, ...etc. There is **no need** to stop/start the serve command when you have modified a liquid template or content type.
+
+  <div class="alert alert-info">
+  <strong>Done?</strong> Learn more about the <a href="/guides/templating">templating language</a>
+  </div>
 
 {% endblock %}

@@ -1,0 +1,84 @@
+---
+title: How to create a content type?
+listed: true
+position: 1
+
+editable_elements:
+  main/page_head_title: "How to create a content type?"
+  main/page_head_content: ""
+
+---
+{% extends 'guides/content-types' %}
+
+{% block 'main/left/content' %}
+:markdown
+  Content types are like models. Let's say you want to display and manage events on your site, each event having a title, a description and a date.
+  
+  #1 Declare the "events" content type
+
+    The builder provides you the **generate** command:
+
+        cd ~/Documents/LocomotiveCMS/sites/my_first_site
+        bundle exec builder generate content_type events title:string description:text event_date:date
+
+    It will generate 2 files:
+
+        app/content_types/events.yml
+        data/events.yml
+
+    The first one contains the content_type declaration, the second contains sample data so that you can test your site with fake data.
+    Some random data have been added.
+
+    <div class="alert alert-info">
+    <strong>Note:</strong>The available field types are : <code>string</code>, <code>text</code>, <code>select</code>, <code>boolean</code>, <code>date</code>, <code>belongs_to</code>, <code>has_many</code>, <code>many_to_many</code>.<br/>
+    Read more about <a href="TODO">content type declaration documentation</a>
+    </div>
+
+  #2 List events on a page
+
+    Content type entries can be accessed with `contents.<<content_type slug>>`.
+    Open `app/views/index.liquid` and add in the 'main' block:
+
+        {% raw %}<ul>
+        {% for event in contents.events %}
+          <li>{{ event.title }}</li>
+        {% endfor %}
+        </ul>
+        {% endraw %}
+
+    Test your code [http://localhost:3333](http://localhost:3333). You should see the event list.
+
+  #3 Add an "event page"
+
+    You want to display details about each event on a seperate page. Url will be /events/&lt;&lt;event slug&gt;&gt;.
+    We will use an event template page.
+
+        mkdir app/views/pages/events
+        mate app/views/pages/events/content_type_template.liquid
+
+    Note that the page filename should be content\_type\_template.
+
+    Add this code (we assume your index page contains a 'main' block):
+
+        {% raw %}---
+        title: Event template page
+        content_type: events
+        ---
+        {% extends 'index' %}
+        {% block main %}
+        <h1>{{ event.title }} on {{ event.date || localized_date: '%m/%d/%Y' }}</h1>
+        <p>{{ event.description }}</p>
+        {% endblock %}
+        {% endraw %}
+
+    OK, now let's change the index page to add a link on each event entry:
+
+        {% raw %}<ul>
+        {% for event in contents.events %}
+          <li><a href="/events/{{ event._slug }}">{{ event.title }}</a></li>
+        {% endfor %}
+        </ul>
+        {% endraw %}
+
+
+{% endblock %}

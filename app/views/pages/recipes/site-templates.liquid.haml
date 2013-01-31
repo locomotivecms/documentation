@@ -1,16 +1,20 @@
 ---
-title: Site templates
+title: How to create a site template?
 listed: true
----
-{% extends 'guides/editor' %}
 
-{% block 'content' %}
+editable_elements:
+  main/page_head_title: "How to create a site template?"
+  main/page_head_content: 
+---
+{% extends 'recipes' %}
+
+{% block 'main/left/content' %}
 :markdown
   # Listing the existing site templates
 
-      locomotive_editor list_templates
+      builder list_templates
 
-  By default, the LocomotiveEditor includes three site templates.
+  By default, the LocomotiveCMS builder includes two site templates.
 
   <table>
     <thead>
@@ -21,34 +25,30 @@ listed: true
     </thead>
     <tbody>
       <tr>
-        <td>empty</td>
+        <td>blank</td>
         <td>this is the default template, very minimal. No javascripts, no stylesheets, just the index / 404 pages</td>
       </tr>
       <tr>
         <td>twitter_bootstrap</td>
         <td>includes all the files provided by the Twitter Bootstrap package as well as the index / 404 pages</td>
       </tr>
-      <tr>
-        <td>twitter_bootstrap_haml</td>
-        <td>includes all the files provided by the Twitter Bootstrap package as the index / 404 pages but in Liquid/HAML</td>
-      </tr>
     </tbody>
   </table>
 
   # Assigning a site template when creating a new site
 
-      locomotive_editor create -n my_first_site -t twitter_bootstrap
+      builder create -n my_first_site -t twitter_bootstrap
 
   or
 
-      locomotive_editor create -n my_first_site --template twitter_bootstrap
+      builder create -n my_first_site --template twitter_bootstrap
 
   # Coding your site template
 
   It requires some Ruby skills but no so much. Do not worry, we are going
   to guide you step by step by developing an example.
 
-  ### 1. prepare your environment
+  ### 1. Prepare your environment
 
       cd ~/Documents/LocomotiveCMS/sites
       mkdir -p site_templates/my_template
@@ -58,7 +58,7 @@ listed: true
       mkdir site_templates/my_template/public/javascripts
       mkdir site_templates/my_template/public/stylesheets
 
-  ### 2. define your template in Ruby
+  ### 2. Define your template in Ruby
 
       mate site_templates/my_template.rb
 
@@ -78,7 +78,7 @@ listed: true
 
       LocomotiveEditor::SiteTemplates::Manager.register(:my_template, MyTemplate)
 
-  ### 3. edit your site
+  ### 3. Edit your site
 
   All you have to do is to populate your site by copying your existing stylesheets, javascripts, pages …etc to their target folders inside the template folder.
 
@@ -86,15 +86,15 @@ listed: true
 
       mate site_templates/my_template/app/views/pages/index.liquid.haml
 
-  ### 4. using your template
+  ### 4. Using your template
 
   Let’s see if your template is now part of the available site templates. You should see “my\_template”
 
-      locomotive_editor list_templates --lib=./site_templates/my_template.rb
+      builder list_templates --lib=./site_templates/my_template.rb
 
   Here is the command to create a new LocomotiveEditor site with your new
   template
 
-      locomotive_editor create -n another_site --template=my_template.rb --lib=./site_templates/my_template.rb
+      builder create -n another_site --template=my_template.rb --lib=./site_templates/my_template.rb
 
 {% endblock %}

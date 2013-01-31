@@ -12,24 +12,22 @@ editable_elements:
 {% block 'main/left/content' %}
 :markdown
 
-  # 1. prepare your environment
+
+  # 1. Generate a site
 
     We recommend you to store all the websites built with the builder into a same parent folder.
 
         mkdir -p ~/Documents/LocomotiveCMS/sites
         cd ~/Documents/LocomotiveCMS/sites
-
-  # 2. generate a site
-
-      builder init my_first_site -t bootstrap
+        builder init my_first_site -t bootstrap
 
     This will create a folder named **my\_first\_site** populated with a default index page and all the Twitter Bootstrap resources.
     <div class="alert alert-info">
-    <strong>Note:</strong>You can list the available templates by typing:<br />
+    <strong>Note:</strong> You can list the available templates by typing:<br />
     <code>builder list_templates</code>
     </div>
 
-    Now you need to install the necessary gems:
+    Now you need to install a few gems:
 
       cd my_first_site
       bundle install
@@ -39,7 +37,7 @@ editable_elements:
     At this point, you could version your website with <a href="http://git-scm.com">GIT</a>, <a href="http://subversion.tigris.org/">SUBVERSION</a> or any SCM.
     </div>
 
-  # 3. preview your site
+  # 2. Preview your site
 
       bundle exec builder serve
 
@@ -50,12 +48,12 @@ editable_elements:
     You can see the logs of the embedded builder server in the **log/builder.log** file of your site.
     </div>
 
-  # 4. edit your site
+  # 3. Edit your site
 
     Your site can be edited with any text editor: Sublime Text 2, Textmate, vi, emacs, ...etc. There is **no need** to stop/start the serve command when you have modified a liquid template or content type.
 
   <div class="alert alert-info">
-  <strong>Done?</strong> Learn more about the <a href="/guides/templating">templating language</a>
+  <strong>Done?</strong> Learn more about the <a href="/guides/templating">templating language</a>, or let's <a href="deployment">deploy your first site</a>
   </div>
 
 {% endblock %}

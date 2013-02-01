@@ -1,0 +1,28 @@
+---
+title: Fonts
+listed: true
+position: 2
+
+editable_elements:
+  main/page_head_title: "Fonts"
+  main/page_head_content: ""
+
+---
+{% extends 'guides/assets' %}
+
+{% block 'main/left/content' %}
+:markdown
+
+  If you have fonts in your assets and you host your website on Heroku / Amazon S3, you need to do the following steps to make it work.
+
+  - Store all your fonts in the public/fonts folder
+
+  - Create a `public/fonts/all.css` and declare your fonts in it
+
+  - Load your fonts/all.css
+
+      {{ '/fonts/all' | stylesheet_tag }}
+
+  <!-- TODO explain cross domain -->
+
+{% endblock %}

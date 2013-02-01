@@ -1,84 +1,76 @@
 ---
-title: Templating logic
-listed: false
+title: "Basics of templating: page inheritance"
+seo_title: "Basics of templating: page inheritance"
+listed: true
 position: 1
+
+editable_elements:
+  main/page_head_title: "Basics of templating: page inheritance"
+  main/page_head_content: "<p>This guide covers the basics of templating. You will see a fundamental feature of LocomotiveCMS: how to reuse a page as a layout for another one.</p>"
 ---
 {% extends 'guides/templating' %}
 
 {% block 'main/left/content' %}
 
 :markdown
-  # Templating Logic
+  
+  You can use any page as the template for another page.
+  Inheritance consists in a ([Liquid tag](liquid_syntax)), which must be written on the first line of a page.
 
-  ## Basics of inheritance
+  Create a new page, `page2.liquid`:
 
-  The logic in LocomotiveCMS is differs a bit from what you are certainly used to, it may be weird a first, but it's actually very simple.
+      {% raw %}{% extends 'index' %}{% endraw %}
 
-  In the classic, Rails way, you have the following architecture, with page's content integrated in the application layout using the ``` yield ``` statement :
+  In this case, 'page2' will inherit from the 'index' page: it will have the same content.
 
-      +- Views
-          +- layout
-              +- application
-          +- mysite
-              +- index
-              +- first page
-              +- second page
+  Of course you will want to change some parts in page2, that's when the `block` tag appears. 
+  When you create a new site, you will see that a 'main' block is already declared in
 
-  In Locomotive, it's a bit different :
+  In your index page, create a block tag:
 
-      +- Pages
-          +- index
-              +- first page
-              +- second page
+      {% raw %}{% block 'main' %}This is the content for the homepage{% endblock %}{% endraw %}
 
-  All pages inherit from index. This way, the index contains the application's layout and the index page content. How do you re-use the layout without re-using the index page content ? By introducing
+  In page2, you can override the 'main' block:
 
-  {% raw %}
-      {% block 'block_name' %} ... {% endblock %}
-  {% endraw %}
+      {% raw %}{% block 'main' %}This is the content for the page 2{% endblock %}{% endraw %}
 
-  Since all pages inherit from index, you declare blocks of content inside the layout (index), which will be overwritten in child pages. Here is a the simplest example :
+  By extending index, page2 re-uses all of its content, except the content inside the ```{% raw %} {% block %} {% endraw %}``` tag which is overwritten.
+  
+  You can have as many ```{% raw %} {% block %} {% endraw %}``` tags as you want, everywhere in the layout, as long as the name of each block is unique.
 
-  Index page :
+  <div class="alert alert-info">
+  <strong>Note:</strong> Blocks can have any name, but you should make avoid to change them in the future because some data will be attached to this name.
+  </div>
 
-  {% raw %}
-      <html>
-        <head>
-          <title>My index page</title>
-        </head>
-        <body>
-          <header>
-            layout header
-          </header>
-          <div id="content">
-            {% block content %}
-              the content of the index page
-            {% endblock %}
-          </div>
-          <footer>
-            layout footer
-          </footer>
-        </body>
-      </html>
-  {% endraw %}
+  # Inherited blocks
 
-  A page, which inherits from index :
+  You might want to inherit blocks.
 
-  {% raw %}
-      {% extends parent %}
+  Change index.liquid:
 
-      {% block content %}
-        the content of this page
-      {% endblock %}
-  {% endraw %}
+      {% raw %}<div class="container">
+      {% block 'main' %}
+        <div class="left">
+        {% block 'left' %}
+          Left block content
+        {% endblock %}
+        </div>
+        <div class="right">
+        {% block 'right' %}
+          Right block content
+        {% endblock %}
+        </div>
+      {% endblock %}{% endraw %}
 
-  By extending index, 'a-page' re-use all of its content, except the content inside the ```{% raw %} {% block %} {% endraw %}``` tag which is overwritten. This tag is written with the Liquid syntax which will is explained later.
+  Now, in page2.liquid, if you only want to override the right block:
 
-  You can have as many ```{% raw %} {% block %} {% endraw %}``` tags as you want, everywhere in the layout, as long as the name of each block is unique. For a basic application which only have one layout, that's all you need to know.
+      {% raw %}{% extends 'index' %}
+      {% block 'main/right' %}
+      I just want to override the right block in page2, thanks.
+      {% endblock %}{% endraw %}
 
-  ## Going further
-
-  ### Several levels of inheritance
+  / TODO here
+  # Several levels of inheritance
 
   The principle of page's inheritance can be applied to every page.
   When you create a page, it automatically inherits from index, but you can also make it inherits from another page, by specifying it's parent :

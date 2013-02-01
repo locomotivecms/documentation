@@ -1,7 +1,7 @@
 ---
 title: Liquid syntax
-published: true
-listed: true
+published: false
+listed: false
 position: 2
 ---
 {% extends 'guides/templating' %}
@@ -23,29 +23,21 @@ position: 2
 
   Erb :
 
-  {% raw %}
-      <%= @product.name %>
-  {% endraw %}
+      {% raw %}<%= @product.name %>{% endraw %}
 
   Liquid :
 
-  {% raw %}
-      {{ product.name }}
-  {% endraw %}
+      {% raw %}{{ product.name }}{% endraw %}
 
   ### Tag markup : matched pairs of culry brackets and percent, not resolved to text :
 
   Erb :
 
-  {% raw %}
-      <% name = @product.name %>
-  {% endraw %}
+      {% raw %}<% name = @product.name %>{% endraw %}
 
   Liquid :
 
-  {% raw %}
-      {% assign name with product.name %}
-  {% endraw %}
+      {% raw %}{% assign name with product.name %}{% endraw %}
 
   Liquid is extracted from http://www.shopify.com, but LocomotiveCMS extends it.
   To cover all, we will distinguish 3 cases :
@@ -64,8 +56,7 @@ position: 2
 
   You can either use the object ``` site ``` and have the same meta all over your website :
 
-  {% raw %}
-      <html>
+      {% raw %}<html>
         <head>
           <title>{{ site.seo_title }}</title>
           <meta name='description' content='{{ site.meta_description }}' />
@@ -73,13 +64,11 @@ position: 2
         </head>
         <body>
         </body>
-      </html>
-  {% endraw %}
+      </html>{% endraw %}
 
   Or you can define SEO meta for each ``` page ``` :
 
-  {% raw %}
-      <html>
+      {% raw %}<html>
         <head>
           <title>{{ page.seo_title }}</title>
           <meta name='description' content='{{ page.meta_description }}' />
@@ -87,8 +76,7 @@ position: 2
         </head>
         <body>
         </body>
-      </html>
-  {% endraw %}
+      </html>{% endraw %}
 
   ## Filters
 

@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 6
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -23,8 +23,7 @@ position: 6
     You must give these sections a unique name because they will be inherited by children.
   </div>
 
-  {% raw %}
-      {% editable_file "banner", hint: "Upload a banner (perfect size: 300px by 100px)", priority: 1 %}
+      {% raw %}{% editable_file "banner", hint: "Upload a banner (perfect size: 300px by 100px)", priority: 1 %}
       http://placehold.it/300x100
       {% endeditable_file %}
   {% endraw %}

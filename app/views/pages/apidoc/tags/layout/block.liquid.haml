@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 2
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -18,8 +18,7 @@ position: 2
   Nesting blocks is fine. However, their names must be unique.
   </div>
 
-  {% raw %}
-      {% block sidebar %}
+      {% raw %}{% block sidebar %}
       Sidebar goes here
       {% endblock %}
 

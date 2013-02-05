@@ -32,8 +32,7 @@ editable_elements:
   - select "RSS" as the response type in the "Advanced options".
   - fill the template
 
-  {% raw %}
-      <?xml version="1.0" encoding="UTF-8"?>
+      {% raw %}<?xml version="1.0" encoding="UTF-8"?>
       <rss version="2.0"
         xmlns:content="http://purl.org/rss/1.0/modules/content/"
         xmlns:wfw="http://wellformedweb.org/CommentAPI/"
@@ -72,8 +71,7 @@ editable_elements:
 
   If you want the browsers and news readers to auto-detect your RSS feed, add the following statement within the "head" tag of your template.
 
-  {% raw %}
-      {{ '/articles/rss.xml' | auto_discovery_link_tag }}
+      {% raw %}{{ '/articles/rss.xml' | auto_discovery_link_tag }}
   {% endraw %}
 
 {% endblock %}

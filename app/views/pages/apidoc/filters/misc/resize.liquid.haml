@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 2
 ---
-{% extends 'reference/filters' %}
+{% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
 
@@ -14,8 +14,7 @@ position: 2
   Resize any image on the fly by calling behind the scene the DragonFly gem.
   The url to the dynamically resized image is returned. The processing relies on ImageMagick.
 
-  {% raw %}
-      {{ project.screenshot | resize: '100x100' }}
+      {% raw %}{{ project.screenshot | resize: '100x100' }}
       {{ 'http://example.com/images/banner.png' | resize: '300x50#' }}
   {% endraw %}
 

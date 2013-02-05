@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 5
 ---
-{% extends 'reference/filters' %}
+{% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
 
@@ -13,8 +13,7 @@ position: 5
 
   Return the link tag of a theme stylesheet
 
-  {% raw %}
-      {{ 'application.js' | javascript_tag }}
+      {% raw %}{{ 'application.js' | javascript_tag }}
   {% endraw %}
 
   **Example**: Returns <script src="/sites/<site_id>javascripts/application.js" type="text/javascript"></script>

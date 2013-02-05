@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 5
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -18,8 +18,7 @@ position: 5
     <b>closing HEAD tag.</b>
   </div>
 
-  {% raw %}
-      {% inline_editor %}
+      {% raw %}{% inline_editor %}
   {% endraw %}
 
 {% endblock %}

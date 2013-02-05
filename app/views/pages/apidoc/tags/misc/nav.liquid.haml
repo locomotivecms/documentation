@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 1
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -23,14 +23,12 @@ position: 1
   The order is based on the one you specify in your LocomotiveCMS back-office.
   </div>
 
-  {% raw %}
-      {% nav 'parent', depth: 1, no_wrapper: false, exlude: nil, icon: false %}
+      {% raw %}{% nav 'parent', depth: 1, no_wrapper: false, exlude: nil, icon: false %}
   {% endraw %}
 
   ### A more complex example:
 
-  {% raw %}
-      {% nav site, exclude: '\.*\-bottom', depth: 2, snippet: menu_entry %}
+      {% raw %}{% nav site, exclude: '\.*\-bottom', depth: 2, snippet: menu_entry %}
       {% block misc_properties %}
         {% editable_short_text menu_teaser %}{% endeditable_short_text %}
         {% editable_file menu_image %}{% endeditable_file %}
@@ -39,8 +37,7 @@ position: 1
 
   nav tag in the page
 
-  {% raw %}
-      {{ page.menu_teaser }}
+      {% raw %}{{ page.menu_teaser }}
       {{ page.menu_image }}
   {% endraw %}
 

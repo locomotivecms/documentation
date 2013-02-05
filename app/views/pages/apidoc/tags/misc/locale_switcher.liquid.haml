@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 2
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -19,8 +19,7 @@ position: 2
     Nothing will be displayed if you do not select at least 2 locales for your site.
   </div>
 
-  {% raw %}
-      {% locale_switcher label: locale, sep: ' - ' %}
+      {% raw %}{% locale_switcher label: locale, sep: ' - ' %}
   {% endraw %}
 
   ### Options

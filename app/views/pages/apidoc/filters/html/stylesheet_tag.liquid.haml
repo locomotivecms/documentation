@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 7
 ---
-{% extends 'reference/filters' %}
+{% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
 
@@ -13,8 +13,7 @@ position: 7
 
   Return the link tag of a theme stylesheet
 
-  {% raw %}
-      {{ 'application.css' | stylesheet_tag }}
+      {% raw %}{{ 'application.css' | stylesheet_tag }}
   {% endraw %}
 
   **Example**: Returns

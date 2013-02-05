@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 6
 ---
-{% extends 'reference/filters' %}
+{% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
 
@@ -13,9 +13,7 @@ position: 6
 
   Return the url of a theme asset stylesheet
 
-  {% raw %}
-      {{ 'application.css' | stylesheet_url }}
-  {% endraw %}
+      {% raw %}{{ 'application.css' | stylesheet_url }}{% endraw %}
 
   **Example**: Returns "/sites/<site_id>/theme/stylesheets/application.css"
 

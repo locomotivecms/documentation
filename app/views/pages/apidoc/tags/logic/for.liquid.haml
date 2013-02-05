@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 3
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -14,8 +14,7 @@ position: 3
   Loop over a collection.
 
 
-  {% raw %}
-      {% for item in array %}
+      {% raw %}{% for item in array %}
         {{ item }}
       {% endfor %}
   {% endraw %}
@@ -23,8 +22,7 @@ position: 3
   Instead of looping over an existing collection, you can define a range of numbers to loop through. The range can be defined by both literal and variable numbers:
 
 
-  {% raw %}
-      # if item.quantity is 4...
+      {% raw %}# if item.quantity is 4...
       {% for i in (1..item.quantity) %}
         {{ i }}
       {% endfor %}

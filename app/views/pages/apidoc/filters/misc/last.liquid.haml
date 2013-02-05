@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 5
 ---
-{% extends 'reference/filters' %}
+{% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
 
@@ -16,14 +16,12 @@ position: 5
   If it is an Array, the last entry is returned.
   If the input is a collection, the last method is called on that collection.
 
-  {% raw %}
-      {{ [42, 0] | last }}
+      {% raw %}{{ [42, 0] | last }}
   {% endraw %}
 
   **Example**: Returns 0
 
-  {% raw %}
-      {{ 'Hello World' | last }}
+      {% raw %}{{ 'Hello World' | last }}
   {% endraw %}
 
   **Example**: Returns "d"

@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 8
 ---
-{% extends 'reference/filters' %}
+{% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
 
@@ -13,8 +13,7 @@ position: 8
 
   Return the url of a theme image
 
-  {% raw %}
-      {{ 'banner.png' | theme_image_url }}
+      {% raw %}{{ 'banner.png' | theme_image_url }}
   {% endraw %}
 
   **Example**: Returns

@@ -1,7 +1,7 @@
 ---
 title: Templating logic
 listed: false
-position: 1
+published: false
 ---
 {% extends 'guides/templating' %}
 
@@ -33,16 +33,14 @@ position: 1
 
   All pages inherit from index. This way, the index contains the application's layout and the index page content. How do you re-use the layout without re-using the index page content ? By introducing
 
-  {% raw %}
-      {% block 'block_name' %} ... {% endblock %}
+      {% raw %}{% block 'block_name' %} ... {% endblock %}
   {% endraw %}
 
   Since all pages inherit from index, you declare blocks of content inside the layout (index), which will be overwritten in child pages. Here is a the simplest example :
 
   Index page :
 
-  {% raw %}
-      <html>
+      {% raw %}<html>
         <head>
           <title>My index page</title>
         </head>
@@ -64,8 +62,7 @@ position: 1
 
   A page, which inherits from index :
 
-  {% raw %}
-      {% extends parent %}
+      {% raw %}{% extends parent %}
 
       {% block content %}
         the content of this page
@@ -113,8 +110,7 @@ position: 1
   Let's say your website needs two layouts, how do it without putting the entire index in ```{% raw %} {% block %} {% endraw %}``` tags ? It's actually fairly simple : you are not forced to make a page inherits its content from another.
 
   Remember the previous page we created which inherited from index :
-  {% raw %}
-      {% extends parent %}
+      {% raw %}{% extends parent %}
 
       {% block content %}
         the content of this page
@@ -142,8 +138,7 @@ position: 1
 
   First, the index page :
 
-  {% raw %}
-      <html>
+      {% raw %}<html>
       <head>
         <title>The Main Layout</title>
       </head>
@@ -165,8 +160,7 @@ position: 1
 
   The "normal" page, which inherits from it index :
 
-  {% raw %}
-      {% extends parent %}
+      {% raw %}{% extends parent %}
 
       {% block main_content %}
         the content of the normal page
@@ -175,8 +169,7 @@ position: 1
 
   Then the "alternate layout" page, which doesn't extends its parent, index :
 
-  {% raw %}
-      <html>
+      {% raw %}<html>
         <head>
           <title>The Alternate Layout</title>
         </head>
@@ -198,8 +191,7 @@ position: 1
 
   And finally, the "alternate page", which inherits from "alternate layout". You may notice the ```{% raw %} {% extends alternate_layout %} {% endraw %}``` instead of ```{% raw %} {% extends parent %} {% endraw %}```, as explained in the previous part.
 
-  {% raw %}
-      {% extends alternate_layout %}
+      {% raw %}{% extends alternate_layout %}
 
       {% block alternate_content %}
         the content of alternate page, using the layout defined in alternate_layout.liquid.html
@@ -223,8 +215,7 @@ position: 1
 
   Here is the index, which includes the sidebar, and also loops on products model and include the snippet "product_information" at each product item :
 
-  {% raw %}
-      <html>
+      {% raw %}<html>
         <head>
           <title>Snippet example</title>
         </head>
@@ -247,16 +238,14 @@ position: 1
 
   Then the sidebar :
 
-  {% raw %}
-      <div id="sidebar">
+      {% raw %}<div id="sidebar">
         the sidebar
       </div>
   {% endraw %}
 
   And finally the product_information snippet which uses the context "product" :
 
-  {% raw %}
-      <div class="product">
+      {% raw %}<div class="product">
       {{ product.name }} :  {{ product.price }}$
       </div>
   {% endraw %}

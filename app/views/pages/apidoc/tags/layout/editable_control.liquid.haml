@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 7
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -23,8 +23,7 @@ position: 7
   You must give these sections a unique name because they will be inherited by children.
   </div>
 
-  {% raw %}
-      {% capture menu_enabled %}
+      {% raw %}{% capture menu_enabled %}
         {% editable_control "menu", options: 'true=Yes,false=No', hint: "Tell if the menu is displayed or not", priority: 1 %}
         false
         {% endeditable_control %}

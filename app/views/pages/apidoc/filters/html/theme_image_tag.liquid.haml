@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 9
 ---
-{% extends 'reference/filters' %}
+{% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
 
@@ -13,8 +13,7 @@ position: 9
 
   Return the image tag of a theme image
 
-  {% raw %}
-      {{ 'banner.png' | theme_image_tag: 'alt:hello world' }}
+      {% raw %}{{ 'banner.png' | theme_image_tag: 'alt:hello world' }}
   {% endraw %}
 
   Example: Returns

@@ -4,23 +4,21 @@ published: true
 listed: true
 position: 4
 ---
-{% extends 'reference/objects' %}
+{% extends 'apidoc/objects' %}
 
 {% block 'main/left/content' %}
 
 :markdown
   # Content Type (or model)
 
-  {% raw %}
-      {{ content_types.projects.size }}
+      {% raw %}{{ content_types.projects.size }}
   {% endraw %}
 
   **Example**: Display the number of elements of the entries stored in the Projects model.
 
   ### Syntax
 
-  {% raw %}
-      {{ content_types.<name> }}
+      {% raw %}{{ content_types.<name> }}
   {% endraw %}
 
   name is the slug attribute of your content type.

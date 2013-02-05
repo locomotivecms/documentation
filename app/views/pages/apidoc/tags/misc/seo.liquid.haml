@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 4
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -17,14 +17,12 @@ position: 4
   - if the keywords / description of the page are filled up, use them.
   - finally, use those of the site if the previous objects failed to return non-blank keywords / description.
 
-  {% raw %}
-      {% seo %}
+      {% raw %}{% seo %}
   {% endraw %}
 
   Alternatively, you can access the keywords and description directly from an object among those: site, page, content_entry.
 
-  {% raw %}
-      {{ title.keywords }}
+      {% raw %}{{ title.keywords }}
       {{ title.description }}
 
       {{ page.keywords }}

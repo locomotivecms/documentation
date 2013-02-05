@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 2
 ---
-{% extends 'reference/filters' %}
+{% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
 
@@ -13,8 +13,7 @@ position: 2
 
   Replaces underscores with dashes in the string.
 
-  {% raw %}
-      {{ 'hello_world' | dasherize }}
+      {% raw %}{{ 'hello_world' | dasherize }}
   {% endraw %}
 
   **Example**: Returns hello-bar

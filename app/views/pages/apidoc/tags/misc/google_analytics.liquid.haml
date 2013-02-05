@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 3
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -20,8 +20,7 @@ position: 3
     <b>closing BODY tag.</b>
   </div>
 
-  {% raw %}
-      {% google_analytics 'UA-424242' %}
+      {% raw %}{% google_analytics 'UA-424242' %}
   {% endraw %}
 
 {% endblock %}

@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 2
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -13,8 +13,7 @@ position: 2
 
   When evaluating a large number of conditions.
 
-  {% raw %}
-      {% case condition %}
+      {% raw %}{% case condition %}
       {% when 1 %}
         hit 1
       {% when 2 %}

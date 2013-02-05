@@ -5,7 +5,7 @@ listed: true
 position: 1
 
 editable_elements:
-  main/page_head_title: "Basics of templating: page inheritance"
+  main/page_head_title: "Basics of templating: page inheritance and blocks"
   main/page_head_content: "<p>This guide covers the basics of templating. You will see a fundamental feature of LocomotiveCMS: how to reuse a page as a layout for another one.</p>"
 ---
 {% extends 'guides/templating' %}
@@ -17,26 +17,27 @@ editable_elements:
   You can use any page as the template for another page.
   Inheritance consists in a ([Liquid tag](liquid_syntax)), which must be written on the first line of a page.
 
-  Create a new page, `page2.liquid`:
+  We assume you have a created a blank site with the default 'index' page. Create a new page, `app/views/pages/page2.liquid`, containing:
 
       {% raw %}{% extends 'index' %}{% endraw %}
 
   In this case, 'page2' will inherit from the 'index' page: it will have the same content.
 
   Of course you will want to change some parts in page2, that's when the `block` tag appears. 
-  When you create a new site, you will see that a 'main' block is already declared in
-
-  In your index page, create a block tag:
+  
+  In your index page, create a block tag (it probably already exists if you've just created a blank site) like this:
 
       {% raw %}{% block 'main' %}This is the content for the homepage{% endblock %}{% endraw %}
 
-  In page2, you can override the 'main' block:
+  In page2, you can override the 'main' block writing:
 
       {% raw %}{% block 'main' %}This is the content for the page 2{% endblock %}{% endraw %}
 
-  By extending index, page2 re-uses all of its content, except the content inside the ```{% raw %} {% block %} {% endraw %}``` tag which is overwritten.
+  By extending index, page2 re-uses all of its content, except the content inside the {% raw %}`{% block %}`{% endraw %} tag which is overwritten.
+
+  Test it by running the site (run `bundle exec builder serve` then *[http://0.0.0.0:3333](http://0.0.0.0:3333)*).
   
-  You can have as many ```{% raw %} {% block %} {% endraw %}``` tags as you want, everywhere in the layout, as long as the name of each block is unique.
+  You can have as many {% raw %}`{% block %}`{% endraw %} tags as you want, everywhere in the layout, as long as the name of each block is unique.
 
   <div class="alert alert-info">
   <strong>Note:</strong> Blocks can have any name, but you should make avoid to change them in the future because some data will be attached to this name.
@@ -62,31 +63,44 @@ editable_elements:
         </div>
       {% endblock %}{% endraw %}
 
-  Now, in page2.liquid, if you only want to override the right block:
+  Now, in page2.liquid, if you only want to override the right block, you must give the absolute path of the block:
 
       {% raw %}{% extends 'index' %}
       {% block 'main/right' %}
       I just want to override the right block in page2, thanks.
       {% endblock %}{% endraw %}
 
-  / TODO here
   # Several levels of inheritance
 
   The principle of page's inheritance can be applied to every page.
-  When you create a page, it automatically inherits from index, but you can also make it inherits from another page, by specifying it's parent :
+  The index page is always the root page: you can either use {% raw %}`{% extends 'index' %}` or `{% extends 'parent' %}`{% endraw %}.
 
-  By doing so, you can define as many levels as you want :
+  A page generally inherits from index, but you can also make it inherits from any other page by using its slug, or its parent page.
 
-      +- Pages
-          +- index
-              +- first page
-                  +- child of first page
-                      +- child of first page's child
-              +- second page
+  Consider the following page hierarchy:
 
-  **Inherit from an other page than the parent one**
+      +- index
+          +- first page
+              +- child of first page
+          +- second page
 
-  When you extend the parent's layout, you use the tag ```{% raw %} {% extends parent %} ```, but what if you would like to extends a page which isn't a direct parent ?
+  In the builder, you will use folders to reflect the pages hierarchy. Create a folder and a template page with the same name: the template will become the parent of any page in the folder.
+
+      +- app/views/pages/
+          +- index.liquid
+          +- first-page.liquid
+          +- first-page/
+              +- child-of-first-page.liquid
+          +- second-page.liquid
+
+  `first-page` can either extend 'parent' or 'index'.
+  `child-of-first-page.liquid` can either extend 'first-page' or 'parent'.
+
+  This is very usefull when you need a generic template, and a specific template for a group of pages (ex: same left column).
+
+  # Inherit from an other page than the parent one
+
+  When you extend the parent's layout, you use the tag {% raw %}`{% extends parent %}`{% endraw %}, but what if you would like to extends a page which isn't a direct parent ?
 
   For example, how would you make "first page" extends "second page" ?
 
@@ -95,163 +109,17 @@ editable_elements:
               +- first page
               +- second page
 
-  It's simple : ``` {% extends first_page %} ``` !
+  It's simple : `{% raw %}{% extends 'first_page' %}{% endraw %}` !
   You specify the page you want to extend with its *slug*.
 
-  src: http://doc.locomotivecms.com/templates/tags#extends-section
+  Learn more:
 
-  ### What about several layouts ?
+  - [**extend** tag documentation](/apidoc/tags/layout/extends).
+  - [**block** tag documentation](/apidoc/tags/layout/block).
 
-  Let's say your website needs two layouts, how do it without putting the entire index in ```{% raw %} {% block %} {% endraw %}``` tags ? It's actually fairly simple : you are not forced to make a page inherits its content from another.
-
-  Remember the previous page we created which inherited from index :
-  {% raw %}
-      {% extends parent %}
-
-      {% block content %}
-        the content of this page
-      {% endblock %}
-  {% endraw %}
-
-  Well, actually the tag ```{% raw %} {% extends parent %} {% endraw %}``` can be removed, so the page doesn't extends any other page, letting you define a brand new layout if needed.
-
-  Let's illustrate this with an example:
-
-  - the main layout of the site will be define in index
-  - a second layout will be defined in a page called "alternate_layout"
-  - we will have a page called "normal" which will use the main layout
-  - and finally an other page called "alternate_page" which will use the alternate layout
-
-  The skeleton will look like that :
-
-      +- Pages
-          +- index
-              +- normal
-              +- alternate_layout
-                  +- alternate_page
-
-  Here we go :
-
-  First, the index page :
-
-  {% raw %}
-      <html>
-      <head>
-        <title>The Main Layout</title>
-      </head>
-      <body>
-        <header>
-          Main header
-        </header>
-        <div id="content">
-          {% block main_content %}
-            the content of the index page
-          {% endblock %}
-        </div>
-        <footer>
-          Main footer
-        </footer>
-      </body>
-      </html>
-  {% endraw %}
-
-  The "normal" page, which inherits from it index :
-
-  {% raw %}
-      {% extends parent %}
-
-      {% block main_content %}
-        the content of the normal page
-      {% endblock %}
-  {% endraw %}
-
-  Then the "alternate layout" page, which doesn't extends its parent, index :
-
-  {% raw %}
-      <html>
-        <head>
-          <title>The Alternate Layout</title>
-        </head>
-        <body>
-          <header>
-            Alternate header
-          </header>
-          <div id="content">
-            {% block alternate_content %}
-              the content of the alternate layout page, it can be empty if you just want to define an empty layout
-            {% endblock %}
-          </div>
-          <footer>
-            Alternate footer
-          </footer>
-        </body>
-      </html>
-  {% endraw %}
-
-  And finally, the "alternate page", which inherits from "alternate layout". You may notice the ```{% raw %} {% extends alternate_layout %} {% endraw %}``` instead of ```{% raw %} {% extends parent %} {% endraw %}```, as explained in the previous part.
-
-  {% raw %}
-      {% extends alternate_layout %}
-
-      {% block alternate_content %}
-        the content of alternate page, using the layout defined in alternate_layout.liquid.html
-      {% endblock %}
-  {% endraw %}
-
-
-  ### Snippets
-
-  To conclude with templating basics, it's worth to know that LocomotiveCMS gives you the ability to put some blocks of code in a separate file called snippet, in the same way Rails does with partials.
-  That's very useful when you have to build a modular layout without repeating code.
-
-  Like Rails, you can pass a variable to the snippet, or simply include a static bloc of code. The following example will cover both cases, don't bother with the liquid syntax which will be explained in the next part.
-
-      +- Pages
-          +- index
-      +- Snippets
-          +- sidebar
-          +- product_information
-
-
-  Here is the index, which includes the sidebar, and also loops on products model and include the snippet "product_information" at each product item :
-
-  {% raw %}
-      <html>
-        <head>
-          <title>Snippet example</title>
-        </head>
-        <body>
-          <header>
-          </header>
-          <div id="content">
-            <!-- Loop on products  -->
-            {% for product in contents.products %}
-              <!-- Include "product_information" snippet with the current product -->
-              {% include 'product_information' with product %}
-            {% endfor %}
-          </div>
-          {% include 'sidebar' %}
-          <footer>
-          </footer>
-        </body>
-      </html>
-  {% endraw %}
-
-  Then the sidebar :
-
-  {% raw %}
-      <div id="sidebar">
-        the sidebar
-      </div>
-  {% endraw %}
-
-  And finally the product_information snippet which uses the context "product" :
-
-  {% raw %}
-      <div class="product">
-      {{ product.name }} :  {{ product.price }}$
-      </div>
-  {% endraw %}
+  <div class="alert alert-info">
+  <strong>Note:</strong> Have a look to the <a href="snippets">snippet guide</a>: it allow you to re-use a block of code in several templates.
+  </div>
 
 
   {% endblock %}

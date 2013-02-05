@@ -1,3 +1,5 @@
+THIS PAGE IS DEPRECIATED
+
 {% extends 'guides/getting-started' %}
 
 {% block 'main/left/content' %}
@@ -81,7 +83,7 @@
   Make sure you are still on the parent folder of my_first_website and run:
 
       locomotive_editor run -n my_first_website
-      open http://0.0.0.0:4567
+      open http://0.0.0.0:3333
 
   Here you go, you can now modify your sites within your IDE. By simply refresh your browser, you will able to see the changes you have just made !
 
@@ -101,13 +103,12 @@
   Let's use some Liquid markups. Liquid is a templating library extracted from Shopify, the project is hosted at http://liquidmarkup.org. LocomotiveCMS reuses a lot of the original library.
 
   The index page already exists: check out `app/views/index.liquid`. You can see a "Liquid block" : 
-  {% raw %}`{% block 'main' %}` (...) `{% endblock %}`{% endraw %}.
+      {% raw %}`{% block 'main' %}` (...) `{% endblock %}`{% endraw %}.
   It simply means that anything in the "main" block can be overriden on a child page.
   
   With your IDE, create a second page `app/view/page2.liquid` with this content: 
   
-  {% raw %}
-      {% extends parent %}
+      {% raw %}{% extends parent %}
       {% block 'main' %}
         Hey, you're in page 2!
       {% endblock %}
@@ -128,42 +129,9 @@
 
   TODO avec le builder (plus de site.yml).
 
-  # 6. Basic Liquid markups
 
-  We have already seen a first kind of markup: {% raw %}`{% block 'main' %}` (...) `{% endblock %}`{% endraw %}.
-  The second kind of markup is used to output text. You already have one example in your index file {% raw %}`{{ page.tile }}`{% endraw %}.
 
-  # 7. Add images, stylesheets and javascripts
-
-  Let's say you want to add logo.jpg on your index page.
-  Add logo.gif to
-
-      public/images
-
-  Using `<img src="/images/logo.jpg" />` will work when you use the builder server, but it won't when you will deploy your site.
-  External assets (images, javascripts, stylesheets...) must use Liquid filters to get their public urls.
-
-      <img src="{{ 'logo.jpg' | theme_image_url }}" alt="" />
-
-  Note that your image path is simplier, you don't need the "image" folder. Still, you can create subfolders:
-
-      public/images/icons/ajax-loader.gif
-
-  will be refered this way:
-
-      <img src="{{ 'icons/ajax-loader.gif' | theme_image_url }}" alt="" />  
-
-  Put your javascripts in the `public/javascripts` folder then use the javascript_tag:
-
-  {% raw %}
-      {{ 'libs/jquery-1.8.2.min' | javascript_tag }}
-  {% endraw %}
-
-  Same for stylesheets:
-
-  {% raw %}
-      {{ 'styles.css' | stylesheet_tag: 'screen, projection' }}
-  {% endraw %}
+  
 
   # 7. Deploy your site!
 

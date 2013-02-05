@@ -4,15 +4,14 @@ published: true
 listed: true
 position: 2
 ---
-{% extends 'reference/objects' %}
+{% extends 'apidoc/objects' %}
 
 {% block 'main/left/content' %}
 
 :markdown
   # Site
 
-  {% raw %}
-      {{ site.name }}
+      {% raw %}{{ site.name }}
   {% endraw %}
 
   **Example**: Display the name of the current site

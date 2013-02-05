@@ -4,14 +4,13 @@ published: true
 listed: true
 position: 5
 ---
-{% extends 'reference/objects' %}
+{% extends 'apidoc/objects' %}
 
 {% block 'main/left/content' %}
 
 :markdown
   # Content Entry
-  {% raw %}
-      {{ content_types.projects.first.name }}
+      {% raw %}{{ content_types.projects.first.name }}
   {% endraw %}
 
   **Example**: Display the name of the first projects. "name" being one of the custom fields described in the content type "Projects".

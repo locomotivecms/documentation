@@ -1,8 +1,7 @@
 ---
 title: Creating a page
-published: true
-listed: true
-position: 3
+published: false
+listed: false
 ---
 {% extends 'guides/templating' %}
 
@@ -31,8 +30,7 @@ position: 3
 
   These meta values will then be available for use in the template with Liquid tags, this way :
 
-  {% raw %}
-      <title>{{ page.seo_title }}</title>
+      {% raw %}<title>{{ page.seo_title }}</title>
       <meta name="keywords" content="{{ page.keywords }}"/>
       <meta name="description" content="{{ page.description }}"/>
   {% endraw %}

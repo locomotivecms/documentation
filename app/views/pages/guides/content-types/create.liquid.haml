@@ -5,7 +5,7 @@ position: 1
 
 editable_elements:
   main/page_head_title: "How to create a content type?"
-  main/page_head_content: ""
+  main/page_head_content: "<p>This guide provides a use case of content types: making an events list and event pages</p>"
 
 ---
 {% extends 'guides/content-types' %}
@@ -26,11 +26,11 @@ editable_elements:
         app/content_types/events.yml
         data/events.yml
 
-    The first one contains the content_type declaration, the second contains sample data so that you can test your site with fake data.
+    The first one contains the content\_type declaration, the second contains sample data so that you can test your site with fake data.
     Some random data have been added.
 
     <div class="alert alert-info">
-    <strong>Note:</strong>The available field types are : <code>string</code>, <code>text</code>, <code>select</code>, <code>boolean</code>, <code>date</code>, <code>belongs_to</code>, <code>has_many</code>, <code>many_to_many</code>.<br/>
+    <strong>Note:</strong>The available field types are : <code>string</code>, <code>text</code>, <code>select</code>, <code>boolean</code>, <code>date</code>, <code>belongs\_to</code>, <code>has\_many</code>, <code>many\_to\_many</code>.<br/>
     Read more about <a href="TODO">content type declaration documentation</a>
     </div>
 
@@ -43,8 +43,7 @@ editable_elements:
         {% for event in contents.events %}
           <li>{{ event.title }}</li>
         {% endfor %}
-        </ul>
-        {% endraw %}
+        </ul>{% endraw %}
 
     Test your code [http://localhost:3333](http://localhost:3333). You should see the event list.
 
@@ -68,8 +67,7 @@ editable_elements:
         {% block main %}
         <h1>{{ event.title }} on {{ event.date || localized_date: '%m/%d/%Y' }}</h1>
         <p>{{ event.description }}</p>
-        {% endblock %}
-        {% endraw %}
+        {% endblock %}{% endraw %}
 
     OK, now let's change the index page to add a link on each event entry:
 
@@ -77,8 +75,7 @@ editable_elements:
         {% for event in contents.events %}
           <li><a href="/events/{{ event._slug }}">{{ event.title }}</a></li>
         {% endfor %}
-        </ul>
-        {% endraw %}
+        </ul>{% endraw %}
 
 
 {% endblock %}

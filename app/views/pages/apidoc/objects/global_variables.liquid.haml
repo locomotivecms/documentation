@@ -4,15 +4,14 @@ published: true
 listed: true
 position: 1
 ---
-{% extends 'reference/objects' %}
+{% extends 'apidoc/objects' %}
 
 {% block 'main/left/content' %}
 
 :markdown
   # Global variables
 
-  {% raw %}
-      {{ now }}
+      {% raw %}{{ now }}
   {% endraw %}
 
   **Example**: Display the current date

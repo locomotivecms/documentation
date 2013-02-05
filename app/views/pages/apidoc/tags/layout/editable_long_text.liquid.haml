@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 5
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -23,7 +23,7 @@ position: 5
     You must give these sections a unique name because they will be inherited by children.
   </div>
 
-  {% raw %}
+      {% raw %}
 
       {% editable_long_text "tagline", hint: "The tagline below the big title", priority: 1 %}
       Lorem ipsum (default content)

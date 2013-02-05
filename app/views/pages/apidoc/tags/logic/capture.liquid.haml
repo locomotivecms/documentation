@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 5
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -13,8 +13,7 @@ position: 5
 
   Combine a number of strings into a single string and save it to a variable.
 
-  {% raw %}
-      {% capture full_name %}{{ person.first_name }} {{ person.last_name }}{% endcapture %}
+      {% raw %}{% capture full_name %}{{ person.first_name }} {{ person.last_name }}{% endcapture %}
       {{ full_name }}
   {% endraw %}
 

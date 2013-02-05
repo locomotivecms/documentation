@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 1
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -24,10 +24,8 @@ position: 1
   You do not need to close this tag.
   </div>
 
-  {% raw %}
-      {% extends parent %}
-      {% extends 'support/index' %}
-  {% endraw %}
+      {% raw %}{% extends parent %}
+      {% extends 'support/index' %}{% endraw %}
 
 
 {% endblock %}

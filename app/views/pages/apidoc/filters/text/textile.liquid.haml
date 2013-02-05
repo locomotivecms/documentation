@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 6
 ---
-{% extends 'reference/filters' %}
+{% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
 
@@ -13,8 +13,7 @@ position: 6
 
   Convert a Markdown-formatted string into HTML.
 
-  {% raw %}
-      {{ '### Header' | textile }}
+      {% raw %}{{ '### Header' | textile }}
   {% endraw %}
 
   **Example**: Returns

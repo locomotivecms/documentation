@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 2
 ---
-{% extends 'reference/filters' %}
+{% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
 
@@ -13,8 +13,7 @@ position: 2
 
   Embed a flash movie into a page
 
-  {% raw %}
-      {{ 'http://youtube.com?...' | flash_tag: width: '100px', height: '50px' }}
+      {% raw %}{{ 'http://youtube.com?...' | flash_tag: width: '100px', height: '50px' }}
   {% endraw %}
 
   ### Options

@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 1
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -12,8 +12,7 @@ position: 1
   # if / else / unless
 
   Boolean logic operations are available on all objects.
-  {% raw %}
-      {% if feature.title %}
+      {% raw %}{% if feature.title %}
         {{ feature.title }}
       {% unless feature.body %}
         feature has no content

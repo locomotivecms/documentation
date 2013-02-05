@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 6
 ---
-{% extends 'reference/tags' %}
+{% extends 'apidoc/tags' %}
 
 {% block 'main/left/content' %}
 
@@ -13,8 +13,7 @@ position: 6
 
   Output the next option in a group on each call.
 
-  {% raw %}
-      {% cycle 'group 1': 'blue', 'green', 'red' %}
+      {% raw %}{% cycle 'group 1': 'blue', 'green', 'red' %}
       {% cycle 'group 1': 'blue', 'green', 'red' }}
       {% cycle 'group 2': 'blue', 'green', 'red' }}
       {% cycle 'group 1': 'blue', 'green', 'red' }}

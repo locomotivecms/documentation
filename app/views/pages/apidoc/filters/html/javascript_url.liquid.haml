@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 4
 ---
-{% extends 'reference/filters' %}
+{% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
 
@@ -13,8 +13,7 @@ position: 4
 
   Return the url of a theme asset javascript
 
-  {% raw %}
-      {{ 'application.js' | javascript_url }}
+      {% raw %}{{ 'application.js' | javascript_url }}
   {% endraw %}
 
   **Example**: Returns "/sites/<site_id>/theme/javascripts/application.js"

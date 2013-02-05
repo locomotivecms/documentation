@@ -4,7 +4,7 @@ published: true
 listed: true
 position: 4
 ---
-{% extends 'reference/filters' %}
+{% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
 
@@ -13,8 +13,7 @@ position: 4
 
   Append strings passed in args to the input
 
-  {% raw %}
-      {{ 'hello' | concat: 'world', 'yeah' }}
+      {% raw %}{{ 'hello' | concat: 'world', 'yeah' }}
   {% endraw %}
 
   **Example**: Returns

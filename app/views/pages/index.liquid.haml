@@ -4,7 +4,7 @@ published: true
 listed: true
 editable_elements:
   main/page_head_title: "Welcome to the new documentation center"
-  main/page_head_content: "<p>This is the place where you will find all the resources about the LocomotiveCMS. However, if you do not find what you were looking for, we strongly suggest you to send us an email (<a href='mailto:support@locomotivecms.com'>support at locomotivecms dot com</a> ).</p>"
+  main/page_head_content: "<p>We're here to help you any way we can. Below you’ll find documentation, tutorials and resources on how to use LocomotiveCMS</p>"
 ---
 !!!
 / paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
@@ -40,21 +40,21 @@ editable_elements:
       %section.home-item
         %h1
           Guides
-        %p 
-          Here's a good place to start becoming a LocomotiveCMS addict!
+        %p
+          LocomotiveCMS  basics, quick start guide, our philosophy.
         %a{ :href => "/guides" }
           See »
       %section.home-item
         %h1
-          Reference
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
-        %a{ :href => "/reference" }
+          Template references
+        %p Glossary for Liquide templates.
+        %a{ :href => "/references" }
           See »
       %section.home-item
         %h1
-          Recipes and best practices
-        %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit.
-        %a{ :href => "/use-cases" }
+          FAQ and best practices
+        %p Tips and tricks from LocomotiveCMS addicts.
+        %a{ :href => "/recipes" }
           See »
 
       .clear
@@ -64,27 +64,28 @@ editable_elements:
       %hr
 
       %h2
-        Can’t find what you’re looking for ? Let’s get you some help
+        Can’t find the answers you’re looking for ? Let’s get you some help fast:
       %ul
         %li
 
           Ask the community :
           / todo formulaire de recherche dans le forum (pour l'instant il n'y a rien dans le forum donc inutile)
-          %a{ :href => "" } search the forum
+          %a{ :href => "http://locomotivecms.tenderapp.com/discussions" } search the forum
           or
-          %a{ :href => "" } post your question
         %li
-          Ask us : we’ll be glad to help you,
-          %a{ :href => "" } contact the support
+          %a{ :href => "http://locomotivecms.tenderapp.com/discussion/new" } Contact our support team
+          and we'll personally get back to you as quickly as we can.
 
-      %h2
-        You want to help us making a better documentation ?
-      %ul
-        %li
-          Guess what, this is a LocomotiveCMS site ! Contribute on our github repo.
-          %br
-          See how to
-          %a{ :href => "" } contribute to the documentation
+
+      / Mis en commentaire pour l'instant
+      / %h2
+      /   You want to help us making a better documentation?
+      / %ul
+      /   %li
+      /     Guess what, this is a LocomotiveCMS site! Contribute on our github repo.
+      /     %br
+      /     See how to
+      /     %a{ :href => "/contribute" } contribute to the documentation
 
     {% endblock %}
     {% include "footer" %}

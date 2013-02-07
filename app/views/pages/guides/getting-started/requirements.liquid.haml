@@ -14,7 +14,12 @@ editable_elements:
 {% block 'main/left/content' %}
 :markdown
 
-  ## For both the Engine and the Builder
+  LocomotiveCMS contains two components:
+
+  - the **builder** is a command line tool that makes it easy to develop locally. It embeds a small http server and some generators.
+  - the **engine** is a Rails engine, you will use it to run a LocomotiveCMS site, it embeds all the administration user interface. We will provide LocomotiveCMS hosting soon: you only need this compenent if you want to host your site with your own solution.
+
+  ## Requirements for both the Engine and the Builder
 
   # Ruby
 
@@ -36,7 +41,7 @@ editable_elements:
   <strong>Note:</strong> on Mac OS X, try <a href="http://mxcl.github.com/homebrew/">Homebrew</a> or <a href="https://github.com/maddox/magick-installer">MagickInstaller</a> to install it. This will save you a couple of hours because its installation can be really painful sometimes.
   </div>
 
-  ## Only for the Engine
+  ## Requirements only for the Engine
 
   # Ruby on Rails
 

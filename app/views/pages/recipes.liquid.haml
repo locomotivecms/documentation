@@ -1,0 +1,28 @@
+---
+title: Recipes and best practices
+published: true
+listed: true
+position: 3
+
+editable_elements:
+  main/page_head_title: "Recipes and Best Practices"
+  main/page_head_content: "TODO"
+---
+{% extends 'index' %}
+{% block 'main' %}
+{% include 'page_head' %}
+
+#main-generic
+  {% block 'left' %}
+  %section#container-sidebar
+    {% block 'content' %}
+    %ul
+      {% for mainpage in page.children %}
+      %li
+        %a{ :href => '{{ mainpage.fullpath }}' }
+          {{ mainpage.title }}
+      {% endfor %}
+    {% endblock %}
+  {% endblock %}
+  {% include 'sidebar_depth' with depth: 1 %}
+{% endblock %}

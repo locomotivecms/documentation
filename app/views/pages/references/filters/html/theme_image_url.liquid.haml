@@ -1,0 +1,22 @@
+---
+title: Theme image url
+published: true
+listed: true
+position: 8
+---
+{% extends 'references/filters' %}
+
+{% block 'main/left/content' %}
+
+:markdown
+  # theme\_image\_url(input)
+
+  Return the url of a theme image
+
+      {% raw %}{{ 'banner.png' | theme_image_url }}
+  {% endraw %}
+
+  **Example**: Returns
+      "/sites/<site_id >/theme/images/banner.png"
+
+{% endblock %}

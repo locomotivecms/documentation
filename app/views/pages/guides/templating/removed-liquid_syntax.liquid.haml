@@ -1,0 +1,93 @@
+---
+title: Liquid syntax
+published: false
+listed: false
+---
+{% extends 'guides/templating' %}
+
+{% block 'main/left/content' %}
+
+:markdown
+  # Liquid syntax
+
+  Liquid is a templating library extracted from Shopify, the project is hosted at <a href="http://liquidmarkup.org" >http://liquidmarkup.org</a>. LocomotiveCMS reuses a lot of the original library.
+
+  ## Everything in 2 markups
+
+  The liquid syntax is a templating engine based on a set of functions that allow the developer (or the designer, since you don't need strong code skills to write it) to keep focus on the rendering of the data, not on the way it could render it.
+  Liquid defines 2 types of markup, pretty close to what you are used to with Erb :
+
+
+  ### Ouput markup : matched pairs of curly brackets output the value of an object :
+
+  Erb :
+
+      {% raw %}<%= @product.name %>{% endraw %}
+
+  Liquid :
+
+      {% raw %}{{ product.name }}{% endraw %}
+
+  ### Tag markup : matched pairs of culry brackets and percent, not resolved to text :
+
+  Erb :
+
+      {% raw %}<% name = @product.name %>{% endraw %}
+
+  Liquid :
+
+      {% raw %}{% assign name with product.name %}{% endraw %}
+
+  Liquid is extracted from http://www.shopify.com, but LocomotiveCMS extends it.
+  To cover all, we will distinguish 3 cases :
+
+  - Objects
+  - Filters
+  - Tags
+
+  ## Objects
+
+  When writing a liquid template, you will access to a couple of objects representing for instance the current site, page, logged in account as well as collections such as your custom content types. They are also called 'drops'.
+
+  Available objects and their attributes are listed [here](/reference/objects).
+
+  ### SEO purpose
+
+  You can either use the object ``` site ``` and have the same meta all over your website :
+
+      {% raw %}<html>
+        <head>
+          <title>{{ site.seo_title }}</title>
+          <meta name='description' content='{{ site.meta_description }}' />
+          <meta name='keyword' content='{{ site.meta_keywords }}' />
+        </head>
+        <body>
+        </body>
+      </html>{% endraw %}
+
+  Or you can define SEO meta for each ``` page ``` :
+
+      {% raw %}<html>
+        <head>
+          <title>{{ page.seo_title }}</title>
+          <meta name='description' content='{{ page.meta_description }}' />
+          <meta name='keyword' content='{{ page.meta_keywords }}' />
+        </head>
+        <body>
+        </body>
+      </html>{% endraw %}
+
+  ## Filters
+
+      TO DO
+      img magick http://markevans.github.com/dragonfly/file.ImageMagick.html
+
+  ## Tags
+
+      TO DO
+      editable file => https://groups.google.com/forum/#!topic/locomotivecms/hOaqFUcZCm8 only in backoffice for 2.0
+
+
+
+
+{% endblock %}

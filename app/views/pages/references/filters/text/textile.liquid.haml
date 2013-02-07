@@ -1,0 +1,24 @@
+---
+title: Textile
+seo_title: "Textile: converts textile text into html"
+published: true
+listed: true
+position: 6
+---
+{% extends 'references/filters' %}
+
+{% block 'main/left/content' %}
+
+:markdown
+  # textile(input)
+
+  Convert a Markdown-formatted string into HTML.
+
+      {% raw %}{{ '### Header' | textile }}
+  {% endraw %}
+
+  **Example**: Returns
+
+      <h3>Header</h3>
+
+{% endblock %}

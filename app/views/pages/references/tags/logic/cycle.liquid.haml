@@ -1,0 +1,29 @@
+---
+title: Cycle
+published: true
+listed: true
+position: 6
+---
+{% extends 'references/tags' %}
+
+{% block 'main/left/content' %}
+
+:markdown
+  # cycle
+
+  Output the next option in a group on each call.
+
+      {% raw %}{% cycle 'group 1': 'blue', 'green', 'red' %}
+      {% cycle 'group 1': 'blue', 'green', 'red' }}
+      {% cycle 'group 2': 'blue', 'green', 'red' }}
+      {% cycle 'group 1': 'blue', 'green', 'red' }}
+
+      will result in
+
+      blue
+      green
+      blue
+      red
+  {% endraw %}
+
+{% endblock %}

@@ -1,0 +1,59 @@
+---
+title: Create your first website
+listed: true
+position: 3
+
+editable_elements:
+  main/page_head_title: "Create your first site"
+  main/page_head_content: ""
+---
+{% extends 'guides/getting-started' %}
+
+{% block 'main/left/content' %}
+:markdown
+
+
+  # 1. Generate a site
+
+    We recommend you to store all the websites built with the builder into a same parent folder.
+
+        mkdir -p ~/Documents/LocomotiveCMS/sites
+        cd ~/Documents/LocomotiveCMS/sites
+        builder init my_first_site -t bootstrap
+
+    This will create a folder named **my\_first\_site** populated with a default index page and all the Twitter Bootstrap resources.
+    <div class="alert alert-info">
+    <strong>Note:</strong> You can list the available templates by typing:<br />
+    <code>builder list_templates</code>
+    </div>
+
+    Now you need to install a few gems:
+
+      cd my_first_site
+      bundle install
+
+    <div class="alert alert-info">
+    <strong>Note:</strong>
+    At this point, you could version your website with <a href="http://git-scm.com">GIT</a>, <a href="http://subversion.tigris.org/">SUBVERSION</a> or any SCM.
+    </div>
+
+  # 2. Preview your site
+
+      bundle exec builder serve
+
+    Open now your favorite browser at the following address: **[http://0.0.0.0:3333](http://0.0.0.0:3333)**
+
+    <div class="alert alert-info">
+    <strong>Note:</strong>
+    You can see the logs of the embedded builder server in the **log/builder.log** file of your site.
+    </div>
+
+  # 3. Edit your site
+
+    Your site can be edited with any text editor: Sublime Text 2, Textmate, vi, emacs, ...etc. There is **no need** to stop/start the serve command when you have modified a liquid template or content type.
+
+  <div class="alert alert-info">
+  <strong>Done?</strong> Learn more about the <a href="/guides/templating">templating language</a>, or let's <a href="deployment">deploy your first site</a>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+---
+title: "Multisites"
+published: true
+listed: true
+redirect_url: /guides/multisites/setup
+position: 7
+---
+{% extends 'guides' %}
+
+{% block 'main/left' %}
+%section#container-sidebar
+  {% block 'content' %}{% endblock %}
+
+{% block 'sidebar' %}
+{% include 'sidebar_depth' with depth: 2 %}
+{% endblock %}
+
+{% endblock %}

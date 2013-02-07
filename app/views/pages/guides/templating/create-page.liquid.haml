@@ -3,12 +3,28 @@ title: Creating a page
 published: true
 listed: true
 position: 2
+
+editable_elements:
+  main/page_head_title: "Creating a page"
+  main/page_head_content: ""
 ---
 {% extends 'guides/templating' %}
 
 {% block 'main/left/content' %}
 
 :markdown
+
+  # Choose your page slug
+
+  The page slug is its name in the url, in the builder it's defined by the filename without extension.
+  It should only contains alphabetic characters, numbers and "-" or "_".
+  The full path of a page contains its parent (and ancestors).
+
+      + index
+          + company
+              + presentation
+
+  In this example, the **presentation** page full path will be `/company/presentation`.
 
   # Use the command line generator
 
@@ -21,9 +37,15 @@ position: 2
 
   It will generate a file: `app/views/page/<<your page slug>>.liquid`.
 
-  A page contains 2 parts: the header and the template itself.
+  <div class="alert alert-info">
+  <strong>Note:</strong> In the <strong>generate</strong> command, you can set the full path of your page:<br />
+  <code>bundle exec builder generate company/presentation</code><br />
+  It will create <code>app/views/pages/company.liquid</code> and <code>app/views/pages/company/presentation.liquid</code>.
+  </div>
 
-  The header is enclosed by "---" and contains informations about the page using the yaml syntax.
+  # Page header
+
+  Before the page content, there is a **header**, enclosed by "---". It contains meta-information about the page using the [yaml](http://en.wikipedia.org/wiki/YAML) syntax.
 
       ---
       title: Page title
@@ -31,7 +53,7 @@ position: 2
       listed: false
       ---
 
-  You already know about the template part. Remember it should start with your ["extends" liquid tag](/apidoc/tags/layout/extends) if you have one.
+  If your page [extends](/apidoc/tags/layout/extends) another one, remember it should be the first instruction after the header.
 
   Here are some possible options that can be used in the page header:
 

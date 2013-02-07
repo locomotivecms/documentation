@@ -1,5 +1,6 @@
 ---
 title: Dasherize
+seo_title: "Dasherize: Replace undescores with dashes"
 published: true
 listed: true
 position: 2
@@ -7,15 +8,14 @@ position: 2
 {% extends 'apidoc/filters' %}
 
 {% block 'main/left/content' %}
-
 :markdown
   # dasherize(input)
 
-  Replaces underscores with dashes in the string.
+  Replaces underscores and spaces with dashes in the string.
 
       {% raw %}{{ 'hello_world' | dasherize }}
   {% endraw %}
 
-  **Example**: Returns hello-bar
+  <p><strong>Example</strong>: Returns <code>{{ 'hello_world' | dasherize }}</code></p>
 
 {% endblock %}

@@ -8,6 +8,8 @@ position: 1
 
 {% block 'main/left/content' %}
 
+{% assign example1 = today | localized_date: '%d %B' %}
+{% assign example2 = today | localized_date: '%d %B', 'fr' %}
 :markdown
   # localized_date(input, format, locale)
 
@@ -16,12 +18,12 @@ position: 1
       {% raw %}{{ today | localized_date: '%d %B' }}
   {% endraw %}
 
-  **Example**: Returns 21 december
-
+  **Example**: Returns `{{example1}}`
+  
       {% raw %}{{ today | localized_date: '%d %B', 'fr' }}
   {% endraw %}
 
-  **Example**: Returns 29 juin
+  **Example**: Returns `{{ example2}}`
 
   ### Options
 
@@ -37,7 +39,7 @@ position: 1
       <tr>
         <td>format</td>
         <td>String</td>
-        <td>It depends on the current locale. For the 'en' locale, it is "%m/%d/%Y".</td>
+        <td>It depends on the current locale. For the 'en' locale, it is "%m/%d/%Y". Read the <a href="http://liquid.rubyforge.org/classes/Liquid/StandardFilters.html#M000012", target= "_blank">syntax reference</a>.</td>
       </tr>
       <tr>
         <td>locale</td>

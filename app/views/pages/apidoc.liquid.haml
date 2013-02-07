@@ -9,14 +9,38 @@ editable_elements:
 ---
 {% extends 'index' %}
 
-{% block 'main' %}
 {% include 'page_head' %}
-
-{% include 'subnav_depth' with depth: 1 %}
+{% block 'main' %}
 
 #main-generic
   {% block 'left' %}
   %section#container-sidebar
+    %ul{style: 'overflow: hidden'}
+      {% for mainpage in page.children %}
+      {% if mainpage.listed? %}
+      %li{style: 'float: left; width: 200px'}
+        %a{href: '/{{mainpage.fullpath}}' }
+          {{ mainpage.seo_title | default: mainpage.title }}
+        %ul
+          {% for childpage in mainpage.children %}
+          {% if childpage.listed? %}
+          %li
+            %a{href: '/{{childpage.fullpath}}' }
+              {{ childpage.seo_title | default: childpage.title }}
+            {% if childpage.children.size > 0 %}
+            %ul
+              {% for grand_childpage in childpage.children %}
+              {% if grand_childpage.listed? %}
+              %li
+                %a{href: '/{{grand_childpage.fullpath}}' }
+                  {{ grand_childpage.seo_title | default: grand_childpage.title }}
+              {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endif %}
+          {% endfor %}
+      {% endif %}
+      {% endfor %}
     :markdown
 
       # Introduction to the Liquid markup language

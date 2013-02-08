@@ -4,4 +4,85 @@ listed: true
 ---
 {% extends parent %}
 {% block 'main/left/content' %}
+:markdown
+
+  Since the Locomotive Editor became Locomotive Builder, you might want to migrate your editors sites to the new builder format.
+  This is not complex but a little hassle. We'll try to release a command line tool to automate the migration.
+
+  In this guide, we will create a new builder project (my\_site\_builder) and migrate a locomotive\_editor project (my\_site\_editor). We will consider that both folders are at the same location.
+
+  # Create a new builder project
+
+      cd ~/workspace
+      builder init my_site_builder
+      cd my_site_builder
+      bundle install
+
+  It will create `~/workspace/my_site_builder`.
+
+  # Edit your new site.yml
+
+    Edit `config/site.yml` to match your site information: title, languages, general meta title and description...
+
+  # Copy your site content
+
+      cd ~/workspace/my_site_builder
+      cp -R ../my_site_editor/app/ app/
+      cp -R ../my_site_editor/public/ public/
+      cp -R ../my_site_editor/data/ data/
+      cp ../my_site_editor/config/deploy.yml config/
+
+  # Set your pages header
+
+    That's the most boring part... 
+    In your editor's site.yml, you need to copy all information about each page and add it in the page header. Example:
+
+      pages:
+        - "index":
+            title: "Welcome"
+            published: true
+            listed: true
+
+    In your `app/views/pages/index.liquid`, add this header before the first line.
+
+      ---
+      title: "Welcome"
+      published: true
+      listed: true
+      ---
+
+    Check that you removed indentation.
+
+  # Check that your site now runs with the builder
+
+      bundle exec builder serve .
+
+  # Multilingual specific
+
+    The builder changes the way the multilingual page. In the editor, the pages translations were managed this way (given en was the default language):
+
+      + app/views/pages
+          + index.liquid
+          + company.liquid
+          + company/
+              + presentation.liquid
+          + fr/
+              + index.liquid
+              + company/
+                  + presentation.liquid
+
+    In the builder, this is much more simple (and the default Rails way...): translated liquid templates are in the same directory and contains the locale name.
+
+      + app/views/pages
+          + index.liquid
+          + index.fr.liquid
+          + company.liquid
+          + company.fr.liquid
+          + company/
+              + presentation.liquid
+              + presentation.fr.liquid
+
+    So you need to change filenames of templates which are in a secondary language, and move them to the main folder.
+
+
 {% endblock %}

@@ -36,6 +36,8 @@
 
 ## Ideas
 
+- page pour proposer les articles externes.
+
 - pour chaque item du guide, on pourrait avoir un "aller plus loin" ou "expert" ?
 - page how to contribute
 - page ce qu'il y a a documenter

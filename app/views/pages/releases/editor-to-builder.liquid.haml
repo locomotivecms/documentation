@@ -53,9 +53,23 @@ listed: true
 
     Check that you removed indentation.
 
+    The pages order are not anymore fixed by the order in site.yml
+    In your header, you can add a the `position` option to fix the pages order.
+
+      ---
+      title: "Welcome"
+      published: true
+      listed: true
+      position: 1
+      ---
+
+    Please also note that there are small syntax changes in the page header options:
+
+    - `model` became `content_type`
+
   # Check that your site now runs with the builder
 
-      bundle exec builder serve .
+      bundle exec builder serve
 
   # Multilingual specific
 
@@ -84,5 +98,14 @@ listed: true
 
     So you need to change filenames of templates which are in a secondary language, and move them to the main folder.
 
+    If your pages slugs are different in each language, you need to specify the `slug` option in the templates of the secondary language.
+
+      app/views/pages/company.fr.liquid:
+      ---
+      title: "Société"
+      slug: "societe"
+      published: true
+      listed: true
+      ---
 
 {% endblock %}

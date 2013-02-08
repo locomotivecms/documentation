@@ -4,7 +4,7 @@ published: true
 listed: true
 editable_elements:
   main/page_head_title: "Welcome to the new documentation center"
-  main/page_head_content: "<p>We're here to help you any way we can. Below you’ll find documentation, tutorials and resources on how to use LocomotiveCMS</p>"
+  main/page_head_content: "<p>We're here to help you any way we can.<br />Below you’ll find documentation, tutorials and resources on how to use LocomotiveCMS.</p>"
 ---
 !!!
 / paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
@@ -41,13 +41,13 @@ editable_elements:
         %h1
           Guides
         %p
-          LocomotiveCMS  basics, quick start guide, our philosophy.
+          LocomotiveCMS basics, quick start guide, our philosophy.
         %a{ :href => "/guides" }
           See »
       %section.home-item
         %h1
           Template references
-        %p Glossary for Liquide templates.
+        %p Glossary for Liquid templates.
         %a{ :href => "/references" }
           See »
       %section.home-item
@@ -57,6 +57,14 @@ editable_elements:
         %a{ :href => "/faq" }
           See »
 
+      %section.home-item
+        %h1
+          Releases
+        %p Info about releases and guides for upgrading
+        %a{ :href => "/releases" }
+          See »
+
+
       .clear
 
       %br
@@ -64,22 +72,25 @@ editable_elements:
       %hr
 
       %h2
-        Can’t find the answers you’re looking for ? Let’s get you some help fast:
-      %p
+        Can’t find the answers you’re looking for? Let’s get you some help fast:
+
+      %ul
+        %li
+
+          Ask the community:
+          / todo formulaire de recherche dans le forum (pour l'instant il n'y a rien dans le forum donc inutile)
+          %a{ :href => "http://locomotivecms.tenderapp.com/discussions" } search the forum
+        %li
+          %a{ :href => "http://locomotivecms.tenderapp.com/discussion/new" } Contact our support team
+          and we'll personally get back to you as quickly as we can.
+
+      %hr
+      
+      %h2
         Want to contribute to make this documentation center even better?
       %p
         %a{href: "/contribute"}
           Fork our documentation and send us a pull request
-      %ul
-        %li
-
-          Ask the community :
-          / todo formulaire de recherche dans le forum (pour l'instant il n'y a rien dans le forum donc inutile)
-          %a{ :href => "http://locomotivecms.tenderapp.com/discussions" } search the forum
-          or
-        %li
-          %a{ :href => "http://locomotivecms.tenderapp.com/discussion/new" } Contact our support team
-          and we'll personally get back to you as quickly as we can.
 
 
       / Mis en commentaire pour l'instant

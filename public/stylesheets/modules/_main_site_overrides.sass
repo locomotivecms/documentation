@@ -95,3 +95,37 @@ code
   p
     color: $light-black
     font-size: 13px
+
+#main-nav
+  ul
+    li
+      a
+        z-index: 15
+        position: relative
+#guides
+  position: absolute
+  top: -0.25em
+  color: #fff
+  padding: 3em 2em 1.5em
+  right: 0
+  display: none
+  width: 50em
+  font-size: 0.8em
+  background-color: #131f2e
+  +border-radius(20px)
+  z-index: 10
+  dt
+    color: $third-blue
+    float: none
+  .L, .R
+    float: left
+    width: 50%
+  dd
+    line-height: 20px
+    margin: 0
+    font-family: ProximaNova-Light
+    a
+      text-decoration: none
+      color: white
+      &:hover
+        text-decoration: underline !important

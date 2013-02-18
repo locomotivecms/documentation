@@ -11,5 +11,5 @@ redirect_url: /references/objects/global-variables
 %section#container-sidebar
   {% block 'content' %}
   {% endblock %}
-{% include 'sidebar_depth_1' %}
+{% include 'sidebar_depth', with depth: 1 %}
 {% endblock %}

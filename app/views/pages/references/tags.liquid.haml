@@ -11,5 +11,5 @@ redirect_url: /references/tags/logic/if-else-unless
 %section#container-sidebar
   {% block 'content' %}
   {% endblock %}
-{% include 'sidebar_depth_2' %}
+{% include 'sidebar_depth', with depth: 1 %}
 {% endblock %}

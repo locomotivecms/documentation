@@ -11,5 +11,5 @@ redirect_url: /references/filters/html/auto-discovery-link-tag
 %section#container-sidebar
   {% block 'content' %}
   {% endblock %}
-{% include 'sidebar_depth_2' %}
+{% include 'sidebar_depth', with depth: 1 %}
 {% endblock %}

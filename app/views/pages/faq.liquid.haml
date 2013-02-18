@@ -6,6 +6,7 @@ position: 3
 
 editable_elements:
   main/page_head_title: "FAQ and Best Practices"
+  main/page_head_content: ""
 ---
 {% extends 'index' %}
 {% block 'main' %}
@@ -17,9 +18,11 @@ editable_elements:
     {% block 'content' %}
     %ul
       {% for mainpage in page.children %}
+      {% if mainpage.listed? %} 
       %li
         %a{ :href => '{{ mainpage.fullpath }}' }
           {{ mainpage.title }}
+      {% endif %}
       {% endfor %}
     {% endblock %}
   {% endblock %}

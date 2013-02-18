@@ -28,6 +28,21 @@ editable_elements:
   %section#container-sidebar
     {% block 'content' %}
 
+    %p
+      LocomotiveCMS contains two components:
+    %ul
+      %li 
+        the
+        %strong{style: 'font-size: 1.3em'}
+          builder
+        is a command line tool that makes it easy to develop locally. It embeds a small http server and some generators.
+      %li
+        the
+        %strong{style: 'font-size: 1.3em'}
+          engine
+        is a Rails engine, you will use it to run a LocomotiveCMS site, it embeds all the administration user interface. We will provide LocomotiveCMS hosting soon: you only need this component if you want to host your site with your own solution.
+
+
     %h1 Getting Started
     %p Install and run your first LocomoticeCMS site by following these steps:
 

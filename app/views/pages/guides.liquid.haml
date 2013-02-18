@@ -12,15 +12,14 @@ editable_elements:
 {% block 'main' %}
 {% assign depth = path | split: '/' | size %}
 
-
 {% case depth %}
 {% when 2 %}{% include 'page_head' %}
 {% else %}
+{% include 'subnav_depth' with depth: 1 %}
 %section#page-head
   %section#page-head-content
     %header
       {{ page.title }}
-{% include 'subnav_depth' with depth: 1 %}
 {% endcase %}
 
 #main-generic

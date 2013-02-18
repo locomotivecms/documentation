@@ -18,15 +18,13 @@ $(function() {
     return false
   });
 
-    
-  
-
   // mobile 
   $('#nav-toggle').on('click',function(e){
     $('#main-nav').toggleClass('expanded');
     $(this).toggleClass('expanded');
   });
   
+  // top menu
   $('#main-nav li.guides > a').on('click', function(e){
     e.preventDefault();
     $('#guides').toggle();

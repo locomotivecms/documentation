@@ -1,16 +1,18 @@
 $(function() {
 
-  var path = window.location.pathname.split( '/' ).pop(-1);
-  $(".dropdown-menu").each(function(){
-    current_section = $(this);
-    current_section.find("a").each(function(){
-      // console.log($(this).attr("href").indexOf(path))
-      if ($(this).attr("href").indexOf(path) != -1){
-        current_section.addClass("expanded");
-        $(this).addClass("active");
-      }
+  if (window.location.pathname != '/references'){
+    var path = window.location.pathname.split( '/' ).pop(-1);
+    $(".dropdown-menu").each(function(){
+      current_section = $(this);
+      current_section.find("a").each(function(){
+        //console.log(path)
+        if ($(this).attr("href").indexOf(path) != -1){
+          current_section.addClass("expanded");
+          $(this).addClass("active");
+        }
+      });
     });
-  });
+  }
 
   $("ul.dropdown a.dropdown-toggle").click(function(){
     $("ul.dropdown .dropdown-menu").removeClass("expanded");

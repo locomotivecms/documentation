@@ -8,8 +8,6 @@
 
 ## To write documentation
 
-- foreword / Why should you use LocomotiveCMS ?
-- foreword / organisation
 - overview / anatomy / key features
 - templating / liquid syntax / filters
 - templating / liquid syntax / tags
@@ -37,25 +35,7 @@
 ## Ideas
 
 - page pour proposer les articles externes.
-
 - pour chaque item du guide, on pourrait avoir un "aller plus loin" ou "expert" ?
 - page how to contribute
 - page ce qu'il y a a documenter
 - page submit question / idea for the doc site
-
-## NB How To Contribute
-
-- alerts : 
-  - plain html inside, no haml parsed
-  - "blue style" alert is a div with class .alert .alert-info
-  - "orange style" alert is a div with class .alert. .alert-warning
-- code :
-  - raw tag before each liquid sentence
-  - inline : ```{% raw %} {% block %} {% endraw %}```
-  - indent code with two tabs
-- tables : raw html
-- Markdown:
-  - the first md line must be right after :markdown, no empty line or error
-- images :
-  - stored in samples/guides/ ...
-  - <img src="{{ '/samples/guides/templating/FILE.png' }}">

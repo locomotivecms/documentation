@@ -16,12 +16,12 @@ editable_elements:
   # 1. Create a Content Type with Public Submission Enabled
   To accept forms from the public, you first must create a content type that will store the submissions.
 
-      cd ~/Documents/LocomotiveCMS/sites/my_first_website
+      cd ~/workspace/my_first_website
       bundle exec wagon generate customer_messages name:string email:string message:text
 
   Remove the data/customer_messages.yml, since you won't be pre-populating the content type with entires
 
-      rm my_first_website/data/customer_messages.yml
+      rm data/customer_messages.yml
 
   Now modify app/content_types/customer_messages.yml so it looks like this:
 

@@ -15,10 +15,10 @@ editable_elements:
   
   #1 Declare the "events" content type
 
-    The builder provides you the **generate** command:
+    Wagon provides you the **generate** command:
 
-        cd ~/Documents/LocomotiveCMS/sites/my_first_site
-        bundle exec builder generate content_type events title:string description:text event_date:date
+        cd ~/workspace/my_first_site
+        bundle exec wagon generate content_type events title:string description:text event_date:date
 
     It will generate 2 files:
 
@@ -45,7 +45,7 @@ editable_elements:
         {% endfor %}
         </ul>{% endraw %}
 
-    Test your code [http://localhost:3333](http://localhost:3333). You should see the event list.
+    Test your code [http://0.0.0.0:3333](http://0.0.0.0:3333). You should see the event list.
 
   #3 Add an "event page"
 

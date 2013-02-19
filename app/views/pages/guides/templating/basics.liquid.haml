@@ -35,7 +35,7 @@ editable_elements:
 
   By extending index, page2 re-uses all of its content, except the content inside the {% raw %}`{% block %}`{% endraw %} tag which is overwritten.
 
-  Test it by running the site (run `bundle exec builder serve` then *[http://0.0.0.0:3333](http://0.0.0.0:3333)*).
+  Test it by running the site (run `bundle exec wagon serve` then *[http://0.0.0.0:3333](http://0.0.0.0:3333)*).
 
   You can have as many {% raw %}`{% block %}`{% endraw %} tags as you want, everywhere in the layout, as long as the name of each block is unique.
 
@@ -84,7 +84,7 @@ editable_elements:
               +- child of first page
           +- second page
 
-  In the builder, you will use folders to reflect the pages hierarchy. Create a folder and a template page with the same name: the template will become the parent of any page in the folder.
+  In a Wagon site, you will use folders to reflect the pages hierarchy. Create a folder and a template page with the same name: the template will become the parent of any page in the folder.
 
       +- app/views/pages/
           +- index.liquid

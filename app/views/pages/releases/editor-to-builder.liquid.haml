@@ -1,24 +1,24 @@
 ---
-title: "Upgrade guide: From Locomotive Editor to Builder"
+title: "Upgrade guide: From Locomotive Editor to Wagon"
 listed: true
 ---
 {% extends parent %}
 {% block 'main/left/content' %}
 :markdown
 
-  Since the Locomotive Editor became Locomotive Builder, you might want to migrate your editors sites to the new builder format.
+  Since the Locomotive Editor became Wagon, you might want to migrate your editors sites to the new Wagon format.
   This is not complex but a little hassle. We'll try to release a command line tool to automate the migration.
 
-  In this guide, we will create a new builder project (my\_site\_builder) and migrate a locomotive\_editor project (my\_site\_editor). We will consider that both folders are at the same location.
+  In this guide, we will create a new wagon project (my\_site\_wagon) and migrate a locomotive\_editor project (my\_site\_editor). We will consider that both folders are at the same location.
 
-  # Create a new builder project
+  # Create a new wagon project
 
       cd ~/workspace
-      builder init my_site_builder
-      cd my_site_builder
+      wagon init my_site_wagon
+      cd my_site_wagon
       bundle install
 
-  It will create `~/workspace/my_site_builder`.
+  It will create `~/workspace/my_site_wagon`.
 
   # Edit your new site.yml
 
@@ -26,7 +26,7 @@ listed: true
 
   # Copy your site content
 
-      cd ~/workspace/my_site_builder
+      cd ~/workspace/my_site_wagon
       cp -R ../my_site_editor/app/ app/
       cp -R ../my_site_editor/public/ public/
       cp -R ../my_site_editor/data/ data/
@@ -67,13 +67,13 @@ listed: true
 
     - `model` became `content_type`
 
-  # Check that your site now runs with the builder
+  # Check that your site now runs with the Wagon webserver
 
-      bundle exec builder serve
+      bundle exec wagon serve
 
   # Multilingual specific
 
-    The builder changes the way the multilingual page. In the editor, the pages translations were managed this way (given en was the default language):
+    Wagon changes the way the multilingual page. In the Editor, the pages translations were managed this way (given en was the default language):
 
       + app/views/pages
           + index.liquid
@@ -85,7 +85,7 @@ listed: true
               + company/
                   + presentation.liquid
 
-    In the builder, this is much more simple (and the default Rails way...): translated liquid templates are in the same directory and contains the locale name.
+    In Wagon, this is much more simple (and the default Rails way...): translated liquid templates are in the same directory and contains the locale name.
 
       + app/views/pages
           + index.liquid

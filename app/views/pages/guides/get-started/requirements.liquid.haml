@@ -16,10 +16,10 @@ editable_elements:
 
   LocomotiveCMS contains two components:
 
-  - the **builder** is a command line tool that makes it easy to develop locally. It embeds a small http server and some generators.
+  - **Wagon** is a command line tool that makes it easy to develop locally. It embeds a small http server and some generators.
   - the **engine** is a Rails engine, you will use it to run a LocomotiveCMS site, it embeds all the administration user interface. We will provide LocomotiveCMS hosting soon: you only need this component if you want to host your site with your own solution.
 
-  ## Requirements for both the Engine and the Builder
+  ## Requirements for both the Engine and Wagon
 
   # Ruby
 
@@ -40,6 +40,9 @@ editable_elements:
   <div class="alert alert-info">
   <strong>Note:</strong> on Mac OS X, try <a href="http://mxcl.github.com/homebrew/">Homebrew</a> or <a href="https://github.com/maddox/magick-installer">MagickInstaller</a> to install it. This will save you a couple of hours because its installation can be really painful sometimes.
   </div>
+
+
+  <hr />
 
   ## Requirements only for the Engine
 
@@ -64,7 +67,7 @@ editable_elements:
   For both practical and ideological reasons, we decided to support only <strong>Firefox, Safari and Google Chrome.</strong> But, it should not be so tough to override the default stylesheets in order to offer a different but working version of Internet Explorer.
 
   <div class="alert alert-info">
-  <strong>Done?</strong> You can now <a href="install-builder">install the LocomotiveCMS builder</a>.
+  <strong>Done?</strong> You can now <a href="install-wagon">install Wagon</a>.
   </div>
 
 {% endblock %}

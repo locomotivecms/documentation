@@ -19,10 +19,10 @@ editable_elements:
   # 1. Edit your deployment settings
 
   <div class="alert alert-info">
-  We assume that your LocomotiveCMS builder sites are located under ~/Documents/LocomotiveCMS/sites. If not, please correct it accordingly.
+  We assume that your Wagon sites are located under ~/projects, and that you're using Textmate to edit your code. If not, please correct it accordingly.
   </div>
 
-      cd ~/Documents/LocomotiveCMS/sites
+      cd ~/projects
       mate my_first_website/config/deploy.yml
 
   Here is what your deploy.yml file should look like:
@@ -52,12 +52,12 @@ editable_elements:
 
   ### Pushing the whole site:
 
-      cd ~/Documents/LocomotiveCMS/sites/my_first_website
-      bundle exec builder push --resources=all --target=staging
+      cd ~/workspace/my_first_website
+      bundle exec wagon push --resources=all --target=staging
 
   You might prefer the shorter syntax:
 
-      bundle exec builder push -n my_first_website -r all -t staging
+      bundle exec wagon push -n my_first_website -r all -t staging
 
   ### Pushing only a specify type of resource:
 
@@ -67,7 +67,7 @@ editable_elements:
 
   Example:
 
-      bundle exec builder push --resources=pages --target=staging
+      bundle exec wagon push --resources=pages --target=staging
 
   ### What if the resource already exists within your target engine?
 
@@ -75,7 +75,7 @@ editable_elements:
 
   Unless you force it:
 
-      bundle exec builder push --resources=pages --target=staging --force
+      bundle exec wagon push --resources=pages --target=staging --force
 
 
 {% endblock %}

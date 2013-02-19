@@ -16,7 +16,7 @@ editable_elements:
 
   # Choose your page slug
 
-  The page slug is its name in the url, in the builder it's defined by the filename without extension.
+  The page slug is its name in the url, in a Wagon site it's defined by the filename without extension.
   It should only contains alphabetic characters, numbers and "-" or "_".
   The full path of a page contains its parent (and ancestors).
 
@@ -28,7 +28,7 @@ editable_elements:
 
   # Use the command line generator
 
-      bundle exec builder generate <<your page slug>>
+      bundle exec wagon generate <<your page slug>>
 
   You will be ask 2 things:
 
@@ -39,7 +39,7 @@ editable_elements:
 
   <div class="alert alert-info">
   <strong>Note:</strong> In the <strong>generate</strong> command, you can set the full path of your page:<br />
-  <code>bundle exec builder generate company/presentation</code><br />
+  <code>bundle exec wagon generate company/presentation</code><br />
   It will create <code>app/views/pages/company.liquid</code> and <code>app/views/pages/company/presentation.liquid</code>.
   </div>
 
@@ -62,7 +62,7 @@ editable_elements:
     <dd>Pretty obvious... The page title is used in the backoffice and in your template if you use {% raw %}<code>{{ page.title }}</code>{% endraw %}. See more about the <a href="templates/objects/page">page object</a></dd>
 
     <dt>published</dt>
-    <dd>If set to false, the page won't be publicly visible once hosted in an engine. It will be visible with the builder server.</dd>
+    <dd>If set to false, the page won't be publicly visible once hosted in an engine. It will be visible with the Wagon webserver.</dd>
 
     <dt>listed</dt>
     <dd>The listed option is used to decide if the page should be listed in a menu.</dd>

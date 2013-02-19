@@ -12,9 +12,9 @@ editable_elements:
 :markdown
   # Listing the existing site templates
 
-      builder list_templates
+      wagon list_templates
 
-  By default, the LocomotiveCMS builder includes two site templates.
+  By default, Wagon includes two site templates.
 
   <table>
     <thead>
@@ -37,11 +37,11 @@ editable_elements:
 
   # Assigning a site template when creating a new site
 
-      builder create -n my_first_site -t twitter_bootstrap
+      wagon create -n my_first_site -t twitter_bootstrap
 
   or
 
-      builder create -n my_first_site --template twitter_bootstrap
+      wagon create -n my_first_site --template twitter_bootstrap
 
   # Coding your site template
 
@@ -90,11 +90,11 @@ editable_elements:
 
   Let’s see if your template is now part of the available site templates. You should see “my\_template”
 
-      builder list_templates --lib=./site_templates/my_template.rb
+      wagon list_templates --lib=./site_templates/my_template.rb
 
   Here is the command to create a new LocomotiveEditor site with your new
   template
 
-      builder create -n another_site --template=my_template.rb --lib=./site_templates/my_template.rb
+      wagon create -n another_site --template=my_template.rb --lib=./site_templates/my_template.rb
 
 {% endblock %}

@@ -1,5 +1,3 @@
-# This file is used by Rack-based servers to start the application.
+require 'locomotive/wagon/standalone_server'
 
-require 'locomotive/builder/standalone_server'
-
-run Locomotive::Builder::StandaloneServer.new(File.expand_path('.'))
+run Locomotive::Wagon::StandaloneServer.new(File.expand_path('.'))

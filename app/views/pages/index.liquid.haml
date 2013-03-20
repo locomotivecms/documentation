@@ -26,6 +26,16 @@ editable_elements:
     {{ '/fonts/all' | stylesheet_tag }}
     {{ 'screen' | stylesheet_tag }}
 
+
+    <script type='text/javascript'>
+    (function (d, t) {
+    var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    bh.type = 'text/javascript';
+    bh.src = '//www.bugherd.com/sidebarv2.js?apikey=8wnhwbrsl7a9vwaurkkncw';
+    s.parentNode.insertBefore(bh, s);
+    })(document, 'script');
+    </script>
+
   %body
     {% include 'nav' %}
     {% block 'main' %}

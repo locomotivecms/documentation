@@ -12,8 +12,8 @@ editable_elements:
 {% block 'main' %}
 {% if page.slug == 'references' %}{% include 'page_head' %}
 {% endif%}
-{% include 'sidebar_depth' with depth: 1 %}
 #main-generic.references
+  {% include 'sidebar_depth' with depth: 1 %}
   {% block 'left' %}
   %section#container-sidebar
     :markdown

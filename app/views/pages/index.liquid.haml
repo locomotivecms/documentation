@@ -26,6 +26,8 @@ editable_elements:
     {{ '/fonts/all' | stylesheet_tag }}
     {{ 'screen' | stylesheet_tag }}
 
+    %link{ href: "{{ 'favicon.ico' | theme_image_url }}", rel: 'shortcut icon', type: 'image/vnd.microsoft.icon' }
+
     <script type='text/javascript'>
     (function (d, t) {
     var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
@@ -41,32 +43,39 @@ editable_elements:
     {% include 'page_head' %}
     #main-generic
       %section.home-item
-        %h1
+        .picto {{ 'pictos/quickstart.png' | theme_image_tag }}
+        %h2
           Guides
         %p
           LocomotiveCMS basics, quick start guide, our philosophy.
-        %a{ :href => "/guides" }
-          See »
+        %p
+          %a{ :href => "/guides" } See »
+
       %section.home-item
-        %h1
+        .picto {{ 'pictos/books.png' | theme_image_tag }}
+        %h2
           Template references
-        %p Glossary for Liquid templates.
-        %a{ :href => "/references" }
-          See »
+        %p
+          Glossary for Liquid templates.
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        %p
+          %a{ :href => "/references" } See »
+
       %section.home-item
-        %h1
-          FAQ and best practices
+        .picto {{ 'pictos/question.png' | theme_image_tag }}
+        %h2
+          FAQ
         %p Tips and tricks from LocomotiveCMS addicts.
-        %a{ :href => "/faq" }
-          See »
+        %p
+          %a{ :href => "/faq" } See »
 
       %section.home-item
-        %h1
+        .picto {{ 'pictos/upgrades.png' | theme_image_tag }}
+        %h2
           Releases
-        %p Info about releases and guides for upgrading
-        %a{ :href => "/releases" }
-          See »
-
+        %p Info about releases and guides for upgrading.
+        %p
+          %a{ :href => "/releases" } See »
 
       .clear
 
@@ -82,10 +91,10 @@ editable_elements:
 
           Ask the community:
           / todo formulaire de recherche dans le forum (pour l'instant il n'y a rien dans le forum donc inutile)
-          %a{ :href => "http://locomotivecms.tenderapp.com/discussions" } Search the forum
+          %a{ :href => "http://locomotivecms.tenderapp.com/discussions" } Search the forum.
         %li
-          %a{ :href => "http://locomotivecms.tenderapp.com/discussion/new" } Contact our support team
-          and we'll personally get back to you as quickly as we can
+          %a{ :href => "http://locomotivecms.tenderapp.com/discussion/new" }
+          Contact our support team and we'll personally get back to you as quickly as we can.
 
       %hr
 
@@ -93,7 +102,7 @@ editable_elements:
         Want to contribute to make this documentation center even better?
       %p
         %a{href: "/contribute"}
-          Fork our documentation and send us a pull request
+          Fork our documentation and send us a pull request.
 
 
       / Mis en commentaire pour l'instant

@@ -1,13 +1,15 @@
 ---
 title: "Upgrade guide: From Locomotive Editor to Wagon"
 listed: true
+editable_elements:
+  main/page_head_title: "From LocomotiveCMS Editor to Wagon"
+  main/page_head_content: "<p>Since the LocomotiveCMS Editor became Wagon, you might want to migrate your editors sites to the new Wagon format.</p>"
 ---
 {% extends parent %}
 {% block 'main/left/content' %}
 :markdown
 
-  Since the Locomotive Editor became Wagon, you might want to migrate your editors sites to the new Wagon format.
-  This is not complex but a little hassle. We'll try to release a command line tool to automate the migration.
+  The procedure is not complex but a little hassle. We'll try to release a command line tool to automate the migration.
 
   In this guide, we will create a new wagon project (my\_site\_wagon) and migrate a locomotive\_editor project (my\_site\_editor). We will consider that both folders are at the same location.
 
@@ -34,7 +36,7 @@ listed: true
 
   # Set your pages header
 
-    That's the most boring part... 
+    That's the most boring part...
     In your editor's site.yml, you need to copy all information about each page and add it in the page header. Example:
 
       pages:

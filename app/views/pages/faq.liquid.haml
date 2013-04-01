@@ -1,11 +1,11 @@
 ---
-title: FAQ and best practices
+title: FAQ
 published: true
 listed: true
 position: 3
 
 editable_elements:
-  main/page_head_title: "FAQ and Best Practices"
+  main/page_head_title: "FAQ"
   main/page_head_content: ""
 ---
 {% extends 'index' %}
@@ -14,11 +14,11 @@ editable_elements:
 
 #main-generic
   {% block 'left' %}
-  %section#container-sidebar
+  %section
     {% block 'content' %}
     %ul
       {% for mainpage in page.children %}
-      {% if mainpage.listed? %} 
+      {% if mainpage.listed? %}
       %li
         %a{ :href => '{{ mainpage.fullpath }}' }
           {{ mainpage.title }}
@@ -26,5 +26,4 @@ editable_elements:
       {% endfor %}
     {% endblock %}
   {% endblock %}
-  {% include 'sidebar_depth_1' %}
 {% endblock %}

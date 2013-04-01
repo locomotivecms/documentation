@@ -1,7 +1,7 @@
 ---
-title: "Releases and upgrades"
+title: "Releases"
 published: true
-listed: false
+listed: true
 position: 4
 editable_elements:
   main/page_head_title: "Releases and upgrades"
@@ -13,7 +13,7 @@ editable_elements:
 
 #main-generic
   {% block 'left' %}
-  %section#container-sidebar
+  %section#container
     {% block 'content' %}
     %ul
       {% for mainpage in page.children %}
@@ -23,5 +23,4 @@ editable_elements:
       {% endfor %}
     {% endblock %}
   {% endblock %}
-  {% include 'sidebar_depth' with depth: 1 %}
 {% endblock %}

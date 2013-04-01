@@ -15,10 +15,13 @@ h1
   color: $dark-black
   +proximanova-semi-bold
   line-height: 20px
+
 h2
   font-size: 20px
-  color: $third-black
+  // color: $third-black
+  color: $dark-black
   +proximanova-regular
+  //+proximanova-semi-bold
 
 h3
   font-size: 16px
@@ -47,7 +50,17 @@ p
   line-height: 22px
   +open-sans-regular
   margin-bottom: 10px
- 
+
+table
+  thead
+    th
+      +open-sans-bold
+  th, td
+    color: $light-black
+    font-size: 13px
+    line-height: 16px
+    +open-sans-regular
+
 dl
   color: $light-black
   +open-sans-regular

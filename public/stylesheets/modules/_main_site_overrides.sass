@@ -12,6 +12,10 @@
   a
     +small-button
     text-decoration: none
+  h2, .picto, p
+    text-align: center
+  p:last-child
+    line-height: 15px
 
 // Shared container
 #main-generic
@@ -56,11 +60,6 @@ h1,
 h2,
 h3
   margin-top: 20px
-
-a
-  text-decoration: underline
-
-
 
 code
   font-size: 13px
@@ -143,3 +142,17 @@ code
 nav.subnav
   padding-bottom: 0
   border: 0
+
+
+// elements
+#page-head
+  #page-head-content
+    p
+      color: $third-black
+
+#footer
+  p.subscribe
+    margin-top: 5px
+    text-align: center
+    a.btn
+      +submit-button

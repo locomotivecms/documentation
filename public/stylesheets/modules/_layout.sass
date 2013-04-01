@@ -16,15 +16,20 @@
     letter-spacing: 3px
     font-size: 20px
     margin-top: 7px
+    margin-bottom: 0px
     a
       background: url(/images/logo-locomotive.png) no-repeat 0px 5px
       padding-left: 32px
       &:hover
         color: white
         text-decoration: none
+      small
+        padding-left: 32px
+        font-size: 16px
+        text-transform: capitalize
     @media #{$desktop}
       float: left
-      width: 24%
+      width: 34%
   // Nav toggle
   #nav-toggle
     position: absolute
@@ -59,7 +64,7 @@
       line-height: 26px
       color: white
       background: none
-      font-size: 16px
+      font-size: 14px
       +proximanova-light
       padding: 0px 32px
       margin: 3px 0
@@ -70,7 +75,7 @@
 
     @media #{$desktop}
       float: right
-      width: 76%
+      width: 66%
       li
         float: right
 #main-nav.expanded

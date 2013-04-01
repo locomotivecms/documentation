@@ -12,8 +12,8 @@ editable_elements:
 {% block 'main' %}
 {% if page.slug == 'references' %}{% include 'page_head' %}
 {% endif%}
-{% include 'sidebar_depth' with depth: 1 %}
 #main-generic.references
+  {% include 'sidebar_depth' with depth: 1 %}
   {% block 'left' %}
   %section#container-sidebar
     :markdown
@@ -36,6 +36,8 @@ editable_elements:
       <strong>Note:</strong> matched pairs of curly brackets are used to output the value of an object
       </div>
 
+      ***
+
       ### Filters
 
       You can modify the output by using filters that you can chain. Filters are simple methods. The first parameter is always the output of the left side of the filter. The return value of the filter will be the new left value when the next filter is run. When there are no more filters, the template will receive the resulting string.
@@ -43,6 +45,8 @@ editable_elements:
           {% raw %}{{ page.title | upcase | pluralize }}{% endraw %}
 
       **Example:** it displays the title of the current page and applies 2 transformations: upcase + pluralization
+
+      ***
 
       ### Tags
 

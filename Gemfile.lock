@@ -1,7 +1,7 @@
 PATH
   remote: /Users/didier/Documents/LocomotiveCMS/gems/mounter
   specs:
-    locomotivecms_mounter (1.0.0.alpha4)
+    locomotivecms_mounter (1.0.1)
       RedCloth (~> 4.2.3)
       activesupport (~> 3.2.5)
       coffee-script (~> 2.2.0)
@@ -24,7 +24,7 @@ PATH
 PATH
   remote: /Users/didier/Documents/LocomotiveCMS/wagon
   specs:
-    locomotivecms_wagon (1.0.0.alpha8)
+    locomotivecms_wagon (1.0.0)
       RedCloth (~> 4.2.9)
       activesupport (~> 3.2.11)
       better_errors (~> 0.7.2)
@@ -33,7 +33,7 @@ PATH
       httmultiparty (~> 0.3.8)
       listen (~> 0.7.0)
       locomotive_liquid (~> 2.4.1)
-      locomotivecms_mounter (= 1.0.0.alpha4)
+      locomotivecms_mounter (= 1.0.1)
       rack-cache (~> 1.1)
       rmagick (= 2.12.2)
       thin

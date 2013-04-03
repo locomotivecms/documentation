@@ -17,7 +17,7 @@
         %a{ :href => "https://twitter.com/locomotivecms" }
           @locomotivecms
 
-      {% consume tweets from 'https://api.twitter.com/1/statuses/user_timeline.json?screen_name=locomotivecms&count=2' %}
+      {% consume tweets from 'https://api.twitter.com/1/statuses/user_timeline.json?screen_name=locomotivecms&count=2' expires_in: 3600 %}
 
       {% if tweets.error %}
       %p

@@ -73,7 +73,7 @@ editable_elements:
         .picto {{ 'pictos/upgrades.png' | theme_image_tag }}
         %h2
           Releases
-        %p Info about releases and guides for upgrading.
+        %p Useful info about releases and guides for upgrading.
         %p
           %a{ :href => "/releases" } See »
 
@@ -91,7 +91,7 @@ editable_elements:
 
           Ask the community:
           / todo formulaire de recherche dans le forum (pour l'instant il n'y a rien dans le forum donc inutile)
-          %a{ :href => "http://locomotivecms.tenderapp.com/discussions" } Search the forum.
+          %a{ :href => "https://groups.google.com/forum/#!forum/locomotivecms" } Search the forum.
         %li
           %a{ :href => "http://locomotivecms.tenderapp.com/discussion/new" }
           Contact our support team and we'll personally get back to you as quickly as we can.
@@ -124,3 +124,5 @@ editable_elements:
 
     %script
       hljs.initHighlightingOnLoad();
+
+    {% google_analytics 'UA-39860393-1' %}

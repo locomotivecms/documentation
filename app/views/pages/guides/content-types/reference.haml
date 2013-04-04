@@ -1,0 +1,44 @@
+---
+title: Content type file documentation
+listed: false
+position: 100
+
+---
+{% extends 'guides/content-types' %}
+
+{% block 'main/left/content' %}
+:markdown
+  Here are the keywords you can use on `app/content_types/*.yml` files.
+
+  <dl>
+  <dt>name</dt>
+  <dd>String value. Public name of the content type. Use plural.</dd>
+  
+  <dt>slug</dt>
+  <dd>String value. Internal name of the content type. Use plural and lower case, no space.</dd>
+  
+  <dt>description</dt>
+  <dd>String value. Explanation for the backoffice</dd>
+
+  <dt>label_field_name</dt>
+  <dd>Field slug. Default field slug (generally title), it must be a string field</dd>
+  
+  <dt>order_by</dt>
+  <dd>Any field slug or 'manually' or 'created_at'. Changes the order of content entries in backoffice and content entries.</dd>
+  
+  <dt>order direction</dt>
+  <dd>'asc' or 'desc'</dd>
+  
+  <dt>group_by</dt>
+  <dd>Field slug. Display entries grouped by the given field in the backoffice</dd>
+  
+  <dt></dt>
+  <dd></dd>
+  
+  <dt></dt>
+  <dd></dd>
+  </dl>
+  
+  [wip]
+
+{% endblock %}

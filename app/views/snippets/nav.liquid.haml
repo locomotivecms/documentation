@@ -8,6 +8,8 @@
     #nav-toggle
       %a.icon-th-list
     %ul
+      %li
+        %input{type: "text", id: "search", placeholder: "search..."}
       {% assign path_segments = fullpath | split: '/' %}
       {% for main_page in site.index.children reversed %}
       {% if main_page.listed? %}

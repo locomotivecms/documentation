@@ -1,0 +1,22 @@
+---
+title: Export json
+---
+{% capture json %}{% for page0 in site.index.children %}
+{% if page0.children.size > 0 %}
+  {% for page1 in page0.children %}
+    {% if page1.children.size > 0 %}
+    {% for page2 in page1.children %}
+      {% if page2.children.size > 0 %}
+      {% for page3 in page2.children %}
+      {% if page3.listed? and page3.title contains params['term'] %}{"label": "{{page3.title}}", "value": "/{{page3.fullpath}}" },{% endif %}
+      {% endfor %}
+      {% else %}{% if page2.listed? and page2.title contains params['term']  %}{"label": "{{page2.title}}", "value": "/{{page2.fullpath}}" },{% endif %}
+      {% endif %}
+    {% endfor %}
+    {% else %}{% if page1.listed? and page1.title contains params['term']  %}{"label": "{{page1.title}}", "value": "/{{page1.fullpath}}" },{% endif %}
+    {% endif %}
+  {% endfor %}
+{% else %}
+  {% if page0.listed? and page0.title contains params['term']  %}{"label": "{{page0.title}}", "value": "/{{page0.fullpath}}" },{% endif %}
+{% endif %}
+{% endfor %}{}{% endcapture %}[{{ json | strip_newlines }}]

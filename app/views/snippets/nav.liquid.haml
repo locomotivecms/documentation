@@ -19,7 +19,6 @@
           {{ main_page.title }}
         {% if main_page.fullpath == 'guides' %}
         #guides
-          %hr
           {% for main_page in site.index.children %}
           {% if main_page.fullpath == "guides" %}
           %dl.L

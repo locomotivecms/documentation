@@ -53,11 +53,11 @@ editable_elements:
   ### Pushing the whole site:
 
       cd ~/workspace/my_first_website
-      bundle exec wagon push --resources=all --target=staging
+      bundle exec wagon push staging --resources=all
 
   You might prefer the shorter syntax:
 
-      bundle exec wagon push -n my_first_website -r all -t staging
+      bundle exec wagon push staging -r all
 
   ### Pushing only a specify type of resource:
 
@@ -67,7 +67,7 @@ editable_elements:
 
   Example:
 
-      bundle exec wagon push --resources=pages --target=staging
+      bundle exec wagon push staging --resources=pages
 
   ### What if the resource already exists within your target engine?
 
@@ -75,7 +75,7 @@ editable_elements:
 
   Unless you force it:
 
-      bundle exec wagon push --resources=pages --target=staging --force
+      bundle exec wagon push staging --resources=pages --force
 
 
 {% endblock %}

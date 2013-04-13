@@ -55,10 +55,7 @@ editable_elements:
       cd ~/workspace/my_first_website
       bundle exec wagon push staging
 
-  You might prefer the shorter syntax:
-
-      bundle exec wagon push staging
-
+  
   ### Pushing only a specify type of resource:
 
   In some cases, you do not want to push the whole site. For instance, if you have just modified a single page, you do not need to push the assets too.
@@ -68,6 +65,11 @@ editable_elements:
   Example:
 
       bundle exec wagon push staging --resources=pages
+  
+  You might prefer the shorter syntax:
+
+      bundle exec wagon push staging -r pages
+
 
   ### What if the resource already exists within your target engine?
 

@@ -107,6 +107,10 @@ editable_elements:
       /     %a{ :href => "/contribute" } contribute to the documentation
 
     {% endblock %}
+
+    #fork-me
+      %a{href: "https://github.com/locomotivecms/documentation/blob/master/app/views/pages/{{page.fullpath}}.liquid.haml"}
+        Contribute → Fork this page on GitHub
     {% include "footer" %}
 
     {{ 'jquery-1.8.2.min' | javascript_tag }}

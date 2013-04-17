@@ -55,7 +55,14 @@ editable_elements:
       cd ~/workspace/my_first_website
       bundle exec wagon push staging
 
-  
+  You might prefer the shorter syntax:
+
+      bundle exec wagon push staging
+
+  If you want to push your content entries (`data/*.yml`), add the `--data` option (or `-d`)
+
+      bundle exec wagon push staging --data
+
   ### Pushing only a specify type of resource:
 
   In some cases, you do not want to push the whole site. For instance, if you have just modified a single page, you do not need to push the assets too.
@@ -65,8 +72,13 @@ editable_elements:
   Example:
 
       bundle exec wagon push staging --resources=pages
-  
+
   You might prefer the shorter syntax:
+
+      bundle exec wagon push staging -r pages
+
+
+  Or
 
       bundle exec wagon push staging -r pages
 
@@ -78,6 +90,5 @@ editable_elements:
   Unless you force it:
 
       bundle exec wagon push staging --resources=pages --force
-
 
 {% endblock %}

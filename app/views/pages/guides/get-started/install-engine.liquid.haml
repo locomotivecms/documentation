@@ -50,10 +50,11 @@ editable_elements:
 
   # 5. Edit the engine settings
 
-    Use your favorite IDE to edit the engine settings.
+    Use your favorite IDE to edit the engine settings. Instructions are given as comments in setting files.
 
-      mate config/initializers/locomotive.rb
-      mate config/mongoid.yml
+    First, configure your mongodb hostname and database name in `config/mongoid.yml`.
+
+    Then configure the main settings: multisite activation, default locale, email sender (etc) in `config/initializers/locomotive.rb`.
 
     <div class="alert alert-info">
     <strong>Note</strong> By default, LocomotiveCMS uses Amazon S3 in production. To change it, modify the carrierwave initialization file.<br />

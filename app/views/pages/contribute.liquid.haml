@@ -1,0 +1,28 @@
+---
+title: How to contribute to the documentation?
+seo_title: How to contribute to the LocomotiveCMS documentation
+published: true
+listed: false
+position: 10
+editable_elements:
+  main/page_head_title: "How to contribute to the documentation?"
+  main/page_head_content: "<p>You want to fix mistakes in the doc, or you're willing to help us writing guides?</p>"
+---
+{% extends 'index' %}
+
+{% block 'main' %}
+{% include 'page_head' %}
+
+#main-generic
+  {% block 'left' %}
+  %section#container-sidebar
+    :markdown
+      This documentation is a LocomotiveCMS site, we did not use any *editable* field so that anyone can help us improving it.
+
+      To help us, just fork the documentation on GitHub and send us a pull request!
+
+      [See the documentation site on GitHub](https://github.com/locomotivecms/documentation)
+
+  {% endblock %}
+
+{% endblock %}

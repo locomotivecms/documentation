@@ -1,0 +1,128 @@
+// Page header
+#page-head
+  +four-cols-grid
+  border-bottom: 1px solid $blue-border
+  padding-top: 40px
+  padding-bottom: 40px
+  +proximanova-light
+  #page-head-content
+    +span-columns(4 omega,4)
+    header
+      font-size: 36px
+      line-height: 30px
+      color: $fourth-black
+      margin-bottom: 15px
+    p
+      +span-columns(4 omega,4)
+      font-size: 20px
+      line-height: 27px
+      color: $third-blue
+      +proximanova-light
+      margin: 0
+      a
+        color: $dark-black
+  aside
+    +span-columns(4 omega,4)
+    margin-top: 20px
+    a
+      text-transform: uppercase
+      +big-button
+  @media #{$desktop}
+    #page-head-content
+      +span-columns(4 omega,4)
+    aside
+      +span-columns(1 omega,4)
+      margin-top: -5px
+      a
+        width: 100%
+
+
+// Subnav below a page-head
+nav.subnav
+  +four-cols-grid
+  border-bottom: 1px solid $blue-border
+  padding-top: 15px
+  padding-bottom: 15px
+  ul
+    margin: 0
+    float: left
+  li
+    display: inline-block
+    background: none
+    padding-left: 0
+    margin-right: 10px
+  a
+    float: left
+    display: block
+    padding: 2px 23px
+    color: $third-blue
+    font-size: 14px
+    +proximanova-semi-bold
+    +border-radius(20px)
+    &:hover
+      color: $main-blue
+      background-color: $subnav-button-bg
+      text-decoration: none
+  a.current
+    color: $main-blue
+    background-color: $subnav-button-bg
+
+
+// Pagination
+.pagination
+  +span-columns($total-columns omega,$total-columns)
+  margin-top: $section-padding
+  color: $third-blue
+  +proximanova-semi-bold
+  font-size: 14px
+  .page
+
+  #pagination-left
+    float: left
+  #pagination-right
+    float: right
+
+// Sidebar
+.sidebar
+  +span-columns(3 omega,3)
+  margin-top: $section-padding
+.sidebar.desktop
+  display: none
+.sidebar.mobile
+  display: block
+@media #{$desktop}
+  .sidebar
+    +span-columns(1 omega,3)
+    margin-top: 35px
+  .sidebar.desktop
+    display: block
+  .sidebar.mobile
+    display: none
+
+// Floating panel in sidebar
+.floating-panel
+  background-color: $floating-panel
+  +border-radius(15px)
+  padding: 2px
+  margin-top: 10px
+  margin-bottom: 25px
+  +open-sans-regular
+  .inner-floating-panel
+    +border-radius(15px)
+    border: 3px solid white
+    padding: 25px 20px
+    header
+      color: $dark-black
+      font-size: 20px
+      margin-bottom: 20px
+    p
+      color: $light-black
+      font-size: 12px
+
+
+hr
+  border-top: 1px solid #dde4ea
+  border-bottom: 0px
+  height: 1px
+  padding: 0px
+  margin: 30px 0px

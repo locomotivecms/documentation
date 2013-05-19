@@ -1,0 +1,109 @@
+@import "compass/typography/lists/bullets"
+
+body
+  color: $dark-black
+  font-size: 13px
+  line-height: 15px
+
+h1, h2, h3, h4, h5, h6
+  margin-bottom: 20px
+  margin-top: 10px
+  +proximanova-semi-bold
+
+h1
+  font-size: 20px
+  color: $dark-black
+  +proximanova-semi-bold
+  line-height: 20px
+
+h2
+  font-size: 20px
+  // color: $third-black
+  color: $dark-black
+  +proximanova-regular
+  //+proximanova-semi-bold
+
+h3
+  font-size: 16px
+  color: $third-black
+h4
+  font-size: 16px
+  color: $light-blue
+
+h5
+  font-size: 14px
+
+h6
+  font-size: 14px
+  color: $main-blue
+
+a
+  color: inherit
+  text-decoration: underline
+  &:hover
+    color: $main-blue
+    text-decoration: none
+
+p
+  color: $light-black
+  font-size: 13px
+  line-height: 22px
+  +open-sans-regular
+  margin-bottom: 10px
+
+table
+  thead
+    th
+      +open-sans-bold
+  th, td
+    color: $light-black
+    font-size: 13px
+    line-height: 16px
+    +open-sans-regular
+
+dl
+  color: $light-black
+  +open-sans-regular
+  dt
+    +open-sans-bold
+    float: left
+    width: 150px
+    line-height: 22px
+  dd
+    line-height: 22px
+    margin-left: 150px
+em
+  color: $light-black
+  font-size: 12px
+  +open-sans-italic
+
+span
+  color: $light-black
+  font-size: 12px
+  +open-sans-regular
+
+strong
+  +open-sans-bold
+
+ul
+  +pretty-bullets("/images/bullet.png", 5px, 5px, 27px)
+  +open-sans-regular
+  color: $light-black
+  margin-bottom: 10px
+  li
+    line-height: 27px
+
+ol
+  counter-reset: li
+  +open-sans-regular
+  color: $light-black
+  li
+    list-style: none
+    position: relative
+    &:before
+      content: counter(li)"."
+      counter-increment: li
+      width: 20px
+      margin-right: 4px
+      margin-left: 2px
+      +open-sans-bold

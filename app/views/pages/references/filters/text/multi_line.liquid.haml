@@ -1,0 +1,23 @@
+---
+title: Multi_line
+seo_title: "Multi_line inserts <br> tags instead of linebreaks"
+published: true
+listed: true
+position: 3
+---
+{% extends 'references/filters' %}
+
+{% block 'main/left/content' %}
+
+:markdown
+  # multi_line(input)
+
+  Inserts a &lt;br /&gt; tag in front of every \n linebreak character.
+
+      {% raw %}{{ "hello\nworld" | multi_line }}
+  {% endraw %}
+
+  **Example**: Returns
+      hello<br/>world
+
+{% endblock %}

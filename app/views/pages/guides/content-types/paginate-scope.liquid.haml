@@ -1,0 +1,86 @@
+---
+title: Paginate, scope content entries
+listed: true
+position: 2
+
+editable_elements:
+  main/page_head_title: "Paginate, scope content entries"
+  main/page_head_content: ""
+
+---
+{% extends 'guides/content-types' %}
+
+{% block 'main/left/content' %}
+:markdown
+  When listing content entries in a page, you might want to filter entries or create a pagination system.
+  Here's how to do that.
+
+  <div class="alert alert-info"><strong>Note: </strong>We consider that you have created an event content type as described in the <a href="create">previous guide</a></div>
+
+  # Add a category field to the event content type
+
+    In your `app/content_types/events.yml`, add a block:
+
+      - category:
+          label: Category
+          type: string
+          required: true      
+
+    Edit `data/events.yml` and add a field category for each entry.
+
+      - "Sample 1":
+          description: "Quam repellat repudiandae harum impedit natus. Quos vel rem vitae error qui culpa est. Eveniet reprehenderit sed ipsum quibusdam eos ab nihil."
+          event_date: 2013/21/19 # YYYY/MM/DD
+          category: "foo"
+
+  # Filter the entries on "foo" category
+
+    You will use with_scope liquid tag to filter the entries.
+
+    In a page, type:
+
+      {% raw %}<ul>
+      {% with_scope category: 'foo' %}
+      {% for event in contents.events %}
+        <li>{{ event.title }}</li>
+      {% endfor %}
+      {% endwith_scope %}
+      </ul>{% endraw %}
+
+  # Reverse the entries
+
+    Add the `reversed` option to the for tag:
+
+      {% raw %}<ul>
+      {% for event in contents.events reversed %}
+        <li>{{ event.title }}</li>
+      {% endfor %}
+      </ul>{% endraw %}
+
+  # Pagination
+
+  You can easily create a navigation with page number, and previous or next button.
+
+      {% raw %}{% paginate contents.events by 2 %}
+      <ul>
+      {% for event in paginate.collection %}
+        <li>{{ event.title }}</li>
+      {% endfor %}
+      </ul>
+      <div class="pagination">
+        {% if paginate.previous_page %}<a href="?page={{paginate.previous_page}}">Previous</a>{% endif %}
+        {% if paginate.next %}<a href="?page={{ paginate.next_page }}">Next</a>{% endif %}
+      </div>
+      {% endpaginate %}{% endraw %}
+
+    You also can use the `paginate` filter instead of the pagination div:
+
+      {% raw %}{{ paginate | default_pagination }}{% endraw %}
+
+  Learn more:
+
+  - [**paginate** tag documentation](/references/tags/content/paginate)
+  - [**with\_scope** tag documentation](/references/tags/content/with-scope)
+
+
+{% endblock %}

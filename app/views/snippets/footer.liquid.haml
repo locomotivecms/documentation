@@ -1,10 +1,61 @@
-%br
+%footer#footer
+  #inner-footer
+    %section.footer-item
+      %header
+        Quick Links
+      %ul
+        %li
+          %a{ :href => "http://www.locomotivecms.com" }
+            LocomotiveCMS
+        %li
+          %a{ :href => "http://www.locomotivehosting.com" }
+            LocomotiveHosting
 
-%p.pull-right
-  %a{ :href => 'mailto:support@locomotivecms.com' } Contact us
+    %section.footer-item
+      %header
+        Follow
+        %a{ :href => "https://twitter.com/locomotivecms" }
+          @locomotivecms
 
-%p
-  LocomotiveCMS is an open source CMS released under the MIT license
-  %br
-  LocomotiveCMS, LocomotiveCMS Editor, LocomotiveEditor are all trademarks of
-  %a{ :href => 'http://www.nocoffee.fr' } NoCoffee SARL
+      {% consume tweets from 'https://api.twitter.com/1/statuses/user_timeline.json?screen_name=locomotivecms&count=2' expires_in: 3600 %}
+
+      {% if tweets.error %}
+      %p
+        %strong Error during connection to the Twitter API:
+        %br
+        %i reason:
+        %small {{ tweets.error }})
+      {% else %}
+      %ul.tweets
+        {% for tweet in tweets %}
+
+        {% assign _date = tweet.created_at | split: ' ' %}
+        {% capture date %}{{ _date[0] }} {{ _date[1] }} {{ _date[2] }} {{ _date[3] }} {{ _date[5] }}{% endcapture %}
+
+        %li
+          %img{ :src => "{{ 'twitter.png' | theme_image_url }}", :width => '24px', :height => '20px' }
+          %p.text {{ tweet.text }}
+          %p.date {{ date | format_date: '%Y-%m-%d' | distance_of_time_in_words }} ago
+
+        {% endfor %}
+
+      {% endif %}
+      {% endconsume %}
+
+    %section.footer-item
+      %header
+        LocomotiveCMS News
+      %p
+        Stay on top of LocomotiveCMS updates, subscribe to our news.
+      %p.subscribe
+        %a{ href: "http://eepurl.com/uX8R9", target: "_blank", class: "btn" }
+          Subscribe
+    %section.footer-item
+      %header.logo
+        LOCOMOTIVECMS
+      %p
+        %em LocomotiveCMS is developed by NoCoffee. LocomotiveCMS is a free software under the MIT license.
+      %p
+        %strong © {{ today | localized_date: '%Y' }} LocomotiveCMS
+    %a.back-to-top{ :href => "#" }
+      BACK TO TOP

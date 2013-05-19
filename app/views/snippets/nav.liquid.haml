@@ -1,0 +1,55 @@
+%nav#main-nav
+  .inner-container
+    %h1
+      %a{ :href => "/" }
+        LOCOMOTIVECMS
+        %small
+          documentation
+    #nav-toggle
+      %a.icon-th-list
+    %ul
+      {% assign path_segments = fullpath | split: '/' %}
+      {% for main_page in site.index.children reversed %}
+      {% if main_page.listed? %}
+      {% assign page_segments = main_page.fullpath | split: '/' %}
+      %li{ :class => '{% if path_segments[1] == page_segments[0] %}active{% endif %} {{page_segments[0]}}'}
+        %a{ :href => "/{{ main_page.fullpath }}" }
+          {{ main_page.title }}
+        {% if main_page.fullpath == 'guides' %}
+        #guides
+          %hr
+          {% for main_page in site.index.children %}
+          {% if main_page.fullpath == "guides" %}
+          %dl.L
+            {% for guide_category in main_page.children limit: 2 %}
+            {% if guide_category.listed? %}
+            %dt
+              {{guide_category.title}}
+            {% for guide in guide_category.children %}
+            {% if guide.listed? %}
+            %dd
+              %a{href: "/{{guide.fullpath}}"}
+                {{guide.title}}
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+          %dl.R
+            {% for guide_category in main_page.children offset: 2 %}
+            {% if guide_category.listed? %}
+            %dt
+              {{guide_category.title}}
+            {% for guide in guide_category.children %}
+            {% if guide.listed? %}
+            %dd
+              %a{href: "/{{guide.fullpath}}"}
+                {{guide.title}}
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+          {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+      {% endfor %}

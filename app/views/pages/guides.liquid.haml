@@ -1,0 +1,189 @@
+---
+title: Guides
+published: true
+listed: true
+position: 1
+editable_elements:
+  main/page_head_title: "All the guides"
+  main/page_head_content: "<p>Get on the rails of LocomotiveCMS. Everything you need to know to make the coolest sites is here.</p>"
+---
+{% extends 'index' %}
+
+{% block 'main' %}
+{% assign depth = path | split: '/' | size %}
+
+{% case depth %}
+{% when 2 %}{% include 'page_head' %}
+{% else %}
+{% include 'subnav_depth' with depth: 1 %}
+%section#page-head
+  %section#page-head-content
+    %header
+      {{ page.title }}
+{% endcase %}
+
+#main-generic
+  {% block 'left' %}
+  %section#container-sidebar
+    {% block 'content' %}
+
+    %p
+      LocomotiveCMS is made of two parts:
+    %ul
+      %li
+        %strong{style: 'font-size: 1.3em'} Wagon
+        is a command line tool that makes it easy to develop a LocomotiveCMS site locally by providing the most efficient tools for website developers (HAML, Compass, ...etc.) and without installing MongoDB. It embeds a small http server and some generators.
+      %li
+        the
+        %strong{style: 'font-size: 1.3em'} Engine
+        is a Ruby on Rails engine. Embedded in a Rails application, it serves one or many sites. Besides, it offers the end users a sexy administration interface for editing.
+        %br
+        You only need this component if you want to host your site with your own solution. Otherwise, you can use our officiel hosting solution:
+        %strong
+          %a{ href: 'http://www.locomotivehosting.com' } LocomotiveHosting.
+
+    %h1 Getting Started
+    %p Install and run your first LocomoticeCMS site by following these steps:
+
+    %ul
+      %li
+        %a{ :href => "/guides/get-started/requirements" }
+          Requirements
+        %p You will require a few things to be installed on your system before you get started : Ruby, Ruby On Rails, Mongodb and Imagemagick.
+      %li
+        %a{ :href => "/guides/get-started/install-wagon" }
+          Install Wagon
+        %p Wagon is THE command line tool that allows you to develop locally.
+      %li
+        %a{ :href => "/guides/get-started/create-your-first-site" }
+          Create your first site
+      %li
+        %a{ :href => "/guides/get-started/deployment" }
+          Deployment
+        %p Once you have developed locally, push your site to production!
+      %li
+        %a{ :href => "/guides/get-started/install-engine" }
+          Install the LocomotiveCMS engine
+        (self hosting)
+        %p LocomotiveCMS runs on a Ruby On Rails site. Follow the instructions to install Ruby On Rails and create your first site.
+      %li
+        %a{ :href => "/guides/get-started/development-workflow" }
+          The ideal development workflow
+
+    %h1 Templating
+
+    %ul
+      %li
+        %a{ :href => "guides/templating/basics" }
+          Basics of templating: page inheritance
+      %li
+        %a{ :href => "guides/templating/create-page" }
+          Create a page
+      %li
+        %a{ :href => "guides/templating/snippets" }
+          Re-use a block: snippets
+      %li
+        %a{ :href => "guides/templating/add-assets" }
+          Add assets
+      %li
+        %a{ :href => "guides/templating/fonts" }
+          Manage fonts
+
+    %h1 Content types
+
+    %p
+      How to create data structures
+
+    %ul
+      %li
+        %a{ :href => "guides/content-types/create" }
+          Create a content type
+        %p
+          Declare, create data, display content entries.
+      %li
+        %a{ :href => "guides/content-types/paginate-scope" }
+          Paginate and scope content entries
+      %li
+        %a{ :href => "guides/content-types/translate-content-entries" }
+          Translate content entries
+      %li
+        %a{ :href => "guides/content-types/customize-backoffice" }
+          Customize the backoffice user interface
+      %li
+        %a{ :href => "guides/content-types/relationships" }
+          Create relationships
+      %li
+        %a{ :href => "guides/content-types/public-form-submission" }
+          Using public form submissions
+        %p Create a contact form, store the messages and receive emails.
+
+    %h1 Multilingual
+
+    %p
+      How to manage multiple language.
+
+    %ul
+      %li
+        %a{ :href => "/guides/multilingual/setup" }
+          Set up multilingual
+
+      %li
+        %a{ :href => "/guides/multilingual/templates" }
+          Multiple templates
+        %p Create a different template for each language, or create one template and manage translations.
+
+
+      %li
+        %a{ :href => "/guides/multilingual/add-language" }
+          Add another language
+        %p Create a different template for each language, or create one template and manage translations.
+
+      %li
+        %a{ :href => "/guides/content-types/translate-content-entries" }
+          Translate content entries
+
+    %h1 Hosting
+
+    %ul
+      %li
+        %a{ :href => "/guides/hosting/heroku-hosting" }
+          Heroku hosting
+        %p Setting up LocomotiveCMS hosting on Heroku is very handy.
+      %li
+        %a{ :href => "/guides/hosting/pull-site" }
+          Pull a site from a hosted location
+        %p Setting up LocomotiveCMS hosting on Heroku is very handy.
+
+
+    %h1 Multisite
+
+    %ul
+      %li
+        %a{ :href => "/guides/multisites" }
+          Setup multiple sites
+        %p Manage multiple sites with one LocomotiveCMS installation.
+
+
+    / %h1 Guides summary
+
+    / {% assign path_segments = path | split: '/' %}
+
+    / {% for child in page.children %}
+    / %ul
+    /   %li
+    /     %a{ :href => "{{ fullpath }}/{{ child.slug }}", :class => "{% if child.slug == path_segments[1] %}current{% endif %}" }
+    /       {{ child.title }}
+    /     {% if child.children %}
+    /     %ul
+    /       {% for grand_child in child.children %}
+    /       %li
+    /         %a{ :href => "/{{ grand_child.fullpath }}" }
+    /           {{ grand_child.title }}
+    /       {% endfor %}
+    /     {% endif %}
+    / {% endfor %}
+    {% endblock %}
+  {% endblock %}
+  {% block 'sidebar' %}{% endblock %}
+
+{% endblock %}

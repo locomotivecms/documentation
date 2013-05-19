@@ -1,0 +1,28 @@
+table
+  width: 100%
+  +box-shadow(0px 0px 9px $table-background)
+  border-collapse: collapse
+  thead
+    background-color: $table-header
+    th
+      border-bottom: 1px solid $table-row-border
+      color: $table-header-text
+  tr
+    &:nth-child(2n)
+      background-color: $table-background
+    &:last-child
+      +border-radius(0 0 3x 3x)
+    td
+      border-bottom: 1px solid $table-row-border
+      &:first-child
+        font-weight: bold
+        letter-spacing: -1px
+  td,
+  th
+    padding: 12px 15px 12px 15px
+    &:first-child
+      border-left: none
+    &:last-child
+      border-right: none
+
+

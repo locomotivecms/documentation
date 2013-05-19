@@ -1,0 +1,19 @@
+---
+title: "Use Sass"
+listed: true
+position: 6
+
+editable_elements:
+  main/page_head_title: "Re-use a block of code in several templates: Snippets"
+---
+{% extends 'guides/templating' %}
+
+{% block 'main/left/content' %}
+
+:markdown
+  Wagon automatically understands the [Sass](http://sass-lang.com) language to manage your stylesheets.
+
+  In the public/stylesheets folder, you can write `.scss` and `.sass` files. It will be automatically compiled to css when developping or pushing your assets to a Locomotive Engine.
+
+{% include 'wip' %}
+{% endblock %}

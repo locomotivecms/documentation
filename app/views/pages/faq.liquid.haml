@@ -1,41 +1,29 @@
-{% extends index %}
+---
+title: FAQ
+published: true
+listed: true
+position: 3
 
+editable_elements:
+  main/page_head_title: "FAQ"
+  main/page_head_content: ""
+---
+{% extends 'index' %}
 {% block 'main' %}
+{% include 'page_head' %}
 
-.hero-unit
-
-  %h1 Frequently Asked Questions
-
-  %br
-
-  %p
-    Here are the most frequent questions people ask about LocomotiveCMS.
-
-
-.tabbable
-
-  %ul.nav.nav-tabs
-    {% for name in contents.faq_entries.category_options %}
-    %li
-      %a{ href: '#{{ name | dasherize }}', data: { toggle: 'tab' } } {{ name }}
-
-    {% endfor %}
-
-  .tab-content
-    {% for category in contents.faq_entries.group_by_category %}
-    .tab-pane{ id: '{{ category.name | dasherize }}' }
-      {% for entry in category.entries %}
-      %h4 {{ entry.question }}
-
-      %br
-
-      .text
-        {{ entry.answer }}
-
-      %hr
-
+#main-generic
+  {% block 'left' %}
+  %section
+    {% block 'content' %}
+    %ul
+      {% for mainpage in page.children %}
+      {% if mainpage.listed? %}
+      %li
+        %a{ :href => '{{ mainpage.fullpath }}' }
+          {{ mainpage.title }}
+      {% endif %}
       {% endfor %}
-    {% endfor %}
-
-
+    {% endblock %}
+  {% endblock %}
 {% endblock %}

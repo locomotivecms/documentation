@@ -1,0 +1,28 @@
+// Since the layout can have several grids configuration in a same page,
+// we don't define global grid setttings, but instead mixins applied in containers
+
+=three-cols-grid
+  $total-columns  : 3
+  $column-width   : 295px
+  $gutter-width   : 50px
+  $grid-padding   : 20px
+  +container
+  //+susy-grid-background
+  
+
+=four-cols-grid
+  $total-columns  : 4
+  $column-width   : 217px
+  $gutter-width   : 39px
+  $grid-padding   : 20px
+  +container
+  //  +susy-grid-background
+
+=five-cols-grid
+  $total-columns  : 5
+  $column-width   : 175px
+  $gutter-width   : 27px
+  $grid-padding   : 20px
+  +container
+  //+susy-grid-background
+  

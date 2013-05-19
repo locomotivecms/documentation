@@ -1,0 +1,55 @@
+{% assign path_segments = path | split: '/' %}
+{% assign current_depth = path_segments | size | minus: 1 %}
+
+{% assign max_loop = current_depth | minus: depth %}
+{% assign source = page %}
+{% for i in (1..max_loop) %}
+{% assign source = source.parent %}
+{% endfor %}
+
+%aside{ :class => "sidebar" }
+  .floating-panel
+    .inner-floating-panel
+      {% for parent_page in source.children %}
+      {% if parent_page.listed? %}
+      %header
+        %h1
+          {{ parent_page.title }}
+      %ul.dropdown
+        {% for child in parent_page.children %}
+        {% if child.listed? %}
+        %li
+          {% if child.children.size > 0 %}
+          %a{ :href => "/{{ child.fullpath }}", :class => "{% if page.fullpath == child.fullpath %}active{% endif %} dropdown-toggle", "data-toggle" => "dropdown" }
+            {{ child.title }}
+          %ul.dropdown-menu
+            {% for grand_child in child.children %}
+            {% if grand_child.listed? %}
+            %li
+              %a{ :href => "/{{ grand_child.fullpath }}" }
+                {{ grand_child.title }}
+            {% endif %}
+            {% endfor %}
+          {% else %}
+          %a{ :href => "/{{ child.fullpath }}", :class => "{% if page.fullpath == child.fullpath %}active{% endif %}" }
+            {{ child.title }}
+          {% endif %}
+
+        {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% endfor %}
+
+
+      / %header
+      /   %h1
+      /     {{ source.title }}
+      / %ul
+      /   {% for child in source.children %}
+      /   {% if child.listed? %}
+      /   %li
+      /     %a{ :href => "/{{ child.fullpath }}", :class => "{% if page.fullpath == child.fullpath %}active{% endif %}" }
+      /       {{ child.title }}
+      /   {% endif %}
+      /   {% endfor %}
+

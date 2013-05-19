@@ -1,0 +1,34 @@
+---
+title: Install Wagon
+listed: true
+position: 2
+
+editable_elements:
+  main/page_head_title: "Install Wagon"
+  main/page_head_content: ""
+---
+{% extends 'guides/get-started' %}
+
+{% block 'main/left/content' %}
+:markdown
+  Wagon is a command line site generator for the LocomotiveCMS engine powered by all the efficient and modern HTML development tools (Haml, SASS, Compass, Less). It embeds a webserver which allows to run the site locally
+
+  # 1. Install the bundler and rake gems
+
+  <div class="alert alert-warning">
+  Make sure you have installed <strong>Ruby</strong>. If not, please read the “Ruby” section in the following <a href="/installation/requirements">page</a>.
+  The editor runs fine with these ruby versions: <strong>1.9.2 and 1.9.3.</strong>
+  </div>
+
+      gem install bundler
+      gem install rake
+
+  # 2. Install the binary
+
+      gem install locomotivecms_wagon
+
+  <div class="alert alert-info">
+  <strong>Done?</strong> Let's <a href="create-your-first-site">create your first site</a>.
+  </div>
+
+{% endblock %}

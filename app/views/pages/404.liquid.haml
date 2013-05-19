@@ -1,14 +1,20 @@
-{% extends index %}
+---
+title: Page not found
+published: true
+listed: false
+---
+{% extends 'index' %}
 
 {% block 'main' %}
-
-.alert.alert-error
-  %h4.alert-heading Page not found!
-
-  %br
-
-  %p
-    If you think we made a mistake, please contact
-    %a{ :href => 'mailto:support@locomotivecms.com' } us
+%section#page-404
+  %header
+    %h1
+      {% editable_short_text "404-title", priority: 8 %}
+      Sorry, you must have taken a wrong turn somewhere
+      {% endeditable_short_text %}
+    {% editable_short_text "404-content", priority: 7 %}
+    404 Error page
+    {% endeditable_short_text %}
+  %img{ :src => "{{ '404.png' | theme_image_url }}" }
 
 {% endblock %}

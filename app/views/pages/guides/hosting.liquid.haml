@@ -1,0 +1,19 @@
+---
+title: Hosting
+published: true
+listed: true
+position: 6
+redirect_url: /guides/hosting/heroku-hosting
+redirect_type: 302
+---
+{% extends 'guides' %}
+{% block 'main/left' %}
+%section#container-sidebar
+ 
+  {% block 'content' %}{% endblock %}
+
+{% block 'sidebar' %}
+{% include 'sidebar_depth_1' %}
+{% endblock %}
+
+{% endblock %}

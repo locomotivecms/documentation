@@ -1,0 +1,57 @@
+---
+title: Consume
+published: true
+listed: true
+position: 3
+---
+{% extends 'references/tags' %}
+
+{% block 'main/left/content' %}
+
+:markdown
+  # consume
+
+  Read an external datasource (either JSON or XML), cache the content and allow you to iterate over the objects.
+
+      {% raw %}{% consume blog from 'http://blog.locomotivecms.com/api/read/json?num=3&amp;type=text', expires_in: 3000 %}
+      {% if blog == null %}
+        the Tumblr API seems to be broken now.
+        {% else %}
+          {% for article in blog.posts %}
+            {{ article.title }}
+          {% endfor %}
+        {% endif %}
+      {% endconsume %}
+  {% endraw %}
+
+  ### Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>expires_in</td>
+        <td>Integer</td>
+        <td>Delay in seconds during the content will be cached. 0 means no cache.</td>
+      </tr>
+      <tr>
+        <td>username</td>
+        <td>String</td>
+        <td>username if the external API requires an HTTP authentication.</td>
+      </tr>
+      <tr>
+        <td>password</td>
+        <td>String</td>
+        <td>password if the external API requires an HTTP authentication.</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+{% endblock %}

@@ -63,5 +63,18 @@ position: 6
   </table>
 
 
+  # How to use editable image with a default value?
+
+  If you want to use a theme image as the default value of your editable file, you might be tempted to do this:
+
+      {% raw %}{% editable_file 'banner' %}{{ 'banner.png' | theme_image_url }}{% endeditable_file %}{% endraw %}
+
+  **Which won't work**: editable tags can't include another Liquid tag.
+
+  So you need to capture the url of the editable file first, then display your image by testing if it has been edited:
+
+      {% raw %}{% capture banner_url %}{% editable_file 'banner' %}{% endeditable_file %}{% endcapture %}
+      {% if banner_url != '' %}{{ banner_url | image_tag }}{% else %}{{ 'banner.png' | theme_image_tag }}{% endif %}{% endraw %}
+
 
 {% endblock %}

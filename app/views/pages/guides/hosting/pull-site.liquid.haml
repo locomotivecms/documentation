@@ -1,5 +1,5 @@
 ---
-title: Pull a site from a hosted location (wip)
+title: Pull a site from a hosted location
 listed: true
 position: 2
 
@@ -12,8 +12,32 @@ editable_elements:
 {% block 'main/left/content' %}
 
 :markdown
-  {% include 'wip' %}
-{% endblock %}
+  This function allows you to retrieve a wagon site from a hosted location (a LocomotiveCMS engine).
+
+  Create a new site with wagon
+
+      cd ~/workspace
+      wagon init mysite
+      cd mysite
+      bundle install
+
+  Edit `config/deploy.yml` to configure the site you want to pull, on the production environment.
+
+  Run the pull command
+
+      bundle exec wagon pull production
+
+  The mysite folder will be updated with all the site from the engine.
+
+  Test it
+
+      bundle exec wagon serve
+
+  Then run your browser on http://0.0.0.0:3333
+
+  Note: Because all the assets are compiled in the engine, you won't get the sass / coffeescript sources.
+
+  {% endblock %}
 
 {% block 'sidebar' %}
 {% include 'sidebar_depth_1' %}

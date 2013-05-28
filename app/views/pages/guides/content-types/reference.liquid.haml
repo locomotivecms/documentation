@@ -1,0 +1,98 @@
+---
+title: Content type file documentation
+listed: false
+position: 100
+
+---
+{% extends 'guides/content-types' %}
+
+{% block 'main/left/content' %}
+:markdown
+  Here are the keywords you can use on `app/content_types/*.yml` files.
+  All the content types should be plural filenames.
+
+  <dl>
+  <dt>name</dt>
+  <dd>String value. Public name of the content type. Use plural.</dd>
+
+  <dt>slug</dt>
+  <dd>String value. Internal name of the content type. Use plural and lower case, no space.</dd>
+
+  <dt>description</dt>
+  <dd>String value. Explanation for the backoffice</dd>
+
+  <dt>label_field_name</dt>
+  <dd>Field slug. Default field slug (generally title), it must be a string field</dd>
+
+  <dt>order_by</dt>
+  <dd>Any field slug or 'manually' or 'created_at'. Changes the order of content entries in backoffice and content entries.</dd>
+
+  <dt>order direction</dt>
+  <dd>'asc' or 'desc'</dd>
+
+  <dt>group_by</dt>
+  <dd>Field slug. Display entries grouped by the given field in the backoffice</dd>
+
+  </dl>
+
+  ## Fields types
+
+      field_slug:
+        type: <type>
+        option: value
+
+  ### Common options for fields
+
+  <dl>
+  <dt>label</dt>
+  <dd>Required. Label for the backoffice</dd>
+
+  <dt>required</dt>
+  <dd>default false</dd>
+
+  <dt>hint</dt>
+  <dd>Displays a hint in the backoffice.</dd>
+
+  <dt>localized</dt>
+  <dd>Default false. Makes this field localized: each language will have a different value.</dd>
+
+  </dl>
+
+  ### Depending on the field type, you can provide one or more options.
+
+  <dl>
+  <dt>string</dt>
+  <dd>Standard string field</dd>
+  <dt>text</dt>
+  <dd>Longer field. Use with <code>text_formatting: html</code> option to display a wysiwyg editor in the backoffice.</dd>
+  <dt>select</dt>
+  <dd>Add select_options:
+  <code>["value 1", "value 2"]</code> or for multilingual:<br />
+  <pre><code>select_options:
+    en: ["Value 1", "Value 2"]
+    fr: ["Valeur 1", "Valeur 2"]</code></pre>
+  </dd>
+  <dt>date</dt>
+  <dd>Date field. No option.</dd>
+  <dt>boolean</dt>
+  <dd>true or false field. No option.</dd>
+  <dt>has_many</dt>
+  <dd>
+    Declare a relationship between 2 content types. Example with category has many products (field 'products' in categories.yml):<br />
+    <pre><code>class_name: products
+  inverse_of: category
+  ui_enabled: true</code></pre>
+  Notice the plurals and singulars.
+  </dd>
+  <dt>belongs_to</dt>
+  <dd>Example with product belongs to a category, field 'category' in products.yml: <code>class_name: categories</code></dd>
+  <dt>many_to_many</dt>
+  <dd>Example with products has and belongs to many categories. In products.yml: <br />
+  <pre><code>class_name: products
+  inverse_of: category
+  ui_enabled: true</code></pre></dd>
+  <dt>file</dt>
+  <dd>No option, get the url with <code>product.the_photo['url']</code> in your code.</dd>
+  </dl>
+
+{% endblock %}

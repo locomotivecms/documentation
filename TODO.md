@@ -1,41 +1,14 @@
-## To do site
-
-- add multi site, upgrade to 2.0 in guides
-- main nav active when in sub child
-  -> idem sub nav
-    => JS ? plus simple
-- editor : configure git + gitignore (deploy, ds store etc)
-
 ## To write documentation
 
-- overview / anatomy / key features
-- templating / liquid syntax / filters
-- templating / liquid syntax / tags
-- Locomotive editor
-- Writing custom Liquid tags
-- Models > rendering
-- Models > public submission (nb csrf) + file submission https://groups.google.com/forum/?fromgroups=#!topic/locomotivecms/qhLaBGF8LZs
-- verifier dans quels cas content_types ne marche pas, et modifier la doc officielle en consequence
-- specify cdn : https://groups.google.com/forum/?fromgroups#!topic/locomotivecms/9GjjtnD80gU
-- Reference >> ajouter created_at et updated_at
-- to do : editable control etc editables things
-- with scope ne marche pas >>> https://groups.google.com/forum/?fromgroups=#!topic/locomotivecms/vAq0IIij4Ag
-- menu custom : https://github.com/locomotivecms/documentation/blob/master/app/views/pages/index.liquid.haml#L39
-- Using Locomotive in an existing rails app
-- Tips > Using multi-sites
-
-- reference :  
-  - filters:
-    - strip_html
-
-## Questions
-
-- quick links footer : on les gardes ? ils redirigeront sur le site principal
-
-## Ideas
-
-- page pour proposer les articles externes.
-- pour chaque item du guide, on pourrait avoir un "aller plus loin" ou "expert" ?
-- page how to contribute
-- page ce qu'il y a a documenter
-- page submit question / idea for the doc site
+- fonts on S3
+- Wagon command line documentation
+- search engine
+- guides menu background fix
+- guides for rest api
+- guide editable file
+- guide ideal development workflow
+- integrate revision.io ```<iframe src="http://revision.io/embeds/wagon" style="border: 0; width: 100%; height: 600px;"></iframe>```
+- reference liquid tags for sessions
+- using jscoffee
+- reference tag link_to
+- multilingual guides

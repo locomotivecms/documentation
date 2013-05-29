@@ -4,7 +4,18 @@ We woud appreciate any contribution to this guide.
 
 ## How to contribute ?
 
-Just fork the repository and send us a pull request!
+Fork the repository and send us a pull request!
+
+## How to run the doc site locally
+
+- fork this repository
+- install the required gems ```bundle install```
+- run the server ```bundle exec wagon serve```
+- open your browser http://0.0.0.0:3333
+
+## What can I do to help?
+
+Read the TODO :)
 
 ## Conventions
 

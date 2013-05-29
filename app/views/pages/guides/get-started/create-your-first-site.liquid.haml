@@ -12,11 +12,14 @@ editable_elements:
 {% block 'main/left/content' %}
 :markdown
 
+  When you create a site with LocomoticeCMS, you do it locally first: this way you can focus on the design and the frontend code. That's what Wagon is used for: it initiates a site, runs a local http server, and eventually pushes your local code to a LocomoticeCMS engine.
+
+  Just in case you haven't yet, you need to [install Wagon](install-wagon) first.
 
   # 1. Generate a site
 
     A LocomoticeCMS site is stored in a local folder like any web project. We consider that you store your projects in `~/workspace` directory.
-        
+
         cd ~/workspace
         wagon init my_first_site -t bootstrap
 
@@ -52,7 +55,7 @@ editable_elements:
     Your site can be edited with any text editor: Sublime Text 2, Textmate, vi, emacs, ...etc. There is **no need** to stop/start the serve command when you have modified a liquid template or content type.
 
   <div class="alert alert-info">
-  <strong>Done?</strong> Learn more about the <a href="/guides/templating">templating language</a>, or let's <a href="deployment">deploy your first site</a>
+  <strong>Done?</strong> Learn more about the <a href="/guides/templating">templating language</a>, or let's <a href="deployment">deploy your first site to a LocomotiveCMS engine</a>
   </div>
 
 {% endblock %}

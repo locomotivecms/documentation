@@ -52,7 +52,7 @@ editable_elements:
 
       Tags are used for the logic in the templates making them very dynamic. Thus, you can loop through a collection with the **for** tag, test a variable with the classical **if/else.** We also added, to the original Liquid tags, our own tags in order to build pages more elegantly and more efficiently.
 
-          {% raw %}{% if content_types.projects.size == 0 %}
+          {% raw %}{% if contents.projects.size == 0 %}
           <p>No project</p>
           {% endif %}{% endraw %}
 

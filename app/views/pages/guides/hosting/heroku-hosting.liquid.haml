@@ -14,26 +14,27 @@ editable_elements:
 
 :markdown
   <div class="alert alert-info">
-  We assume that you installed <strong>Heroku</strong> on your machine. Follow this <a href="http://devcenter.heroku.com/articles/quickstart">link</a> if you have not.
+  We assume that you installed <strong>Heroku</strong> on your machine. Read the <a href="http://devcenter.heroku.com/articles/quickstart">Heroku quickstart guide</a> if you have not.
   </div>
   <div class="alert alert-info">
-  We also assume that you followed the <strong><a href="/installation/getting_started">instructions</a></strong> to install the engine.
+  We also assume that you followed the <strong><a href="/guides/get-started/install-engine">instructions to install the engine</a></strong>.
   </div>
 
   # 1. Add the Heroku extension
+
+  If you run the engine for multisites, you need LocomotiveCMS to tell Heroku to update the domains when you add one in the LocomotiveCMS backoffice.
 
   Open your **Gemfile** file in your LocomotiveCMS application and add the following statement right after the one about the LocomotiveCMS engine.
 
       gem 'locomotive-heroku', '~> 0.0.2', :require => 'locomotive/heroku'
       gem 'thin', :group => 'production'
 
-  While you’re at it, add the following line right before your first gem entry :
+  While you’re at it, add the following line right before your first gem entry:
 
       ruby '1.9.3'
 
-  Then, in your terminal, run :
+  Then, in your terminal, run:
 
-      gem install bundler --pre
       bundle install
 
   # 2. Create the Heroku app from your app folder
@@ -79,7 +80,6 @@ editable_elements:
       heroku config:add S3_SECRET_KEY=<YOUR S3 SECRET KEY>
       heroku config:add S3_BUCKET=<YOUR S3 BUCKET NAME>
       heroku config:add S3_BUCKET_REGION=<YOUR S3 BUCKET REGION>
-
 
   **Note:** For S3 Bucket Region var, here is the [correspondance table](http://docs.amazonwebservices.com/general/latest/gr/rande.html) between your ‘human’ bucket region name, and it’s endpoint :
 

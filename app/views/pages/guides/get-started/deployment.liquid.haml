@@ -1,10 +1,10 @@
 ---
-title: Deployment
+title: Deploy to an engine
 listed: true
 position: 5
 
 editable_elements:
-  main/page_head_title: "Deploy your site"
+  main/page_head_title: "Deploy your local site to a LocomotiveCMS engine"
   main/page_head_content: ""
 
 ---
@@ -12,8 +12,12 @@ editable_elements:
 
 {% block 'main/left/content' %}
 :markdown
-  <div class="alert alert-warning">
-  <strong>Important.</strong> The only requirement is to have somewhere (it can be online or locally) a running engine and an administrator account. Check out our <a href="install-engine">installation procedure</a> for more information.
+
+  Once you have a working Wagon site, you probably want to see it working online, with the backoffice and everything.
+  That's the role of the LocomotiveCMS engine.
+
+  <div class="alert alert-info">
+  <strong>Important.</strong> The only requirement is to have somewhere (it can be online or locally) a running engine and an administrator account. Check out the <a href="install-engine">engine installation guide</a> for more information.
   </div>
 
   # 1. Edit your deployment settings
@@ -53,11 +57,15 @@ editable_elements:
   ### Pushing the whole site:
 
       cd ~/workspace/my_first_website
-      bundle exec wagon push --resources=all --target=staging
+      bundle exec wagon push staging
 
   You might prefer the shorter syntax:
 
-      bundle exec wagon push -n my_first_website -r all -t staging
+      bundle exec wagon push staging
+
+  If you want to push your content entries (`data/*.yml`), add the `--data` option (or `-d`)
+
+      bundle exec wagon push staging --data
 
   ### Pushing only a specify type of resource:
 
@@ -67,7 +75,17 @@ editable_elements:
 
   Example:
 
-      bundle exec wagon push --resources=pages --target=staging
+      bundle exec wagon push staging --resources=pages
+
+  You might prefer the shorter syntax:
+
+      bundle exec wagon push staging -r pages
+
+
+  Or
+
+      bundle exec wagon push staging -r pages
+
 
   ### What if the resource already exists within your target engine?
 
@@ -75,7 +93,6 @@ editable_elements:
 
   Unless you force it:
 
-      bundle exec wagon push --resources=pages --target=staging --force
-
+      bundle exec wagon push staging --resources=pages --force
 
 {% endblock %}

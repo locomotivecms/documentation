@@ -1,6 +1,6 @@
 ---
 title: Hosting with LocomotiveHosting
-listed: false
+listed: true
 position: 2
 
 editable_elements:
@@ -41,7 +41,7 @@ editable_elements:
 
   # 3 Push your site
 
-      bundle exec wagon push --target=production --ressources=all --data
+      bundle exec wagon push production --data
 
     Try it! Use the given subdomain and try it in your browser!
 
@@ -55,8 +55,7 @@ editable_elements:
 
   # 5 Redirect your subdomain to your main domain.
 
-    TODO this must be discussed. Feature request?
-
+    This is Work In Progress 
 {% endblock %}
 
 {% block 'sidebar' %}

@@ -34,6 +34,24 @@ editable_elements:
       cp -R ../my_site_editor/data/ data/
       cp ../my_site_editor/config/deploy.yml config/
 
+  # Adjust all page slugs
+
+    If you had pages with underscore slugs like `about_us`, make sure to replace all underscores with dashes: `about-us`. Example:
+
+  ## Before -- with underscores
+
+      /app/views/pages/about_us.liquid.haml
+      {% raw %}{% extends 'layouts/text_page' %}{% endraw %}
+
+      /app/views/pages/layouts/text_page.liquid.haml
+
+  ## After -- with dashes
+
+      /app/views/pages/about-us.liquid.haml
+      {% raw %}{% extends 'layouts/text-page' %}{% endraw %}
+
+      /app/views/pages/layouts/text-page.liquid.haml
+
   # Set your pages header
 
     That's the most boring part...
@@ -68,6 +86,16 @@ editable_elements:
     Please also note that there are small syntax changes in the page header options:
 
     - `model` became `content_type`
+
+  # Content Types
+
+    If you used `order_by_direction`, rename it to `order_direction`. Example:
+
+      # app/content_types/posts.yml
+      name: Posts
+      slug: posts
+      order_by: date
+      order_direction: desc
 
   # Check that your site now runs with the Wagon webserver
 

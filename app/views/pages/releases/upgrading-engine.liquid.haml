@@ -48,4 +48,32 @@ editable_elements:
       bundle exec rake assets:clean
       bundle exec rake assets:precompile
 
+  ***
+
+  # Tips for upgrading from 2.0.0.rcX to 2.0.X
+
+  Here are several tips to help you upgrade from a the release candidate version of LocomotiveCMS to the 2.0.x series release. Do these steps after upgrading and migrating your LocomotiveCMS engine.
+
+  - If your models aren't showing up correctly, you probably need to rebuild the page templates
+
+           bundle exec rake locomotive:rebuild_serialized_page_templates
+
+    If this command fails, you may have underscores in your template names. Try renaming your template from two_columns.liquid to two-columns.liquid and updating the pages that reference that template. Finally, run the command again and it should succeed.
+
+  - The syntax for overriding nested blocks has changed. Consider the following template:
+
+            {%raw%}{% block 'main' %}
+                {% block 'nested' %}{% endblock %}
+            {% endblock %}{% endraw %}
+
+     In previous versions, you could override the nested block with the following code:
+
+            {% raw %}{% block 'nested' %}Hello World{% endblock %}{% endraw %}
+
+     However in version 2.0.x, you now need to include the hierarchy of the blocks you want to override:
+
+            {% raw %}{% block 'main/nested' %}Hello World{% endblock %}{% endraw %}
+
+     If you use nested templates, you will need to make these updates immediately after upgrading.
+
 {% endblock %}

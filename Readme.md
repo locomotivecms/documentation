@@ -2,6 +2,11 @@
 
 We woud appreciate any contribution to this guide.
 
+## How do i run it locally?
+
+ - install the required gems ```bundle install```
+ - put the server up ```rackup```
+
 ## How to contribute ?
 
 Just fork the repository and send us a pull request!

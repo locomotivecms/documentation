@@ -69,6 +69,16 @@ editable_elements:
 
     - `model` became `content_type`
 
+  # Content Types
+
+    If you used `order_by_direction`, rename it to `order_direction`. Example:
+
+      # app/content_types/posts.yml
+      name: Posts
+      slug: posts
+      order_by: date
+      order_direction: desc
+
   # Check that your site now runs with the Wagon webserver
 
       bundle exec wagon serve

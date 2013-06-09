@@ -30,15 +30,21 @@ editable_elements:
     You have to tell your Ruby on Rails app that you want to include the LocomotiveCMS gem available on Gemcutter. Edit your application Gemfile and add these lines if missing.
 
       gem 'locomotive_cms', '~> 2.0.1', :require => 'locomotive/engine'
-      gem 'unicorn', :group => 'development'
-      gem 'compass-rails',  '~> 1.0.2', :group => 'assets'
-      gem 'sass-rails',     '~> 3.2.4', :group => 'assets'
-      gem 'coffee-rails',   '~> 3.2.2', :group => 'assets'
-      gem 'uglifier',       '~> 1.2.4', :group => 'assets'
 
-    If you run your engine on **Linux,** you also have to add the following gem
+      group :assets do
+        gem 'compass-rails',  '~> 1.0.2'
+        gem 'sass-rails',     '~> 3.2.4'
+        gem 'coffee-rails',   '~> 3.2.2'
+        gem 'uglifier',       '~> 1.2.4'
 
-      gem 'therubyracer', '>= 0.8.2'
+        # If you run your engine on **Linux,** you also have to add the following gem
+        # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+        # gem 'therubyracer', :platforms => :ruby
+      end
+
+      group :development do
+        gem 'unicorn'
+      end
 
   # 3. Install the gems
 

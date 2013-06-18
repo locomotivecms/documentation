@@ -82,6 +82,17 @@ position: 3
         <td>String</td>
         <td>description used for SEO purpose</td>
       </tr>
+      <tr>
+        <td>templatized?</td>
+        <td>Boolean</td>
+        <td>true if this page is a template (new in LocomotiveCMS 2.2+ / Wagon 1.2+)</td>
+      </tr>
+      <tr>
+        <td>target_content_type</td>
+        <td>Content type object</td>
+        <td>example: <code>{% raw %}{{page.target_content_type.count }}{% endraw %}</code><br />(new in LocomotiveCMS 2.2+ / Wagon 1.2+)</td>
+      </tr>
+
     </tbody>
   </table>
 

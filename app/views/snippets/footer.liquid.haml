@@ -17,30 +17,10 @@
         %a{ :href => "https://twitter.com/locomotivecms" }
           @locomotivecms
 
-      {% consume tweets from 'https://api.twitter.com/1/statuses/user_timeline.json?screen_name=locomotivecms&count=2' expires_in: 3600 %}
+      .tweets
+        %a{ class: 'twitter-timeline', href: 'https://twitter.com/locomotivecms', data: { widget_id: '346940464458518528', chrome: 'nofooter noborders noheader transparent', tweet_limit: 2, show_replies: 'true', link_color: '#2589ac' } } Tweets of @locomotivecms
 
-      {% if tweets.error %}
-      %p
-        %strong Error during connection to the Twitter API:
-        %br
-        %i reason:
-        %small {{ tweets.error }})
-      {% else %}
-      %ul.tweets
-        {% for tweet in tweets %}
-
-        {% assign _date = tweet.created_at | split: ' ' %}
-        {% capture date %}{{ _date[0] }} {{ _date[1] }} {{ _date[2] }} {{ _date[3] }} {{ _date[5] }}{% endcapture %}
-
-        %li
-          %img{ :src => "{{ 'twitter.png' | theme_image_url }}", :width => '24px', :height => '20px' }
-          %p.text {{ tweet.text }}
-          %p.date {{ date | format_date: '%Y-%m-%d' | distance_of_time_in_words }} ago
-
-        {% endfor %}
-
-      {% endif %}
-      {% endconsume %}
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
     %section.footer-item
       %header

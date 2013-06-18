@@ -57,12 +57,13 @@ position: 2
 
       {% with_scope _permalink: "fruits" %}
         {% assign category = contents.categories.first %}
+      {% endwith_scope%}
         {% for product in category.products %}
           <li>
             {{product.name}}
           </li>
         {% endfor %}
-      {% endwith_scope%}
+      
 
   {% endraw %}
 

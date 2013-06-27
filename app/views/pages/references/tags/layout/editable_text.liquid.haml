@@ -1,25 +1,23 @@
 ---
-title: Editable short text
+title: Editable text
 published: true
 listed: true
-position: 5
+position: 4
 ---
 {% extends 'references/tags' %}
 
 {% block 'main/left/content' %}
 
 :markdown
-  # editable\_short\_text
+  # editable\_text
 
-  <div class="alert alert-warning">
-  only for versions of the engine under 2.1 (included).
-  </div>
+  <div class="alert alert-warning">only from the 2.2 version of the engine.</div>
 
   Editable areas contain content you want a user to be able to change. The content within the tag will be the default one.
 
   In the back-office, the editable element will be found under the tab corresponding to the block wrapping it. It is possible to associate the element to another block.
 
-  The input field in the back-office used to edit the content is a *short-size textarea,* without the ability to insert new paragraphs for instance.
+  The input field in the back-office used to edit the content is a *textarea* whose look and feel are defined by the parameters passed in the tag.
 
   An element can be inherited by children, each page keeping its own version of the content. However, in some cases, it may be a requirement to have the element to be editable in one place. If so, just set the "fixed" option to true.
 
@@ -29,11 +27,10 @@ position: 5
 
 
       {% raw %}
-
-      {% editable_short_text "title", hint: "The big title", priority: 10 %}
+      {% editable_text "title", hint: "The big title", priority: 10, rows: 5 %}
       Lorem ipsum (default content)
-      {% endeditable_short_text %}
-  {% endraw %}
+      {% endeditable_text %}
+      {% endraw %}
 
   ### Options
 
@@ -65,6 +62,35 @@ position: 5
         <td>priority</td>
         <td>Integer</td>
         <td>used to position the textarea in the back-office. Elements with the highest priority are displayed first.</td>
+      </tr>
+      <tr>
+        <td>format</td>
+        <td>String</td>
+        <td>
+          defined the component used by the back-office to edit the content.
+          <br/>
+          <strong>raw</strong> for a simple textarea or <strong>html</strong> for a WYSIWYG widget (tinyMCE / AlohaEditor).
+          <br/>
+          <strong>html</strong> by default.
+        </td>
+      </tr>
+      <tr>
+        <td>rows</td>
+        <td>Integer</td>
+        <td>
+          set the number of rows of either the textarea or the WYSIWYG widget in the back-office.
+          <br/>
+          <strong>10</strong> by default.
+        </td>
+      </tr>
+      <tr>
+        <td>line_break</td>
+        <td>Boolean</td>
+        <td>
+          allow or not the creation of a new paragraph when pressing "ENTER" within the WYSIWYG widget.
+          <br/>
+          <strong>true</strong> by default.
+        </td>
       </tr>
     </tbody>
   </table>

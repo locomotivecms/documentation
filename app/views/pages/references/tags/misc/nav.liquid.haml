@@ -30,7 +30,7 @@ position: 1
 
       {% raw %}{% nav site, exclude: '\.*\-bottom', depth: 2, snippet: menu_entry %}
       {% block misc_properties %}
-        {% editable_short_text menu_teaser %}{% endeditable_short_text %}
+        {% editable_text menu_teaser %}{% endeditable_text %}
         {% editable_file menu_image %}{% endeditable_file %}
       {% endblock %}
   {% endraw %}

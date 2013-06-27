@@ -13,12 +13,12 @@ editable_elements:
 
 :markdown
   We provide a powerful hosting for LocomotiveCMS sites. We made our best so that the setup is very quick and easy.
-  
+
   We offer a cheap plan, but you can try it for free!
   Actually you only pay when you set up your domain.
 
   # 1 Get your account
-  
+
     If you don't have your account yet, just go to [locomotivehosting.com](http://www.locomotivehosting.com) and follow the instructions to sign up.
 
     <a href="http://www.locomotivehosting.com" title="LocomotiveCMS Hosting Solution"><img src="{{ 'guides/hosting/locomotivehosting-home.png' | theme_image_url }}" alt="LocomotiveHosting - The LocomotiveCMS Hosting Solution"/></a>
@@ -36,8 +36,11 @@ editable_elements:
 
       production:
         host: your_subdomain.locomotivehosting.com
-        email: your_locomotivehosting_email
-        password: your_locomotivehosting_password
+        api_key: <your_api_key>
+
+    To get your API key, go to your account page and unfold the "Credentials" block.
+
+    <img src="{{ 'guides/hosting/locomotivehosting-api-key.png' | theme_image_url }}" alt="LocomotiveHosting - The LocomotiveCMS Hosting Solution"/>
 
   # 3 Push your site
 
@@ -55,7 +58,7 @@ editable_elements:
 
   # 5 Redirect your subdomain to your main domain.
 
-    This is Work In Progress 
+    This is Work In Progress
 {% endblock %}
 
 {% block 'sidebar' %}

@@ -55,7 +55,7 @@ position: 2
         {% endfor %}
       {% endwith_scope %}
 
-      {% with_scope _permalink: "fruits" %}
+      {% with_scope slug: "fruits" %}
         {% assign category = contents.categories.first %}
       {% endwith_scope%}
         {% for product in category.products %}

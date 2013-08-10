@@ -15,7 +15,7 @@ position: 1
 
   It can be combined with the *with_scope* tag.
 
-      {% raw %}{% paginate content_type.projects by 10 %}
+      {% raw %}{% paginate contents.projects by 10 %}
         {% for project in paginate.collection %}
           {{ project.title }}
         {% endfor %}

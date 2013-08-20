@@ -29,7 +29,7 @@ editable_elements:
 
     You have to tell your Ruby on Rails app that you want to include the LocomotiveCMS gem available on Gemcutter. Edit your application Gemfile and add these lines if missing.
 
-      gem 'locomotive_cms', '~> 2.0.1', :require => 'locomotive/engine'
+      gem 'locomotive_cms', '~> 2.2.3', :require => 'locomotive/engine'
 
       group :assets do
         gem 'compass-rails',  '~> 1.0.2'
@@ -52,8 +52,8 @@ editable_elements:
 
   # 4. Add the editable engine config files
 
-    The following command also inserts the engine routes to the main application. 
-    
+    The following command also inserts the engine routes to the main application.
+
     Start your MongoDB server before running this command so the generator can setup the database.
 
       bundle exec rails g locomotive:install
@@ -71,11 +71,20 @@ editable_elements:
     <code>mate config/initializers/carrierwave.rb</code>
     </div>
 
-  # 6. Run the application server
+  # 6. Precompilate assets **(only in production)**
+
+    As any other Rails applications, you need to pre-compile the assets when the engine runs within the **production** environment.
+    Usually, this task is executed before the deployment of the application to the remote server. [More explanation here](http://guides.rubyonrails.org/asset_pipeline.html#in-production).
+
+      bundle exec rake assets:precompile
+
+
+  # 7. Run the application server
 
       bundle exec unicorn_rails
 
-  # 7. Open your browser
+
+  # 8. Open your browser
 
       open http://localhost:8080/locomotive
 

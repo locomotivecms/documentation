@@ -29,7 +29,7 @@ position: 2
       {% endwith_scope %}
 
 
-      {% with_scope date > today %}
+      {% with_scope date.gt: today %}
         {% for event in contents.events %}
         ...
         {% endfor %}
@@ -43,7 +43,7 @@ position: 2
       {% endwith_scope %}
 
 
-      {% with_scope price.lt: 42 %}
+      {% with_scope price.lt: 42.0 %}
         {% for product in content_type.products %}
           {{ product.name }}
         {% endfor %}
@@ -55,7 +55,7 @@ position: 2
         {% endfor %}
       {% endwith_scope %}
 
-      {% with_scope _permalink: "fruits" %}
+      {% with_scope _slug: "fruits" %}
         {% assign category = contents.categories.first %}
       {% endwith_scope%}
         {% for product in category.products %}
@@ -63,7 +63,7 @@ position: 2
             {{product.name}}
           </li>
         {% endfor %}
-      
+
 
   {% endraw %}
 

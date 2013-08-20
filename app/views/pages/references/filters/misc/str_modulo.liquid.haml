@@ -1,5 +1,5 @@
 ---
-title: Modulo
+title: String Modulo
 published: true
 listed: true
 position: 3
@@ -9,16 +9,16 @@ position: 3
 {% block 'main/left/content' %}
 
 :markdown
-  # modulo(input, index, modulo)
+  # str_modulo(input, index, modulo)
 
   Print the input string every modulo occurences.
 
-      {% raw %}{{ 'odd' | modulo: 0, 2 }}
+      {% raw %}{{ 'odd' | str_modulo: 0, 2 }}
   {% endraw %}
 
   **Example**: Returns ""
 
-      {% raw %}{{ 'odd' | modulo: 1, 2 }}
+      {% raw %}{{ 'odd' | str_modulo: 1, 2 }}
   {% endraw %}
 
   **Example**: Returns "odd"

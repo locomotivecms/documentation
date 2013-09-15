@@ -23,11 +23,9 @@ position: 8
   You must give these sections a unique name because they will be inherited by children.
   </div>
 
-      {% raw %}{% capture menu_enabled %}
-        {% editable_control "menu", options: 'true=Yes,false=No', hint: "Tell if the menu is displayed or not", priority: 1 %}
+      {% raw %}{% capture menu_enabled %}{% editable_control "menu", options: 'true=Yes,false=No', hint: "Tell if the menu is displayed or not", priority: 1 %}
         false
-        {% endeditable_control %}
-      {% endcapture %}
+      {% endeditable_control %}{% endcapture %}
 
       {% if menu_enabled == 'true' %}
         DISPLAYED

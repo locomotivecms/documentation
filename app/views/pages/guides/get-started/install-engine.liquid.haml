@@ -57,8 +57,26 @@ editable_elements:
     Start your MongoDB server before running this command so the generator can setup the database.
 
       bundle exec rails g locomotive:install
+      
+  # 5. Check Mongo DB
 
-  # 5. Edit the engine settings
+    Let's make sure that the Database was created. Open Terminal and type this command.
+    
+      mongo
+      
+    Let's list all of the databases.
+    
+      show dbs
+    
+    You should see locomotive_dev if the database was created for you. If it doesn't appear run the following lines.
+    
+      exit
+      
+      rake db:migrate
+      
+    Now the development database should be present. You can make sure by using the above commands to make sure.
+
+  # 6. Edit the engine settings
 
     Use your favorite IDE to edit the engine settings. Instructions are given as comments in setting files.
 
@@ -71,7 +89,7 @@ editable_elements:
     <code>mate config/initializers/carrierwave.rb</code>
     </div>
 
-  # 6. Precompilate assets **(only in production)**
+  # 7. Precompilate assets **(only in production)**
 
     As any other Rails applications, you need to pre-compile the assets when the engine runs within the **production** environment.
     Usually, this task is executed before the deployment of the application to the remote server. [More explanation here](http://guides.rubyonrails.org/asset_pipeline.html#in-production).
@@ -79,12 +97,12 @@ editable_elements:
       bundle exec rake assets:precompile
 
 
-  # 7. Run the application server
+  # 8. Run the application server
 
       bundle exec unicorn_rails
 
 
-  # 8. Open your browser
+  # 9. Open your browser
 
       open http://localhost:8080/locomotive
 

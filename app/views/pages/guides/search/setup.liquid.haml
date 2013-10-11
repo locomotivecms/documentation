@@ -1,0 +1,49 @@
+---
+title: Setup
+published: true
+listed: true
+position: 1
+---
+
+{% extends 'guides/search' %}
+
+{% block 'main/left/content' %}
+:markdown
+  ## Setup
+
+  Open your _Gemfile_ and add _locomotivecms-search_ to it:
+
+      gem 'locomotivecms-search','>= 0.2.4',require: 'locomotive/search/mongoid'
+      # require the backend you are going to use
+
+  Run `bundle install`
+
+  ## Adding the search results page
+
+  Create a new page that will display your search results. Its code might be something like this:
+
+      {%raw%}
+      {% for result in site.search %}
+        <li><a href="/{{result.slug}}">{{ result.title }}</a></li>
+      {% endfor %}
+      {%endraw%}
+
+  As you can see, when a search string is passed in the URL, you can fetch the results by using `site.search`.
+
+  ## Adding the search form
+
+  Anywhere on your site you can add a simple form to fire a search. This could be done on the homepage, on a page you are inheriting from, on even on a snippet.
+  Just add this code:
+
+      {%raw%}
+      <form action="/{{ locale }}/search" method="GET">
+        <label for="search">Search</label>
+        <input type="text" name="search" id="search">
+        <input type="submit" value="Search">
+      </form>
+      {%endraw%}
+
+  The important part is the action parameter, since __it must point to the slug of your search results page__.
+  Also, the name of the search input must be "search".
+
+{% endblock %}

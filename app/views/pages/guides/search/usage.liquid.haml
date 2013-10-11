@@ -1,0 +1,33 @@
+---
+title: Usage
+published: true
+listed: true
+position: 3
+---
+
+{% extends 'guides/search' %}
+
+{% block 'main/left/content' %}
+:markdown
+  ## How to actually use the LocomotiveCMS search engine
+  
+  Once you have followed the steps on the _Setup_ and _Backends_ sections, it's time to specify which fields should be searchable.
+  
+  ## Pages
+  
+  Pages are automatically searchable. You don't need to take further steps.
+  
+  ## Content types
+  
+  Edit a model in the LocomotiveCMS admin UI, and unfold the extended options of any custom field.
+  There must be a "Searchable" switch. For any model that you activate this option, that field will be indexed and searchable.
+  
+  ## Warning
+  
+  It's important to note that __contents and pages that were already on the database won't be indexed__.
+  They are indexed when saved.
+  
+  If you call the method ```reindex()``` on a content type, all entries __older than the model definition will be reindexed__.
+  
+  
+{% endblock %}

@@ -1,0 +1,33 @@
+---
+title: Backends
+published: true
+listed: true
+position: 2
+---
+
+{% extends 'guides/search' %}
+
+{% block 'main/left/content' %}
+:markdown
+  ## Search backends
+
+  There are two available backends: Mongoid and Algolia.
+  For the mongoid backend, you just need to specify it in the _require_ part of the Gemfile line:
+
+      gem 'locomotivecms-search','>= 0.2.4',require: 'locomotive/search/mongoid'
+
+  
+  ### Algolia
+  
+  In order to use Algolia as backend, you instead must specify it in the Gemfile:
+
+      gem 'locomotivecms-search','>= 0.2.4',require: 'locomotive/search/algolia'
+      
+  In addition to that, you also need to configure the algolia client.
+  You can do it easiliy in a _search.rb_ initializer:
+  
+      require "activesearch/algolia/client"
+      ActiveSearch::Algolia::Client.configure("api_key", "app_id", "index_name")
+      
+  
+{% endblock %}

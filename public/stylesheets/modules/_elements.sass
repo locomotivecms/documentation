@@ -1,71 +1,75 @@
+.logo
+  color: white
+  +futura-lt
+  letter-spacing: 3px
+  font-size: 21px
+  font-weight: 600
+  background: url(/images/logo-locomotive.png) no-repeat 0px 5px
+  padding-left: 32px
+
+h1.underscored
+  height: 38px
+  margin-top: 30px
+  margin-bottom: 60px
+  position: relative
+  text-align: center
+  border-bottom: 4px solid $light-blue
+  span
+    background: white
+    padding: 0px 12px
+    position: relative
+    color: $dark-blue
+    font-weight: bold
+    font-size: 18px
+
 // Page header
 #page-head
-  +four-cols-grid
-  border-bottom: 1px solid $blue-border
-  padding-top: 40px
-  padding-bottom: 40px
-  +proximanova-light
-  #page-head-content
-    +span-columns(4 omega,4)
-    header
-      font-size: 36px
-      line-height: 30px
-      color: $fourth-black
-      margin-bottom: 15px
+  background: $medium-blue
+  padding-top: 30px
+  padding-bottom: 15px
+  border-bottom: 4px solid $light-blue
+  .inner-container
+    text-align: center
+    +four-cols-grid
     p
-      +span-columns(4 omega,4)
-      font-size: 20px
-      line-height: 27px
-      color: $third-blue
-      +proximanova-light
-      margin: 0
+      color: $light-blue
+      font-size: 18px
+    .link
+      padding-top: 15px
+      padding-bottom: 20px
       a
-        color: $dark-black
-  aside
-    +span-columns(4 omega,4)
-    margin-top: 20px
-    a
-      text-transform: uppercase
-      +big-button
-  @media #{$desktop}
-    #page-head-content
-      +span-columns(4 omega,4)
-    aside
-      +span-columns(1 omega,4)
-      margin-top: -5px
-      a
-        width: 100%
-
+        +orange-rounded-button
 
 // Subnav below a page-head
 nav.subnav
   +four-cols-grid
-  border-bottom: 1px solid $blue-border
   padding-top: 15px
-  padding-bottom: 15px
-  ul
-    margin: 0
-    float: left
+  padding-bottom: 5px
+  text-align: center
   li
     display: inline-block
     background: none
     padding-left: 0
-    margin-right: 10px
+    margin-right: 2px
   a
     float: left
     display: block
-    padding: 2px 23px
+    padding: 0px 8px
     color: $third-blue
     font-size: 14px
-    +proximanova-semi-bold
-    +border-radius(20px)
+    line-height: 30px
+    +border-radius(15px)
     &:hover
-      color: $main-blue
-      background-color: $subnav-button-bg
+      color: white
+      background-color: lighten($dark-blue, 5%)
       text-decoration: none
   a.current
-    color: $main-blue
-    background-color: $subnav-button-bg
+    color: white
+    background-color: $dark-blue
+
+  li.active a
+    color: white
+    background-color: $dark-blue
 
 
 // Pagination
@@ -73,9 +77,7 @@ nav.subnav
   +span-columns($total-columns omega,$total-columns)
   margin-top: $section-padding
   color: $third-blue
-  +proximanova-semi-bold
   font-size: 14px
-  .page
 
   #pagination-left
     float: left
@@ -106,7 +108,6 @@ nav.subnav
   padding: 2px
   margin-top: 10px
   margin-bottom: 25px
-  +open-sans-regular
   .inner-floating-panel
     +border-radius(15px)
     border: 3px solid white
@@ -119,10 +120,6 @@ nav.subnav
       color: $light-black
       font-size: 12px
 
-
-hr
-  border-top: 1px solid #dde4ea
-  border-bottom: 0px
-  height: 1px
-  padding: 0px
-  margin: 30px 0px
+// Affix
+.affix
+  position: fixed

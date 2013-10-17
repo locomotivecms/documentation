@@ -1,41 +1,53 @@
 %footer#footer
-  #inner-footer
-    %section.footer-item
-      %header
-        Quick Links
-      %ul
-        %li
-          %a{ :href => "http://www.locomotivecms.com" }
-            LocomotiveCMS
-        %li
-          %a{ :href => "http://www.locomotivehosting.com" }
-            LocomotiveHosting
+  .inner-container
+    %section
+      %span.logo LOCOMOTIVECMS
+    %section.description
+      .left
+        LocomotiveCMS is developed by NoCoffee. LocomotiveCMS is a free software under the MIT license.
+      .right
+        %a{ href: "https://twitter.com/locomotivecms" } Follow us on Twitter
+    .columns
+      %section.quick-links
+        %header
+          Quick Links
+        %ul
+          %li
+            %a{ href: "http://www.locomotivehosting.com", target: "_blank" }
+              LocomotiveHosting Site
+          %li
+            %a{ href: "http://doc.locomotivecms.com", target: "_blank" }
+              Documentation Site
+          %li
+            %a{ href: "http://www.locomotivecms.com/articles" }
+              Blog
+          %li
+            %a{ href: "http://www.locomotivecms.com/crew" }
+              Crew
+          %li
+            %a{ href: "mailto:support@locomotivecms.com" }
+              Contact
 
-    %section.footer-item
-      %header
-        Follow
-        %a{ :href => "https://twitter.com/locomotivecms" }
-          @locomotivecms
+      %section.newsletter
+        %header
+          Newsletter
+        Stay on top of LocomotiveCMS updates, subscribe to our news.
+        .subscribe
+          %a{ href: "http://eepurl.com/uX8R9", target: "_blank", class: "btn" }
+            Subscribe
 
-      .tweets
-        %a{ class: 'twitter-timeline', href: 'https://twitter.com/locomotivecms', data: { widget_id: '346940464458518528', chrome: 'nofooter noborders noheader transparent', tweet_limit: 2, show_replies: 'true', link_color: '#2589ac' } } Tweets of @locomotivecms
+      %section.tweets
+        %header
+          Last Tweets
+        %a{ class: 'twitter-timeline', href: 'https://twitter.com/locomotivecms', data: { widget_id: '346940464458518528', chrome: 'nofooter noborders noheader transparent', tweet_limit: 2, show_replies: 'true', link_color: '#ffaa00', theme: "dark"  } } Tweets of @locomotivecms
 
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-    %section.footer-item
-      %header
-        LocomotiveCMS News
-      %p
-        Stay on top of LocomotiveCMS updates, subscribe to our news.
-      %p.subscribe
-        %a{ href: "http://eepurl.com/uX8R9", target: "_blank", class: "btn" }
-          Subscribe
-    %section.footer-item
-      %header.logo
-        LOCOMOTIVECMS
-      %p
-        %em LocomotiveCMS is developed by NoCoffee. LocomotiveCMS is a free software under the MIT license.
-      %p
-        %strong © {{ today | localized_date: '%Y' }} LocomotiveCMS
-    %a.back-to-top{ :href => "#" }
-      BACK TO TOP
+#subfooter
+  .left
+    %strong &copy; {{ today | localized_date: '%Y' }} LocomotiveCMS
+    %a{ href: "http://www.locomotivecms.com/terms-of-use" } Terms of use
+    %a{ href: "http://www.locomotivecms.com/privacy-policy" } Privacy Policy
+  .right
+    %a.back-to-top{ href: "#" }
+      Back to top

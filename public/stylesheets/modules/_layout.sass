@@ -1,39 +1,24 @@
 // Navigation
 #main-nav
-  background: url(/images/home_halo_mob.png) no-repeat
   background-position: 100% 20%
-  background-color: $banner-bg
+  background-color: $dark-blue
   padding-top: 30px
   padding-bottom: 20px
-  border-bottom: 2px solid rgba(255, 255, 255, 0.8)
   .inner-container
     +five-cols-grid
     position: relative
-  // Logo
-  h1
-    color: white
-    +futura-lt
-    letter-spacing: 3px
-    font-size: 20px
-    margin-top: 7px
-    margin-bottom: 0px
-    a
-      background: url(/images/logo-locomotive.png) no-repeat 0px 5px
-      padding-left: 32px
-      &:hover
-        color: white
-        text-decoration: none
-      small
-        padding-left: 32px
-        font-size: 16px
-        text-transform: capitalize
+  a
+    &:hover
+      text-decoration: none
     @media #{$desktop}
       float: left
-      width: 34%
+      width: 27%
+  a.logo_container
+    margin-top: 6px
   // Nav toggle
   #nav-toggle
     position: absolute
-    top: 2px
+    top: -2px
     right: 10px
     height: 23px
     width: 25px
@@ -41,7 +26,7 @@
     &:before
       content: '\2630'
       color: white
-      font-family: 'fontello'
+      font-family: 'Fontello'
       font-style: normal
       font-weight: normal
       speak: none
@@ -57,6 +42,7 @@
 
   // Menu
   ul
+    margin-top: 2px
     display: none
     li
       display: block
@@ -64,18 +50,23 @@
       line-height: 26px
       color: white
       background: none
-      font-size: 16px
-      +proximanova-light
+      font-size: 12px
+      font-weight: 400
       padding: 0px 32px
       margin: 3px 0
+      a
+        +transition(0.2s all)
+        white-space: nowrap
+        text-transform: uppercase
       a:hover
+        +text-shadow(0px 0px 3px #fff)
         color: white
     li.active
       +menu-button
 
     @media #{$desktop}
       float: right
-      width: 66%
+      width: 73%
       li
         float: right
 #main-nav.expanded
@@ -83,6 +74,7 @@
   ul
     display: block
   #nav-toggle:before
+    font-family: 'Fontello'
     content: '\2715'
     font-size: 20px
 
@@ -91,8 +83,6 @@
 
 @media #{$desktop}
   #main-nav
-    background: url(/images/home_halo_small.png) no-repeat bottom center
-    background-color: $banner-bg
     ul
       display: block
       li
@@ -118,71 +108,95 @@
 
 // Footer
 #footer
-  background-color: $footer-blue
-  padding-top: 1px
+  color: $light-blue
+  background-color: $medium-blue
+  padding-top: 60px
   margin-top: $section-padding
-  #inner-footer
-    +four-cols-grid
-    border-top: 1px solid white
-    padding-top: 20px
-    padding-bottom: 30px
-  .back-to-top
-    +open-sans-semi-bold
-    font-size: 10px
-    color: $footer-back-to-top
-    display: block
-    float: left
-    width: 100%
-    text-align: center
-    margin-top: 100px
-    margin-bottom: 100px
-  .footer-item
-    +span-columns($total-columns omega, $total-columns)
-    +margin-trailer(1)
-    header
-      +proximanova-semi-bold
-      font-size: 17px
-      color: $dark-black
-      margin-bottom: 20px
-    +open-sans-regular
-    font-size: 13px
-    p, em
-      color: $footer-font-blue
-    .logo
-      +futura-lt
-      letter-spacing: 2px
-      background: url(/images/logo-locomotive.png) no-repeat 0px 1px
-      padding-left: 32px
-      line-height: 20px
-      font-weight: bold
-    ul
-      +pretty-bullets("/images/bullet-blue.png", 4px, 5px, 25px)
-      li
-        line-height: 25px
-    ul.tweets
-      li
-        padding-left: 0
+  .inner-container
+    +container
+    .description
+      +span-columns(2,2)
+      margin-top: 20px
+      .left
+        font-size: 15px
+        line-height: 21px
+      .right
+        a
+          +orange-rounded-button
+    .columns
+      +span-columns(2,2)
+      margin-top: 50px
+      padding-bottom: 70px
+      .quick-links, .newsletter, .tweets
         margin-bottom: 20px
-        background: none
-        clear: both
-        img
-          float: left
-          position: relative
-          top: 4px
-        p
-          padding-left: 32px
-          line-height: 18px
-          &.text
-            font-style: italic
-            margin-bottom: 5px
-          &.date
-            font-size: 11px
-            color: $footer-light-blue
+      .quick-links
+
+        ul
+          li
+            line-height: 22px
+            a:hover
+              color: lighten($light-blue, 20)
+              text-decoration: none
+      .newsletter
+        line-height: 22px
+        .subscribe
+          padding-top: 10px
+          a
+            +blue-rounded-button
+      header
+        line-height: 10px
+        padding-bottom: 10px
+        margin-bottom: 10px
+        color: white
+        text-transform: uppercase
+        border-bottom: 1px solid $light-blue
+
+#subfooter
+  padding-top: 30px
+  padding-bottom: 30px
+  color: $light-blue
+  +three-cols-grid
+  a:hover
+    color: $medium-blue
+  .left
+    a
+      margin-left: 20px
+  .right
+    text-align: center
+    padding-top: 20px
+  .back-to-top:after
+    content: '\e801'
+    font-family: 'Fontello'
 
 @media #{$desktop}
+  #subfooter
+    .left
+      +span-columns(2, $total-columns)
+    .right
+      text-align: right
+      padding-top: 0px
+      +span-columns(1 omega, $total-columns)
+
   #footer
-    .footer-item
-      +span-columns(1, $total-columns)
-      +nth-omega(4)
-      margin-top: 50px
+    .inner-container
+      .description
+        +span-columns(2,2)
+        .left
+          +span-columns(1,2)
+        .right
+          text-align: right
+          +span-columns(1 omega,2)
+      .columns
+        .quick-links
+          float: left
+          width: 22%
+          padding-right: 30px
+        .newsletter
+          float: left
+          width: 31%
+          padding-right: 30px
+        .tweets
+          float: left
+          width: 47% 
+        
 

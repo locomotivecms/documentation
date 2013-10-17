@@ -36,11 +36,11 @@ editable_elements:
           type: belongs_to
           target: authors
 
-  The key `author` here is a property that we will call on a book instance. It hasn't necessary match the name of related model. For example, we could name our relation `writer`.
+  The key `author` here is a property that we will call on a book instance. It does not have to necessarily match the name of related model. For example, we could name our relation `writer`.
 
   `target` parameter (vice versa) must contain the slug of the model, otherwise we couldn't know which model exactly we want to bind here.
 
-  Also we may want to add `required: true` option, if the book without author shouldn't exist in our library.
+  Also we may want to add `required: true` option if the book without author shouldn't exist in our library.
 
   Ok. Once we're done, we may want to add some certain records in order to check how it works.
   Let's add the following to the `data/authors.yml`:

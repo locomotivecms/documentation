@@ -1,0 +1,29 @@
+---
+title: dasherize
+seo_title: "Dasherize: Replace undescores with dashes"
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Replace underscores and spaces with dashes in the string.
+
+  ## Syntax
+
+      {% raw %}{{ <string> | dasherize }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'hello_world' | dasherize }}{% endraw %}
+
+  displays
+
+      hello-world
+
+{% endblock %}

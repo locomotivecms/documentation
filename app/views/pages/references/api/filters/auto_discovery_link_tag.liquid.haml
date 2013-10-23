@@ -1,0 +1,58 @@
+---
+title: auto_discovery_link_tag
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Return a link tag that browsers and news readers can use to auto-detect an RSS or ATOM feed.
+
+  ## Syntax
+
+      {% raw %}{{ <url> | auto_discovey_link_tag: <options> }} {% endraw %}
+
+  ## Example
+
+      {% raw %}{{ '/projects/atom' | auto_discovery_link_tag: 'rel:alternate', 'type:application/atom+xml', 'title:A title' }}
+      {% endraw %}
+
+  displays the following:
+
+      <link rel="alternate" type="application/atom+xml" title="A title" href="/projects/atom" />
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>title</td>
+        <td>String</td>
+        <td>By default, its value is 'RSS'</td>
+      </tr>
+      <tr>
+        <td>rel</td>
+        <td>String</td>
+        <td>By default, its value is 'alternate'</td>
+      </tr>
+      <tr>
+        <td>type</td>
+        <td>String</td>
+        <td>By default, its value is 'application/rss+xml'</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

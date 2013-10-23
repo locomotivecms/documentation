@@ -1,0 +1,28 @@
+---
+title: javascript_url
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Return the url of a theme asset javascript.
+
+  ## Syntax
+
+      {% raw %}{{ <path_to_a_theme_asset> | javascript_url }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'application.js' | javascript_url }}{% endraw %}
+
+  outputs
+
+      "/sites/<site_id>/theme/javascripts/application.js"
+
+{% endblock %}

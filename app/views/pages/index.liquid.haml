@@ -2,9 +2,6 @@
 title: Home
 published: true
 listed: true
-editable_elements:
-  main/page_head_title: "Welcome to the documentation center"
-  main/page_head_content: "<p>We're here to help you any way we can.<br />Below you’ll find documentation, tutorials and resources on how to use LocomotiveCMS.</p>"
 ---
 !!!
 / paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
@@ -31,107 +28,108 @@ editable_elements:
 
     %link{href: 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,300,600,800', rel: 'stylesheet', type: 'text/css'}
     {{ 'screen' | stylesheet_tag }}
-    {{ 'jquery.bxslider' | stylesheet_tag }}
 
     {{ 'jquery-1.9.1.min' | javascript_tag }}
     {{ 'bootstrap.min' | javascript_tag }}
-    {{ 'jquery.bxslider.min' | javascript_tag }}
     {{ 'home' | javascript_tag }}
 
   %body
     {% include 'nav' %}
 
-    {% comment %}
-    / {% include 'nav' %}
+    %section#page-head
+      .inner-container
+        %h1 {% editable_text page_head_title, priority: 10, format: raw, rows: 1, line_break: false, fixed: true %}Welcome to the documentation center{% endeditable_text %}
 
-    / {% block 'main' %}
+        {% editable_text page_head_content, priority: 9, format: html, rows: 5, line_break: false, fixed: true %}
+        %p
+          We're here to help you any way we can.
+          %br
+          Below you’ll find documentation, tutorials and resources on how to use LocomotiveCMS.
+        {% endeditable_text %}
 
-    / {% include 'page_head' %}
+    #main-generic
 
-    / #main-generic
-    /   %section.home-item
-    /     .picto {{ 'pictos/quickstart.png' | theme_image_tag }}
-    /     %h2
-    /       Guides
-    /     %p
-    /       LocomotiveCMS basics, quick start guide, our philosophy.
-    /     %p
-    /       %a{ :href => "/guides" } See »
+      #content-column
+        {% unless page.fullpath == 'index' %}
+        {% block title %}
+        %h3 {{ page.title }}
+        {% endblock %}
+        {% endunless %}
 
-    /   %section.home-item
-    /     .picto {{ 'pictos/books.png' | theme_image_tag }}
-    /     %h2
-    /       Template references
-    /     %p
-    /       Glossary for Liquid templates.
-    /       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    /     %p
-    /       %a{ :href => "/references" } See »
+        %article
 
-    /   %section.home-item
-    /     .picto {{ 'pictos/question.png' | theme_image_tag }}
-    /     %h2
-    /       FAQ
-    /     %p Tips and tricks from LocomotiveCMS addicts.
-    /     %p
-    /       %a{ :href => "/faq" } See »
+          {% block content %}
 
-    /   %section.home-item
-    /     .picto {{ 'pictos/upgrades.png' | theme_image_tag }}
-    /     %h2
-    /       Releases
-    /     %p Useful info about releases and guides for upgrading.
-    /     %p
-    /       %a{ :href => "/releases" } See »
+          #home-items
 
-    /   .clear
+            %section.home-item
+              .picto {{ 'pictos/quickstart.png' | theme_image_tag }}
+              %h2
+                Guides
+              %p
+                LocomotiveCMS basics, quick start guide, our philosophy.
+              %p
+                %a{ :href => "/guides" } See
 
-    /   %br
+            %section.home-item
+              .picto {{ 'pictos/books.png' | theme_image_tag }}
+              %h2
+                Template references
+              %p
+                Glossary for Liquid templates.
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              %p
+                %a{ :href => "/references" } See
 
-    /   %hr
+            %section.home-item
+              .picto {{ 'pictos/question.png' | theme_image_tag }}
+              %h2
+                FAQ
+              %p Tips and tricks from LocomotiveCMS addicts.
+              %p
+                %a{ :href => "/faq" } See
 
-    /   %h2
-    /     Can’t find the answers you’re looking for? Let’s get you some help fast:
+            %section.home-item
+              .picto {{ 'pictos/upgrades.png' | theme_image_tag }}
+              %h2
+                Releases
+              %p Useful info about releases and guides for upgrading.
+              %p
+                %a{ :href => "/releases" } See
 
-    /   %ul
-    /     %li
-    /       Ask the community:
-    /       / todo formulaire de recherche dans le forum (pour l'instant il n'y a rien dans le forum donc inutile)
-    /       %a{ :href => "https://groups.google.com/forum/#!forum/locomotivecms" }> search the forum
-    /       \.
-    /     %li
-    /       %a{ :href => "http://locomotivecms.tenderapp.com/discussion/new" } Contact our support team
-    /       and we'll personally get back to you as quickly as we can.
+        .clear
 
-    /   %hr
+        {% endblock %}
 
-    /   %h2
-    /     Want to contribute to make this documentation center even better?
-    /   %p
-    /     That's easy: fork our documentation site and send us a pull request.
-    /     %a{href: "/contribute"}
-    /       Start to contribute
+        #fork-me
+          %a{href: "https://github.com/locomotivecms/documentation/blob/master/app/views/pages/{{page.fullpath}}.liquid.haml"}
+            Contribute → Fork this page on GitHub
 
-    /   / Mis en commentaire pour l'instant
-    /   / %h2
-    /   /   You want to help us making a better documentation?
-    /   / %ul
-    /   /   %li
-    /   /     Guess what, this is a LocomotiveCMS site! Contribute on our github repo.
-    /   /     %br
-    /   /     See how to
-    /   /     %a{ :href => "/contribute" } contribute to the documentation
+      #sidebar-column
+        #search
+          %form{ action: '/search' }
+            %input{ type: 'text', id: 'search-input', name: 'search', placeholder: 'search...' }
 
-    / {% endblock %}
-    {% endcomment %}
+        {% block sidebar %}
 
-    / #fork-me
-    /   %a{href: "https://github.com/locomotivecms/documentation/blob/master/app/views/pages/{{page.fullpath}}.liquid.haml"}
-    /     Contribute → Fork this page on GitHub
+        {% include sidebar_menu handle: 'get-started' %}
+
+        {% include sidebar_menu handle: 'references' %}
+
+        {% include sidebar_menu handle: 'content-types' %}
+
+        {% include sidebar_menu handle: 'guides' %}
+
+        {% include sidebar_menu handle: 'hosting' %}
+
+        {% include sidebar_menu handle: 'videos' %}
+
+        {% include sidebar_menu handle: 'help' %}
+
+        {% endblock %}
 
     {% include "footer" %}
 
-    / {{ 'jquery-1.8.2.min' | javascript_tag }}
     {{ 'highlight.pack' | javascript_tag }}
     {{ 'home' | javascript_tag }}
 

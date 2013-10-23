@@ -1,0 +1,86 @@
+---
+title: distance_of_time_in_words
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  The distance\_of\_time\_in\_words filter uses [Rails' built-in distance\_of\_time\_in\_words helper](http://api.rubyonrails.org/classes/ActionView/Helpers/DateHelper.html#method-i-distance_of_time_in_words)
+  to measure the difference between two dates and return a representation of that difference in words.
+
+  ## Syntax
+
+      {% raw %}{{ <date> | distance_of_time_in_words: <date_or_string> }}{% endraw %}
+
+  The filter takes a date as input and another date as the first argument.
+  The order of the dates doesn't matter; the earlier date can be either the input or the argument.
+
+
+  ## Examples
+
+      {% raw %}{{ "2013/04/05" | distance_of_time_in_words:  "2007/06/29" }}
+      {{ "1776-07-04" | distance_of_time_in_words: "1789-07-14" }}
+      {{ "20/01/2013" | distance_of_time_in_words: "01/05/2014" }}
+      {{ "May 1, 2010" | distance_of_time_in_words: "June 5, 2010" }}{% endraw %}
+
+  The above outputs:
+
+      almost 6 years
+      about 13 years
+      over 1 year
+      about 1 month
+
+  ## Localization
+  The filter's output is automatically localized to the current locale.
+  These localizations can be customized in the Rails locale files for your Locomotive Engine. Please use the below sample as a guide.
+
+  <div class="alert alert-info">
+    Locomotive CMS comes with default translations for this filter for some languages.
+    However, if you receive a "translation missing" error, you will need to add translations to the locale file of your locomotive engine.
+  </div>
+
+      en:
+        datetime:
+          distance_in_words:
+            about_x_hours:
+              one: about 1 hour
+              other: about %{count} hours
+            about_x_months:
+              one: about 1 month
+              other: about %{count} months
+            about_x_years:
+              one: about 1 year
+              other: about %{count} years
+            almost_x_years:
+              one: almost 1 year
+              other: almost %{count} years
+            half_a_minute: half a minute
+            less_than_x_minutes:
+              one: less than a minute
+              other: less than %{count} minutes
+            less_than_x_seconds:
+              one: less than 1 second
+              other: less than %{count} seconds
+            over_x_years:
+              one: over 1 year
+              other: over %{count} years
+            x_days:
+              one: 1 day
+              other: ! '%{count} days'
+            x_minutes:
+              one: 1 minute
+              other: ! '%{count} minutes'
+            x_months:
+              one: 1 month
+              other: ! '%{count} months'
+            x_seconds:
+              one: 1 second
+              other: ! '%{count} seconds'
+
+{% endblock %}

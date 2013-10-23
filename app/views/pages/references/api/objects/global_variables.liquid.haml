@@ -1,0 +1,118 @@
+---
+title: Global variables
+published: true
+listed: true
+position: 1
+---
+{% extends 'references/api' %}
+
+{% block 'content' %}
+
+:markdown
+
+  ## Example
+
+  Display the current date
+
+      {% raw %}{{ now }}{% endraw %}
+
+  ## List of all the global variables
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>site</td>
+        <td>Site</td>
+        <td>
+          current site.
+          <b>Can not be used by itself.</b>
+          Please refer to the properties of the
+          <a href="site">site</a>
+        </td>
+      </tr>
+      <tr>
+        <td>page</td>
+        <td>Page</td>
+        <td>
+          current page.
+          <b>Can not be used by itself.</b>
+          Please refer to the properties of the
+          <a href="page">page</a>
+        </td>
+      </tr>
+      <tr>
+        <td>wagon</td>
+        <td>Boolean</td>
+        <td>True if the page is rendered by Wagon or not (i.e. Engine).</td>
+      </tr>
+      <tr>
+        <td>params</td>
+        <td>Hash</td>
+        <td>all the GET params of the current request</td>
+      </tr>
+      <tr>
+        <td>host</td>
+        <td>String</td>
+        <td>host of the server (+ port if different from 80)</td>
+      </tr>
+      <tr>
+        <td>ip_address</td>
+        <td>String</td>
+        <td>IP Address of the computer doing the request</td>
+      </tr>
+      <tr>
+        <td>path</td>
+        <td>String</td>
+        <td>HTTP request path</td>
+      </tr>
+      <tr>
+        <td>fullpath</td>
+        <td>String</td>
+        <td>HTTP request full path</td>
+      </tr>
+      <tr>
+        <td>url</td>
+        <td>String</td>
+        <td>HTTP request url</td>
+      </tr>
+      <tr>
+        <td>post?</td>
+        <td>Boolean</td>
+        <td>True if the request is a HTTP post</td>
+      </tr>
+      <tr>
+        <td>now</td>
+        <td>Time</td>
+        <td>current time (UTC)</td>
+      </tr>
+      <tr>
+        <td>today</td>
+        <td>Date</td>
+        <td>current date</td>
+      </tr>
+      <tr>
+        <td>locale</td>
+        <td>String</td>
+        <td>current locale</td>
+      </tr>
+      <tr>
+        <td>default_locale</td>
+        <td>String</td>
+        <td>default locale of the current site</td>
+      </tr>
+      <tr>
+        <td>locales</td>
+        <td>Array</td>
+        <td>all the locales handled by the current site</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

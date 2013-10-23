@@ -1,8 +1,8 @@
 %section#page-head
   .inner-container
-    %h1 {% editable_text page_head_title, priority: 10, format: raw, rows: 1, line_break: false %}A simple title{% endeditable_text %}
+    %h1 {% editable_text page_head_title, priority: 10, format: raw, rows: 1, line_break: false, fixed: true %}A simple title{% endeditable_text %}
 
-    {% editable_text page_head_content, priority: 9, format: html, rows: 5, line_break: false %}
+    {% editable_text page_head_content, priority: 9, format: html, rows: 5, line_break: false, fixed: true %}
     %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae ante sit amet mi vehicula suscipit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
     {% endeditable_text %}
 

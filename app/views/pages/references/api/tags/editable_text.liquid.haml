@@ -1,0 +1,131 @@
+---
+title: editable_text
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  The editable_text tags are placeholders for content that you want users to be able to edit through the back-office.
+  They replaced the now deprecated [editable\_short\_text and editable\_long\_text tags](#editable-short-long-text).
+
+  Users can change the content of an editable\_text tag by going to the pages section of the back office, selecting the page on which the tag appears,
+  and then selecting the tab which corresponds to the name of the block wrapping the tag.
+  Each editable\_text tag is represented by a textarea labled with the editable\_text's name.
+  When no text has been entered into the back-office, the content within the tags is displayed by default.
+
+  If a block containing an editable\_text tags is inherited by child pages,
+  these child pages each store its own version of content and can be edited separately.
+  For cases requring a single version of the content to be used on all pages and editable in only one location (such as text in the header or footer of a site),
+  make use of the fixed option described below.
+
+  <div class="alert alert-info">
+    You must give these sections a unique name because they will be inherited by children.
+  </div>
+
+  ## Syntax
+
+      {% raw %}{% editable_text <name>(, <options>) %}<default value>{% endeditable_text %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% editable_text "sample_title", hint: "Description of this area." %}
+      Default Content
+      {% endeditable_text %}{% endraw %}
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>block</td>
+        <td>String</td>
+        <td>
+          associate the element with a block other than the current one.
+          This determines what tab this tag's textarea appears under in the back-office.
+        </td>
+      </tr>
+      <tr>
+        <td>fixed</td>
+        <td>Boolean</td>
+        <td>makes the element editable in one place. The default value is false.</td>
+      </tr>
+      <tr>
+        <td>format</td>
+        <td>String</td>
+        <td>
+          accepted values are <em>html</em> and <em>raw</em>.
+          If set to <em>html</em>, content is not escaped and will be rendered as html.
+          If set to <em>raw</em>, any html content will be escaped and rendered as text.
+          The default value is <em>html</em>.
+        </td>
+      </tr>
+      <tr>
+        <td>hint</td>
+        <td>String</td>
+        <td>text displayed in the back-office just below the textarea.</td>
+      </tr>
+      <tr>
+        <td>line_break</td>
+        <td>Boolean</td>
+        <td>
+          if true, the text is ouput inside <code>&lt;div&gt;</code> tags, which are displayed as blocks in HTML and will consequently be separate line from surrounding elements.
+          If false, the text is output inside <code>&lt;span&gt;</code> tags, which are displayed inline (so the text will not break to a new line).
+          The default value is true.
+        </td>
+      </tr>
+      <tr>
+        <td>priority</td>
+        <td>Integer</td>
+        <td>used to position the textarea in the back-office. Elements with the highest priority are displayed first.</td>
+      </tr>
+      <tr>
+        <td>rows</td>
+        <td>Integer</td>
+        <td>determines the height of textarea in the back-office, measured in rows of text. The default value is 10.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br/>
+
+  <div class="alert alert-warning">
+    Although it may be tempting to use <b>editable_text</b> or any other editable elements within snippets, it is <u>highly recommended</u> to not doing it because it makes the content rendered by the engine not reliable.
+  </div>
+
+  <br/>
+
+  <h2 id="editable-short-long-text">editable_short_text and editable_long_text</h2>
+
+  The editable\_text tag described above was added in Locomotive CMS engine version 2.2.
+  Prior to this version two similar tags, editable\_short\_text and editable\_long\_text were available, but are now deprecated.
+  For those using previous versions, please consult the explanations below.
+
+  editable\_short\_text tags are roughly equivalent to the editable\_text tags described above, except that:
+
+  - Only the _block_, _fixed_, _hint_, and _priority_ options are available
+  - Content is always output in <code>&lt;span&gt;</code> tags
+  - Content is never escaped. All content is rendered as HTML.
+  - The size of the back-office textarea cannot be changed and is shorter than the one generated for editable\_long\_text
+
+
+  editable\_long\_text tags are roughly equivalent to the editable\_text tags described above, except that:
+
+  - Only the _block_, _fixed_, _hint_, and _priority_ options are available
+  - Content is always output in <code>&lt;div&gt;</code> tags
+  - Content is never escaped. All content is rendered as HTML.
+  - The size of the back-office textarea cannot be changed.
+
+{% endblock %}

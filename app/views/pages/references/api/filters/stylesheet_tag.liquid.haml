@@ -1,0 +1,47 @@
+---
+title: stylesheet_tag
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Return the link tag of a theme stylesheet.
+
+  ## Syntax
+
+      {% raw %}{{ <path_to_a_theme_asset_or_url> | stylesheet_tag(: <media>) }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'application.css' | stylesheet_tag }}{% endraw %}
+
+  returns
+
+      <link href="/sites/<site_id>/theme/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>media</td>
+        <td>String</td>
+        <td>By default, its value is 'screen'</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

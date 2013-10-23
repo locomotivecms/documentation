@@ -14,7 +14,7 @@ h1
   font-size: 48px
   font-weight: bold
   color: white
-  
+
 h2
   font-size: 36px
   color: $third-black
@@ -22,6 +22,7 @@ h2
 h3
   font-size: 24px
   color: $third-black
+
 h4
   font-size: 20px
   font-weight: 700
@@ -47,6 +48,7 @@ p
   line-height: 24px
   font-weight: 300
   margin-bottom: 10px
+  text-align: justify
 
 em
   color: $light-black
@@ -60,14 +62,6 @@ span
 
 strong
   +open-sans
-
-/*ul
-  +pretty-bullets("/images/bullet.png", 5px, 5px, 27px)
-  +open-sans
-  color: $light-black
-  margin-bottom: 10px
-  li
-    line-height: 27px*/
 
 ol
   counter-reset: li
@@ -86,19 +80,20 @@ ol
 
 code
   +global-reset
-  font-family: 'Bitstream Vera Sans Mono', 'Courier', monospace
-  background-color: ghostWhite
-  border: 1px solid #DDD
-  padding: 1px 4px
-  display: block
-  margin-bottom: 10px
+  //font-family: 'Bitstream Vera Sans Mono', 'Courier', monospace
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace
+  // background-color: ghostWhite
+  // border: 1px solid #DDD
+  // padding: 1px 4px
+  // display: block
+  // margin-bottom: 10px
 
 .gist
   margin-top: 10px
   margin-bottom: 10px
 
-.alert
-  margin-bottom: 10px
-  background-color: $orange-white
-  padding: 5px
-  +open-sans
+// .alert
+//   margin-bottom: 10px
+//   background-color: $orange-white
+//   padding: 5px
+//   +open-sans

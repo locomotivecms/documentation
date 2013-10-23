@@ -1,0 +1,25 @@
+---
+title: capture
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Combine a number of strings into a single string and save it to a variable.
+
+  ## Syntax
+
+      {% raw %}{% capture <name> %}<text>{% endcapture %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% capture full_name %}{{ person.first_name }} {{ person.last_name }}{% endcapture %}
+      {{ full_name }}{% endraw %}
+
+{% endblock %}

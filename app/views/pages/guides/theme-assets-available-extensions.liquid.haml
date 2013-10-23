@@ -1,0 +1,28 @@
+---
+title: Add a new theme asset extension
+listed: true
+---
+{% extends index %}
+
+{% block content %}
+:markdown
+
+  By default, LocomotiveCMS will not let you upload any file type of theme assets.
+
+  Just only the default ones:
+
+      jpg jpeg gif png css js swf flv eot svg ttf woff otf ico htc
+
+  For instance, PDF files are not allowed. To change that, you need to override one of the methods of the Locomotive::ThemeAssetUploader class.
+
+  First, create or modify the **config/initializers/engine_overrides.rb** file by adding the following piece of code:
+
+      Locomotive::ThemeAssetUploader.class_eval do
+        def extension_white_list
+          %w(jpg jpeg gif png css js swf flv eot svg ttf woff otf ico htc pdf)
+        end
+      end
+
+  Restart your engine, it is done.
+
+{% endblock %}

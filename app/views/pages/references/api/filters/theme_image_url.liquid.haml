@@ -1,0 +1,28 @@
+---
+title: theme_image_url
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Return the url of a theme image.
+
+  ## Syntax
+
+      {% raw %}{{ <path_to_a_theme_image> | theme_image_url }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'banner.png' | theme_image_url }}{% endraw %}
+
+  outputs
+
+      "/sites/<site_id >/theme/images/banner.png"
+
+{% endblock %}

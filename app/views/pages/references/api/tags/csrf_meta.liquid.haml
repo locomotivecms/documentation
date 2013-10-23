@@ -1,0 +1,35 @@
+---
+title: csrf_meta
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  The **csrf_meta** tag gives the information the javascript code has to include for each AJAX POST request in order to prevent **Cross-Site Request Forgery (CSRF)** attacks.
+
+  By default, that protection is **disabled** in order to keep backwards compatibility with the existing public forms.
+
+  If you want to enable it, open your **config/initializers/locomotive.rb** file and toggle the csrf property on.
+
+      config.csrf_protection = true
+
+  ## Syntax
+
+      {% raw %}{% csrf_meta %}{% endraw %}
+
+  ## Example
+
+      {% raw %}<html>
+        <head>
+        {% csrf_meta %}
+        </head>
+        ...
+      </html>{% endraw %}
+
+{% endblock %}

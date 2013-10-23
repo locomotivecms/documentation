@@ -1,0 +1,43 @@
+---
+title: link_to
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Return a html anchor to a given page or a content entry if the content entry owns a templatized page. The page is identified by its handle.
+
+  <div class="alert alert-info">This tag requires Wagon 1.2+ and LocomotiveCMS 2.1+</div>
+
+  ## Syntax
+
+      {% raw %}{% link_to <object_or_page_handle> %}{% endraw %}
+
+  or
+
+      {% raw %}{% link_to <object_or_page_handle> %}
+      <HTML>
+      {% endlink_to %}
+      {% endraw %}
+
+  ## Example
+
+      {% raw %}{% link_to some-page %}
+      {% link_to about-us %}
+        <i class="icon-info-sign"></i> {{ target.title }}
+      {% endlink_to %}{% endraw %}
+
+  outputs
+
+      <a href="/path/to/some-page">Some page title</a>
+      <a href="/path/to/about-us">
+        <i class="icon-info-sign"></i> About us
+      </a>
+
+{% endblock %}

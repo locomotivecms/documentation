@@ -1,0 +1,77 @@
+---
+title: Content entry
+published: true
+listed: true
+position: 5
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+  ## Example
+
+  Display the name of the first projects. "name" being one of the custom fields described in the content type "Projects".
+
+      {% raw %}{{ contents.projects.first.name }}{% endraw %}
+
+  ## Attributes
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>_label</td>
+        <td>String</td>
+        <td>the label as displayed in the back-office to identify the entry</td>
+      </tr>
+      <tr>
+        <td>_permalink</td>
+        <td>String</td>
+        <td>unique identifier for urls</td>
+      </tr>
+      <tr>
+        <td>_slug</td>
+        <td>String</td>
+        <td>alias for _permalink</td>
+      </tr>
+      <tr>
+        <td>next</td>
+        <td>ContentEntry</td>
+        <td>the next entry for the parent content type based on the order defined in the back-office. Nil if no entry found</td>
+      </tr>
+      <tr>
+        <td>previous</td>
+        <td>ContentEntry</td>
+        <td>the next entry for the parent content type based on the order defined in the back-office. Nil if no entry found</td>
+      </tr>
+      <tr>
+        <td>seo_title</td>
+        <td>String</td>
+        <td>alternative title for the entry used for SEO purpose</td>
+      </tr>
+      <tr>
+        <td>meta_keywords</td>
+        <td>String</td>
+        <td>keywords used for SEO purpose</td>
+      </tr>
+      <tr>
+        <td>meta_description</td>
+        <td>String</td>
+        <td>description used for SEO purpose</td>
+      </tr>
+      <tr>
+        <td>created_at</td>
+        <td>Date</td>
+        <td>Entry creation date time (automatically set)</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

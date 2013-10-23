@@ -1,0 +1,52 @@
+---
+title: theme_image_tag
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Return the image tag of a theme image.
+
+  ## Syntax
+
+      {% raw %}{{ <path_to_a_theme_image> | theme_image_tag(: <options>) }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'banner.png' | theme_image_tag: 'alt:hello world' }}{% endraw %}
+
+  outputs
+
+      <img src="/sites/<site_id>/theme/images/banner.png" alt="hello world" />
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>alt</td>
+        <td>String</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>title</td>
+        <td>String</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

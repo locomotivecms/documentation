@@ -1,0 +1,53 @@
+---
+title: image_tag
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Build the HTML img tag.
+
+  ## Syntax
+
+      {% raw %}{{ <url> | image_tag: <options> }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'http://placehold.it/350x150' | image_tag: 'alt:hello world' }}
+  {% endraw %}
+
+  outputs
+
+      <img src="http://placehold.it/350x150" alt="hello world" />
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>alt</td>
+        <td>String</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>title</td>
+        <td>String</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

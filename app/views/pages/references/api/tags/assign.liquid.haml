@@ -1,0 +1,26 @@
+---
+title: assign
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Used to assign a value to a variable.
+
+  ## Syntax
+
+      {% raw %}{% assign <variable_name> = <value> %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% assign article = contents.news.first %}
+      {{ article.title }}
+      {{ article.body }}{% endraw %}
+
+{% endblock %}

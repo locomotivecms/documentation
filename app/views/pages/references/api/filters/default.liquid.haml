@@ -1,0 +1,29 @@
+---
+title: default
+seo_title: "Default: set a value if a string is null"
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Return the value parameter if the input is either null or empty.
+
+  ## Syntax
+
+      {% raw %}{{ <object> | default: <value> }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ params.author | default: 'John Doe' }}{% endraw %}
+
+  displays (if the value of params.author is null)
+
+      John Doe
+
+{% endblock %}

@@ -1,0 +1,63 @@
+---
+title: locale_switcher
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Display the links to change the locale of the current page. The links are wrapped inside a *DIV* tag.
+
+  The link to the current locale owns the class *current* which makes it possible to customize through CSS.
+
+  <div class="alert alert-warning">
+    Nothing will be displayed if you do not select at least 2 locales for your site.
+  </div>
+
+  ## Syntax
+
+      {% raw %}{% locale_switcher <options> %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% locale_switcher label: locale, sep: ' - ' %}{% endraw %}
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>label</td>
+        <td>String</td>
+        <td>
+          takes one of the following options:
+          <b>iso</b>
+          (de, fr, en, ...etc),
+          <b>locale</b>
+          (Deutsch, Français, English, ...etc),
+          <b>title</b>
+          (page title). By default, "iso".
+        </td>
+      </tr>
+      <tr>
+        <td>sep</td>
+        <td>String</td>
+        <td>piece of html code separating 2 locales. By default, " | ".</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+{% endblock %}

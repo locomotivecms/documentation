@@ -1,0 +1,108 @@
+---
+title: nav
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Render a list of links pointing to your pages. You can specify a context from where the pages will be pulled out. The context takes the following values: *site, parent or page.*
+
+  Moreover, it is also possible to include the nested pages.
+
+  <div class="alert alert-warning">
+  Your pages must fill 2 conditions to be part of the navigation: be <b>published</b> and be <b>listed.</b>
+  </div>
+
+  <div class="alert alert-info">
+  The order is based on the one you specify in your LocomotiveCMS back-office.
+  </div>
+
+  ## Syntax
+
+      {% raw %}{% nav <origin>(, <options>) %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% nav 'parent', depth: 1, no_wrapper: false, exclude: nil, icon: false %}{% endraw %}
+
+  a more complex example:
+
+      {% raw %}{% nav site, exclude: '\.*\-bottom', depth: 2, snippet: menu_entry %}
+      {% block misc_properties %}
+        {% editable_text menu_teaser %}{% endeditable_text %}
+        {% editable_file menu_image %}{% endeditable_file %}
+      {% endblock %}{% endraw %}
+
+  nav tag in the page
+
+      {% raw %}{{ page.menu_teaser }}
+      {{ page.menu_image }}{% endraw %}
+
+  snippet named "menu-entry"
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>depth</td>
+        <td>Integer</td>
+        <td>how many levels of children to display. 1 by default.</td>
+      </tr>
+      <tr>
+        <td>snippet</td>
+        <td>String</td>
+        <td>name of the snippet which will be used to render a page entry. Optional.</td>
+      </tr>
+      <tr>
+        <td>no_wrapper</td>
+        <td>Boolean</td>
+        <td>do not output the nav and ul wrapper tags. false by default.</td>
+      </tr>
+      <tr>
+        <td>exclude</td>
+        <td>String</td>
+        <td>regexp string of slugs to be ignored.</td>
+      </tr>
+      <tr>
+        <td>icon</td>
+        <td>String</td>
+        <td>ouput a span to be used as an icon.</td>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>String</td>
+        <td>css unique identifier for the nav tag. "nav" by default.</td>
+      </tr>
+      <tr>
+        <td>class</td>
+        <td>String</td>
+        <td>class of the nav tag.</td>
+      </tr>
+      <tr>
+        <td>active_class</td>
+        <td>String</td>
+        <td>name of the css class when the current page is the one in the menu.</td>
+      </tr>
+      <tr>
+        <td>bootstrap</td>
+        <td>Boolean</td>
+        <td>use the twitter bootstrap classes. false by default</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

@@ -1,0 +1,142 @@
+---
+title: "From LocomotiveEditor to Wagon"
+listed: true
+---
+{% extends index %}
+
+{% block content %}
+
+:markdown
+
+  Since the LocomotiveCMS Editor became Wagon, you might want to migrate your editors sites to the new Wagon format.
+
+  The procedure is not complex but a little hassle. We'll try to release a command line tool to automate the migration.
+
+  In this guide, we will create a new wagon project (my\_site\_wagon) and migrate a locomotive\_editor project (my\_site\_editor). We will consider that both folders are at the same location.
+
+  # Create a new wagon project
+
+      cd ~/workspace
+      wagon init my_site_wagon
+      cd my_site_wagon
+      bundle install
+
+  It will create `~/workspace/my_site_wagon`.
+
+  # Edit your new site.yml
+
+    Edit `config/site.yml` to match your site information: title, languages, general meta title and description...
+
+  # Copy your site content
+
+      cd ~/workspace/my_site_wagon
+      cp -R ../my_site_editor/app/ app/
+      cp -R ../my_site_editor/public/ public/
+      cp -R ../my_site_editor/data/ data/
+      cp ../my_site_editor/config/deploy.yml config/
+
+  # Adjust all page slugs
+
+    If you had pages with underscore slugs like `about_us`, make sure to replace all underscores with dashes: `about-us`. Example:
+
+  ## Before -- with underscores
+
+      /app/views/pages/about_us.liquid.haml
+      {% raw %}{% extends 'layouts/text_page' %}{% endraw %}
+
+      /app/views/pages/layouts/text_page.liquid.haml
+
+  ## After -- with dashes
+
+      /app/views/pages/about-us.liquid.haml
+      {% raw %}{% extends 'layouts/text-page' %}{% endraw %}
+
+      /app/views/pages/layouts/text-page.liquid.haml
+
+  # Set your pages header
+
+    That's the most boring part...
+    In your editor's site.yml, you need to copy all information about each page and add it in the page header. Example:
+
+      pages:
+        - "index":
+            title: "Welcome"
+            published: true
+            listed: true
+
+    In your `app/views/pages/index.liquid`, add this header before the first line.
+
+      ---
+      title: "Welcome"
+      published: true
+      listed: true
+      ---
+
+    Check that you removed indentation.
+
+    The pages order are not anymore fixed by the order in site.yml
+    In your header, you can add a the `position` option to fix the pages order.
+
+      ---
+      title: "Welcome"
+      published: true
+      listed: true
+      position: 1
+      ---
+
+    Please also note that there are small syntax changes in the page header options:
+
+    - `model` became `content_type`
+
+  # Content Types
+
+    If you used `order_by_direction`, rename it to `order_direction`. Example:
+
+      # app/content_types/posts.yml
+      name: Posts
+      slug: posts
+      order_by: date
+      order_direction: desc
+
+  # Check that your site now runs with the Wagon webserver
+
+      bundle exec wagon serve
+
+  # Multilingual specific
+
+    Wagon changes the way the multilingual page. In the Editor, the pages translations were managed this way (given en was the default language):
+
+      + app/views/pages
+          + index.liquid
+          + company.liquid
+          + company/
+              + presentation.liquid
+          + fr/
+              + index.liquid
+              + company/
+                  + presentation.liquid
+
+    In Wagon, this is much more simple (and the default Rails way...): translated liquid templates are in the same directory and contains the locale name.
+
+      + app/views/pages
+          + index.liquid
+          + index.fr.liquid
+          + company.liquid
+          + company.fr.liquid
+          + company/
+              + presentation.liquid
+              + presentation.fr.liquid
+
+    So you need to change filenames of templates which are in a secondary language, and move them to the main folder.
+
+    If your pages slugs are different in each language, you need to specify the `slug` option in the templates of the secondary language.
+
+      app/views/pages/company.fr.liquid:
+      ---
+      title: "Société"
+      slug: "societe"
+      published: true
+      listed: true
+      ---
+
+{% endblock %}

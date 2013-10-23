@@ -1,0 +1,36 @@
+---
+title: if/else/unless
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Boolean logic operations are available on all objects.
+
+  ## Syntax
+
+      {% raw %}{% if <condition> %}
+        <code>
+      {% else %}
+        <code>
+      {% endif %}{% endraw %}
+
+  ## Examples
+
+      {% raw %}{% if feature.title %}
+        {{ feature.title }}
+      {% endif %}
+
+      {% unless feature.body %}
+        feature has no content
+      {% else %}
+        {{ feature.body }}
+      {% endunless %}{% endraw %}
+
+{% endblock %}

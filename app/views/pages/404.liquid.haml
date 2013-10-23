@@ -5,17 +5,17 @@ listed: false
 ---
 {% extends 'index' %}
 
-{% block 'main' %}
-%section#page-404
-  %header
-    %h1
-      {% editable_text "404-title", priority: 8, format: raw, rows: 1 %}
-      Sorry, you must have taken a wrong turn somewhere
-      {% endeditable_text %}
-    %p
-      {% editable_short_text "404-content", priority: 7, format: html, rows: 3, line_break: false %}
-      404 Error page
-      {% endeditable_short_text %}
-  %img{ :src => "{{ '404.png' | theme_image_url }}" }
+{% block content %}
+
+%header
+  %h1
+    {% editable_text "404-title", priority: 8, format: raw, rows: 1 %}
+    Sorry, you must have taken a wrong turn somewhere
+    {% endeditable_text %}
+  %p
+    {% editable_short_text "404-content", priority: 7, format: html, rows: 3, line_break: false %}
+    404 Error page
+    {% endeditable_short_text %}
+%img{ src: "{{ '404.png' | theme_image_url }}", width: '100%' }
 
 {% endblock %}

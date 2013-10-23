@@ -1,0 +1,84 @@
+---
+title: editable_file
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Editable areas contain content you want a user to be able to change. The content within the tag will be the default one.
+
+  In the back-office, the editable element will be found under the tab corresponding to the block wrapping it. It is possible to associate the element to another block.
+
+  The input field in the back-office used to edit the content is a *file field.*
+
+  An element can be inherited by children, each page keeping its own version of the content. However, in some cases, it may be a requirement to have the element to be editable in one place. If so, just set the "fixed" option to true.
+
+  <div class="alert alert-info">
+    You must give these sections a unique name because they will be inherited by children.
+  </div>
+
+  ## Syntax
+
+      {% raw %}{% editable_file <name>(, <options>) %}<default value>{% endeditable_file %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% editable_file "banner", hint: "Upload a banner (perfect size: 300px by 100px)", priority: 1 %}
+      http://placehold.it/300x100
+      {% endeditable_file %}{% endraw %}
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>block</td>
+        <td>String</td>
+        <td>associate the element with a block other than the current one.</td>
+      </tr>
+      <tr>
+        <td>fixed</td>
+        <td>Boolean</td>
+        <td>make the element editable in one place. The default value is false.</td>
+      </tr>
+      <tr>
+        <td>hint</td>
+        <td>String</td>
+        <td>text displayed in the back-office just below the file field.</td>
+      </tr>
+      <tr>
+        <td>priority</td>
+        <td>Integer</td>
+        <td>used to position the file field in the back-office. Elements with the highest priority are displayed first.</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  ## How to use editable image with a default value?
+
+  If you want to use a theme image as the default value of your editable file, you might be tempted to do this:
+
+      {% raw %}{% editable_file 'banner' %}{{ 'banner.png' | theme_image_url }}{% endeditable_file %}{% endraw %}
+
+  **Which won't work**: editable tags can't include another Liquid tag.
+
+  So you need to capture the url of the editable file first, then display your image by testing if it has been edited:
+
+      {% raw %}{% capture banner_url %}{% editable_file 'banner' %}{% endeditable_file %}{% endcapture %}
+      {% if banner_url != '' %}{{ banner_url | image_tag }}{% else %}{{ 'banner.png' | theme_image_tag }}{% endif %}{% endraw %}
+
+{% endblock %}

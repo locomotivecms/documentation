@@ -1,0 +1,47 @@
+---
+title: Search
+published: true
+listed: false
+---
+{% extends index %}
+
+{% block title %}
+%h3 You're searching for <strong>"{{ params.search }}"</strong>
+{% endblock %}
+
+{% block content %}
+
+#search-results
+  {% if wagon %}
+  %article
+    %header
+      %a{ href: '/references/api/tags/assign' } assign
+    .url http://{{ host }}/references/api/tags/assign
+
+  %article
+    %header
+      %a{ href: '/references/api/tags/assign' } assign
+    .url http://{{ host }}/references/api/tags/assign
+
+  %article
+    %header
+      %a{ href: '/references/api/tags/assign' } assign
+    .url http://{{ host }}/references/api/tags/assign
+
+  %article
+    %header
+      %a{ href: '/references/api/tags/assign' } assign
+    .url http://{{ host }}/references/api/tags/assign
+
+  {% else %}
+
+  {% for result in site.search %}
+  %article
+    %header
+      %a{ href: "/{{result.fullpath}}" } {{ result.title }}
+    .url http://{{ host }}/{{result.fullpath}}
+  {% endfor %}
+
+  {% endif %}
+
+{% endblock %}

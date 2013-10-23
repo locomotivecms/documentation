@@ -1,0 +1,34 @@
+---
+title: first
+seo_title: "First: returns the first occurrence of the input object"
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Return the first occurrence of the input object.
+  If the object is a String, it returns the first letter.
+  If it is an Array, the first entry is returned.
+  If the input is a collection, the first method is called on that collection.
+
+  ## Syntax
+
+      {% raw %}{{ <string_or_array_or_collection> | first }}{% endraw %}
+
+  ## Examples
+
+      {% raw %}{{ [42, 0] | first }}{% endraw %}
+      {% raw %}{{ 'Hello World' | first }}{% endraw %}
+
+  return
+
+      42
+      H
+
+{% endblock %}

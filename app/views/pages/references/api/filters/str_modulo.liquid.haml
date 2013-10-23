@@ -1,0 +1,52 @@
+---
+title: str_modulo
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Print the input string every modulo occurences.
+
+  ## Syntax
+
+      {% raw %}{{ <string> | str_modulo: <index>, <modulo> }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'odd' | str_modulo: 1, 2 }}{% endraw %}
+
+  returns
+
+      "odd"
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>index</td>
+        <td>Integer</td>
+        <td>The counter. Usually, the index variable within a for loop</td>
+      </tr>
+      <tr>
+        <td>modulo</td>
+        <td>Integer</td>
+        <td>By default, it is the current locale</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

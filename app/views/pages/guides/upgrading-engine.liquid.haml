@@ -1,0 +1,80 @@
+---
+title: Upgrade the engine
+listed: true
+---
+{% extends index %}
+
+{% block content %}
+
+:markdown
+
+  A new version of the engine is out and you want to try it out in your existing LocomotiveCMS application. Here is the procedure to achieve that.
+
+  <div class="alert alert-info">
+  ALWAYS backup your assets AND your MongoDB database before this procedure.
+  </div>
+
+  ## 1. Change the version of the engine.
+
+  Open your favorite editor and edit the Gemfile of your application. All you need to do is to tell which version of the engine you want.
+
+      gem 'locomotive_cms', '~> <last_stable_version>', require: 'locomotive/engine'
+
+  If you want to live on the edge, just set the id of the last commit from Github.
+
+      gem 'locomotive_cms', git: 'git@github.com:locomotivecms/engine.git', ref: '<last_commit_id>', require: 'locomotive/engine'
+
+  Once it is done, update your gems.
+
+      bundle install
+
+  ***
+
+  ## 2. Run the database migrations
+
+  Copy the migrations of the LocomotiveCMS engine to your main application.
+
+      bundle exec rake db:mongoid:migration:install
+
+  Run them.
+
+      bundle exec rake db:mongoid:migrate
+
+  ***
+
+  ## 3. Re-compile the assets for production
+
+  A new version of the engine comes often with changes in the Javascript or CSS code. Thus, you have to update your compiled assets as well.
+
+      bundle exec rake assets:clean
+      bundle exec rake assets:precompile
+
+  ***
+
+  ## Tips for upgrading from 2.0.0.rcX to 2.0.X
+
+  Here are several tips to help you upgrade from a the release candidate version of LocomotiveCMS to the 2.0.x series release. Do these steps after upgrading and migrating your LocomotiveCMS engine.
+
+  - If your models aren't showing up correctly, you probably need to rebuild the page templates
+
+           bundle exec rake locomotive:rebuild_serialized_page_templates
+
+    If this command fails, you may have underscores in your template names. Try renaming your template from two_columns.liquid to two-columns.liquid and updating the pages that reference that template. Finally, run the command again and it should succeed.
+
+  - The syntax for overriding nested blocks has changed. Consider the following template:
+
+            {%raw%}{% block 'main' %}
+                {% block 'nested' %}{% endblock %}
+            {% endblock %}{% endraw %}
+
+     In previous versions, you could override the nested block with the following code:
+
+            {% raw %}{% block 'nested' %}Hello World{% endblock %}{% endraw %}
+
+     However in version 2.0.x, you now need to include the hierarchy of the blocks you want to override:
+
+            {% raw %}{% block 'main/nested' %}Hello World{% endblock %}{% endraw %}
+
+     If you use nested templates, you will need to make these updates immediately after upgrading.
+
+{% endblock %}

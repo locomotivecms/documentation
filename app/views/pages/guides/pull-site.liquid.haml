@@ -1,0 +1,36 @@
+---
+title: Pull a site
+listed: true
+position: 2
+---
+{% extends index %}
+
+{% block content %}
+
+:markdown
+  This function allows you to retrieve a wagon site from a hosted location (a LocomotiveCMS engine).
+
+  Create a new site with wagon
+
+      cd ~/workspace
+      wagon init mysite
+      cd mysite
+      bundle install
+
+  Edit `config/deploy.yml` to configure the site you want to pull, on the production environment.
+
+  Run the pull command
+
+      bundle exec wagon pull production
+
+  The mysite folder will be updated with all the site from the engine.
+
+  Test it
+
+      bundle exec wagon serve
+
+  Then run your browser on http://0.0.0.0:3333
+
+  Note: Because all the assets are compiled in the engine, you won't get the sass / coffeescript sources.
+
+{% endblock %}

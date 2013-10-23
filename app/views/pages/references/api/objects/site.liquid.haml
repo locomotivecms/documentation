@@ -1,0 +1,68 @@
+---
+title: Site
+published: true
+listed: true
+position: 2
+---
+{% extends 'references/api' %}
+
+{% block 'content' %}
+
+:markdown
+
+  ## Example
+
+  Display the name of the current site
+
+      {% raw %}{{ site.name }}{% endraw %}
+
+  ## Attributes
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>name</td>
+        <td>String</td>
+        <td>name of the site</td>
+      </tr>
+      <tr>
+        <td>index</td>
+        <td>Page</td>
+        <td>root page of the site</td>
+      </tr>
+      <tr>
+        <td>pages</td>
+        <td>Array</td>
+        <td>all the pages including even sub pages</td>
+      </tr>
+      <tr>
+        <td>domains</td>
+        <td>Array</td>
+        <td>list of all the domains the site answers for</td>
+      </tr>
+      <tr>
+        <td>seo_title</td>
+        <td>String</td>
+        <td>alternative title for the site used for SEO purpose</td>
+      </tr>
+      <tr>
+        <td>meta_keywords</td>
+        <td>String</td>
+        <td>keywords used for SEO purpose</td>
+      </tr>
+      <tr>
+        <td>meta_description</td>
+        <td>String</td>
+        <td>description used for SEO purpose</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+---
+title: localized_date
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+{% assign example1 = today | localized_date: '%d %B' %}
+{% assign example2 = today | localized_date: '%d %B', 'fr' %}
+
+:markdown
+
+  ## Description
+
+  Pretty print a date.
+
+  ## Syntax
+
+      {% raw %}{{ <date> | localized_date: <format>(, <locale>) }}{% endraw %}
+
+  ## Examples
+
+      {% raw %}{{ today | localized_date: '%d %B' }}{% endraw %}
+      {% raw %}{{ today | localized_date: '%d %B', 'fr' }}{% endraw %}
+
+  Returns
+
+      {{example1}}
+      {{ example2}}
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>format</td>
+        <td>String</td>
+        <td>It depends on the current locale. For the 'en' locale, it is "%m/%d/%Y". Read the <a href="http://liquid.rubyforge.org/classes/Liquid/StandardFilters.html#M000012", target= "_blank">syntax reference</a>.</td>
+      </tr>
+      <tr>
+        <td>locale</td>
+        <td>String</td>
+        <td><i>Optional</i>. By default, it is the current locale.</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

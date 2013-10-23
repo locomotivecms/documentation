@@ -1,0 +1,49 @@
+---
+title: default_pagination
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Render the navigation for a paginated collection. Input is the variable returned by the [paginate tag](/references/api/tags/paginate)
+
+  ## Syntax
+
+      {% raw %}{{ <paginate object> | default_pagination: <options> }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ paginate | default_pagination: next: 'Next entries', previous: 'Previous entries' }}{% endraw %}
+
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>previous</td>
+        <td>String</td>
+        <td>Label of the previous link. By default, the value of I18n.t('pagination.previous') is used.</td>
+      </tr>
+      <tr>
+        <td>next</td>
+        <td>String</td>
+        <td>Label of the next link. By default, the value of I18n.t('pagination.previous') is used.</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

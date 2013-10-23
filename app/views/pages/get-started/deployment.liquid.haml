@@ -1,0 +1,94 @@
+---
+title: Deploy to an engine
+listed: true
+published: true
+position: 4
+---
+{% extends index %}
+
+{% block content %}
+:markdown
+
+  Once you have a working Wagon site, you probably want to see it working online, with the backoffice and everything.
+  That's the role of the LocomotiveCMS engine.
+
+  <div class="alert alert-info">
+  <strong>Important.</strong> The only requirement is to have somewhere (it can be online or locally) a running engine and an administrator account. Check out the <a href="install-engine">engine installation guide</a> for more information.
+  </div>
+
+  # 1. Edit your deployment settings
+
+  <div class="alert alert-info">
+  We assume that your Wagon sites are located under ~/workspace, and that you're using Textmate to edit your code. If not, please correct it accordingly.
+  </div>
+
+      cd ~/workspace
+      mate my_first_website/config/deploy.yml
+
+  Here is what your deploy.yml file should look like:
+
+      development:
+        host: dev.example.com
+        email: john@doe.net
+        password: easyone
+      staging:
+        host: staging.example.com
+        email: john@doe.net
+        password: easyone
+      production:
+        host: www.example.com
+        email: john@doe.net
+        password: easyone
+
+  The email/password credentials are owned by one of your **LocomotiveCMS administrator accounts.**
+
+  <div class="alert alert-info">
+  <strong>Note:</strong> You can as many targets (test, …etc) as you want.
+  </div>
+
+  # 2. Push
+
+  You can either push the whole site or specify a type of resource.
+
+  ## Pushing the whole site:
+
+      cd ~/workspace/my_first_website
+      bundle exec wagon push staging
+
+  You might prefer the shorter syntax:
+
+      bundle exec wagon push staging
+
+  If you want to push your content entries (`data/*.yml`), add the `--data` option (or `-d`)
+
+      bundle exec wagon push staging --data
+
+  ## Pushing only a specify type of resource:
+
+  In some cases, you do not want to push the whole site. For instance, if you have just modified a single page, you do not need to push the assets too.
+
+  The available resource types are: **theme\_assets, snippets, content\_types and pages**.
+
+  Example:
+
+      bundle exec wagon push staging --resources=pages
+
+  You might prefer the shorter syntax:
+
+      bundle exec wagon push staging -r pages
+
+
+  Or
+
+      bundle exec wagon push staging -r pages
+
+
+  ## What if the resource already exists within your target engine?
+
+  By default, the push command will not let you erase your target resources. That is why you will see the “skipped” label beside your resource name if you try to run the push command.
+
+  Unless you force it:
+
+      bundle exec wagon push staging --resources=pages --force
+
+{% endblock %}

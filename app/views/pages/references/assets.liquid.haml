@@ -1,0 +1,82 @@
+---
+title: Assets
+seo_title: Add assets
+listed: true
+position: 5
+---
+{% extends 'index' %}
+
+{% block 'content' %}
+:markdown
+
+  You will see how to add assets to your website: images, stylesheets, javascripts and fonts.
+
+  # Images
+
+  Let's say you want to add logo.jpg on your index page.
+  Add logo.gif to
+
+      public/images
+
+  **Important**: Using `<img src="/images/logo.jpg" />` will work when using the Wagon webserver, but it won't in LocomotiveCMS after deploying to your site.
+  Liquid filters are used to get public urls (images, javascripts, stylesheets...).
+
+  In your page, add:
+
+      {% raw %}<img src="{{ 'logo.jpg' | theme_image_url }}" alt="" />{% endraw %}
+
+  Note that your image path is simplier, you don't need to specify the "image" folder. Still, you can create subfolders:
+
+      public/images/icons/ajax-loader.gif
+
+  will be refered this way:
+
+      {% raw %}<img src="{{ 'icons/ajax-loader.gif' | theme_image_url }}" alt="" />{% endraw %}
+
+  <div class="alert alert-info">
+  <strong>Note:</strong> In your stylesheets,  images paths in the url() function will be automatically changed to the theme image url.
+  </div>
+
+  The [theme\_image\_tag](/references/filters/html/theme_image_tag) can also be used to generate the html img tag:
+
+      {% raw %}{{ 'icons/ajax-loader.gif' | theme_image_tag }}{% endraw %}
+
+  # Javascripts
+
+  Put your javascripts in the `public/javascripts` folder then use the javascript_tag:
+
+      {% raw %}{{ 'libs/jquery-1.8.2.min' | javascript_tag }}{% endraw %}
+
+  **Note:** You can also use the javascript\_url tag.
+
+  # Stylesheets
+
+  Put your javascripts in the `public/stylesheets` folder then use the [stylesheet_tag](templates/filters/html/stylesheet_tag):
+
+      {% raw %}{{ 'styles.css' | stylesheet_tag: 'screen, projection' }}{% endraw %}
+
+  **Note:** You can also use the stylesheet\_url tag.
+
+  Wagon automatically understands the [Sass](http://sass-lang.com) language to manage your stylesheets.
+
+  In the public/stylesheets folder, you can write `.scss` and `.sass` files. It will be automatically compiled to css when developping or pushing your assets to a Locomotive Engine.
+
+  # Fonts
+
+  Put your fonts in the `public/fonts` folder. Call them directly in your css.
+
+  However, if you host your website on Heroku / Amazon S3, you need to do the following steps to make it work.
+
+    - Store all your fonts in the public/fonts folder
+    - Create a `public/fonts/all.css` and declare your fonts in it
+    - Load your fonts/all.css
+
+    `{% raw %}{{ '/fonts/all' | stylesheet_tag }}{% endraw %}`
+
+  # Learn more
+
+  - [**theme\_image\_tag**](/references/filters/html/image_tag) and [**theme\_image\_url**](/references/filters/html/theme_image_url) documentation
+  - [**javascript\_tag**](/references/filters/html/javascript_tag) and [**javascript\_url**](/references/filters/html/javascript_url) documentation
+  - [**stylesheet\_tag**](/references/filters/html/stylesheet_tag) and [**stylesheet\_url** documentation](/references/filters/html/stylesheet_url) documentation
+
+{% endblock %}

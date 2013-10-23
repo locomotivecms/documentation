@@ -1,0 +1,39 @@
+---
+title: case
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  When evaluating a large number of conditions.
+
+  ## Syntax
+
+      {% raw %}{% case <condition> %}
+      {% when <value_1> %}
+        <code>
+      ...
+      {% when <value_x> %}
+        <code>
+      {% else %}
+        <code>
+      {% endcase %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% case condition %}
+      {% when 1 %}
+        hit 1
+      {% when 2 %}
+        hit 2
+      {% else %}
+        hit else
+      {% endcase %}{% endraw %}
+
+{% endblock %}

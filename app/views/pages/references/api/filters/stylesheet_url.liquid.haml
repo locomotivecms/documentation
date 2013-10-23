@@ -1,0 +1,28 @@
+---
+title: stylesheet_url
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Return the url of a theme asset stylesheet.
+
+  ## Syntax
+
+      {% raw %}{{ <path_to_a_theme_asset> | stylesheet_url(: <media>) }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'application.css' | stylesheet_url }}{% endraw %}
+
+  returns
+
+      "/sites/<site_id>/theme/stylesheets/application.css"
+
+{% endblock %}

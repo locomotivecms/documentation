@@ -1,18 +1,27 @@
 table
-  border: 1px solid white
-  +box-shadow(0px 0px 9px $table-header)
+  border: 1px solid $table-col-border
+  margin: 20px 0
   thead
     background-color: $table-header
     th
-      border-right: 1px solid white
-      border-left: 1px solid $table-col-border
-      padding: 15px 25px 5px 25px
+      border-right: 1px solid $table-col-border
+      padding: 15px 25px
+      vertical-align: middle
+      font-size: 16px
   tbody
     td
-      border-left: 1px solid $table-col-border
-      padding: 15px 25px 5px 25px
+      border: 1px solid $table-col-border
+      padding: 15px 25px
+      vertical-align: top
       &:first
         border-left: none
+
+      color: $light-black
+      font-size: 15px
+      line-height: 24px
+      font-weight: 300
+      text-align: justify
+
     .stripped-row
       background-color: $table-row
       border-right: 1px solid white

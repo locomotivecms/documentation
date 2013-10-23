@@ -1,0 +1,34 @@
+---
+title: last
+seo_title: "Last: returns the last occurrence of the input object"
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Return the last occurrence of the input object.
+  If the object is a String, it returns the last letter.
+  If it is an Array, the last entry is returned.
+  If the input is a collection, the last method is called on that collection.
+
+  ## Syntax
+
+      {% raw %}{{ <string_or_array_or_collection> | last }}{% endraw %}
+
+  ## Examples
+
+      {% raw %}{{ [42, 0] | last }}{% endraw %}
+      {% raw %}{{ 'Hello World' | last }}{% endraw %}
+
+  outputs
+
+      0
+      d
+
+{% endblock %}

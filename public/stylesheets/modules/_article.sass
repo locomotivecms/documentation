@@ -1,0 +1,103 @@
+#content-column
+  article
+    h1
+      font-size: 20px
+      font-weight: normal
+      color: $third-black
+      margin: 25px 0
+
+    h2
+      font-size: 18px
+      color: $third-black
+      margin: 20px 0
+
+    h3
+      font-size: 15px
+      color: $third-black
+      border-bottom: 0px
+      padding-bottom: 0px
+      margin: 20px 0
+
+    h4
+      font-size: 14px
+
+    hr
+      border: none
+      border-bottom: 1px solid $medium-grey
+      height: 1px
+      line-height: 1px
+      margin: 20px 0
+      background: none
+
+    p
+      a
+        color: $deep-blue
+      strong
+        font-weight: bold
+
+    ul
+      +pretty-bullets("/images/bullet.png", 5px, 5px, 27px)
+      +open-sans
+      margin-bottom: 10px
+
+      li
+        color: $light-black
+        font-size: 15px
+        line-height: 24px
+        font-weight: 300
+        margin-bottom: 10px
+
+        strong
+          font-weight: bold
+
+        a
+          color: $deep-blue
+
+    table
+      width: 100%
+
+    pre code, .alert
+      margin: 20px 0
+      padding: 10px
+      line-height: 20px
+      border-left: 5px solid $light-black
+      background-color: rgba($light-black, 0.1)
+
+      strong
+        font-weight: bold
+
+      a
+        color: $deep-blue
+
+      &.alert-warning
+        border-left-color: $orange-gradient-start
+        background-color: rgba($orange-gradient-start, 0.2)
+
+      &.alert-info
+        border-left-color: $main-blue
+        background-color: rgba($main-blue, 0.2)
+
+  #home-items
+
+    .home-item
+      float: left
+      width: 50%
+      margin-bottom: 30px
+
+      .picto
+        float: left
+        margin-right: 20px
+
+      h2
+        margin: 5px 0px 10px 0px
+
+      p
+        padding-right: 20px
+        text-align: left
+
+        a
+          +orange-rounded-button
+
+      &:nth-child(3)
+        clear: both
+

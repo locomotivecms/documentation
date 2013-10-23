@@ -1,0 +1,105 @@
+---
+title: "Create a RSS feed"
+seo_title: "How to create a RSS feed?"
+published: true
+listed: true
+position: 4
+---
+{% extends index %}
+
+{% block content %}
+
+:markdown
+
+  You can create a page which will be used as a RSS feed for your blog. In the list of pages, it is tagged with the "RSS" label.
+
+  <img src="{{ '/samples/guides/templating/page_rss.png' }}" width="100%" />
+
+  Assumptions:
+
+  - an "articles" page was created as well as a templatized page for an article.
+  - an "article" model was also created.
+
+  In order to create that kind of page, follow these steps:
+
+
+  ### 1. click on the "new page" button.
+
+  ### 2. select "RSS" as the response type in the "Advanced options".
+
+  ### 3. fill the template with the code below.
+
+  Rss code:
+
+  {% capture rss_code %}{% raw %}<?xml version="1.0" encoding="UTF-8"?>
+      <rss version="2.0"
+        xmlns:content="http://purl.org/rss/1.0/modules/content/"
+        xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:atom="http://www.w3.org/2005/Atom"
+        xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+        xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+        <channel>
+          <title>{{ site.seo_title }}</title>
+          <description>{{ site.meta_description }}</description>
+          <link>http://www.example.com</link>
+          <language>en</language>
+          <copyright>Example</copyright>
+          <ttl>30</ttl>
+          <atom:link href="http://www.example.com/articles/rss.xml" rel="self" type="application/rss+xml" />
+          {% for article in contents.articles %}
+            <item>
+              <title>{{ article.title }}</title>
+              <description><![CDATA[{{ article.excerpt }}]]></description>
+              <content:encoded><![CDATA[{{ article.body }}
+              ]]></content:encoded>
+              <link>http://www.example.com/articles/{{ article._permalink }}</link>
+              <guid isPermaLink="true">http://www.example.com/articles/{{ article._permalink }}</guid>
+              <pubDate>{{ article.posted_at | localized_date: '%a, %d %b %Y %H:%M:%S %z' }}</pubDate>
+              <source url="http://www.example.com/">example.com</source>
+            </item>
+          {% endfor %}
+        </channel>
+      </rss>{% endraw %}{% endcapture %}
+
+
+      {% raw %}<rss version="2.0"
+      xmlns:content="http://purl.org/rss/1.0/modules/content/"
+      xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+      xmlns:dc="http://purl.org/dc/elements/1.1/"
+      xmlns:atom="http://www.w3.org/2005/Atom"
+      xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+      xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+        <channel>
+          <title>{{ site.seo_title }}</title>
+          <description>{{ site.meta_description }}</description>
+          <link>http://www.example.com</link>
+          <language>en</language>
+          <copyright>Example</copyright>
+          <ttl>30</ttl>
+          <atom:link href="http://www.example.com/articles/rss.xml" rel="self" type="application/rss+xml" />
+          {% for article in contents.articles %}
+            <item>
+              <title>{{ article.title }}</title>
+              <description>{{ article.excerpt }}</description>
+              <content:encoded>{{ article.body }}></content:encoded>
+              <link>http://www.example.com/articles/{{ article._permalink }}</link>
+              <guid isPermaLink="true">http://www.example.com/articles/{{ article._permalink }}</guid>
+              <pubDate>{{ article.posted_at | localized_date: '%a, %d %b %Y %H:%M:%S %z' }}</pubDate>
+              <source url="http://www.example.com/">example.com</source>
+            </item>
+          {% endfor %}
+        </channel>
+      </rss>{% endraw %}
+
+  ### 4. click on the "create" button at the bottom of the screen
+
+  <div class="alert alert-info">
+    <strong>Note:</strong> do not forget to set the "Published" flag to true.
+  </div>
+
+  If you want the browsers and news readers to auto-detect your RSS feed, add the following statement within the "head" tag of your template.
+
+      {% raw %}{{ '/articles/rss.xml' | auto_discovery_link_tag }}{% endraw %}
+
+{% endblock %}

@@ -1,0 +1,39 @@
+---
+title: seo
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Output the meta tags and associated content for keywords and description. Depending on the current page, the following fallback is applied:
+
+  - if the page is "templatized", check first for the keywords / description of the related content entry.
+  - if the keywords / description of the page are filled up, use them.
+  - finally, use those of the site if the previous objects failed to return non-blank keywords / description.
+
+  Alternatively, you can access the keywords and description directly from an object among those: site, page, content_entry.
+
+      {% raw %}{{ title.keywords }}
+      {{ title.description }}
+
+      {{ page.keywords }}
+      {{ page.description }}
+
+      {{ content_entry.keywords }}
+      {{ content_entry.description }}{% endraw %}
+
+  ## Syntax
+
+      {% raw %}{% seo %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% seo %}{% endraw %}
+
+{% endblock %}

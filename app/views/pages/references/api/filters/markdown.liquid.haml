@@ -1,0 +1,31 @@
+---
+title: markdown
+seo_title: "Markdown: converts markdown text into html"
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  The markdown filter converts text formatted with [Markdown](http://en.wikipedia.org/wiki/Markdown) to HTML
+  using the ruby gem [Redcarpet](https://github.com/vmg/redcarpet).
+  For a complete explanation of markdown syntax, please visit the [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax).
+
+  ## Syntax
+
+      {% raw %}{{ <markdown_code> | markdown }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ '# Header' | markdown }}{% endraw %}
+
+  The HTML output of the example above is:
+
+      <h1>Header</h1>
+
+{% endblock %}

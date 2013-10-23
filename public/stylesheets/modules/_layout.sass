@@ -1,3 +1,65 @@
+// sidebar
+
+#main-generic
+  +four-cols-grid
+
+  padding: 20px
+
+#content-column
+  +span-columns(3, 4)
+  margin-right: 0px
+
+  h3
+    padding-bottom: 20px
+    border-bottom: 1px solid $medium-grey
+
+    strong
+      font-weight: bold
+
+  #fork-me
+    clear: both
+    border-top: 1px solid $medium-grey
+    padding-top: 20px
+    margin-top: 60px
+    text-align: right
+
+    a
+      +orange-button
+      +small-button
+
+#sidebar-column
+  +span-columns(1 omega, 4)
+  padding-left: gutter(4)
+  border-left: 1px solid $medium-grey
+
+  #search
+    input[type=text]
+      border: 1px solid $medium-grey
+      margin-bottom: 5px
+
+  p.back
+    margin: 10px 0 20px 0
+    text-align: left
+    font-size: 12px
+
+  h3
+    font-size: 12px
+    font-weight: bold
+    text-transform: uppercase
+    margin-bottom: 10px
+
+  ul
+    margin: 0 0 20px 0
+    li
+      padding: 5px
+      margin: 5px 0px
+      a
+        color: $deep-blue
+        font-size: 12px
+
+      &.active
+        background: $medium-grey
+
 // Navigation
 #main-nav
   background-position: 100% 20%
@@ -95,16 +157,6 @@
 
 
 
-// Shared container
-#main-generic
-  +three-cols-grid
-  #terms-of-use, #license, #privacy-policy
-    +span-columns(3 omega,3)
-    margin-top: 35px
-@media #{$desktop}
-  #main-generic
-    #terms-of-use, #license, #privacy-policy
-      +span-columns(2,3)
 
 // Footer
 #footer
@@ -197,6 +249,6 @@
           padding-right: 30px
         .tweets
           float: left
-          width: 47% 
-        
+          width: 47%
+
 

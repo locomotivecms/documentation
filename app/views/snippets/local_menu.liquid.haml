@@ -1,0 +1,23 @@
+{% assign source = site.index %}
+
+{% if handle %}
+{% with_scope handle: handle %}{% assign source = site.pages.first %}{% endwith_scope %}
+{% endif %}
+
+{% for _page in source.children %}
+
+%h3 {{ _page.title }}
+
+%ul
+  {% for p in _page.children %}
+  {% if p.listed? and p.published? %}
+  %li{ class: "{% if p.fullpath == page.fullpath %}active{% endif %}" }
+    {% if p.redirect? %}
+    %a{ href: '{{ p.redirect_url }}' } {{ p.title }}
+    {% else %}
+    {% link_to p %}
+    {% endif %}
+  {% endif %}
+  {% endfor %}
+
+{% endfor %}

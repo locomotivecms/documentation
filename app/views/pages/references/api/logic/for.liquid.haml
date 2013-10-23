@@ -1,0 +1,88 @@
+---
+title: for
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Loop over a collection.
+
+  ## Syntax
+
+      {% raw %}{% for item in array %}
+        {{ item }}
+      {% endfor %}{% endraw %}
+
+  ## Examples
+
+  Instead of looping over an existing collection, you can define a range of numbers to loop through. The range can be defined by both literal and variable numbers:
+
+
+      {% raw %}# if item.quantity is 4...
+      {% for i in (1..item.quantity) %}
+        {{ i }}
+      {% endfor %}{% endraw %}
+
+  outputs
+
+      1 2 3 4
+
+
+  ## Variables
+
+  During every for loop there are following helper variables available for extra styling needs:
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>forloop.length</td>
+        <td>Integer</td>
+        <td>length of the entire for loop</td>
+      </tr>
+      <tr>
+        <td>forloop.index</td>
+        <td>Integer</td>
+        <td>index of the current iteration</td>
+      </tr>
+      <tr>
+        <td>forloop.index0</td>
+        <td>Integer</td>
+        <td>index of the current iteration (zero based)</td>
+      </tr>
+      <tr>
+        <td>forloop.rindex</td>
+        <td>Integer</td>
+        <td>how many items are still left?</td>
+      </tr>
+      <tr>
+        <td>forloop.rindex0</td>
+        <td>Integer</td>
+        <td>how many items are still left? (zero based)</td>
+      </tr>
+      <tr>
+        <td>forloop.first</td>
+        <td>Boolean</td>
+        <td>is this the first iteration?</td>
+      </tr>
+      <tr>
+        <td>forloop.last</td>
+        <td>Boolean</td>
+        <td>is this the last iteration?</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

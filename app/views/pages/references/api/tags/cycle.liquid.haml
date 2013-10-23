@@ -1,0 +1,34 @@
+---
+title: cycle
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Output the next option in a group on each call.
+
+  ## Syntax
+
+      {% raw %}{% cycle <group>: <value_1>, ..., <value_n> %}{% endraw %}
+
+  ## Examples
+
+      {% raw %}{% cycle 'group 1': 'blue', 'green', 'red' %}
+      {% cycle 'group 1': 'blue', 'green', 'red' %}
+      {% cycle 'group 2': 'blue', 'green', 'red' %}
+      {% cycle 'group 1': 'blue', 'green', 'red' %}{% endraw %}
+
+  will result in
+
+      blue
+      green
+      blue
+      red
+
+{% endblock %}

@@ -1,0 +1,165 @@
+---
+title: Relate two content types
+listed: true
+position: 3
+---
+{% extends index %}
+
+{% block content %}
+
+:markdown
+
+  Content types system in LocomotiveCMS allows you to define and use various types of relations between models.
+
+  Let's go through classical Author <-> Book example to learn each relation type provided by LocomotiveCMS. First we're going to have the very basic models of Authors and Books containing only **name** fields:
+
+      bundle exec wagon generate content_type authors name:string
+      bundle exec wagon generate content_type books name:string
+
+
+  # 1. Belongs To: the Book belongs to the Author
+  With this type of relation we can store a link to an Author along with the Book, which immediately becomes callable as a property of the book instance:
+
+      {% raw %}Who wrote the book "{{ book.name }}"? {{ book.author.name }} did that!{% endraw %}
+
+  "Belongs To" is an easiest relation to setup. You just need to add the following to `content_types/books.yml`:
+
+      - author:
+          label: Author
+          type: belongs_to
+          target: authors
+
+  The key `author` here is a property that we will call on a book instance. It hasn't necessary match the name of related model. For example, we could name our relation `writer`.
+
+  `target` parameter (vice versa) must contain the slug of the model, otherwise we couldn't know which model exactly we want to bind here.
+
+  Also we may want to add `required: true` option, if the book without author shouldn't exist in our library.
+
+  Ok. Once we're done, we may want to add some certain records in order to check how it works.
+  Let's add the following to the `data/authors.yml`:
+
+      - "Leo Tolstoy"
+      - "Anton Tchekhov"
+
+  ...and these records to the `data/books.yml`:
+
+      - "War and Peace":
+          author: Leo Tolstoy
+
+      - "The Cherry Orchard":
+          author: Anton Tchekhov
+
+      - "Anna Karenina":
+          author: Leo Tolstoy
+
+  Now if we add following snippet to the index page...
+
+      {% raw %}{% for book in contents.books %}
+      Who wrote the book "{{ book.name }}"? {{ book.author.name }} did that!
+      {% endfor %}{% endraw %}
+
+  ...we'll see the list of the books with their authors:
+
+      Who wrote the book "War and Peace"? Leo Tolstoy did that!
+      Who wrote the book "The Cherry Orchard"? Anton Tchekhov did that!
+      Who wrote the book "Anna Karenina"? Leo Tolstoy did that!
+
+  As you may notice it's perfectly legal to create arbitrary amount of Books pointing at one Author. And this brings us to the next type of relation.
+
+  # 2. Has Many: the Author has many Books
+
+  This is quite unusual for the Author to have only one Book published. That's why we need another type of relation to describe how Books are connected to the Author.
+
+  Actually we did most of the work for establishing `has_many` relation in the last section, cause from a point of view of the root object this type of relation is no more than inverted `belongs_to`. This structure is quite obvious: book belongs to author and author has many books belonged to the author. That's it! We've come full circle.
+
+  Let's add `books` property to `content_type/authors.yml`:
+
+      - books:
+          label: Books
+          type: has_many
+          target: books
+          inverse_of: author
+          ui_enabled: true
+
+  Some new parameters are introduced here. Parameter `inverse_of` shows what property of the foreign model used to establish `belongs_to` relation with current model. Its name is really self-explanatory: `what property of the RELATED model would be an inversion of the property that we're going to define on THIS model`?
+
+  Or `what property of the related model could tell us if we're connected`?
+
+  It does make perfect sense if you just imagine `Tolstoy` record asking `Anna Karenina`: "Is that me who has created you?"
+
+  The last parameter `ui_enabled` allows you to select whether related item to be editable right from the editing screen of the current model in the admin panel. If you turn on this option you'll be able to edit or create related items during editing or creation of the root item which may be convenient.
+
+  Let's take a look at how it works. To do so, we'll take the first author which happens to be `Tolstoy` and ask him what books he wrote:
+
+      {% raw %}{% for book in contents.authors.first.books %}
+      Who wrote the book "{{ book.name }}"? {{ book.author.name }} did that!
+      {% endfor %}{% endraw %}
+
+  The output would be the following as expected:
+
+      Who wrote the book "War and Peace"? Leo Tolstoy did that!
+      Who wrote the book "Anna Karenina"? Leo Tolstoy did that!
+
+  # 3. Many to Many: the case of the Book written in collaboration
+
+  Let's imagine that Tolstoy and Tchekhov wrote a book in co-authorship which in fact never happened even though they lived in the same time. But for learning purpose it would be fun to think that their partnership brought a brilliant book called "Anna Karenina in the Cherry Orchard" to the world.
+
+  It breaks our perfect world in a moment. Now one Author can have many Books as well as one Book can be written by a group of Authors. This type of relation called Many-to-Many and it considered to be the most complex of those.
+
+  Let's make some changes in `content_type/books.yml`
+
+      - authors:
+          label: Author
+          type: many_to_many
+          target: authors
+          inverse_of: books
+          ui_enabled: true
+
+  ...and `content_type/authors.yml`
+
+      - books:
+          label: Books
+          type: many_to_many
+          target: books
+          inverse_of: authors
+          ui_enabled: true
+
+  That's it. Now we can attach as many Books to each Author as we want. And vice versa.
+
+  The only thing is left to take a look at the seed data for this kind of relation (`data/books.yml`):
+
+      - "War and Peace":
+          authors: [Leo Tolstoy]
+
+      - "The Cherry Orchard":
+          authors: [Anton Tchekhov]
+
+      - "Anna Karenina":
+          authors: [Leo Tolstoy]
+
+      - "Anna Karenina in the Cherry Orchard":
+          authors: [Leo Tolstoy, Anton Tchekhov]
+
+  Now if we take the last book and iterate over authors we will see `Leo Tolstoy` and `Anton Tchekhov`:
+
+      {% raw %}{% for author in contents.books.last.authors %}
+      {{ author.name }}
+      {% endfor %}{% endraw %}
+
+  will output
+
+      Leo Tolstoy
+      Anton Tchekhov
+
+  # 4. Tags: special relation
+
+  Locomotive CMS has embedded support for tags. To use them you just have to add field of type `tags` to your model. Then you'll be able to scope by tags, like following:
+
+      {% raw %}{% with_scope tags: params['tag'] %}
+      ...
+      {% endwith_scope %}{% endraw %}
+
+  The common mistake with relations is the mistreating of the property. Just remember, that for any relation except the `belongs_to` you have a collection even though it consist of only one element.
+
+
+{% endblock %}

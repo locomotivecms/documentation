@@ -1,0 +1,243 @@
+---
+title: Define a content type
+listed: true
+position: 1
+---
+{% extends 'index' %}
+
+{% block 'content' %}
+
+:markdown
+
+  LocomotiveCMS allows you to create content types without imposing a specific pre-built structure.
+
+  Your content types can then be used directly in your Liquid templates.
+
+  # Generate it with Wagon
+
+    Wagon provides you the **generate** command to help you to create the YAML file describing your content type.
+
+        cd ~/workspace/my_first_site
+        bundle exec wagon generate content_type events \
+        title:string description:text event_date:date
+
+    It will generate 2 files:
+
+        app/content_types/events.yml
+        data/events.yml
+
+    The first one contains the content\_type declaration, the second contains sample data so that you can test your site with fake data.
+    Some random data have been added.
+
+    <div class="alert alert-info">
+    <strong>Important:</strong> Use <u>plural</u> for your content type names.
+    </div>
+
+    <div class="alert alert-info">
+    <strong>Note:</strong> The available field types are : <code>string</code>, <code>text</code>, <code>file</code>, <code>select</code>, <code>boolean</code>, <code>date</code>, <code>date_time</code>, <code>tags</code>, <code>integer</code>, <code>float</code>, <code>belongs\_to</code>, <code>has\_many</code>, <code>many\_to\_many</code>.
+    </div>
+
+  # Description of the YAML file
+
+  Here are the properties you can use on `app/content_types/*.yml` files.
+  All the content types should be plural filenames.
+
+  Example of an Article content type:
+
+        name: Articles
+        description: Just a simple blog module
+        order_by: posted_at
+        order_direction: desc
+        slug: articles
+        label_field_name: title
+        fields:
+        - title:
+            label: Title
+            type: string
+            hint: The title of the article
+        - posted_at:
+            label: Posted at
+            type: date
+            hint: The date when the article has been or will be posted.
+        - body:
+            label: Body
+            type: text
+            text_formatting: html
+            hint: The body of the article
+
+  <table>
+    <thead>
+      <th>Property</th>
+      <th>Description</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>name</td>
+        <td>String value. Public name of the content type. Use plural.</td>
+      </tr>
+
+      <tr>
+        <td>slug</td>
+        <td>String value. Internal name of the content type. Use plural and lower case, no space.</td>
+      </tr>
+
+      <tr>
+        <td>description</td>
+        <td>String value. Explanation for the backoffice</td>
+      </tr>
+
+      <tr>
+        <td>label_field_name</td>
+        <td>Field slug. Default field slug (generally title), it must be a string field</td>
+      </tr>
+
+      <tr>
+        <td>order_by</td>
+        <td>Any field slug or 'manually' or 'created_at'. Changes the order of content entries in backoffice and content entries.</td>
+      </tr>
+
+      <tr>
+        <td>order direction</td>
+        <td>'asc' or 'desc'</td>
+      </tr>
+
+      <tr>
+        <td>group_by</td>
+        <td>Field slug. Display entries grouped by the given field in the backoffice</td>
+      </tr>
+
+      <tr>
+        <td>fields</td>
+        <td>List of fields whose structure is described below</td>
+      </tr>
+    </tbody>
+  </table>
+
+  ## Fields types
+
+  The minimal structure:
+
+      field_slug:
+        type: <type>
+        option: value
+
+  ### Common properties of fields
+
+  <table>
+    <thead>
+      <th>Property</th>
+      <th>Description</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>label</td>
+        <td>Required. Label for the backoffice</td>
+      </tr>
+
+      <tr>
+        <td>required</td>
+        <td>default false</td>
+      </tr>
+
+      <tr>
+        <td>hint</td>
+        <td>Displays a hint in the backoffice.</td>
+      </tr>
+
+      <tr>
+        <td>localized</td>
+        <td>Default false. Makes this field localized: each language will have a different value.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Depending on the field type, you can provide one or more options.
+
+  <table>
+    <thead>
+      <th>Property</th>
+      <th>Description</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>string</td>
+        <td>Standard string field</td>
+      </tr>
+
+      <tr>
+        <td>text</td>
+        <td>Longer field. Use with <code>text_formatting: html</code> option to display a wysiwyg editor in the backoffice.</td>
+      </tr>
+
+      <tr>
+        <td>select</td>
+        <td>Add select_options:
+        <code>["value 1", "value 2"]</code> or for multilingual:<br />
+        <pre><code>select_options:
+    en: ["Value 1", "Value 2"]
+    fr: ["Valeur 1", "Valeur 2"]</code></pre>
+        </td>
+      </tr>
+
+      <tr>
+        <td>file</td>
+        <td>No option, get the url with <code>product.the_photo.url</code> in your code.</td>
+      </tr>
+
+      <tr>
+        <td>integer</td>
+        <td>Integer field. No option.</td>
+      </tr>
+
+      <tr>
+        <td>float</td>
+        <td>Float field. No option.</td>
+      </tr>
+
+      <tr>
+        <td>date</td>
+        <td>Date field. No option.</td>
+      </tr>
+
+      <tr>
+        <td>date_time</td>
+        <td>DateTime field. No option.</td>
+      </tr>
+
+      <tr>
+        <td>boolean</td>
+        <td>true or false field. No option.</td>
+      </tr>
+
+      <tr>
+        <td>tags</td>
+        <td>Tags field. No option.</td>
+      </tr>
+
+      <tr>
+        <td>belongs_to</td>
+        <td>Example with product belongs to a category, field 'category' in products.yml: <code>class_name: categories</code></td>
+      </tr>
+
+      <tr>
+        <td>has_many</td>
+        <td>
+          Declare a relationship between 2 content types. Example with category has many products (field 'products' in categories.yml):<br />
+          <pre><code>class_name: products
+  inverse_of: category
+  ui_enabled: true</code></pre>
+        Notice the plurals and singulars.
+        </td>
+      </tr>
+
+      <tr>
+        <td>many_to_many</td>
+        <td>Example with products has and belongs to many categories. In products.yml: <br />
+        <pre><code>class_name: products
+  inverse_of: category
+  ui_enabled: true</code></pre></td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

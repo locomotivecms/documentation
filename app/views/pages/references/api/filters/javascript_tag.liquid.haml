@@ -1,0 +1,28 @@
+---
+title: javascript_tag
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Build the link tag of a theme stylesheet.
+
+  ## Syntax
+
+      {% raw %}{{ <path_to_a_theme_asset_or_url> | javascript_tag }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'application.js' | javascript_tag }}{% endraw %}
+
+  outputs
+
+      <script src="/sites/<site_id>javascripts/application.js" type="text/javascript"></script>
+
+{% endblock %}

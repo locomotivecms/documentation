@@ -1,0 +1,29 @@
+---
+title: underscore
+seo_title: "Underscore: Makes a string underscored and lowercase"
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Make an underscored, lowercase form from the expression in the string.
+
+  ## Syntax
+
+      {% raw %}{{ 'FooBar' | underscore }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'FooBar' | underscore }}{% endraw %}
+
+  returns
+
+      foo_bar
+
+{% endblock %}

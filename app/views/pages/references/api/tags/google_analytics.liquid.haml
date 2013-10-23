@@ -1,0 +1,31 @@
+---
+title: google_analytics
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  It is simply a helper tag which includes the snippet code that it is asked by Google Analytics to enable traffic analytics.
+
+  Just provide your Google account id.
+
+  <div class="alert alert-info">
+    Put your google_analytics tag just before the
+    <b>closing BODY tag.</b>
+  </div>
+
+  ## Syntax
+
+      {% raw %}{% google_analytics <your_google_analytics_id> %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% google_analytics 'UA-424242' %}{% endraw %}
+
+{% endblock %}

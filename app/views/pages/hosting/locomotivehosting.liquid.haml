@@ -1,0 +1,60 @@
+---
+title: LocomotiveHosting
+listed: true
+position: 1
+---
+{% extends index %}
+
+{% block content %}
+
+:markdown
+
+  We provide a powerful hosting for LocomotiveCMS sites. We made our best so that the setup is very quick and easy.
+
+  We offer a cheap plan, but you can try it for free!
+  Actually you only pay when you set up your domain.
+
+  # 1. Get your account
+
+    If you don't have your account yet, just go to [locomotivehosting.com](http://www.locomotivehosting.com) and follow the instructions to sign up.
+
+    <a href="http://www.locomotivehosting.com" title="LocomotiveCMS Hosting Solution"><img src="{{ 'guides/hosting/locomotivehosting-home.png' | theme_image_url }}" alt="LocomotiveHosting - The LocomotiveCMS Hosting Solution"/></a>
+
+  # 2. Create your site
+
+    You will be asked to create your first site, give it a name and a subdomain. A random default subdomain is provided.
+    If you already have a domain you can set it up too.
+
+    <img src="{{ 'guides/hosting/locomotivehosting-dashboard.png' | theme_image_url }}" alt="LocomotiveHosting - The LocomotiveCMS Hosting Solution"/>
+
+  # 3. Set up your deploy config
+
+    Open `config/deploy.yml` and set your credentials for production.
+
+      production:
+        host: your_subdomain.locomotivehosting.com
+        api_key: <your_api_key>
+
+    To get your API key, go to your account page and unfold the "Credentials" block.
+
+    <img src="{{ 'guides/hosting/locomotivehosting-api-key.png' | theme_image_url }}" alt="LocomotiveHosting - The LocomotiveCMS Hosting Solution" width="100%" />
+
+  # 4. Push your site
+
+      bundle exec wagon push production --data
+
+    Try it! Use the given subdomain and try it in your browser!
+
+  # 5. Set up your domain
+
+    Using your registrar, you need to set up your domain:
+
+      www.mydomain.com CNAME domains.locomotivehosting.com
+
+    <div class="alert alert-info">Please note that we do not support "naked domains" (like mydomain.com) as it requires to set up an IP address and we can't guarantee that our IPs won't change. You can use external services like <a href="http://wwwizer.com/" target="_blank">wwwizer.com</a>.</div>
+
+  # 6. Redirect your subdomain to your main domain.
+
+    This is Work In Progress
+
+{% endblock %}

@@ -1,0 +1,29 @@
+---
+title: concat
+seo_title: "Concat: Concatenates strings"
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+    Append strings passed in args to the input.
+
+  ## Syntax
+
+      {% raw %}{{ <string> | concat: <array of strings> }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'hello' | concat: 'world', 'yeah' }}{% endraw %}
+
+  displays
+
+      helloworldyeah
+
+{% endblock %}

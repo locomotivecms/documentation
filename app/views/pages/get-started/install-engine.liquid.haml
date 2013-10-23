@@ -1,0 +1,92 @@
+---
+title: Install the engine
+published: true
+listed: true
+position: 6
+---
+{% extends index %}
+
+{% block content %}
+
+:markdown
+
+  LocomotiveCMS runs as a rails engine: you need to create a Ruby On Rails app and include the LocomotiveCMS engine gem.
+
+  You can install it locally or on your own server. If you want to host your site our [hosting solution](http://www.locomotivehosting.com), you don't need to follow theses instructions.
+
+  # 1. Create a Ruby on Rails application
+
+    <div class="alert alert-warning">
+    Make sure you have installed <strong>Ruby on Rails 3.2.x</strong>, or checked the <a href="requirements">requirements</a>.
+    </div>
+
+      rails new myapp --skip-active-record --skip-test-unit --skip-javascript --skip-bundle
+      cd myapp
+
+  # 2. Include the LocomotiveCMS engine gem
+
+    You have to tell your Ruby on Rails app that you want to include the LocomotiveCMS gem available on Gemcutter. Edit your application Gemfile and add these lines if missing.
+
+      gem 'locomotive_cms', '~> 2.2.3', :require => 'locomotive/engine'
+
+      group :assets do
+        gem 'compass-rails',  '~> 1.0.2'
+        gem 'sass-rails',     '~> 3.2.4'
+        gem 'coffee-rails',   '~> 3.2.2'
+        gem 'uglifier',       '~> 1.2.4'
+
+        # If you run your engine on **Linux,** you also have to add the following gem
+        # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+        # gem 'therubyracer', :platforms => :ruby
+      end
+
+      group :development do
+        gem 'unicorn'
+      end
+
+  # 3. Install the gems
+
+      bundle install
+
+  # 4. Add the editable engine config files
+
+    The following command also inserts the engine routes to the main application.
+
+    Start your MongoDB server before running this command so the generator can setup the database.
+
+      bundle exec rails g locomotive:install
+
+  # 5. Edit the engine settings
+
+    Use your favorite IDE to edit the engine settings. Instructions are given as comments in setting files.
+
+    First, configure your mongodb hostname and database name in `config/mongoid.yml`. **Make sure you have MongoDB installed -- [instructions here](http://docs.mongodb.org/manual/installation/).**
+
+    Then configure the main settings: multisite activation, default locale, email sender (etc) in `config/initializers/locomotive.rb`.
+
+    <div class="alert alert-info">
+    <strong>Note</strong> By default, LocomotiveCMS uses Amazon S3 in production. To change it, modify the carrierwave initialization file.<br />
+    <code>mate config/initializers/carrierwave.rb</code>
+    </div>
+
+  # 6. Precompile assets **(only in production)**
+
+    As any other Rails applications, you need to precompile the assets when the engine runs within the **production** environment.
+    Usually, this task is executed before the deployment of the application to the remote server. [More explanation here](http://guides.rubyonrails.org/asset_pipeline.html#in-production).
+
+      bundle exec rake assets:precompile
+
+
+  # 7. Run the application server
+
+      bundle exec unicorn_rails
+
+
+  # 8. Open your browser
+
+      open http://localhost:8080/locomotive
+
+    Follow the instructions in order to create your first administrator account and your first website.
+
+
+{% endblock %}

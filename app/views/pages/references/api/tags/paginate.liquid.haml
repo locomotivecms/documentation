@@ -1,0 +1,96 @@
+---
+title: paginate
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  The paginate tag is responsible for pagination within the LocomotiveCMS engine. It is currently applicable to the entries of content types.
+
+  It can be combined with the **with_scope** tag.
+
+  ## Syntax
+
+      {% raw %}{% paginate contents.projects by 10 %}
+      <loop>
+      {% endpaginate %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% paginate contents.projects by 10 %}
+        {% for project in paginate.collection %}
+          {{ project.title }}
+        {% endfor %}
+      {% endpaginate %}{% endraw %}
+
+  ## Properties of the paginate object
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>collection</td>
+        <td>Array</td>
+        <td>list of elements</td>
+      </tr>
+      <tr>
+        <td>current_page</td>
+        <td>Integer</td>
+        <td>the index of the current page</td>
+      </tr>
+      <tr>
+        <td>previous_page</td>
+        <td>Integer</td>
+        <td>the index of the previous page. Nil if there is no previous page</td>
+      </tr>
+      <tr>
+        <td>next_page</td>
+        <td>Integer</td>
+        <td>the index of the next page. Nil if there is no next page</td>
+      </tr>
+      <tr>
+        <td>total_entries</td>
+        <td>Integer</td>
+        <td>total number of entries</td>
+      </tr>
+      <tr>
+        <td>per_page</td>
+        <td>Integer</td>
+        <td>number of entries per page</td>
+      </tr>
+      <tr>
+        <td>total_pages</td>
+        <td>Integer</td>
+        <td>total number of pages</td>
+      </tr>
+      <tr>
+        <td>parts</td>
+        <td>Array</td>
+        <td>list of all the parts which make up a good navigation for this pagination. Each element will have any of these three elements: title (String), url (String), is_link (Boolean).</td>
+      </tr>
+      <tr>
+        <td>previous</td>
+        <td>String</td>
+        <td>url to the previous page. Nil if there is no previous page</td>
+      </tr>
+      <tr>
+        <td>next</td>
+        <td>String</td>
+        <td>url to the next page. Nil if there is no next page</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

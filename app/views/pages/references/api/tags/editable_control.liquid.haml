@@ -1,0 +1,79 @@
+---
+title: editable_control
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Editable areas contain content you want a user to be able to change. The content within the tag will be the default one.
+
+  In the back-office, the editable element will be found under the tab corresponding to the block wrapping it. It is possible to associate the element to another block.
+
+  The input field in the back-office used to edit the content is a *select field.*
+
+  An element can be inherited by children, each page keeping its own version of the content. However, in some cases, it may be a requirement to have the element to be editable in one place. If so, just set the "fixed" option to true.
+
+  <div class="alert alert-info">
+  You must give these sections a unique name because they will be inherited by children.
+  </div>
+
+  ## Syntax
+
+      {% raw %}{% editable_control <name>(, <options>) %}<default value>{% endeditable_control %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% capture menu_enabled %}{% editable_control "menu", options: 'true=Yes,false=No', hint: "Tell if the menu is displayed or not", priority: 1 %}
+        false
+      {% endeditable_control %}{% endcapture %}
+
+      {% if menu_enabled == 'true' %}
+        DISPLAYED
+      {% endif %}{% endraw %}
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>options</td>
+        <td>String</td>
+        <td>options are separated by comma and value/label by a the "equals" sign. Ex: v1=l1,v2=l2,v3=l3,..etc.</td>
+      </tr>
+      <tr>
+        <td>block</td>
+        <td>String</td>
+        <td>associate the element with a block other than the current one.</td>
+      </tr>
+      <tr>
+        <td>fixed</td>
+        <td>Boolean</td>
+        <td>make the element editable in one place. The default value is false.</td>
+      </tr>
+      <tr>
+        <td>hint</td>
+        <td>String</td>
+        <td>text displayed in the back-office just below the select field.</td>
+      </tr>
+      <tr>
+        <td>priority</td>
+        <td>Integer</td>
+        <td>used to position the file field in the back-office. Elements with the highest priority are displayed first.</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

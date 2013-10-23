@@ -1,0 +1,63 @@
+---
+title: Liquid language
+published: true
+listed: true
+position: 1
+---
+{% extends 'index' %}
+
+{% block content %}
+
+:markdown
+
+  LocomotiveCMS uses the exact same template engine as for Shopify, one of the best hosted e-commerce solution. The name of that open source template engine is Liquid.
+
+  <div class="alert alert-info">
+  You can find the source of the Liquid template engine on <strong> <a href="https://github.com/Shopify/liquid">github.</a> </strong> However, we used an <strong> <a href="https://github.com/locomotivecms/liquid">enhanced version</a> </strong> of the original engine.
+  </div>
+
+  There are 3 types of markup: Objects, Filters and Tags.
+
+  ### Objects
+
+  When writing a liquid template, you will access to a couple of objects representing for instance the current site, page, logged in account as well as collections such as your custom content types. We also call them **drops** in case you meet this word further in the documentation.
+
+      {% raw %}{{ page.title }}{% endraw %}
+
+  **Example:** it displays the title of the current page.
+
+  <div class="alert alert-info">
+  <strong>Note:</strong> matched pairs of curly brackets are used to output the value of an object
+  </div>
+
+  ***
+
+  ### Filters
+
+  You can modify the output by using filters that you can chain. Filters are simple methods. The first parameter is always the output of the left side of the filter. The return value of the filter will be the new left value when the next filter is run. When there are no more filters, the template will receive the resulting string.
+
+      {% raw %}{{ page.title | upcase | pluralize }}{% endraw %}
+
+  **Example:** it displays the title of the current page and applies 2 transformations: upcase + pluralization
+
+  ***
+
+  ### Tags
+
+  Tags are used for the logic in the templates making them very dynamic. Thus, you can loop through a collection with the **for** tag, test a variable with the classical **if/else.** We also added, to the original Liquid tags, our own tags in order to build pages more elegantly and more efficiently.
+
+      {% raw %}{% if contents.projects.size == 0 %}
+      <p>No project</p>
+      {% endif %}{% endraw %}
+
+  **Example:** Check if our custom content type representing projects has entries or not.
+
+      {% raw %}{% nav %}{% endraw %}
+
+  **Example:** it displays the main menu of the current site with the UL/LI html tags.
+
+  <div class="alert alert-info">
+  <strong>Note:</strong> matched pairs of curly brackets and percent signs are used to call a tag.
+  </div>
+
+{% endblock %}

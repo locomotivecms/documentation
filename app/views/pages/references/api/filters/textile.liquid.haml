@@ -1,0 +1,31 @@
+---
+title: textile
+seo_title: "Textile: converts textile text into html"
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  The textile filter converts text formatted with [Textile](http://en.wikipedia.org/wiki/Textile) to HTML
+  using the popular ruby gem [RedCloth](http://redcloth.org/).
+  For a complete explanation of textile syntax, please visit the [Textile Reference Manual for RedCloth](http://redcloth.org/textile/).
+
+  ## Syntax
+
+      {% raw %}{{ <string> | textile }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'h3. Header' | textile }}{% endraw %}
+
+  The HTML output of the example above is:
+
+      <h3>Header</h3>
+
+{% endblock %}

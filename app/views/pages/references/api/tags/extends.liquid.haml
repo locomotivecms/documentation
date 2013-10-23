@@ -1,0 +1,36 @@
+---
+title: extends
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  <div class="alert alert-warning">
+    The extends tag must <b>ALWAYS</b> be the first statement.
+  </div>
+
+  Set the layout of the current page. A page can be a layout for another page. The tag needs a single parameter which can take two values:
+
+  - **parent** the layout for the parent url
+  - **some/page/path** a specific pages layout
+
+  <div class="alert alert-info">
+  You do not need to close this tag.
+  </div>
+
+  ## Syntax ##
+
+      {% raw %}{% extends <fullpath_or_parent> %}{% endraw %}
+
+  ## Examples
+
+      {% raw %}{% extends parent %}
+      {% extends 'support/index' %}{% endraw %}
+
+{% endblock %}

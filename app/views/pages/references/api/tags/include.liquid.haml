@@ -1,0 +1,30 @@
+---
+title: include
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Include sections of content you would like to repeat across the website. The optional *with* clause lets you specify a value which is bound to the snippet's name within the snippet's context.
+
+  The snippets are declared in the `app/views/snippets` directory, the snippet slug is the filename.
+
+  ## Syntax
+
+      {% raw %}{% include <name_of_the_snippet> %}
+      {% include <name_of_the_snippet> with <name_1>: <value_1>, ...<name_n>: <value_n> %}
+      {% include <name_of_the_snippet> with <object> %}{% endraw %}
+
+  ## Examples
+
+      {% raw %}{% include 'footer' %}
+      {% include 'sidebar' with foo: 'bar' %}
+      {% include 'product_information' with product %}{% endraw %}
+
+  {% endblock %}

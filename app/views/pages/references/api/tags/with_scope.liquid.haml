@@ -1,0 +1,81 @@
+---
+title: with_scope
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  The with_scope tag is used to filter a list of entries. The filter is applied directly to the MongoDB request which makes it very performant.
+
+  ## Syntax
+
+      {% raw %}{% with_scope <field_1>: <value_1>, ... <field_n>: <value_n> %}
+      <CODE>
+      {% endwith_scope %}{% endraw %}
+
+  ## Examples
+
+      {% raw %}{% with_scope author: 'John Doe' %}
+        {% for post in content_type.posts %}
+          {{ post.title }}
+        {% endfor %}
+      {% endwith_scope %}{% endraw %}
+
+  filtering by a boolean field
+
+      {% raw %}{% with_scope active: true %}
+        {% paginate content_type.projects by 10 %}
+          {% for project in paginate.collection %}
+            {{ project.title }}
+          {% endfor %}
+        {% endpaginate %}
+      {% endwith_scope %}{% endraw %}
+
+  filtering by a date
+
+      {% raw %}{% with_scope date.gt: today %}
+        {% for event in contents.events %}
+        ...
+        {% endfor %}
+      {%endwith_scope %}{% endraw %}
+
+  filtering by a date range
+
+      {% raw %}{% with_scope posted_at.gte: '2012/01/01', posted_at.lte: '2012/02/1' %}
+        {% for post in content_type.posts %}
+          {{ post.title }}
+        {% endfor %}
+      {% endwith_scope %}{% endraw %}
+
+  filtering by an float
+
+      {% raw %}{% with_scope price.lt: 42.0 %}
+        {% for product in content_type.products %}
+          {{ product.name }}
+        {% endfor %}
+      {% endwith_scope %}{% endraw %}
+
+      {% raw %}{% with_scope price.lt: params.min_price %}
+        {% for product in content_type.products %}
+          {{ product.name }}
+        {% endfor %}
+      {% endwith_scope %}{% endraw %}
+
+  filtering by a category
+
+      {% raw %}{% with_scope _slug: "fruits" %}
+        {% assign category = contents.categories.first %}
+      {% endwith_scope%}
+        {% for product in category.products %}
+          <li>
+            {{product.name}}
+          </li>
+        {% endfor %}{% endraw %}
+
+{% endblock %}

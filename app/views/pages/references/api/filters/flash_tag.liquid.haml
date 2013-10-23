@@ -1,0 +1,49 @@
+---
+title: flash_tag
+seo_title: "Flash_tag: Embeds a flash movie into a page"
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Embed a flash movie into a page.
+
+  ## Syntax
+
+      {% raw %}{{ <url> | flash_tag: <options> }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ 'http://youtube.com?...' | flash_tag: width: '100px', height: '50px' }}{% endraw %}
+
+  ## Options
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>width</td>
+        <td>String</td>
+        <td>pixel or %</td>
+      </tr>
+      <tr>
+        <td>height</td>
+        <td>String</td>
+        <td>pixel or %</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

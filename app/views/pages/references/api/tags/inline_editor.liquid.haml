@@ -1,0 +1,29 @@
+---
+title: inline_editor
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  The inline_editor tag *mandatory* to enable the inline editing feature (Aloha Editor) directly from the pages.
+
+  <div class="alert alert-info">
+    Put your inline_editor tag just before the
+    <b>closing HEAD tag.</b>
+  </div>
+
+  ## Syntax
+
+      {% raw %}{% inline_editor %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% inline_editor %}{% endraw %}
+
+{% endblock %}

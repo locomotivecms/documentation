@@ -6,7 +6,7 @@
   padding: 20px
 
 #content-column
-  +span-columns(3, 4)
+  padding-bottom: 30px
   margin-right: 0px
 
   h3
@@ -21,17 +21,13 @@
     border-top: 1px solid $medium-grey
     padding-top: 20px
     margin-top: 60px
-    text-align: right
+    text-align: center
 
     a
       +orange-button
       +small-button
 
 #sidebar-column
-  +span-columns(1 omega, 4)
-  padding-left: gutter(4)
-  border-left: 1px solid $medium-grey
-
   #search
     input[type=text]
       border: 1px solid $medium-grey
@@ -59,6 +55,17 @@
 
       &.active
         background: $medium-grey
+
+@media #{$desktop}
+  #content-column
+    +span-columns(3, 4)
+    #fork-me
+      text-align: right
+
+  #sidebar-column
+    +span-columns(1 omega, 4)
+    padding-left: gutter(4)
+    border-left: 1px solid $medium-grey
 
 // Navigation
 #main-nav
@@ -134,6 +141,7 @@
 #main-nav.expanded
   background-position: 100% 100%
   ul
+    padding-top: 20px
     display: block
   #nav-toggle:before
     font-family: 'Fontello'

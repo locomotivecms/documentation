@@ -82,8 +82,6 @@
     margin-top: 36px
 
     .home-item
-      float: left
-      width: 50%
       margin-bottom: 45px
 
       .picto
@@ -103,3 +101,8 @@
       &:nth-child(3)
         clear: both
 
+@media #{$desktop}
+  #home-items
+    .home-item
+      float: left
+      width: 50%

@@ -2,32 +2,424 @@
 title: Install Wagon
 published: true
 listed: true
-position: 2
+position: 3
 ---
 {% extends 'index' %}
 
 {% block content %}
 
-:markdown
+%p
   Wagon is a command line site generator for the LocomotiveCMS engine powered by all the efficient and modern HTML development tools (Haml, SASS, Compass, Less). It embeds a webserver which allows to run the site locally.
 
-  # 1. Install the bundler and rake gems
+#install-wagon-selector
+  %h2 Choose the appropriate guide for your operating system
+  
+  .option
+    .image
+      {{ 'os/macos.png' | theme_image_tag }}
+    .link
+      %a{href: "#", data: {section: "macos"}} Mac OS X
 
-  <div class="alert alert-warning">
-  Make sure you have installed <strong>Ruby</strong>. If not, please read the “Ruby” section in the following <a href="/installation/requirements">page</a>.
-  The editor runs fine with these ruby versions: <strong>1.9.2 and 1.9.3.</strong>
-  </div>
+  .option
+    .image
+      {{ 'os/windows.png' | theme_image_tag }}
+    .link
+      %a{href: "#", data: {section: "windows"}} Windows
 
-      gem install bundler
-      gem install rake
+  .option
+    .image
+      {{ 'os/linux.png' | theme_image_tag }}
+    .link
+      %a{href: "#", data: {section: "linux"}} Linux
+
+#install-wagon-guides
+  .guide#guide_windows
+    :markdown
+      # Installing Wagon on Windows
+
+      This guide will walk you through installing the LocomotiveCMS Wagon and it's dependencies on Windows. Wagon's dependencies are:
+
+      - ImageMagick
+      - Ruby 1.9.3 or higher
+      - The [Bundler](http://www.bundler.io/) and [Rake](http://rake.rubyforge.org/) gems
+
+      Ruby veterans and experienced users may already have some or all of these dependencies installed, so feel free to skim. This guide was written using Windows 7, though only slight changes are necessary to perform these steps on Windows XP or Windows 8. 
+
+      ## Step 1: Install ImageMagick
+
+      [ImageMagick](http://www.imagemagick.org/) is a powerful image manipulation library required by Wagon. To install it, first go to the [Windows section of the ImageMagick downloads page](http://imagemagick.org/script/binary-releases.php#windows) and download the latest binary. At the time of writing, it was _[ImageMagick-6.8.7-0-Q16-x86-dll.exe](http://www.imagemagick.org/download/binaries/ImageMagick-6.8.7-0-Q16-x86-dll.exe)_. 
+
+      Once downloaded, run the installer. It is important that the installation path not include any spaces. The default is <code>C:\Program Files\ImageMagick-6.8.7-Q16</code>, which includes a space. Please change it to <code>C:\ImageMagick</code> or another path without spaces.
+
+      The last step of the installer let's you select various options. Be sure to check the following two boxes:
+
+      - Add Application directory to your system path.
+      - Install development headers and libraries for C and C++
+
+      ## Step 2: Install Ruby
+
+      The next dependency is, [Ruby](https://www.ruby-lang.org/) the programming language LocomotiveCMS Wagon is written in. Wagon requires Ruby version 1.9.3 or higher.
+
+      The easiest way to install Ruby on Windows is [RubyInstaller](http://rubyinstaller.org/). Head on over to the [RubyInstaller downloads page](http://rubyinstaller.org/downloads/) and download the Ruby 1.9.3-p448 installer.
+
+      <div class="alert alert-info">
+          While LocomotiveCMS Wagon is compatible with Ruby 2.0.0, the current RubyInstaller version of Ruby 2.0.0 isn't as stable and can have issues using gems with native extentions, so we recommend using 1.9.3-p448.
+      </div>
+
+      When the download finishes, run the installer and go through the wizard. Note that Ruby can't be installed to a path with spaces, such as <code>C:\Program Files\Ruby</code>, so sticking with the default <code>C:\Ruby193</code> is a safe choice. It's also a good idea to check the _Add Ruby executable to your PATH_ option. Doing so will let you run Ruby from any command prompt, which is much more convenient than always opening a ruby specific command prompt.
+
+      After Ruby is installed, go to the start menu, navigate to _All Programs_ / _Ruby 1.9.3-p448_ and open _Start Command Prompt with Ruby_. This will open a command prompt window. To check that Ruby is working, run the <code>ruby -v</code> command.
+
+          C:\>ruby -v
+          ruby 1.9.3p448 (2013-06-27) [i386-mingw32]
+
+      ## Step 3: RubyInstaller Development Kit
+
+      Since Wagon makes use of gems with native extensions, we will also need the [RubyInstaller Development Kit](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit), which you can download from the [RubyInstaller downloads page](http://rubyinstaller.org/downloads/). You can find it under the _Development Kit_ header. Download the version for use with Ruby 1.9.3. At the time of writing, it was [DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe](https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe).
+
+      It is a self-extracting archive, so once it downloads, open the archive an select an install path. Wherever you decide to install the DevKit is permanent and cannot be changed later. Further, as with Ruby, it is essential that no spaces are in the path. We recommend extracting it to <code>C:\RubyDevKit</code> or a similar path. After you've set the path, click the _Extract_ button.
+
+      If it isn't still open, open a command prompt with Ruby, which you can find under the Start Menu / _All Programs_ / _Ruby 1.9.3-p448_ folder. In the command prompt, use the <code>cd</code> command to change to the directory where you installed the Development Kit.
+
+          C:\>cd C:\RubyDevKit
+
+      Once in the Development Kit's directory, run the <code>ruby dk.rb init</code> command.
+
+          C:\RubyDevKit>ruby dk.rb init
+          [INFO] found RubyInstaller v1.9.3 at C:/Ruby193
+
+          Initialization complete! Please review and modify the auto-generated
+          'config.yml' file to ensure it contains the root directories to all
+          of the installed Rubies you want enhanced by the DevKit.
+
+      Next run the <code>ruby dk.rb install</code> command.
+
+          C:\RubyDevKit>ruby dk.rb install
+          [INFO] Updating convenience notice gem override for 'C:/Ruby193'
+          [INFO] Installing 'C:/Ruby193/lib/ruby/site_ruby/devkit.rb'
 
 
-  # 2. Install the binary
+      ## Step 4: Install Bundler and Rake
 
-      gem install locomotivecms_wagon
+      Wagon has two more dependencies: [Bundler](http://bundler.io/) and [Rake](http://rake.rubyforge.org/), both of which are ruby gems. [Gems](http://www.rubygems.org) are a packaging system for Ruby. We can install gems using the <code>gem</code> command.
 
-  <div class="alert alert-info">
-  <strong>Done?</strong> Let's <a href="create-your-first-site">create your first site</a>.
-  </div>
+      If it isn't still open, open a command prompt with Ruby, which you can find under the Start Menu / _All Programs_ / _Ruby 1.9.3-p448_ folder.
+
+      Run the following commands at the prompt to install bundler and rake: <code>gem install bundler</code> and <code>gem install rake</code>. 
+
+          C:\>gem install bundler
+          Fetching: bundler-1.3.5.gem (100%)
+          Successfully installed bundler-1.3.5
+          1 gem installed
+          Installing ri documentation for bundler-1.3.5...
+          Installing RDoc documentation for bundler-1.3.5...
+
+          C:\>gem install rake
+          Fetching: rake-10.1.0.gem (100%)
+          Successfully installed rake-10.1.0
+          1 gem installed
+          Installing ri documentation for rake-10.1.0...
+          Installing RDoc documentation for rake-10.1.0...
+
+      ## Step 5: Install Wagon
+      Finally, we are ready to install Wagon itself. Like Bundler and Rake, wagon is a ruby gem, so we can install it with the <code>gem</code> command. Open a command prompt with Ruby and run the <code>gem install locomotivecms_wagon</code> command.
+
+          C:\RubyDevKit>gem install locomotivecms_wagon
+          Temporarily enhancing PATH to include DevKit...
+          ...
+          Installing RDoc documentation for locomotivecms_wagon-1.3.0...
+
+      The command will ouput lots of information and will take at least several minutes. Once finished, run the <code>wagon version</code> command to check that everything is working.
+
+          C:\RubyDevKit>wagon version
+          1.3.0
+
+      Wagon is ready to use and you can start creating your first LocomotiveCMS site.
+
+  .guide#guide_macos
+    :markdown
+      # Installing Wagon on Mac OS X
+
+      This guide will walk you through installing the LocomotiveCMS Wagon and it's dependencies on Mac OS X. Wagon's dependencies are:
+
+      - ImageMagick
+      - Ruby 1.9.3 or higher
+      - The [Bundler](http://www.bundler.io/) and [Rake](http://rake.rubyforge.org/) gems
+
+       Ruby veterans and experienced users may already have some or all of these dependencies installed, so feel free to skim.
+
+      <div class="alert alert-info">
+          Feeling lost? Check out the <a href="http://doc.locomotivecms.com/videos/installing-wagon-on-mac-os-x">Installing Wagon on Mac OS X video tutorial</a> and follow along.
+      </div>
+
+      ## Step 1: Install the GCC Compiler
+      To install dependencies like ImageMagick and Ruby, we will need the [GCC compiler](http://en.wikipedia.org/wiki/GNU_Compiler_Collection). The best way to install it on Mac OS X is through Xcode, which you can download for free from the Mac App Store.
+
+      Open the _App Store_ application, search for Xcode, and click the _FREE_ button to install it. Installing the app will require an Apple ID and password. After it installs, open Xcode, which you can find under the <code>/Applications</code> folder.
+
+      Upon opening Xcode you will have to agree to the license agreement and go through a dialog that installs some development tools. Once everything is installed, click the _Start Using Xcode_ button. 
+
+      Go to the _Xcode_ -> _Preferences_ menu and navigate to the _Downloads_ section. At the top of the _Components_ list, there should be a packaged called _Command Line Tools_; click the download icon or _Install_ button (depeneding on your version) next to this package to install it. 
+
+      Once it's done installing, the GCC compiler has been installed, so you can quit Xcode.
+
+      ## Step 2: Install ImageMagick
+
+      The first Wagon dependency we need to install is [ImageMagick](http://www.imagemagick.org/), a powerful image manipulation library. This guide will use the Mac package manger [Homebrew](http://brew.sh) to install ImageMagick, since it's one of the easiest ways. Alternatively, you could use another package manager such as [Mac Ports](http://www.macports.org/) or compile it from the source.
+
+      The [Homebrew website](http://www.brew.sh) provides some text that we can use to install Homebrew, also shown below.
+
+          ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+
+      Copy this text and open the Termainal, which you can find under the <code>/Applications/Utilties</code> folder. Paste the above command into the Terminal and press enter to run the command. Homebrew will install and will require your password to complete.
+
+      After Homebrew installs, it is recommended to run the <code>brew doctor</code> command. This will check for any potential conflicts with your system. If everything is configured correctly, the output should appear as below.
+
+          $ brew doctor
+          Your system is ready to brew.
+
+      We are now ready to install ImageMagick. Run the <code>brew install imagemagick</code> command. This will install ImageMagick and probably take at least several minutes.
+
+      ## Step 3: Install Ruby
+
+      The next dependency is, [Ruby](https://www.ruby-lang.org/) the programming language LocomotiveCMS Wagon is written in. LocomtiveCMS requires Ruby version 1.9.3 or higher.
+
+      Mac OS 10.4 (Tiger), 10.5 (Leopard), 10.6 (Snow Leopard), 10.7 (Lion), and 10.8 (Mountain Lion) come with Ruby 1.8._x_. Mac OS 10.9 (Mavericks) ships with Ruby 2.0.0.
+
+      You can confirm your ruby version, by opening a terminal shell and running the <code>ruby -v</code> command. The output should look similar to the output below.
+
+          $ ruby -v
+          ruby 1.8.7 (2012-02-08 patchlevel 358) [universal-darwin12.0]
+
+      Those with ruby version 1.9.3 can skip ahead to step 4. Those with Ruby 1.8._x_ should continue with the steps below.
+
+      Since it's not a good idea to update the system's native Ruby, we are going to use [RVM](http://www.rvm.io) to install an additional version of Ruby. RVM is a tool that allows you to install multiple versions of Ruby on your system and switch between them.
+
+      <div class="alert alert-info">
+          Another popular ruby version manager is [rbenv](https://github.com/sstephenson/rbenv), which would work equally well. 
+      </div>
+
+      The [RVM website](http://www.rvm.io) provides a command that we can use to intall RVM, which you can also find below.
+
+          \curl -L https://get.rvm.io | bash -s stable
+
+      Paste the command into the Terminal and click enter to install RVM. The installer's output notes that we are required to run a <code>source</code> command to start using RVM. Either copy the command from the Terminal output or modify the command given below to match your home directory, and run the command in the terminal shell.
+
+          source /Users/your_user_name/.rvm/scripts/rvm
+
+      We are now ready to use RVM.  Running <code>rvm list</code> will show what rubies are currently installed.
+
+          rvm rubies
+          # No rvm rubies installed yet. Try 'rvm help install'.
+
+      Run <code>rvm list known</code> to show all available rubies we can download.
+
+          # MRI Rubies
+          [ruby-]1.8.6[-p420]
+          [ruby-]1.8.7[-p371]
+          [ruby-]1.9.1[-p431]
+          [ruby-]1.9.2[-p320]
+          [ruby-]1.9.3-p125
+          [ruby-]1.9.3-p194
+          [ruby-]1.9.3-p286
+          [ruby-]1.9.3-p327
+          [ruby-]1.9.3-p362
+          [ruby-]1.9.3-p374
+          [ruby-]1.9.3-p385
+          [ruby-]1.9.3-p392
+          [ruby-]1.9.3[-p429]
+          [ruby-]1.9.3-head
+          [ruby-]2.0.0-rc1
+          [ruby-]2.0.0-rc2
+          [ruby-]2.0.0-p0
+          [ruby-]2.0.0[-p195]
+          ruby-head
+
+          # GoRuby
+          goruby
+
+          # Topaz
+          topaz
+
+          # TheCodeShop - MRI experimental patches
+          tcs
+
+          # jamesgolick - All around gangster
+          jamesgolick
+
+          # Minimalistic ruby implementation - ISO 30170:2012
+          mruby[-head]
+
+          # JRuby
+          jruby-1.2.0
+          jruby-1.3.1
+          jruby-1.4.0
+          jruby-1.6.5.1
+          jruby-1.6.6
+          jruby-1.6.7.2
+          jruby-1.6.8
+          jruby[-1.7.4]
+          jruby-head
+
+          # Rubinius
+          rbx-1.0.1
+          rbx-1.1.1
+          rbx-1.2.3
+          rbx-1.2.4
+          rbx[-head]
+          rbx-2.0.testing
+          rbx-2.0.0-rc1
+
+          # Ruby Enterprise Edition
+          ree-1.8.6
+          ree[-1.8.7][-2012.02]
+
+          # Kiji
+          kiji
+
+          # MagLev
+          maglev[-head]
+          maglev-1.0.0
+
+          # Mac OS X Snow Leopard Or Newer
+          macruby-0.10
+          macruby-0.11
+          macruby[-0.12]
+          macruby-nightly
+          macruby-head
+
+          # Opal
+          opal
+
+          # IronRuby
+          ironruby[-1.1.3]
+          ironruby-head
+
+      Ruby 2.0.0 is listed near the top. To install this ruby run the following command: <code>rvm install ruby-2.0.0</code>. This will download the ruby source and compile it for your system. Once it finishes, check that it installed correctly by using the <code>rvm list</code> command. 
+
+          rvm list
+          rvm rubies
+          -* ruby-2.0.0-p247 [ x86_64 ]
+
+      You can again check the current ruby version with <code>ruby -v</code>.
+
+          $ ruby -v
+          ruby 2.0.0p247 (2013-06-27 revision 41674) [x86_64-darwin12.3.0]
+
+      ## Step 4: Install Bundler and Rake
+      Wagon has two more dependencies: [Bundler](http://bundler.io/) and [Rake](http://rake.rubyforge.org/), both of which are ruby gems. [Gems](http://www.rubygems.org) are a packaging system for Ruby. You can install gems using the <code>gem install</code> command, as shown below.
+
+          $ gem install bundler
+          Fetching: bundler-1.3.5.gem (100%)
+          Successfully installed bundler-1.3.5
+          Parsing documentation for bundler-1.3.5
+          Installing ri documentation for bundler-1.3.5
+          1 gem installed
+    
+          $ gem install rake
+          Fetching: rake-10.1.0.gem (100%)
+          Successfully installed rake-10.1.0
+          Parsing documentation for rake-10.1.0
+          Installing ri documentation for rake-10.1.0
+          1 gem installed
+
+      ## Step 5: Install Wagon
+      Finally, we are ready to install Wagon itself. Like Bundler and Rake, wagon is a ruby gem, so we can install it by running <code>gem install locomotivecms\_wagon</code>.
+
+      Once it finishes, check that wagon installed correctly by running the <code>wagon version</code> command.
+
+          $ wagon version
+          1.3.0
+
+      Wagon is now ready to use and you can start creating your first LocomotiveCMS site.
+
+
+  .guide#guide_linux
+    :markdown
+      # Installing Wagon on Linux
+
+      This guide covers installing the LocomotiveCMS Wagon and it's dependencies on Linux. Wagon's dependencies are:
+
+      - ImageMagick
+      - Ruby 1.9.3 or higher
+      - The [Bundler](http://www.bundler.io/) and [Rake](http://rake.rubyforge.org/) gems
+
+      We're  going to assume Linux users are at least a little bit handy with the command line, so we won't do too much hand holding.Depending on your distribution, your commands may vary.
+
+      ## Step 1: Install ImageMagick
+      Wagon requires [ImageMagick](http://www.imagemagick.org/), so if you don't already have this, you will need to install it. You can compile it from source or use your distribution's package manager.
+
+      Sample commands to install ImageMagick with the Ubuntu and Fedora package managers are shown below.
+
+      - **Ubuntu**: <code>sudo apt-get install imagemagick</code>
+      - **Fedora**: <code>sudo yum install ImageMagick</code>
+
+
+      ## Step 2: Install Ruby
+
+      Wagon is written in [Ruby](https://www.ruby-lang.org/) and requires version 1.9.3 or higher. Run the <code>ruby -v</code> command to see what version of ruby you have, if any.
+
+      If it's installed, you should get output similar to what is shown below. Those with ruby version 1.9.3 or higher can skip ahead to the next section.
+
+          $ ruby -v
+          ruby 1.9.3p194 (2012-04-20 revision 35410) [x86_64-linux]
+
+      If it's not installed, your output might look similar to the output below.
+
+          $ ruby -v
+          bash: ruby: command not found...
+
+      If Ruby is not installed, you can install Ruby using your distribution's package manager. The latest versions of most distributions offer ruby version 1.9.3 or higher. Sample commands for installing on Ubuntu and Fedora:
+
+      - **Ubuntu**: <code>sudo apt-get install ruby</code>
+      - **Fedora**: <code>sudo yum install ruby</code>
+
+      If an older version of ruby is already installed, updating your system's ruby probably isn't a good idea, so we recommend adding an additional ruby using a ruby version manager such as [RVM](http://www.rvm.io) or [rbenv](https://github.com/sstephenson/rbenv). 
+
+      The [RVM website](http://www.rvm.io) provides a _curl_ command you can use to intall RVM. After RVM installs, run the <code>source</code> command specified in the output.
+
+          $ \curl -L https://get.rvm.io | bash -s stable
+          RVM installs blah blah blah...
+          $ source /home/your_user_name/.rvm/scripts/rvm
+
+      We recommend Ruby version 2.0.0, which you can now install by running <code>rvm install ruby-2.0.0</code>.  For more information on using RVM, see <code>rvm usage</code> or <code>man rvm</code>.
+
+      ## Step 3: Install Bundler and Rake
+      Wagon has two more dependencies: [Bundler](http://bundler.io/) and [Rake](http://rake.rubyforge.org/), both of which are ruby gems. [Gems](http://www.rubygems.org) are a packaging system for Ruby. You can install gems using the <code>gem install</code> command, as shown below.
+
+          $ gem install bundler
+          Fetching: bundler-1.3.5.gem (100%)
+          Successfully installed bundler-1.3.5
+          Parsing documentation for bundler-1.3.5
+          Installing ri documentation for bundler-1.3.5
+          1 gem installed
+    
+          $ gem install rake
+          Fetching: rake-10.1.0.gem (100%)
+          Successfully installed rake-10.1.0
+          Parsing documentation for rake-10.1.0
+          Installing ri documentation for rake-10.1.0
+          1 gem installed
+
+
+      ## Step 4: Install Wagon
+      Finally, we are ready to install Wagon itself. Like Bundler and Rake, wagon is a ruby gem, so we can install it by running <code>gem install locomotivecms\_wagon</code>.
+
+      Once it finishes, check that wagon installed correctly by running the <code>wagon version</code> command.
+
+          $ wagon version
+          1.3.0
+
+      Wagon is now ready to use and you can start creating your first LocomotiveCMS site.
+
+
+
+
+
+      
+
+
+
+      
 
 {% endblock %}

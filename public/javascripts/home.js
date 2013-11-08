@@ -16,5 +16,11 @@ $(function() {
     $('#main-nav').toggleClass('expanded');
     $(this).toggleClass('expanded');
   });
+  
+  $('#install-wagon-selector').on('click', 'a', function(e){
+    e.preventDefault();
+    $('#install-wagon-guides').find('.guide').hide();
+    $("#guide_" + $(this).data('section')).fadeIn();
+  });
 
 });

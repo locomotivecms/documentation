@@ -1,7 +1,8 @@
 {% with_scope handle: handle %}{% assign _page = site.pages.first %}{% endwith_scope %}
 
-%h3 {{ _page.title }}
-
+%a.uber_link{href: "/{{ _page.fullpath }}"}
+  %h3 {{ _page.title }}
+{% if _page.slug == page.parent.slug %}
 %ul
   {% for p in _page.children %}
   {% if p.listed? and p.published? %}
@@ -13,3 +14,4 @@
     {% endif %}
   {% endif %}
   {% endfor %}
+{% endif %}

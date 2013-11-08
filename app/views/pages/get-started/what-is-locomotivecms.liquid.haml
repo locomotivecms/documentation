@@ -1,0 +1,165 @@
+---
+title: What is LocomotiveCMS and why use it?
+published: true
+listed: true
+position: 1
+---
+{% extends 'index' %}
+
+{% block content %}
+
+:markdown
+
+  LocmotiveCMS is a free and open source content management system, or CMS, for websites. LocomotiveCMS's slick back-office editor makes managing site content easy for users and Wagon development tool makes coding these sites faster and more fun than ever for developers.
+
+  But what you might be asking is, why does LocomotiveCMS exists at all? There are already more CMS projects than you can shake a stick at: Wordpress, Drupal, and Joomla! are some of the most popular, but you could fill pages with nothing but CMS project names. Not to mention the fact that LocomotiveCMS founder, Didier Lafforgue, is a busy guy, so would he go to all the trouble of creating another CMS?
+
+  Long story short, Didier spent a lot of time using other content systems and building custom ones for client sites, but could never find something that provided all the functionality he needed and worked the way he thought a CMS should. So, LocomotiveCMS was born with the goal of becoming the perfect CMS.
+
+  And I'd say LocomotiveCMS has grown up into the world's best CMS, but you might not believe me yet, so here are seven reasons to consider using LocomotiveCMS. 
+
+  ---
+
+  ## 1. Structure content easily
+  LocomotiveCMS let's you easily structure your site's content with _content types_. If you make a blog, you'll need a content type for _posts_. If you make a site that reviews restaurants, you'll want a content type for _restaurants_. If you're putting your store's product catalog online, make a content type for _products_ and so on.
+
+  Many CMS projects ship with some default content types, such as _posts_ or _categories_, and using those types is usually pretty simple. But things get messy once you want to add your own content types with their own custom fields.
+
+  In contrast, LocomotiveCMS, ships with a clean slate, but let's you add your own content types in a straightforward and easy manner.
+
+  Quick example. Let's say we want a content type for _products_ with the following custom fields: _title_, _price_, _photo_, _tags_, _related products_ (a list of other similar products), and _description_.
+
+  In LocomotiveCMS, there are two ways to do this. We could fire up the back-office and add a new model with this easy to use GUI.
+
+  <img src="{{ 'whatis/adding_the_product_model.jpg' | theme_image_url }}" alt="Adding a product model with the GUI" />
+
+  Or if you're like me and like spending time in your text editor, we can add one simple [YAML](http://en.wikipedia.org/wiki/YAML) file that reads like plain English to our site's wagon.
+
+
+  ### content_types/products.yml
+      ---
+      name: Products
+      slug: products
+      fields:
+          - title:
+              label: Title
+              type: string
+              required: true
+          - price:
+              label: Price
+              type: float
+              required: true
+          - image:
+              label: Image
+              type: file
+          - tags:
+              label: Tags
+              type: tags
+          - related_products:
+              label: Related Products
+              type: many_to_many
+              class_name: products
+              inverse_of: related_products
+              ui_enabled: true
+          - description:
+              label: Description
+              type: text
+              text_formatting: html
+
+  And voilà, your content is structured sans-coding and sans-headaches.
+
+  ## 2. Edit in style
+  How about adding in some actual products? That's easy, too. 
+
+  LocomotiveCMS comes with a back-office where you and site editors can manage the site. Just login and add products using the intuitive editor pictured below.
+
+  <img src="{{ 'whatis/adding_a_product.jpg' | theme_image_url }}" alt="Adding a new product with the back-office" />
+
+  Editors like this are available for all your content types automatically, without you lifting a finger.
+
+  This back-office sure is easy on the eyes, wouldn't you say? LocomotiveCMS aims to be as sexy as possible and the back-office sports one of the most handsome interfaces around.
+
+  Not impressed with the editor above? Wow, tough crowd. Perhaps I could interest you in the Aloha editor that also comes with LocomotiveCMS? It's an in-line editor meaning you can edit your site's content right where it is on the site, without going to the back-office. 
+
+  <img src="{{ 'whatis/inline_editing.jpg' | theme_image_url }}" alt="Aloha Editor" />
+
+  ## 3. Beginners welcome
+  Not everyone is an expert programmer, so getting started with LocomotiveCMS is easy.
+
+  To start making custom LocomotiveCMS templates that allow you to display your content in any way you like and add in custom functionality, you need basic knowledge of just three things: HTML, CSS, and Liquid Markup, a popular templating language. 
+
+  If you've never heard of Liquid, don't panic; most people can pick up the basics in less than a day.
+
+  Here is some code from a Liquid template.  Can you guess what it does?
+      
+      {% raw %}{% for product in contents.products %}
+          <div class="product">
+              <h3>{{ product.title }}</h3>
+              <img class="thumbnail" src="{{ product.photo.url | resize: '50x50' }}"/>
+              <div class="description">{{ product.description }}</p>
+          </div>
+      {% endfor %}{% endraw %}
+
+  If you guessed that for each product it prints a <code>&lt;div&gt;</code> with the product's title, a thumbnail version of the photo shrunk and cropped down to 50px by 50px, and the product's description, then you're right! If you're still scratching your head, don't sweat it. A few hours with our documentation will bring you up to speed.
+
+  ## 4. Powerful
+  LocomotiveCMS also has the features and flexibility experts needs. 
+
+  LocmotiveCMS has built-in (but optional) support for HAML, SASS, LESS, and CoffeeScript. You can also enhance LocomotiveCMS with custom Liquid tags, filters, and drops. And since LocomotiveCMS is just a Rails engine, you can extend your site using Ruby on Rails.
+
+  Thanks to the LocomotiveCMS's Restful API, you can access your content both inside and outside of Rails. This is handy for developers using frontend Frameworks like Angular or Ember.
+
+  ## 5. Elegantly expand
+  LocomotiveCMS is built around a philosophy that let's you build and expand your site elegantly.
+
+  Instead of tacking on plugins or themes and then hacking away at them until you can force the site to work and look the way you want, why not start with a clean slate and build exactly what you want?
+
+  Not only does this approach result in cleaner code, thanks to LocomotiveCMS's powerful tools, it's also faster. 
+
+  ## 6. Multi-Lingual
+  Out of the box, LocomotiveCMS supports a cool 13 languages (English, German, French, Polish, Brazilian Portuguese, Italian, Dutch, Norwegian, Spanish, Russian, Estonian, Japanese, and Chinese), meaning your clients can use the back-office interface in their own language. 
+
+  LocomotiveCMS also supports full localization of your site and adding content in as many languages as your want.  No hay problema.
+
+  <img src="{{ 'whatis/i18n.jpg' | theme_image_url }}" alt="Multi-Lingual" />
+  
+
+  ## 7. One instance, many sites
+  With a single instance of LocomotiveCMS, you can manage as many websites as your server can handle.
+
+  You deploy your website by simply pointing the website domain to your LocomotiveCMS server.
+
+  You don't have to go through any additional setup steps like setting up new databases or copying files. It's that simple.
+
+  <img src="{{ 'whatis/multi_sites.jpg' | theme_image_url }}" alt="Multiple Sites" />
+
+  ## 8. Develop your way
+  Developing a CMS site is often tedious, because most solutions completely destroy your workflow. LocmotiveCMS's command line helper utility, Wagon, solves this problem by letting you develop for your CMS where you develop best: your local machine.
+ 
+  Adding new content types or templates shouldn't require using the CMS's production interface for those that prefer life in their text editor. That's why Wagon let's you do all that in your text editor and deploy changes with a simple _push_ command. 
+
+  And since you're developing on your local machine, setting up git for all of the site's CMS code is as simple as running <code>git init</code>.
+
+  <img src="{{ 'whatis/wagon.jpg' | theme_image_url }}" alt="Wagon" />
+
+  ## 9. Plenty of hosting options
+  LocomotiveCMS is a solution for developers that minimizes the hassle of setting up servers. The absolutely simplest way of hosting your LocomotiveCMS site is by using <a href="http://www.locomotivehosting.com/">LocomotiveHosting</a>. We handle everything for you. All you do is develop your sites and deploy them with a few simple commands. Your sites can be up and running in seconds.
+
+  Want to do your own cloud solution? That's easy too. You can run the LocomotiveCMS engine on Heroku, store the database on MongoHQ, and handle the files with Amazon S3. This powerful triad provides a cheap way to host your LocomotiveCMS site.
+
+  And of course, you're also welcome to install LocomotiveCMS on your own server. It's that flexible. 
+
+  <img src="{{ 'whatis/hosting_options.jpg' | theme_image_url }}" alt="Hosting Options" />
+
+  ## 10. Code that rocks
+  LocomotiveCMS is built on the strong foundations of some of the most innovative technology today: [Ruby](https://www.ruby-lang.org/), [Ruby on Rails](http://rubyonrails.org/), and [MongoDB](http://www.mongodb.org/).
+
+  But that's not enought, because anyone who has worked on large product can tell you that overtime the code base of large projects gradually starts to "smell" as dependencies age, features are added, and bugs are patched. That's why LocomotiveCMS is continuously evaluating and refactoring its code base to keep code quality as high as possible.
+
+  <img src="{{ 'whatis/codeclimate.jpg' | theme_image_url }}" alt="Our CodeClimate Score" />
+
+  ---
+
+  Whoa, how are you even still here? I figured with such an awesome list, by now you would have been so pumped to use LocomotiveCMS that you [started the first tutorial](http://doc.locomotivecms.com/doesnt-exist-yet/first-tutorial). You're a hard sell, and I respect that. So why not give LocomotiveCMS a try, and if you run into any snafus, think it needs another feature, or otherwise need some more convincing, you can [reach out on our Google group](https://groups.google.com/forum/#!forum/locomotivecms) or [contact us](http://doc.locomotivecms.com/doesnt-exist-yet/contact) and we'll do our best to make LocomotiveCMS blow your socks off.
+  
+{% endblock %}

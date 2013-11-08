@@ -65,35 +65,54 @@ listed: true
             %section.home-item
               .picto {{ 'pictos/quickstart.png' | theme_image_tag }}
               %h2
+                Getting Started
+              %p
+                The basics of getting started with LocomotiveCMS.
+              %p
+                %a{ :href => "/get-started" } See
+
+            %section.home-item
+              .picto {{ 'pictos/guides.png' | theme_image_tag }}
+              %h2
                 Guides
               %p
-                LocomotiveCMS basics, quick start guide, our philosophy.
+                Guides to walk you through specific development tasks with LocomotiveCMS.
               %p
                 %a{ :href => "/guides" } See
 
             %section.home-item
+              .picto {{ 'pictos/video.png' | theme_image_tag }}
+              %h2
+                Videos
+              %p
+                Easy to follow video tutorials that teach the basics of LocomotiveCMS.
+              %p
+                %a{ :href => "/videos" } See
+            
+            %section.home-item
               .picto {{ 'pictos/books.png' | theme_image_tag }}
               %h2
-                Template references
+                References
               %p
-                Glossary for Liquid templates.
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Reference documentation for the API, configuration options, and Liquid template features.
               %p
                 %a{ :href => "/references" } See
 
             %section.home-item
-              .picto {{ 'pictos/question.png' | theme_image_tag }}
+              .picto {{ 'pictos/community.png' | theme_image_tag }}
               %h2
-                FAQ
-              %p Tips and tricks from LocomotiveCMS addicts.
+                Community
               %p
-                %a{ :href => "/faq" } See
+                Get support from and contribute to the LocomotiveCMS community.
+              %p
+                %a{ :href => "https://groups.google.com/forum/#!forum/locomotivecms" } See
 
             %section.home-item
-              .picto {{ 'pictos/upgrades.png' | theme_image_tag }}
+              .picto {{ 'pictos/creating_blog.png' | theme_image_tag }}
               %h2
-                Releases
-              %p Useful info about releases and guides for upgrading.
+                Making a blog
+              %p
+                This comprehensive step by step tutorial will help you create blogs and websites.
               %p
                 %a{ :href => "/releases" } See
 
@@ -113,18 +132,16 @@ listed: true
         {% block sidebar %}
 
         {% include sidebar_menu handle: 'get-started' %}
-
-        {% include sidebar_menu handle: 'references' %}
-
-        {% include sidebar_menu handle: 'content-types' %}
-
+        
         {% include sidebar_menu handle: 'guides' %}
-
-        {% include sidebar_menu handle: 'hosting' %}
 
         {% include sidebar_menu handle: 'videos' %}
 
-        {% include sidebar_menu handle: 'help' %}
+        {% include sidebar_menu handle: 'reference' %}
+
+        {% include sidebar_menu handle: 'community' %}
+        
+        {% include sidebar_menu handle: 'making-blog' %}
 
         {% endblock %}
 

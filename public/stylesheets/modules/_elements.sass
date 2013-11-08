@@ -89,6 +89,7 @@ nav.subnav
 .sidebar
   +span-columns(3 omega,3)
   margin-top: $section-padding
+
 .sidebar.desktop
   display: none
 .sidebar.mobile
@@ -124,3 +125,25 @@ nav.subnav
 // Affix
 .affix
   position: fixed
+  
+#content-column
+  img
+    max-width: 100%
+
+#install-wagon-guides
+  .guide
+    display: none
+    
+#install-wagon-selector
+  h2
+    text-align: center
+    font-weight: 700
+  .option
+    +span-columns(1, 3)
+    +nth-omega(3)
+    text-align: center
+    padding-bottom: 50px
+    .link
+      padding-top: 20px
+      a
+        +orange-rounded-button

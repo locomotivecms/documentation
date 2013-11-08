@@ -10,6 +10,7 @@
   +rounded-button
   background: $orange
   &:hover
+    color: white
     background: lighten($orange, 4%)
 
 =blue-rounded-button
@@ -70,7 +71,8 @@
   &:hover
     text-decoration: none
   &:after
-    content: '\e160\e802'
+    margin-left: 7px
+    content: '\e802'
     font-family: 'Fontello'
 
 // Active menu item
@@ -112,4 +114,9 @@
     color: white
     text-decoration: none
     +background-image( linear-gradient($gallery-gradient-end, $gallery-gradient-start) )
+
+.orange-rounded-button
+  +orange-rounded-button
+
+
 

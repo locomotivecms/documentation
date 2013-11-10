@@ -1,0 +1,30 @@
+#community-items
+
+  margin-top: 36px
+
+  .item
+    margin-bottom: 45px
+
+    .picto
+      float: left
+      margin-right: 10px
+      margin-bottom: 10px
+
+    h2
+      margin: 5px 0px 10px 0px
+
+    p
+      padding-right: 20px
+      text-align: left
+
+      a.btn
+        +orange-rounded-button
+
+    &:nth-child(3)
+      clear: both
+
+@media #{$desktop}
+  #community-items
+    .item
+      float: left
+      width: 50%

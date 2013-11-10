@@ -1,0 +1,36 @@
+---
+title: The index page
+listed: true
+position: 4
+---
+{% extends 'index' %}
+
+{% block 'content' %}
+
+:markdown
+  # The index page
+
+  ### Our new home page
+  
+  Ok, let's replace our generic Bootstrap home page with the real home page of our blog. Open the `app/pages/index.liquid` file and delete all of its contents. Paste in the following code.
+    
+      ---
+      title: Home
+      published: true
+      ---
+      <{% raw %}!{% endraw %}DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+          <meta charset="utf-8">
+          <title>
+            {% raw %}{{ page.title }} - {{ site.name }}{% endraw %}
+            |{% raw %} {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ site.seo_title }}{% endif %}{% endraw %}
+            
+          </title>
+          <meta name="description" content="{% if page.meta_description %}{{ page.meta_description }}{% else %}{{ site.meta_description }}{% endif %}">
+          <meta name="keywords" content="{{ site.meta_keywords }} {{ page.meta_keywords }}">
+
+
+
+{% endblock %}

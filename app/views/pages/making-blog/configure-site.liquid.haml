@@ -1,0 +1,90 @@
+---
+title: Configuring the site
+listed: true
+position: 2
+---
+{% extends 'index' %}
+
+{% block 'content' %}
+
+:markdown
+  Wagon site created: check. Next up, we need to do some basic configuration for our site. 
+
+  ## site.yml
+  Navigate the _wisdom\_for\_wanders_ project folder and open the `config/site.yml` file. This [YAML](http://en.wikipedia.org/wiki/YAML) file sets some basic settings for our site. New to YAML? There's nothing to be scared of. YAML files have the folowing simple format:
+
+      property_name: Property value
+
+   There's a bit more to YAML than that, but that's the gist.
+
+  The first property in `site.yml` is `name`, which we should change to a more human readable version of our site's name.
+
+      name: Wisdom for Wanderers 
+
+  The next two options, `subdomain` and `domains`, only apply to sites being deployed on multi-site Engines. Multi-site Engine users, you know who you are, fill these in. Everyone else, let's leave these commented out for now.
+
+  The `locales` option let's us specify what languages are website is available in. For now, I'm going to leave this with the default value: _[en]_.
+
+  The following `timezone` option let's us set what timezone we want server times to be displayed as. I'm going to set it to US Central Time, like so:
+
+      timezone: "Central Time (US & Canada)"
+
+  [Rails' ActiveSupport::TimeZone](http://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html) will be used to interpret these strings, so consult the API documentation linked to above if you're nto sure what strings are valid.
+
+  The last settings are related to SEO, Search Engine Optimization. Like everything in this file, these can be changed later so I won't stress too much about what I enter for now.
+
+      seo_title: Travel Tips for the Adventurous! 
+      meta_keywords: "travel backpacking budget adventure"
+      meta_description: "Learn about cool places to see abroad, interesting things to eat, and little travel tips you won't believe you lived without."
+
+  Great, we're all done with `site.yml`.
+
+  ## translations.yml
+  Since our blog is just going to be in English for now, we're going to ignore the `translations.yml` file.
+
+  ## deploy.yml
+  That leaves one configuration file: `deploy.yml`. This file lists the connection details for LocomotiveCMS Engines we will deploy our site to. In here, we can list as many Engines as we like. For real sites, it's common to deploy deploy a site to different engines, such as a _development_ Engine on your local machine, a _staging_ Engine where the client can review changes, and a _production_ Engine that hosts the live site.
+
+  As per the [prerequisites](../0.2-Prerequisites.html), this tutorial assumes that you have already setup an Engine somewhere. It could be an Engine on your local machine, an Engine on a web server somewhere, or a [LocomotiveHosting](http://www.locomotivehosting.com)site.  
+
+  Regardless of what kind of Engine you setup, you will need to enter three things into `deploy.yml`:
+
+      1. A handle used to refer to the Engine, which we'll call the _environment_
+      2. The Engine's host, either in the form of an IP address or domain
+      3. An API key to access the Engine.
+
+  <div class="alert alert-info">
+      You can also specify an email address and password instead of an API key.
+  </div>
+
+  Those using LocomotiveHosting can find their API key by [logging into their Workspace](https://www.locomotivehosting.com/admin/sites) and clicking the _Edit My Account_ button.
+
+  <img src="{{ 'guides/making-blog/locomotivehosting_api_key.jpg' | theme_image_url }}" alt="Finding your API key on LocomotiveHosting" />
+
+  Those that setup their own Engine can find their API key by logging into the Engine, going to the _Settings_ Tab, clicking the _My Account_ button, and looking under the _Credentials_ section.
+
+  <img src="{{ 'guides/making-blog/engine_api_key.jpg' | theme_image_url }}" alt="Finding your API key" />
+
+  Now that you have your API key, head back to the `config/deploy.yml` file and enter in your Engine's details. We're going to use the _development_ environment handle for this Engine, since this is just for testing purposes.
+
+  If you're using LocomotiveHosting, your `deploy.yml` file should look something like this:
+
+      development:
+          host: khaki-dottie-1.locomotivehosting.com
+          api_key: d7284f6baf10571d8ecb498330668f3f52e4458b
+
+  If you're using an Engine on your local machine, your file should look similar to this:
+
+      development:
+          host: localhost:8080
+          api_key: 0e52b493c9bed5bcd681a1514eb19197b01499be
+
+  Congratulations! Our site is now configured. Let's commit our changes to the git repository.
+
+      $ git commit -am "Changed site configuration and deployment settings."
+
+    
+
+%a.orange-rounded-button{href: "/making-blog/deploy-to-engine"} Next: deploy to the engine  
+
+{% endblock %}

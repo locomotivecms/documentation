@@ -1,0 +1,133 @@
+---
+title: Implement search
+published: true
+listed: true
+---
+{% extends index %}
+
+{% block content %}
+
+:markdown
+
+  <div class="alert alert-info">
+    <strong>November 11, 2013</strong>: we've just released this new and powerful Search feature that we use on this Documentation website. We would love to hear your feedback.
+  </div>
+
+  # 1. Setup
+
+  <div class="alert alert-info">
+    You can skip this step if you host your site in <a href="http://www.locomotivehosting.com">our hosting solution</a>.
+  </div>
+
+  There are two available backends: Mongoid and Algolia.
+
+  ## Mongoid
+
+  For the mongoid backend, you just need to specify it in the _require_ part of the Gemfile line:
+
+      gem 'locomotivecms-search', '>= 0.2.6', require: 'locomotive/search/mongoid'
+
+  ## Algolia
+
+  [Agolia](https://www.algolia.com) is a very powerful new search engine. Our hosting platform uses it as the search backend.
+
+  In order to use it as backend, you have to specify it in the Gemfile like this:
+
+      gem 'locomotivecms-search', '>= 0.2.6', require: 'locomotive/search/algolia'
+
+  In addition to that, you also need to configure the algolia client.
+  You can do it easiliy in a _search.rb_ initializer:
+
+      require "activesearch/algolia/client"
+      ActiveSearch::Algolia::Client.configure("api_key", "app_id", "index_name")
+
+  # 2. Mark your site content as searchable
+
+  Pages and content entries are searchable.
+
+  <div class="alert alert-warning">
+   It's important to note that <strong>content entries and pages</strong> that were already on the database won't be <u>indexed</u>. They are indexed when saved.
+  </div>
+
+  <div class="alert alert-info">
+    Note: If you call the method <strong>reindex()</strong> on a content type, all entries <u>older than the model definition</u> will be reindexed.
+  </div>
+
+  ## Pages
+
+  By default, all the pages are searchable, except the __404 (page not found)__ one.
+  However, you can mark any page as not searchable in Wagon:
+
+      ---
+      title: This page won't show up in the search results
+      searchable: false
+      listed: true
+      ---
+      This text won't show up neither.
+
+  or directly in the back-office from the edit page form.
+
+  ## Content entries
+
+  Any custom field of a model can be marked as "searchable".
+  Thus, all the content entries of a model with a "searchable" field will be indexed and searchable.
+
+  It can done in Wagon like this:
+
+      name: Articles
+      description: Just a simple blog module
+      order_by: posted_at
+      order_direction: desc
+      slug: articles
+      label_field_name: title
+      fields:
+      - title:
+          label: Title
+          type: string
+          hint: The title of the article
+          searchable: true
+      - body:
+          type: text
+          searchable: true
+
+  It can also be done when editing any content type the LocomotiveCMS admin UI. You just have to unfold the extended options of any custom field.
+
+  # 3. Add the search form
+
+  Anywhere on your site you can add a simple form to fire a search. This could be done on the homepage, on a page you are inheriting from, on even on a snippet.
+  Just add this code:
+
+      {%raw%}
+      <form action="/{{ locale }}/search" method="GET">
+        <label for="search">Search</label>
+        <input type="text" name="search" id="search">
+        <input type="submit" value="Search">
+      </form>
+      {%endraw%}
+
+  <div class="alert alert-info">
+    The important part is the action parameter, since <strong>it must point to the slug of your search results page</strong>.
+  </div>
+
+  <div class="alert alert-warning">
+    The name of the search input <u>must</u> be <strong>"search"</strong>.
+  </div>
+
+  # 4. Display the search results
+
+  Create a new page that will display your search results. Its code might be something like this:
+
+      {%raw%}
+      {% for result in site.search %}
+        <li>
+          <p><a href="/{{ result.fullpath }}">{{ result.title }}</a></p>
+          <p>
+            {{ result.highlighted.searchable_content }}
+          </p>
+        </li>
+      {% endfor %}
+      {%endraw%}
+
+  As you can see, when a search string is passed in the URL, you can fetch the results by using `site.search`.
+
+{% endblock %}

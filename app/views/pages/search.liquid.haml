@@ -2,6 +2,7 @@
 title: Search
 published: true
 listed: false
+searchable: false
 ---
 {% extends index %}
 
@@ -17,30 +18,44 @@ listed: false
     %header
       %a{ href: '/references/api/tags/assign' } assign
     .url http://{{ host }}/references/api/tags/assign
+    .content
+      %p Welcome to the documentation center We're here to help you any way we can. Below you’ll find documentation, tutorials and resources on how to use...
 
   %article
     %header
       %a{ href: '/references/api/tags/assign' } assign
     .url http://{{ host }}/references/api/tags/assign
+    .content
+      %p Welcome to the documentation center We're here to help you any way we can. Below you’ll find documentation, tutorials and resources on how to use...
 
   %article
     %header
       %a{ href: '/references/api/tags/assign' } assign
     .url http://{{ host }}/references/api/tags/assign
+    .content
+      %p Welcome to the documentation center We're here to help you any way we can. Below you’ll find documentation, tutorials and resources on how to use...
 
   %article
     %header
       %a{ href: '/references/api/tags/assign' } assign
     .url http://{{ host }}/references/api/tags/assign
+    .content
+      %p Welcome to the documentation center We're here to help you any way we can. Below you’ll find documentation, tutorials and resources on how to use...
 
   {% else %}
 
+  {% if site.search.size == 0 %}
+  %p.no-results Sorry, no results were found.
+  {% else %}
   {% for result in site.search %}
   %article
     %header
       %a{ href: "/{{result.fullpath}}" } {{ result.title }}
     .url http://{{ host }}/{{result.fullpath}}
+    .content
+      %p {{result.highlighted.searchable_content}}
   {% endfor %}
+  {% endif %}
 
   {% endif %}
 

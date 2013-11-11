@@ -1,7 +1,9 @@
 {% with_scope handle: handle %}{% assign _page = site.pages.first %}{% endwith_scope %}
 
-%a.uber_link{href: "/{{ _page.fullpath }}"}
-  %h3 {{ _page.title }}
+%h3
+  %a.uber_link{href: "/{{ _page.fullpath }}"}
+    {{ _page.title }}
+
 {% if _page.slug == page.parent.slug %}
 %ul
   {% for p in _page.children %}

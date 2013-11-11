@@ -28,12 +28,13 @@
       +small-button
 
 #sidebar-column
-  .uber_link
-    text-decoration: none
-    h3
+  h3
+    .uber_link
+      text-decoration: none
+
       +transition(all .2s)
-    &:hover
-      h3
+
+      &:hover
         color: $orange
   #search
     input[type=text]
@@ -49,10 +50,11 @@
     font-size: 12px
     font-weight: bold
     text-transform: uppercase
-    margin-bottom: 10px
+    margin-top: 20px
+    margin-bottom: 0px
 
   ul
-    margin: 0 0 20px 0
+    margin: 10px 0 10px 0
     li
       padding: 5px
       margin: 5px 0px
@@ -70,6 +72,7 @@
       text-align: right
 
   #sidebar-column
+    min-height: 400px
     +span-columns(1 omega, 4)
     padding-left: gutter(4)
     border-left: 1px solid $medium-grey

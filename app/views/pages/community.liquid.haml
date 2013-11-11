@@ -8,30 +8,53 @@ handle: community
 
 {% block content %}
 
-:markdown
+#community-items
 
-  ## Can’t find the answers you’re looking for?
-  
-  Let’s get you some help fast:
+  %section.item
+    .picto {{ 'pictos/community_support.png' | theme_image_tag }}
+    %h2
+      Community Support
+    %p
+      LocomotiveCMS as an active
+      %a{href: "https://groups.google.com/forum/#%21forum/locomotivecms"} community
+      of individuals who are more than happy to assist newcomers and veterans alike. A response on 
+      %a{href: "https://groups.google.com/forum/#%21forum/locomotivecms"} LocomotiveCMS Google Group
+      can take from a few minutes to a few days here depending on the availability of our community members.
+    %br
+    %br
 
-  - Ask the community: [search the forum](https://groups.google.com/forum/#!forum/locomotivecms)
-  - [Contact our support team](http://locomotivecms.tenderapp.com/discussion/new) and we'll personally get back to you as quickly as we can.
+    .picto {{ 'pictos/github.png' | theme_image_tag }}
+    %h2
+      GitHub
+    %p
+      Dive into our code, report bugs and contribute on
+      %a{href: "https://github.com/locomotivecms"} GitHub.
+    %p
+      Want to fix the mistakes or write some missing guides? Just fork the
+      %a{href: "https://github.com/locomotivecms/documentation"} documentation
+      and send us a pull request!
 
-  ---
-  
-  ## Want to fix the mistakes or write some missing guides?
+  %section.item
+    .picto {{ 'pictos/professional_support.png' | theme_image_tag }}
+    %h2
+      Professional Support
+    %p
+      If you can't find the answer you're looking for on our Google Group, 
+      %a{href: "http://locomotivecms.tenderapp.com/discussion/new"} contact our support team
+      by email and we'll get back to you as quickly as we can (usually within 48 hours).
+    %p
+      But if you'd rather always be at the front of the queue, you can get access to Priority Support by signing up to
+      %a{href: "http://www.locomotivehosting.com/"} LocomotiveHosting
+      for as low as $19/month.
+    %br
+    %br
+    .picto {{ 'pictos/newsletter.png' | theme_image_tag }}
+    %h2
+      Subscribe to our Newsletter
+    %p
+      Stay on top of LocomotiveCMS news and updates, be the first to be informed of our new releases and get actionable tips on how to make the most of our awesome CMS.
 
-  To help us, just fork the documentation on GitHub and send us a pull request!
-
-  [See the documentation site on GitHub](https://github.com/locomotivecms/documentation)
-
-  ---
-  
-  ## Stay in touch! Subscribe to LocomotiveCMS newsletter.
-  
-  <div class="subscribe">
-    <a href="http://eepurl.com/uX8R9" target="_blank" class="orange-rounded-button">Subscribe</a>
-  </div>
-  
-
+    .subscribe
+      %a.orange-rounded-button{href: "http://eepurl.com/uX8R9", target: "_blank"} Get Updates!      
+      
 {% endblock %}

@@ -4,7 +4,7 @@
   %a.uber_link{href: "/{{ _page.fullpath }}"}
     {{ _page.title }}
 
-{% if _page.slug == page.parent.slug %}
+{% if _page.slug == page.parent.slug or _page.slug == page.slug %}
 %ul
   {% for p in _page.children %}
   {% if p.listed? and p.published? %}

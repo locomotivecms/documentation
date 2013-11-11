@@ -24,6 +24,14 @@ listed: true
 
   ## Example
 
-      {% raw %}{% inline_editor %}{% endraw %}
+      {% raw %}<html>
+      <head>
+        <title>{{ page.title }}</title>
+        {% inline_editor %}
+      </head>
+      <body>
+        <h1>{% editable_text title, hint: "a title", format: raw, rows: 2 %}A default title{% endeditable_text %}</h1>
+      </body>
+      </html>{% endraw %}
 
 {% endblock %}

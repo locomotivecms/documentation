@@ -16,3 +16,17 @@ redirect_url: /references/api/objects/global-variables
 
 {% endblock %}
 
+{% block fork_me %}
+{% assign parent_slug = page.parent.slug %}
+{% assign base_url = "https://github.com/locomotivecms/documentation/blob/master/app/views/pages/" %}
+
+{% if parent_slug == 'tags' or parent_slug == 'filters' or parent_slug == 'logic' %}
+{% assign slug = page.slug | underscore %}
+{% else %}
+{% assign slug = page.slug %}
+{% endif %}
+
+%a{href: "{{ base_url | concat: page.parent.fullpath, '/', slug }}.liquid.haml"}
+  Contribute → Fork this page on GitHub
+{% endblock %}
+

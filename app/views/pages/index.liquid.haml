@@ -121,8 +121,10 @@ listed: true
         {% endblock %}
 
         #fork-me
+          {% block fork_me %}
           %a{href: "https://github.com/locomotivecms/documentation/blob/master/app/views/pages/{{page.fullpath}}.liquid.haml"}
             Contribute → Fork this page on GitHub
+          {% endblock %}
 
       #sidebar-column
         #search

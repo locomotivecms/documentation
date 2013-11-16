@@ -8,7 +8,7 @@ position: 3
 {% block 'content' %}
 
 :markdown
-  ## The _push_ command 
+  ## The push command
   Truth be told, currently, our site isn't much of a site at all. It's just a generic Bootstrap placeholder page. Nonetheless, we're going to deploy our site once now, because it will feel good to test out the deployment settings and check that everything is working.
 
   Open a command line and navigate to the folder's project directory. The `wagon push` command deploys a Wagon site to an Engine. Let's see what arguments it takes.
@@ -26,7 +26,7 @@ position: 3
 
       Push a site to a remote LocomotiveCMS engine
 
-  There's one requeired argument, environment, and a bunch of options that we won't worry about for now. [In section 1.2](/making-blog/configure-site), we setup out Engine's connection details using the environment _development_.
+  There's one required argument, environment, and a bunch of options that we won't worry about for now. [In Configuring the site](/making-blog/configure-site), we setup our Engine's connection details using the environment _development_.
 
   We're about to deploy, so if you're using a local Engine, turn on MongoDB and start Rails. Let's run `wagon push`!
 
@@ -41,7 +41,7 @@ position: 3
       * Pushing Pages
         en
           updating index......................................................[done]
-            updating favicon.png..............................................[skipped]
+            updating favicon.png..............................................[done]
             creating apple-touch-icon-144x144-precomposed.png.................[done]
             creating apple-touch-icon-114x114-precomposed.png.................[done]
             creating apple-touch-icon-72x72-precomposed.png...................[done]
@@ -65,36 +65,36 @@ position: 3
 
   ## Troubleshooting
 
-  If you deployed the site successfully using push and can view the dummy site in your browser, sweet, skip ahead to the section below.
+  If you deployed the site successfully using push and can view the dummy site in your browser, sweet, [skip ahead to the section below](#testing-the-back-office).
 
   Still here? Bummer. You must have run into some trouble. Let's go over some common gotchas.
-    
+
       cannot load such file -- sprockets/environment
-  If an error like the one above appears when you run `wagon push`, make sure you're using `bundle exec`. WRONG: `$ wagon push development`. RIGHT: `$ bundle exec wagon push development`
+  If an error like the one above appears when you run `wagon push`, make sure you're using `bundle exec` before `wagon push`, like so: `bundle exec wagon push development`
 
       Unable to read the information about the remote LocomotiveCMS site (undefined method `with_indifferent_access' for nil:NilClass)
-  An error like the one above means the environment handle you specified after `wagon push` doesn't exist in your `deploy.yml` file, so make sure they handle you're using (i.e. development, production, etc...) matches what is in the file.
+  An error like the one above means the environment handle you specified after `wagon push` doesn't exist in your `deploy.yml` file, so make sure the handle you're using (i.e. development, production, etc...) matches what is in the file.
 
       unable to get an API token: The API key is invalid. (401)
-  Double check that you API matches the one in the back-office.
+  Double check that your API key matches the one in the back-office.
 
       unable to get an API token: Connection refused - connect(2)
   Wagon can't connect to the host you specified for this environment in `deploy.yml`
 
       unable to get an API token:  (500)
-  Wagon can connect to the host, but received an internal server error when trying to access the LocomotiveCMS API. Are Rails and MongoDB running? Is the back-office working? 
+  Wagon can connect to the host, but received an internal server error when trying to access the LocomotiveCMS API. Are Rails and MongoDB running? Is the back-office working?
 
-  ## Testing the back-office
+  <h2 id="testing-the-back-office">Testing the back-office</h2>
 
-  Let's take a quick look at the back-office for our Engine. Open your browser to the Engine's back-office. For most Engines you can access this at the _locomotive_ subdirectory by default, i.e. _http://www.example.com/locomotive_. LocomotiveHosting users can access a site's back-office at the _admin_ subdirectory or by clicking on the sites name in [your Workspace](https://www.locomotivehosting.com/admin/sites).
+  Let's take a quick look at the back-office for our Engine. Open your browser to the Engine's back-office. For most Engines you can access this at the _locomotive_ subdirectory by default, i.e. _http://www.example.com/locomotive_. LocomotiveHosting users can access a site's back-office at the _admin_ subdirectory or by clicking on the site's name in [your Workspace](https://www.locomotivehosting.com/admin/sites).
 
   Remember those settings we made in the `config/site.yml` file? Let's see if those deployed to our Engine. In the back-office, click the _Settings_ tab, and under the _Site_ section you should see the settings we made in the `config/site.yml` file, including the site's name, locale, time zone, and SEO settings.
 
   <img src="{{ 'guides/making-blog/back_office_settings.jpg' | theme_image_url }}" alt="Our configuration settings in the back-office." />
 
-  Great. Now that our Wagon site is setup, we've done a little basic configuration, and tested our deployment settings, let's start making the site.
+  Great. We've done some basic configuration and tested our deployment settings, so let's start making the site.
 
 
-%a.orange-rounded-button{href: "/making-blog/index-page"} Next: create index page  
+%a.orange-rounded-button{href: "/making-blog/index-page"} Next: the index page
 
-{% endblock %} 
+{% endblock %}

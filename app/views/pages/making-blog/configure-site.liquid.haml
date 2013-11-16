@@ -11,7 +11,7 @@ position: 2
   Wagon site created: check. Next up, we need to do some basic configuration for our site. 
 
   ## site.yml
-  Navigate the _wisdom\_for\_wanders_ project folder and open the `config/site.yml` file. This [YAML](http://en.wikipedia.org/wiki/YAML) file sets some basic settings for our site. New to YAML? There's nothing to be scared of. YAML files have the folowing simple format:
+  Navigate to the *wisdom\_for\_wanders* project folder and open the `config/site.yml` file. This [YAML](http://en.wikipedia.org/wiki/YAML) file sets some basic settings for our site. New to YAML? There's nothing to be scared of. YAML files have the folowing simple format:
 
       property_name: Property value
 
@@ -35,23 +35,25 @@ position: 2
 
       seo_title: Travel Tips for the Adventurous! 
       meta_keywords: "travel backpacking budget adventure"
-      meta_description: "Learn about cool places to see abroad, interesting things to eat, and little travel tips you won't believe you lived without."
+      meta_description: "Learn about cool places to see abroad,
+                        interesting things to eat,
+                        and little travel tips you won't believe you lived without."
 
   Great, we're all done with `site.yml`.
 
   ## translations.yml
-  Since our blog is just going to be in English for now, we're going to ignore the `translations.yml` file.
+  Since our blog is just going to be in English for now, let's ignore the `translations.yml` file.
 
   ## deploy.yml
-  That leaves one configuration file: `deploy.yml`. This file lists the connection details for LocomotiveCMS Engines we will deploy our site to. In here, we can list as many Engines as we like. For real sites, it's common to deploy deploy a site to different engines, such as a _development_ Engine on your local machine, a _staging_ Engine where the client can review changes, and a _production_ Engine that hosts the live site.
+  That leaves one configuration file: `deploy.yml`. This file lists the connection details for LocomotiveCMS Engines we will deploy our site to. This file can specify as many Engines as we like. For real sites, it's common to deploy a site to different engines, such as a _development_ Engine on your local machine, a _staging_ Engine where the client can review changes, and a _production_ Engine that hosts the live site.
 
-  As per the [prerequisites](../0.2-Prerequisites.html), this tutorial assumes that you have already setup an Engine somewhere. It could be an Engine on your local machine, an Engine on a web server somewhere, or a [LocomotiveHosting](http://www.locomotivehosting.com)site.  
+  As per the [prerequisites](/making-blog), this tutorial assumes that you have already setup an Engine somewhere. It could be an Engine on your local machine, an Engine on a web server, or a [LocomotiveHosting](http://www.locomotivehosting.com) site.  
 
   Regardless of what kind of Engine you setup, you will need to enter three things into `deploy.yml`:
 
-      1. A handle used to refer to the Engine, which we'll call the _environment_
-      2. The Engine's host, either in the form of an IP address or domain
-      3. An API key to access the Engine.
+  1. A handle used to refer to the Engine, which we'll call the *environment*
+  2. The Engine's host, either in the form of an IP address or domain
+  3. An API key to access the Engine.
 
   <div class="alert alert-info">
       You can also specify an email address and password instead of an API key.
@@ -85,6 +87,6 @@ position: 2
 
     
 
-%a.orange-rounded-button{href: "/making-blog/deploy-to-engine"} Next: deploy to the engine  
+%a.orange-rounded-button{href: "/making-blog/deploy-to-engine"} Next: deploying to the Engine  
 
 {% endblock %}

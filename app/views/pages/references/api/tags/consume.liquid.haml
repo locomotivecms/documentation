@@ -17,7 +17,6 @@ listed: true
 
       {% raw %}{% consume <variable_name> from <url>(, <options>){% endraw %}
 
-
   ## Example
 
       {% raw %}{% consume blog from 'http://blog.locomotivecms.com/api/read/json?num=3&amp;type=text', expires_in: 3000 %}
@@ -29,6 +28,14 @@ listed: true
           {% endfor %}
         {% endif %}
       {% endconsume %}{% endraw %}
+
+  ## Caching
+
+  For the caching, the LocomotiveCMS engine uses the default [Rails caching](http://guides.rubyonrails.org/caching_with_rails.html#activesupport-cache-store).
+
+  <div class="alert alert-info">
+    If you want to use the <strong>Redis cache store</strong>, please read <a href="http://guides.rubyonrails.org/caching_with_rails.html#activesupport-cache-store">this blog article</a>.
+  </div>
 
   ## Options
 

@@ -53,6 +53,12 @@ listed: true
         {% endfor %}
       {% endwith_scope %}{% endraw %}
 
+  ordering and filtering
+
+      {% raw %}{% with_scope started_at.lte: now, city: params.city, won: false, order_by: 'started_at.desc' %}
+        {% assign prize = contents.prizes.first %}
+      {% endwith_scope %}{% endraw %}
+
   filtering by an float
 
       {% raw %}{% with_scope price.lt: 42.0 %}

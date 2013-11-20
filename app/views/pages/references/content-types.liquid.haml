@@ -1,0 +1,45 @@
+---
+title: Content types
+published: true
+listed: true
+position: 3
+handle: content-types
+searchable: false
+redirect_url: /references/content-types/create
+---
+{% extends index %}
+
+{% block sidebar %}
+
+%p.back
+  %a{ href: '/references' } &larr; Back to the parent folder
+
+{% with_scope handle: 'content-types' %}{% assign source = site.pages.first %}{% endwith_scope %}
+
+%ul
+  {% for _page in source.children %}
+  {% if _page.listed? and _page.published? %}
+  %li{ class: "{% if _page.fullpath == page.fullpath %}active{% endif %}" }
+    {% if _page.redirect? %}
+    %a{ href: '{{ _page.redirect_url }}' } {{ _page.title }}
+    {% else %}
+    {% link_to _page %}
+    {% endif %}
+  {% endif %}
+  {% endfor %}
+
+{% endblock %}
+
+{% block fork_me %}
+{% assign parent_slug = page.parent.slug %}
+{% assign base_url = "https://github.com/locomotivecms/documentation/blob/master/app/views/pages/" %}
+
+{% if parent_slug == 'tags' or parent_slug == 'filters' or parent_slug == 'logic' %}
+{% assign slug = page.slug | underscore %}
+{% else %}
+{% assign slug = page.slug %}
+{% endif %}
+
+%a{href: "{{ base_url | concat: page.parent.fullpath, '/', slug }}.liquid.haml"}
+  Contribute → Fork this page on GitHub
+{% endblock %}

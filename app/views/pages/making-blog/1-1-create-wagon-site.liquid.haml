@@ -8,13 +8,13 @@ position: 1
 {% block 'content' %}
 
 :markdown
-  The first step to making our blog will be to create a new site with Wagon. But let's hold off on that for a moment and briefly explore the `wagon` command line utility. 
+  The first step to making our blog will be to create a new site with Wagon. But, let's hold off on that for a moment and briefly explore the `wagon` command line utility. 
 
   <div class="alert alert-info">
-      As per the prerequisites you need to have already <a href="/get-started/install-wagon">installed Wagon</a>. 
+      As per the prerequisites, you need to have already <a href="/get-started/install-wagon">installed Wagon</a>. 
   </div>
 
-  Since I would like to make my blog's design responsive and I'm generally not so good with designing anyway, I plan on using [Twitter Bootstrap](http://www.getbootstrap.com) to help out on the frontend side of things. Fortunately, Wagon comes with some built in templates for Twitter Bootstrap. We can view Wagon's available templates by using the `wagon list_templates` command.
+  Since I would like to make my blog's design responsive, and I'm generally not so good with designing anyway, I plan on using [Twitter Bootstrap](http://www.getbootstrap.com) to help out on the frontend side of things. Fortunately, Wagon comes with some built-in templates for Twitter Bootstrap. We can view Wagon's available templates by using the `wagon list_templates` command.
 
       $ wagon list_templates
       blank - A blank LocomotiveCMS site with the minimal files.
@@ -23,9 +23,9 @@ position: 1
       foundation - A LocomotiveCMS site powered by Foundation (v4.3.2).
       unzip - Unzip a local or remote (http, https, ftp) zipped LocomotiveCMS site.
 
-  As you can see, Wagon comes with several built in templates, including one for Bootstrap 2 and Bootstrap 3. Great!
+  As you can see, Wagon comes with several built-in templates, including ones for Bootstrap 2 and Bootstrap 3. Great!
 
-  `wagon list_tempaltes` is a handy command and Wagon comes with quite a few handy commands, but you don't need to memorize all of them if you can remember just this one: `wagon help`. Let's run that one.
+  `wagon list_templates` is a handy command and Wagon comes with quite a few more commands, but you don't need to memorize all of them if you can remember just this one: `wagon help`. Let's run that one.
 
       $ wagon help
       wagon clone NAME HOST [PATH]  # Clone a remote LocomotiveCMS site
@@ -39,14 +39,14 @@ position: 1
       wagon serve [PATH]            # Serve a LocomotiveCMS site from the file system
       wagon version                 # Version of the LocomotiveCMS wagon
 
-  And voilà, and list of Wagon's commands and what they do. Let's try another command, `wagon version`.
+  And, voilà! Here's a list of Wagon's commands and what they do. Let's try another command, `wagon version`.
 
       $ wagon version
       1.3.1
 
   As advertised, this prints out what version of Wagon you have. At the time of writing, the latest version of Wagon was 1.3.1, but you can [check for the current latest version on RubyGems.org](http://rubygems.org/gems/locomotivecms_wagon). If you don't have the latest version, you might want to upgrade your gems using `gem update`.
 
-  Let's go ahead and create the site. According to `wagon help`, `wagon init` creates a new site, but how do we use the Bootstrap template? We can find out, by again using `wagon help`.
+  Let's go ahead and create the site. According to `wagon help`, `wagon init` creates a new site, but how do we use the Bootstrap template? We can find out by using `wagon help` again.
 
       $ wagon help init
       Usage:
@@ -59,7 +59,7 @@ position: 1
 
       Create a brand new LocomotiveCMS site
 
-  Question answered. As `wagon help` points outs, we need to use the `--template` option to specify a template. I don't need IE 6 or 7 support, so I'm going to go with Bootstrap 3. Also, we'll need a name for our site. As you'll remember from the introduction, this is a travel blog, so I'm going to go with "Wisdom for Wanderers," but for the wagon command I'm going to use an underscored version of this, _wisdom\_for\_wanderers_. We could use a spaced name with quotes, but I don't like spaces in my folder names. Let's run the `wagon init` command.
+  Question answered. As `wagon help` points outs, we need to use the `--template` option to specify a template. I won't need IE 6 or 7 support, so I'm going to go with Bootstrap 3. Also, we'll need a name for our site. As you'll remember from the introduction, this is a travel blog, so I'm going to go with "Wisdom for Wanderers," but for the wagon command I'm going to use an underscored version of this, `wisdom_for_wanderers`. We could use a spaced name with quotes, but I don't like spaces in my folder names. Let's run the `wagon init` command.
 
       $ wagon init wisdom_for_wanderers --template=bootstrap3
           create  wisdom_for_wanderers
@@ -93,7 +93,7 @@ position: 1
           create  wisdom_for_wanderers/public/stylesheets/bootstrap.min.css
       Do you prefer HAML templates ?
 
-  The commanded prints out each file it creates and then asks whether you would like to use [HAML Templates](http://haml.info/). I tend to think stuff like HAML is pretty cool, but to make this tutorial as accessible as possible I'm going to use HTML templates. But those following along at home that would like to use HAML, can do so by typing _yes_. Everyone else, let's type _no_ and continue.
+  The commanded prints out each file it creates and then asks whether you would like to use [HAML Templates](http://haml.info/). I tend to think stuff like HAML is pretty cool, but to make this tutorial as accessible as possible I'm going to use HTML templates. But, for those following along at home that would like to use HAML, you can do so by typing _yes_. Everyone else, let's type _no_ and continue.
 
       Do you prefer HAML templates ? no
           remove  wisdom_for_wanderers/app/views/pages/index.liquid.haml
@@ -107,11 +107,11 @@ position: 1
           bundle exec wagon serve
           open http://0.0.0.0:3333
 
-  Our site was created successfully. After the congratulations message, the command provides our "next steps," the first of is changing into the project's directory.
+  Our site was created successfully. After the congratulatory message, the command provides our "next steps," the first of which is changing into the project's directory.
 
       $ cd wisdom_for_wanders
 
-  Next we need to run `bundle install`, which installs Wagon's gem dependencies. 
+  Next, we need to run `bundle install`, which installs Wagon's gem dependencies. 
 
       $ bundle install
       Fetching gem metadata from https://rubygems.org/........
@@ -176,18 +176,18 @@ position: 1
       Your bundle is complete!
       Use `bundle show [gemname]` to see where a bundled gem is installed.
 
-  The `bundle install` command is very informative and it prints out the name of each ruby gem it installs. From here we could start developing, but the last two steps test that everything is setup correctly with Wagon's built in web server, so let's start the web server.
+  The `bundle install` command is very informative and it prints out the name of each ruby gem it installs. From here we could start developing, but the last two steps test that everything is setup correctly with Wagon's built-in web server, so let's start the web server.
 
       $ bundle exec wagon serve
       >> Thin web server (v1.5.1 codename Straight Razor)
       >> Maximum connections set to 1024
       >> Listening on 0.0.0.0:3333, CTRL+C to stop
 
-  Though [Rails](http://www.rubyonrails.org/) veterans will be right at home, some might be wondering what this `bundle exec` business is. Here's the short version: [bundler](http://bundler.io/) is a tool that let's us keep gem dependencies for different projects separate. So that `bundle install` command doesn't install those gems globally. It installs them just for this project. That way if for some reason later you have a different ruby project that requires different versions of the same gems, each project has its own versions.  But to make sure that we are running this project's version of a gem, from here on we'll need to put `bundle exec` before all Wagon commands. Okay, truthfully it's not required for *all* commands, but it's just simpler to always add it.
+  Though [Rails](http://www.rubyonrails.org/) veterans will be right at home, some might be wondering what this `bundle exec` business is. Here's the short version: [bundler](http://bundler.io/) is a tool that lets us keep gem dependencies for different projects separate. So, that `bundle install` command doesn't install those gems globally. It installs them just for this project. That way if for some reason later you have a different ruby project that requires different versions of the same gems, each project has its own versions.  But, to make sure that we are running this project's version of a gem, from here on we'll need to put `bundle exec` before all Wagon commands. Okay, truthfully it's not required for *all* commands, but it's just simpler to always add it.
 
-  The next thing to notice is that the command line is now unresponsive. That's because the web server is running in this shell. We can't run any commands in this shell as long as as the web server is running. You can quit the web server at any time by holding `ctrl + c`.
+  The next thing to notice is that the command line is now unresponsive. That's because the web server is running in this shell. We can't run any commands in this shell so long as the web server is running. You can quit the web server at any time by holding `ctrl + c`.
 
-  Let's open `http://0.0.0.0:3333` in a web browser. It should like the screenshot below, since so far we're just using the standard Bootstrap 3 template.
+  Let's open `http://0.0.0.0:3333` in a web browser. It should look like the screenshot below, since (so far) we're just using the standard Bootstrap 3 template.
 
   <img src="{{ 'guides/making-blog/default_home_page.jpg' | theme_image_url }}" alt="The Bootstrap 3 template's default home page" />
 
@@ -202,7 +202,7 @@ position: 1
       ./app
       ./app/content_types
 
-  The `app/content_types` folder holds YAML files for defining your custom content types. The data for your content types doesn't go in here; this folder just holds the files that define your content type's structure.
+  The `app/content_types` folder holds YAML files for defining your custom content types. The data for your content types doesn't go in here; this folder just holds the files that define the content types used by your site.
 
       ./app/views
       ./app/views/pages
@@ -264,9 +264,9 @@ position: 1
 
   The `public` directory holds all of our site's assets: fonts, javascripts, images, and stylesheets. The `public/samples` directory is for images, and it's name might seem a little unintuitive for now, but will make more sense later. As you can see, the Bootstrap template has included a wide range of assets that we can now use in our site's pages. 
 
-  Hopefully the project directory is now a little less opaque.
+  Hopefully, the project directory is now a little less opaque.
 
-  A final, optional step to creating our Wagon site is to setup some kind of source versioning system. This tutorial is going to use [git](http://git-scm.com/), because it's the versioning system de jour, but you are welcome to use [Subversion](http://subversion.apache.org/), [Mecurial](http://mercurial.selenic.com/), or any other system you like. If you don't have any experience with a source control system, you can skip this step.  If you're interesting in learning about source versioning, I would encourage you to [checkout git](http://git-scm.com/) (excuse the pun).
+  A final, optional step to creating our Wagon site is to setup some kind of source versioning system. This tutorial is going to use [git](http://git-scm.com/), because it's the versioning system de jour, but you are welcome to use [Subversion](http://subversion.apache.org/), [Mecurial](http://mercurial.selenic.com/), or any other system you like. If you don't have previous experience with a source control system, you can skip this step.  If you're interesting in learning about source versioning, I would encourage you to [checkout git](http://git-scm.com/) (excuse the pun).
 
   Open a command line, navigate to the project directory, and run `git init`.
 
@@ -277,9 +277,9 @@ position: 1
 
       /log
 
-  So just one line for now. The `wagon.log` file can get pretty big, so it's important not include it in the repository. Tip for git beginners: Mac users should Google how to create a global git ignore file with `.DS_STORE`.
+  So, just one line for now. The `wagon.log` file can get pretty big, so it's important not to include it in the source control repository. Tip for git beginners: Mac users should Google how to create a global git ignore file with `.DS_STORE`.
 
-  We'll skip staging and go straight to committing all these files to the repo.
+  We'll skip staging and go straight to committing all of these files to the repo.
 
       $ git commit -am "initial commit"
       [master (root-commit) 25754b5] initial commit

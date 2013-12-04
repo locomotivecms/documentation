@@ -81,11 +81,18 @@ position: 2
           host: localhost:8080
           api_key: 0e52b493c9bed5bcd681a1514eb19197b01499be
 
-  Congratulations! Our site is now configured. Let's commit our changes to the git repository.
+  Congratulations! Our site is now configured.
 
+
+  It's generally not a good idea to commit things like API keys and passwords to git repositories, so let's make sure we don't commit this data to the repository. Open the `.gitignore` file and add this line just below `/log`:
+
+      config/deploy.yml
+
+
+  Let's commit our changes to the git repository.
+
+      $ git rm --cached config/deploy.yml
       $ git commit -am "Changed site configuration and deployment settings."
-
-    
 
 %a.orange-rounded-button{href: "/making-blog/1-3-deploy-to-engine"} Next: deploying to the Engine  
 

@@ -279,36 +279,37 @@ position: 1
 
   So just one line for now. The `wagon.log` file can get pretty big, so it's important not include it in the repository. Tip for git beginners: Mac users should Google how to create a global git ignore file with `.DS_STORE`.
 
-  We'll skip staging and go straight to committing all these files to the repo.
+  Let's add all of the files in this directory to the repo using `git add` and then commit everything.
 
-      $ git commit -am "initial commit"
+      $ git add .
+      $ git commit -m "initial commit"
       [master (root-commit) 25754b5] initial commit
-       25 files changed, 10433 insertions(+)
-       create mode 100644 .gitignore
-       create mode 100644 Gemfile
-       create mode 100644 Gemfile.lock
-       create mode 100644 app/views/pages/404.liquid
-       create mode 100644 app/views/pages/index.liquid
-       create mode 100644 app/views/snippets/footer.liquid
-       create mode 100644 config.ru
-       create mode 100644 config/deploy.yml
-       create mode 100644 config/site.yml
-       create mode 100644 config/translations.yml
-       create mode 100644 public/fonts/glyphicons-halflings-regular.eot
-       create mode 100644 public/fonts/glyphicons-halflings-regular.svg
-       create mode 100644 public/fonts/glyphicons-halflings-regular.ttf
-       create mode 100644 public/fonts/glyphicons-halflings-regular.woff
-       create mode 100644 public/javascripts/bootstrap.js
-       create mode 100644 public/javascripts/bootstrap.min.js
-       create mode 100644 public/samples/apple-touch-icon-114x114-precomposed.png
-       create mode 100644 public/samples/apple-touch-icon-144x144-precomposed.png
-       create mode 100644 public/samples/apple-touch-icon-precomposed.png
-       create mode 100644 public/samples/apple-touch-icon-72x72-precomposed.png
-       create mode 100644 public/samples/favicon.png
-       create mode 100644 public/stylesheets/bootstrap-theme.css
-       create mode 100644 public/stylesheets/bootstrap-theme.min.css
-       create mode 100644 public/stylesheets/bootstrap.css
-       create mode 100644 public/stylesheets/bootstrap.min.css
+      25 files changed, 10448 insertions(+)
+        create mode 100644 .gitignore
+        create mode 100644 Gemfile
+        create mode 100644 Gemfile.lock
+        create mode 100644 app/views/pages/404.liquid
+        create mode 100644 app/views/pages/index.liquid
+        create mode 100644 app/views/snippets/footer.liquid
+        create mode 100644 config.ru
+        create mode 100644 config/deploy.yml
+        create mode 100644 config/site.yml
+        create mode 100644 config/translations.yml
+        create mode 100644 public/fonts/glyphicons-halflings-regular.eot
+        create mode 100644 public/fonts/glyphicons-halflings-regular.svg
+        create mode 100644 public/fonts/glyphicons-halflings-regular.ttf
+        create mode 100644 public/fonts/glyphicons-halflings-regular.woff
+        create mode 100644 public/javascripts/bootstrap.js
+        create mode 100644 public/javascripts/bootstrap.min.js
+        create mode 100644 public/samples/apple-touch-icon-114x114-precomposed.png
+        create mode 100644 public/samples/apple-touch-icon-144x144-precomposed.png
+        create mode 100644 public/samples/apple-touch-icon-72x72-precomposed.png
+        create mode 100644 public/samples/apple-touch-icon-precomposed.png
+        create mode 100644 public/samples/favicon.png
+        create mode 100644 public/stylesheets/bootstrap-theme.css
+        create mode 100644 public/stylesheets/bootstrap-theme.min.css
+        create mode 100644 public/stylesheets/bootstrap.css
+        create mode 100644 public/stylesheets/bootstrap.min.css
 
   Done! We've successfully created a new Wagon site. So far it's just a dummy site, but it's created and we've setup git, so we're ready to start developing.
 

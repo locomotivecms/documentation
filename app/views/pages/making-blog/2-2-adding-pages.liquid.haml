@@ -69,7 +69,7 @@ position: 5
 
   When a page _extends_ a parent page, by page inherits the body of the parent page. Turn on the Wagon web server and open your browser to [http://0.0.0.0:3333/about](http://0.0.0.0:3333/about). You should see this.
 
-{{ "guides/making-blog/adding-pages/about_page.png" | theme_image_tag: "The About Page" }}
+{{ "guides/making-blog/2.2/about_page.png" | theme_image_tag: "The About Page" }}
 
 :markdown
 
@@ -85,8 +85,8 @@ position: 5
 
   This creates a new block called _main_. If you look in the `about.liquid` file, you'll see that "Hello world" is also inside a block called _main_. Because `about.liquid` extends `index.liquid`, `index.liquid`'s main block will be overwritten. If you compare the two pages in your web browser, you'll see something like below.
 
-  <img src="{{ "guides/making-blog/adding-pages/home_page_half_view.png" | theme_image_url }}" alt="Home page" />
-  <img src="{{ "guides/making-blog/adding-pages/about_page_half_view.png" | theme_image_url }}" alt="About page" />
+  <img src="{{ "guides/making-blog/2.2/home_page_half_view.png" | theme_image_url }}" alt="Home page" />
+  <img src="{{ "guides/making-blog/2.2/about_page_half_view.png" | theme_image_url }}" alt="About page" />
 
   We've inherited from the home page and overridden the _main_ block with new content.
 
@@ -123,7 +123,7 @@ position: 5
 
   Let's see how this looks like.
 
-  <img src="{{ "guides/making-blog/adding-pages/new_menu.png" | theme_image_url }}" alt="Our new navigation menu" />
+  <img src="{{ "guides/making-blog/2.2/new_menu.png" | theme_image_url }}" alt="Our new navigation menu" />
 
   Looks nice and now when we create new pages, they will be added to the navigation menu automatically.
 
@@ -148,7 +148,7 @@ position: 5
 
   Let's take a look at this page by navigating in our browser to a bogus URL.
 
-  <img src="{{ "guides/making-blog/adding-pages/404.png" | theme_image_url }}" alt="The 404 page" />
+  <img src="{{ "guides/making-blog/2.2/404.png" | theme_image_url }}" alt="The 404 page" />
 
   Sure enough, we are shown the `404.liquid` page, and thanks to the template inheritance, the site title, navigation and the page title are shown.
 

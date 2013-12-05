@@ -11,27 +11,27 @@ position: 2
   Wagon site created: check. Next up, we need to do some basic configuration for our site. 
 
   ## site.yml
-  Navigate to the *wisdom\_for\_wanders* project folder and open the `config/site.yml` file. This [YAML](http://en.wikipedia.org/wiki/YAML) file sets some basic settings for our site. New to YAML? There's nothing to be scared of. YAML files have the folowing simple format:
+  Navigate to the `wisdom_for_wanderers` project folder and open the `config/site.yml` file. This [YAML](http://en.wikipedia.org/wiki/YAML) file sets some basic settings for our site. New to YAML? There's nothing to be scared of. YAML files have the following simple format:
 
       property_name: Property value
 
    There's a bit more to YAML than that, but that's the gist.
 
-  The first property in `site.yml` is `name`, which we should change to a more human readable version of our site's name.
+  The first property in `site.yml` is `name`, which we should change to a more human-readable version of our site's name.
 
       name: Wisdom for Wanderers 
 
   The next two options, `subdomain` and `domains`, only apply to sites being deployed on multi-site Engines. Multi-site Engine users, you know who you are, fill these in. Everyone else, let's leave these commented out for now.
 
-  The `locales` option let's us specify what languages are website is available in. For now, I'm going to leave this with the default value: _[en]_.
+  The `locales` option let's us specify what languages our website will be available in. For now, I'm going to leave this with the default value: _[en]_.
 
-  The following `timezone` option let's us set what timezone we want server times to be displayed as. I'm going to set it to US Central Time, like so:
+  The following `timezone` option lets us set what timezone we want server times to be displayed as. I'm going to set it to US Central Time, like so:
 
       timezone: "Central Time (US & Canada)"
 
-  [Rails' ActiveSupport::TimeZone](http://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html) will be used to interpret these strings, so consult the API documentation linked to above if you're nto sure what strings are valid.
+  [Rails' ActiveSupport::TimeZone](http://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html) will be used to interpret these strings, so consult the API documentation linked above if you're not sure which strings are valid.
 
-  The last settings are related to SEO, Search Engine Optimization. Like everything in this file, these can be changed later so I won't stress too much about what I enter for now.
+  The last settings are related to Search Engine Optimization (SEO). Like everything else in this file, these can be changed later so I won't stress too much about what I enter for now.
 
       seo_title: Travel Tips for the Adventurous! 
       meta_keywords: "travel backpacking budget adventure"
@@ -67,7 +67,7 @@ position: 2
 
   <img src="{{ 'guides/making-blog/engine_api_key.jpg' | theme_image_url }}" alt="Finding your API key" />
 
-  Now that you have your API key, head back to the `config/deploy.yml` file and enter in your Engine's details. We're going to use the _development_ environment handle for this Engine, since this is just for testing purposes.
+  Now that you have your API key, head back to the `config/deploy.yml` file and configure your Engine's details. We're going to use the _development_ environment handle for this Engine, since this is just for testing purposes.
 
   If you're using LocomotiveHosting, your `deploy.yml` file should look something like this:
 
@@ -82,7 +82,6 @@ position: 2
           api_key: 0e52b493c9bed5bcd681a1514eb19197b01499be
 
   Congratulations! Our site is now configured.
-
 
   It's generally not a good idea to commit things like API keys and passwords to git repositories, so let's make sure we don't commit this data to the repository. Open the `.gitignore` file and add this line just below `/log`:
 

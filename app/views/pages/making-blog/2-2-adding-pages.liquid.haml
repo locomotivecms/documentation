@@ -9,18 +9,18 @@ position: 5
 
 :markdown
 
-  Our site has a basic layout now, but we still can't really call it a site because there is no content yet. Let's start by making an _About_ page.
+  Our site has a basic layout now, but we still can't really call it a site because there's no content yet. Let's start by making an _About_ page.
 
   ## Wagon generators
-  We could simply create a new file, `app/views/pages/about.liquid`, but I'm going to take this opportunity to show you a handy Wagon feature: `wagon generate`. `wagon generate` is a time saving command that generates boilerplate for LocomotiveCMS pages, content types, and snippets.
+  We could simply create a new file, `app/views/pages/about.liquid`, but I'm going to take this opportunity to show you another handy Wagon feature: `wagon generate`. `wagon generate` is a time-saving command that generates boilerplate for LocomotiveCMS pages, content types, and snippets.
 
-  Open a command line and navigate to the site's project directory. Now run the following command.
+  Open a command line and navigate to the site's project directory. Now, let's run the following command.
 
       $ bundle exec wagon generate page about
       Do you prefer a HAML template ? no
           create  app/views/pages/about.liquid
 
-  As you can see, I again opted for regular HTML templates and Wagon created a file: `app/views/pages/about.liquid`. Let's check it out.
+  As you can see, I again opted for regular HTML-style Liquid templates and Wagon created a file: `app/views/pages/about.liquid`. Let's check it out.
 
       ---
       title: About
@@ -52,13 +52,13 @@ position: 5
 
       {% endblock %}{% endraw %}
 
-  The `wagon generate` fills the created file with some common header options that you can comment in or out to suit your needs. It also makes a "Hello World" body. Regarding the YAML header, you've already met `title` and `published`, but that still leaves quite a few unknowns. Let's look at three of them.
+  The `wagon generate` command fills the created file with some common header options that you can comment in or out to suit your needs. It also makes a "Hello World" body. Regarding the YAML header, you've already met `title` and `published`, but that still leaves quite a few unknowns. Let's look at three of them.
 
-  - `listed`: LocomotiveCMS has a cool feature, `{% raw %}{% nav %}{% endraw %}`, that automatically generates site navigation. `listed` is a boolean flag indicating whether or not this page is listed in that navigation. Keep this value as `true`.
+  - `listed`: LocomotiveCMS has a cool feature, `{% raw %}{% nav %}{% endraw %}`, that automatically generates site navigation. `listed` is a boolean flag indicating whether or not this page is listed in the site's navigation. Keep this value as `true`.
   - `position`: An integer representing what position this page holds in the navigation mentioned above. Lower numbers are listed before higher numbers. Uncomment this option and keep the value at _1_.
-  - `redirect_url`: setting this value will cause this page to redirect to the specified URL. Imagine that in the future, I decide to put the contents of the _About_ page onto the homepage instead. I could delete the page and visitors to this URL would get a 404. Or I could leave this file empty, except for one line in the YAML header: `redirect_url: "/"`. Doing so would redirect all visitors to the home page. But we won't be using this for our page, so let's delete it.
+  - `redirect_url`: setting this value will cause this page to redirect to the specified URL. Imagine that in the future, I decide to put the contents of the _About_ page onto the homepage instead. I could delete the page and visitors to this URL would be met with a 404 error. Or, I could leave this file empty, except for one line in the YAML header: `redirect_url: "/"`. Doing so would redirect all visitors to the home page. But we won't be using this for our page, so let's delete it.
 
-  What about `content_type` and `editable_elements`? We're not ready yet, so just leave them commented out and we'll come back to these later.
+  What about `content_type` and `editable_elements`? We're not ready for these just yet, so just leave them commented out and we'll come back to these later.
 
   ## Page inheritance
   Onto the body of the page, where the first line introduces an important new concept.
@@ -67,15 +67,15 @@ position: 5
 
   In LocomotiveCMS, all pages are part of an inherticance tree. The parent of any page under `app/views/pages` is the _index_ page. The parent of any page under the `app/views/pages/foo/` directory is `app/views/pages/foo.liquid`.
 
-  When a page _extends_ a parent page, by page inherits the body of the parent page. Turn on the Wagon web server and open your browser to [http://0.0.0.0:3333/about](http://0.0.0.0:3333/about). You should see this.
+  When a page _extends_ a parent page, it inherits the body of the parent page. Turn on the Wagon web server and open your browser to [http://0.0.0.0:3333/about](http://0.0.0.0:3333/about). You should see this.
 
 {{ "guides/making-blog/2.2/about_page.png" | theme_image_tag: "The About Page" }}
 
 :markdown
 
-  Despite not having any of `index.liquid`'s content, this page looks very similar to `index.liquid`. The only differences are the places where we used the `page.title` variable. That's because, as mentioned above, extending a parent means inheriting the body of the parent. Extending a page is the equivalent of copying the parent page's body and pasting it into this page's body; the page keeps it's YAML header values by otherwise looks like the parent.
+  Despite not having any of `index.liquid`'s content, this page looks very similar to `index.liquid`. The only differences are the places where we used the `page.title` variable. That's because, as mentioned above, extending a parent means inheriting the body of the parent. Extending a page is the equivalent of copying the parent page's body and pasting it into this page's body; the page keeps its YAML header values but otherwise looks like the parent.
 
-  If that's all there was to inheritance, it wouldn't be very useful. That's what _blocks_ are for. Blocks allow children to overwrite portions of a parent page. Let's try it out.
+  If that's all there was to inheritance, it wouldn't be very useful. That's where _blocks_ come in. Blocks allow children to overwrite portions of a parent page. Let's try it out.
 
   Open `app/views/pages/index.liquid` and enclose "Coming soon." with a block tag like so.
 
@@ -97,7 +97,7 @@ position: 5
       {% raw %}{% block main %}
 
           <p>
-              Thanks for visiting Wisdom for Wanders!
+              Thanks for visiting Wisdom for Wanderers!
               This blog aims to introduce readers to cool things to see, eat, and do all over the world.
               And along the way, I'll share some handy travel tips that can make wandering the globe easier and more fun than ever. The blog tends to focus on sights and places a little off the tourist trail, so unadventurous beware.
           </p>
@@ -109,7 +109,7 @@ position: 5
       {% endblock %}{% endraw %}
 
   ## Fixing the menu
-  Our about page is looking pretty good, but as of yet, there's no way to get there aside from typing in the URL manually. Let's add the about page to the menu.
+  Our About page is looking pretty good, but as of yet, there's no way to get there aside from typing in the URL manually. Let's add the About page to the menu.
 
   We could continue adding `<li>` tags to `index.liquid`'s navigation bar, but why not save some time by using the `{% raw %}{% nav %}{% endraw %}` tag I told you about earlier?
 
@@ -117,18 +117,18 @@ position: 5
 
       {% raw %}{% nav 'site', no_wrapper: true, active_class: "active" %}{% endraw %}
 
-  I'm going to break down this line, but for a full explanation of the nav tag, see the [nav reference page](http://doc.locomotivecms.com/references/api/tags/nav). The nav tag prints a list of page links, and the first argument specifies which pages go in the list. The options are _site_, _parent_, and _page_. Choosing _site_, gets all child pages of `app/views/pages/index.liquid`, _parent_ gets children of the parent page, and _page_ gets all children of this page.
+  I'm going to break down this line, but for a full explanation of the _nav_ tag, see the [nav reference page](http://doc.locomotivecms.com/references/api/tags/nav). The nav tag prints a list of page links, and the first argument specifies which pages go in the list. The options are _site_, _parent_, and _page_. Choosing _site_, gets all child pages of `app/views/pages/index.liquid`, _parent_ gets children of the parent page, and _page_ gets all children of this page.
 
-  This is the site wide navigation bar, so I chose _site_. The next argument, `no_wrapper` indicates that we don't want these links to be wrapped in a `<nav>` and `<ul>` tags, which makes sense in this situation. The final argument specifies the CSS class name added to an `<li>` tag when its link is the current page. I specified _active_, since that's the class name used in Bootstrap.
+  This is the site-wide navigation bar, so I chose _site_. The next argument, `no_wrapper` indicates that we don't want these links to be wrapped in `<nav>` and `<ul>` tags, which makes sense in this situation. The final argument specifies the CSS class name added to an `<li>` tag when its link is the current page. I specified _active_, since that's the class name used in Bootstrap.
 
-  Let's see how this looks like.
+  Let's see what this looks like.
 
   <img src="{{ "guides/making-blog/2.2/new_menu.png" | theme_image_url }}" alt="Our new navigation menu" />
 
-  Looks nice and now when we create new pages, they will be added to the navigation menu automatically.
+  Looks nice and now, when we create new pages, the pages will be added to the navigation menu automatically.
 
   ## 404 Page
-  While we are on the topic of pages, surely you've noticed the `404.liquid` file sitting in the `app/views/pages` directory? This is a special page that will show when visitors try to visit a non-existent page. Take a look at the contents.
+  While we are on the topic of pages, surely you've noticed the `404.liquid` file sitting in the `app/views/pages` directory. This is a special page that will show when visitors try to visit a non-existent page. Take a look at the contents.
 
       {% raw %}---
       title: Page not found
@@ -146,13 +146,13 @@ position: 5
 
   This time, instead of extending _parent_, the page extends _index_. In this situation, `404.liquid` can't specify _parent_, because it's a special page outside of the LocomotiveCMS inheritance tree and it doesn't have a parent. However, the extend tag can be used to extend any page, not just the page's parent. In this situation, the page is extending `index`, but any page slug can be used here. This feature further increases the flexibility of LocomotiveCMS templates.
 
-  Let's take a look at this page by navigating in our browser to a bogus URL.
+  Let's take a look at this page by pointing our browser to a bogus URL.
 
   <img src="{{ "guides/making-blog/2.2/404.png" | theme_image_url }}" alt="The 404 page" />
 
-  Sure enough, we are shown the `404.liquid` page, and thanks to the template inheritance, the site title, navigation and the page title are shown.
+  Sure enough, we are shown the `404.liquid` page and, thanks to the template inheritance, the site title, navigation and the page title are shown.
 
-  This page works, but the jumbotron doesn't look right with our title and menu. And the pirate-esque "Arrggggh" doesn't really match our site. Update the content of `404.liquid`'s _main_ block to match the code below
+  This page works, but the jumbotron doesn't look right with our title and menu. And the pirate-esque "Arrggggh" doesn't really match our site. Update the content of `404.liquid`'s _main_ block to match the code below:
 
       <p>
           It looks like you wandered a little too far! The page you are looking for does not exist.

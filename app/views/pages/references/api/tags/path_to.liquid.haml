@@ -1,0 +1,30 @@
+---
+title: path_to
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Return the link to a given page or a content entry if the content entry owns a templatized page. The page is identified by its handle.
+
+  <div class="alert alert-info">This tag requires Wagon 1.3+ and LocomotiveCMS 2.4+</div>
+
+  ## Syntax
+
+      {% raw %}{% path_to <object_or_page_handle> %}{% endraw %}
+
+  ## Example
+
+      {% raw %}The path to my about us page: {% path_to about-us %}{% endraw %}
+
+  outputs
+
+      The path to my about us page: /path/to/about-us
+
+{% endblock %}

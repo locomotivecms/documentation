@@ -19,7 +19,11 @@ listed: true
 
   ## Example
 
-      {% raw %}{% session_assign email = 'john@doe.net' %}
-      E-mail: {{ session.email }}{% endraw %}
+      {% raw %}{% session_assign player_email = 'john@doe.net' %}
+      E-mail: {{ session.player_email }}{% endraw %}
+
+  To remove a key:
+
+      {% raw %}{% session_assign player_email = nil %}{% endraw %}
 
 {% endblock %}

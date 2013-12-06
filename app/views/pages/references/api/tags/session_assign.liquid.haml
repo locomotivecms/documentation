@@ -1,0 +1,25 @@
+---
+title: session_assign
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Used to store in the session a key and its value.
+
+  ## Syntax
+
+      {% raw %}{% session_assign <key> = <value> %}{% endraw %}
+
+  ## Example
+
+      {% raw %}{% session_assign email = 'john@doe.net' %}
+      E-mail: {{ session.email }}{% endraw %}
+
+{% endblock %}

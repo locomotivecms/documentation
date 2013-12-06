@@ -1,5 +1,6 @@
 .sass-cache/
 /tmp
+.push-tmp
 /config/deploy.yml
 .DS_Store
 app/.DS_Store

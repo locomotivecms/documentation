@@ -21,6 +21,12 @@ listed: true
 
   ## Example
 
+      {% raw %}<p>
+        {% consume api from "http://ip.jsontest.com/" %}
+        My ip address is: {{ api.ip }}
+        {% endconsume %}
+      </p>{% endraw %}
+
       {% raw %}{% consume blog from 'http://blog.locomotivecms.com/api/read/json?num=3&amp;type=text', expires_in: 3000 %}
       {% if blog == null %}
         the Tumblr API seems to be broken now.

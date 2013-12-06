@@ -27,19 +27,27 @@ listed: true
         <td>this is the default template, very minimal. No javascripts, no stylesheets, just the index / 404 pages</td>
       </tr>
       <tr>
-        <td>twitter_bootstrap</td>
-        <td>includes all the files provided by the Twitter Bootstrap package as well as the index / 404 pages</td>
+        <td>bootstrap2</td>
+        <td>includes all the files provided by the Twitter Bootstrap package (v2.3.2) as well as the index / 404 pages</td>
+      </tr>
+      <tr>
+        <td>bootstrap3</td>
+        <td>includes all the files provided by the Twitter Bootstrap package (v3.0.0) as well as the index / 404 pages</td>
+      </tr>
+      <tr>
+        <td>foundation</td>
+        <td>includes all the files provided by the Zurb Foundation package (v4.3.2) as well as the index / 404 pages</td>
       </tr>
     </tbody>
   </table>
 
   # Assigning a site template when creating a new site
 
-      wagon create -n my_first_site -t twitter_bootstrap
+      wagon init my_first_site -t bootstrap2
 
   or
 
-      wagon create -n my_first_site --template twitter_bootstrap
+      wagon init my_first_site --template=bootstrap2
 
   # Coding your site template
 

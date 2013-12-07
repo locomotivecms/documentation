@@ -51,56 +51,83 @@ listed: true
 
   # Coding your site template
 
+  <div class="alert alert-warning">
+    It only works from the <strong>1.4.0 version</strong> of Wagon.
+  </div>
+
   It requires some Ruby skills but no so much. Do not worry, we are going
   to guide you step by step by developing an example.
 
-  ### 1. Prepare your environment
+  ## 1. Prepare your environment
 
       cd ~/workspace
-      mkdir -p site_templates/my_template
-      mkdir -p site_templates/my_template/app/views/pages
-      mkdir site_templates/my_template/app/content_types
-      mkdir -p site_templates/my_template/public/images
-      mkdir site_templates/my_template/public/javascripts
-      mkdir site_templates/my_template/public/stylesheets
 
-  ### 2. Define your template in Ruby
+      mkdir -p wagon_generators/my_template
+      mkdir -p wagon_generators/my_template/app/content_types
+      touch wagon_generators/my_template/app/content_types/.empty_directory
+      mkdir -p wagon_generators/my_template/app/views/pages
+      touch wagon_generators/my_template/app/content_types/.empty_directory
+      mkdir -p wagon_generators/my_template/app/views/snippets
+      touch wagon_generators/my_template/app/content_types/.empty_directory
 
-      mate site_templates/my_template.rb
+      mkdir -p wagon_generators/my_template/public/images
+      touch wagon_generators/my_template/public/images/.empty_directory
+      mkdir wagon_generators/my_template/public/javascripts
+      touch wagon_generators/my_template/public/javascripts/.empty_directory
+      mkdir wagon_generators/my_template/public/stylesheets
+      touch wagon_generators/my_template/public/stylesheets/.empty_directory
+
+  <div class="alert alert-info">
+    The <strong>.empty_directory</strong> file forces the generator to create the parent folder when generating the site.
+  </div>
+
+  ## 2. Define your template in Ruby
+
+      mate wagon_generators/my_template.rb
 
   Fill in with the following Ruby code:
 
-      class MyTemplate < LocomotiveEditor::SiteTemplates::Template
+      class MyTemplate < Locomotive::Wagon::Generators::Site::Base
 
-        def self.message
-          %(My simple template)
-        end
-
-        def source_folder
-          File.join(File.dirname(File.expand_path(__FILE__)), 'my_template', '/')
+        def self.source_root
+          File.join(File.dirname(__FILE__), 'foo')
         end
 
       end
 
-      LocomotiveEditor::SiteTemplates::Manager.register(:my_template, MyTemplate)
+      Locomotive::Wagon::Generators::Site.register(:my_template, MyTemplate, %{
+        A simple example of a site generator.
+      })
 
-  ### 3. Edit your site
+  <div class="alert alert-info">
+    Behind the scene, <strong>Wagon</strong> uses <a href="https://github.com/erikhuda/thor/wiki/Generators">Thor</a> to power the generation of sites.
+  </div>
+
+  <div class="alert alert-info">
+    You will find more complex samples <strong><a href="https://github.com/locomotivecms/wagon/tree/master/lib/locomotive/wagon/generators/site">here</a></strong>.
+  </div>
+
+  ## 3. Edit your site
 
   All you have to do is to populate your site by copying your existing stylesheets, javascripts, pages …etc to their target folders inside the template folder.
 
   For instance, if you want to tweak your index page:
 
-      mate site_templates/my_template/app/views/pages/index.liquid.haml
+      mate wagon_generators/my_template/app/views/pages/index.liquid.haml
 
-  ### 4. Using your template
+  <div class="alert alert-info">
+    More examples of file templates <strong><a href="https://github.com/locomotivecms/wagon/tree/master/generators">here</a></strong>.
+  </div>
+
+  ## 4. Using your template
 
   Let’s see if your template is now part of the available site templates. You should see “my\_template”
 
-      wagon list_templates --lib=./site_templates/my_template.rb
+      wagon list_templates --lib=./wagon_generators/my_template.rb
 
-  Here is the command to create a new LocomotiveEditor site with your new
-  template
+  Here is the command to create a new Wagon site with your new
+  template:
 
-      wagon create -n another_site --template=my_template.rb --lib=./site_templates/my_template.rb
+      wagon init another_site --template=my_template --lib=./wagon_generators/my_template.rb
 
 {% endblock %}

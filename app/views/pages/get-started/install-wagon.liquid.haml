@@ -13,7 +13,7 @@ position: 3
 
 #install-wagon-selector
   %h2 Choose the appropriate guide for your operating system
-  
+
   .option
     .image
       {{ 'os/macos.png' | theme_image_tag }}
@@ -43,11 +43,11 @@ position: 3
       - Ruby 1.9.3 or higher
       - The [Bundler](http://www.bundler.io/) and [Rake](http://rake.rubyforge.org/) gems
 
-      Ruby veterans and experienced users may already have some or all of these dependencies installed, so feel free to skim. This guide was written using Windows 7, though only slight changes are necessary to perform these steps on Windows XP or Windows 8. 
+      Ruby veterans and experienced users may already have some or all of these dependencies installed, so feel free to skim. This guide was written using Windows 7, though only slight changes are necessary to perform these steps on Windows XP or Windows 8.
 
       ## Step 1: Install ImageMagick
 
-      [ImageMagick](http://www.imagemagick.org/) is a powerful image manipulation library required by Wagon. To install it, first go to the [Windows section of the ImageMagick downloads page](http://imagemagick.org/script/binary-releases.php#windows) and download the latest binary. At the time of writing, it was _[ImageMagick-6.8.7-0-Q16-x86-dll.exe](http://www.imagemagick.org/download/binaries/ImageMagick-6.8.7-0-Q16-x86-dll.exe)_. 
+      [ImageMagick](http://www.imagemagick.org/) is a powerful image manipulation library required by Wagon. To install it, first go to the [Windows section of the ImageMagick downloads page](http://imagemagick.org/script/binary-releases.php#windows) and download the latest binary. At the time of writing, it was _[ImageMagick-6.8.7-0-Q16-x86-dll.exe](http://www.imagemagick.org/download/binaries/ImageMagick-6.8.7-0-Q16-x86-dll.exe)_.
 
       Once downloaded, run the installer. It is important that the installation path not include any spaces. The default is <code>C:\Program Files\ImageMagick-6.8.7-Q16</code>, which includes a space. Please change it to <code>C:\ImageMagick</code> or another path without spaces.
 
@@ -105,7 +105,7 @@ position: 3
 
       If it isn't still open, open a command prompt with Ruby, which you can find under the Start Menu / _All Programs_ / _Ruby 1.9.3-p448_ folder.
 
-      Run the following commands at the prompt to install bundler and rake: <code>gem install bundler</code> and <code>gem install rake</code>. 
+      Run the following commands at the prompt to install bundler and rake: <code>gem install bundler</code> and <code>gem install rake</code>.
 
           C:\>gem install bundler
           Fetching: bundler-1.3.5.gem (100%)
@@ -127,12 +127,12 @@ position: 3
           C:\RubyDevKit>gem install locomotivecms_wagon
           Temporarily enhancing PATH to include DevKit...
           ...
-          Installing RDoc documentation for locomotivecms_wagon-1.3.0...
+          Installing RDoc documentation for locomotivecms_wagon-1.4.0...
 
       The command will ouput lots of information and will take at least several minutes. Once finished, run the <code>wagon version</code> command to check that everything is working.
 
           C:\RubyDevKit>wagon version
-          1.3.0
+          1.4.0
 
       Wagon is ready to use and you can start creating your first LocomotiveCMS site.
 
@@ -157,9 +157,9 @@ position: 3
 
       Open the _App Store_ application, search for Xcode, and click the _FREE_ button to install it. Installing the app will require an Apple ID and password. After it installs, open Xcode, which you can find under the <code>/Applications</code> folder.
 
-      Upon opening Xcode you will have to agree to the license agreement and go through a dialog that installs some development tools. Once everything is installed, click the _Start Using Xcode_ button. 
+      Upon opening Xcode you will have to agree to the license agreement and go through a dialog that installs some development tools. Once everything is installed, click the _Start Using Xcode_ button.
 
-      Go to the _Xcode_ -> _Preferences_ menu and navigate to the _Downloads_ section. At the top of the _Components_ list, there should be a packaged called _Command Line Tools_; click the download icon or _Install_ button (depeneding on your version) next to this package to install it. 
+      Go to the _Xcode_ -> _Preferences_ menu and navigate to the _Downloads_ section. At the top of the _Components_ list, there should be a packaged called _Command Line Tools_; click the download icon or _Install_ button (depeneding on your version) next to this package to install it.
 
       Once it's done installing, the GCC compiler has been installed, so you can quit Xcode.
 
@@ -196,7 +196,7 @@ position: 3
       Since it's not a good idea to update the system's native Ruby, we are going to use [RVM](http://www.rvm.io) to install an additional version of Ruby. RVM is a tool that allows you to install multiple versions of Ruby on your system and switch between them.
 
       <div class="alert alert-info">
-          Another popular ruby version manager is [rbenv](https://github.com/sstephenson/rbenv), which would work equally well. 
+          Another popular ruby version manager is [rbenv](https://github.com/sstephenson/rbenv), which would work equally well.
       </div>
 
       The [RVM website](http://www.rvm.io) provides a command that we can use to intall RVM, which you can also find below.
@@ -295,7 +295,7 @@ position: 3
           ironruby[-1.1.3]
           ironruby-head
 
-      Ruby 2.0.0 is listed near the top. To install this ruby run the following command: <code>rvm install ruby-2.0.0</code>. This will download the ruby source and compile it for your system. Once it finishes, check that it installed correctly by using the <code>rvm list</code> command. 
+      Ruby 2.0.0 is listed near the top. To install this ruby run the following command: <code>rvm install ruby-2.0.0</code>. This will download the ruby source and compile it for your system. Once it finishes, check that it installed correctly by using the <code>rvm list</code> command.
 
           rvm list
           rvm rubies
@@ -315,7 +315,7 @@ position: 3
           Parsing documentation for bundler-1.3.5
           Installing ri documentation for bundler-1.3.5
           1 gem installed
-    
+
           $ gem install rake
           Fetching: rake-10.1.0.gem (100%)
           Successfully installed rake-10.1.0
@@ -329,7 +329,7 @@ position: 3
       Once it finishes, check that wagon installed correctly by running the <code>wagon version</code> command.
 
           $ wagon version
-          1.3.0
+          1.4.0
 
       Wagon is now ready to use and you can start creating your first LocomotiveCMS site.
 
@@ -374,7 +374,7 @@ position: 3
       - **Ubuntu**: <code>sudo apt-get install ruby</code>
       - **Fedora**: <code>sudo yum install ruby</code>
 
-      If an older version of ruby is already installed, updating your system's ruby probably isn't a good idea, so we recommend adding an additional ruby using a ruby version manager such as [RVM](http://www.rvm.io) or [rbenv](https://github.com/sstephenson/rbenv). 
+      If an older version of ruby is already installed, updating your system's ruby probably isn't a good idea, so we recommend adding an additional ruby using a ruby version manager such as [RVM](http://www.rvm.io) or [rbenv](https://github.com/sstephenson/rbenv).
 
       The [RVM website](http://www.rvm.io) provides a _curl_ command you can use to intall RVM. After RVM installs, run the <code>source</code> command specified in the output.
 
@@ -393,7 +393,7 @@ position: 3
           Parsing documentation for bundler-1.3.5
           Installing ri documentation for bundler-1.3.5
           1 gem installed
-    
+
           $ gem install rake
           Fetching: rake-10.1.0.gem (100%)
           Successfully installed rake-10.1.0
@@ -408,7 +408,7 @@ position: 3
       Once it finishes, check that wagon installed correctly by running the <code>wagon version</code> command.
 
           $ wagon version
-          1.3.0
+          1.4.0
 
       Wagon is now ready to use and you can start creating your first LocomotiveCMS site.
 
@@ -416,10 +416,10 @@ position: 3
 
 
 
-      
 
 
 
-      
+
+
 
 {% endblock %}

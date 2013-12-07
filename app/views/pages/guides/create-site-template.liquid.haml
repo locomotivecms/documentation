@@ -62,20 +62,18 @@ listed: true
 
       cd ~/workspace
 
-      mkdir -p wagon_generators/my_template
-      mkdir -p wagon_generators/my_template/app/content_types
-      touch wagon_generators/my_template/app/content_types/.empty_directory
       mkdir -p wagon_generators/my_template/app/views/pages
-      touch wagon_generators/my_template/app/content_types/.empty_directory
-      mkdir -p wagon_generators/my_template/app/views/snippets
-      touch wagon_generators/my_template/app/content_types/.empty_directory
+      mkdir wagon_generators/my_template/app/views/snippets
+      touch wagon_generators/my_template/app/views/snippets/.empty_directory
 
-      mkdir -p wagon_generators/my_template/public/images
-      touch wagon_generators/my_template/public/images/.empty_directory
-      mkdir wagon_generators/my_template/public/javascripts
+      mkdir -p wagon_generators/my_template/public/javascripts
       touch wagon_generators/my_template/public/javascripts/.empty_directory
       mkdir wagon_generators/my_template/public/stylesheets
       touch wagon_generators/my_template/public/stylesheets/.empty_directory
+
+  <div class="alert alert-info">
+    For simplicity, we have not declared all the folders used by Wagon.
+  </div>
 
   <div class="alert alert-info">
     The <strong>.empty_directory</strong> file forces the generator to create the parent folder when generating the site.
@@ -90,7 +88,7 @@ listed: true
       class MyTemplate < Locomotive::Wagon::Generators::Site::Base
 
         def self.source_root
-          File.join(File.dirname(__FILE__), 'foo')
+          File.join(File.dirname(__FILE__), 'my_template')
         end
 
       end
@@ -104,7 +102,7 @@ listed: true
   </div>
 
   <div class="alert alert-info">
-    You will find more complex samples <strong><a href="https://github.com/locomotivecms/wagon/tree/master/lib/locomotive/wagon/generators/site">here</a></strong>.
+    You will find more complex samples <a href="https://github.com/locomotivecms/wagon/tree/master/lib/locomotive/wagon/generators/site">here</a>.
   </div>
 
   ## 3. Edit your site

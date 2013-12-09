@@ -1,0 +1,113 @@
+---
+title: Tweak engine models
+listed: true
+---
+{% extends index %}
+
+{% block content %}
+
+:markdown
+  One of the good things about using a [Rails engine](http://guides.rubyonrails.org/engines.html) is that you can pretty easily enhance a class of the engine directly in your application.
+
+  As an example, we are going to tweak the LocomotiveCMS Page model in order to manage the cache of a page.
+
+  <div class="alert alert-info">
+  We assume you're using Textmate. That is why you will see <strong>mate</strong> to edit a file. If not, please correct it accordingly.
+  </div>
+
+  # 1. Initialize the custom Page model
+
+      cd <your application path>
+      mkdir app/models/locomotive
+      mate app/models/locomotive/page.rb
+
+  Fill in the blank file with the following code:
+
+      module Locomotive
+        class Page
+        end
+      end
+
+  In other words, we just re-open in Ruby an existing class from the engine.
+
+  Keep in mind that the engine models are loaded **BEFORE** those from the application.
+
+  # 2. Implement a new behavior
+
+  Let's say we want to manage the cache of a Page.
+
+      mkdir -p app/concerns/locomotive/page
+      mate app/concerns/locomotive/page/cache.rb
+
+  We use the [Concern module](http://api.rubyonrails.org/classes/ActiveSupport/Concern.html) from ActiveSupport to implement the new behavior.
+
+      {% raw %}module Locomotive::Page::Cache
+
+        extend ActiveSupport::Concern
+
+        included do
+
+          ## callbacks ##
+          after_update  :reset_cache
+          after_destroy :reset_cache
+
+        end
+
+        def reset_cache
+          logger.info "Reset cache for " + page.title
+          # TODO: really reset cache :-)
+        end
+
+      end{% endraw %}
+
+  # 3. Add the new behavior to our custom Page
+
+  Open your page class:
+
+      mate app/models/locomotive/page.rb
+
+  Finally, include the Cache module we have just created:
+
+      module Locomotive
+        class Page
+
+          ## injections ##
+          include Locomotive::Page::Cache
+
+        end
+      end
+
+  <div class="alert alert-info">
+  You can add as many modules as you want.
+  </div>
+
+  <div class="alert alert-info">
+  The same mechanism can be applied to the LocomotiveCMS controllers.
+  </div>
+
+/ This function allows you to retrieve a wagon site from a hosted location (a LocomotiveCMS engine).
+
+/ Create a new site with wagon
+
+/     cd ~/workspace
+/     wagon init mysite
+/     cd mysite
+/     bundle install
+
+/ Edit `config/deploy.yml` to configure the site you want to pull, on the production environment.
+
+/ Run the pull command
+
+/     bundle exec wagon pull production
+
+/ The mysite folder will be updated with all the site from the engine.
+
+/ Test it
+
+/     bundle exec wagon serve
+
+/ Then run your browser on http://0.0.0.0:3333
+
+/ Note: Because all the assets are compiled in the engine, you won't get the sass / coffeescript sources.
+
+{% endblock %}

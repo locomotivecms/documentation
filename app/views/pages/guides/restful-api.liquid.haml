@@ -1,0 +1,66 @@
+---
+title: Use the Restful API
+published: true
+listed: true
+---
+{% extends index %}
+
+{% block content %}
+
+:markdown
+
+  Wagon communicates to the Engine through our Restful API. But sometimes, it can be great to access the content of a site without using Wagon.
+
+  <div class="alert alert-info">
+    For simplicity purposes, we use <a href="http://curl.haxx.se">curl</a>, a command line tool to request the API.
+    <br/>
+    In Ruby, <a href="https://github.com/jnunemaker/httparty">HTTParty</a> is a great tool to request the API.
+  </div>
+
+  # 1. Get an API token
+
+  First open your terminal. Then, you've got two ways for getting a token.
+
+  You can either pass your **email / password**
+
+      curl -d 'email=us...@example.com&password=secret' http://<your site>/locomotive/api/tokens.json
+
+  or your **API key**
+
+      curl -d 'api_key=.....' http://<your site>/locomotive/api/tokens.json
+
+  You should read something like this in your terminal:
+
+      {"token":"K9zm8niKTxuM4ZMNK7Ct"}
+
+  **K9zm8niKTxuM4ZMNK7Ct** is the value of the *auth_token* parameter we will pass to all our API requests.
+
+  # 2. Get information about the current site
+
+      curl http://<your site>/locomotive/api/current_site.json?auth_token=K9zm8niKTxuM4ZMNK7Ct
+
+  The output will look something like:
+
+      {"id":"5293bce9247580a372000001","created_at":"2013-11-25T21:11:05Z","updated_at":"2013-11-28T16:03:20Z","name":"Hello world","locales":["en","fr","de"],"timezone":"UTC","subdomain":"green-mesta-76","domains":["green-mesta-76.locomotivehosting.dev"],"memberships":[{"id":"52971bdb247580155c000032","created_at":"2013-11-28T10:32:59Z","updated_at":"2013-11-28T10:32:59Z","role":"admin","grant_admin":true,"account_id":"511ec71e87f6438036000001","name":"Did","email":"me@gmail.com"}]}
+
+  <div class="alert alert-info">
+  The available resources are: current_site, accounts, memberships, pages, snippets, content_types, content_entries, theme_assets, content_assets and translations.
+  </div>
+
+  # 3. Update the site
+
+  Let's say we want to update the name of the site:
+
+      curl -X PUT -d 'site[name]=TEST' http://<your site>/locomotive/api/current_site.json?auth_token=K9zm8niKTxuM4ZMNK7Ct
+
+  It should return the JSON output of the updated site.
+
+  # 4. Create a page
+
+  Let's add a page under the index page (/hello-world):
+
+      curl -X POST -d 'page[title]=Hello world&page[slug]=hello-world&page[parent_fullpath]=index&page[raw_template]=Built with the API&page[listed]=true&page[published]=true' http://<your site>/locomotive/api/current_site.json?auth_token=K9zm8niKTxuM4ZMNK7Ct
+
+
+
+{% endblock %}

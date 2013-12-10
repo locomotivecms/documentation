@@ -1,0 +1,144 @@
+---
+title: 2.5 Snippets
+listed: true
+position: 8
+---
+{% extends 'index' %}
+
+{% block 'content' %}
+
+:markdown
+
+  Snippets are reusable pieces of Liquid code that can be included in pages. Let's look at how they work.
+
+  ## Snippet files
+  Snippets are stored in files under the `app/views/snippets` directory. If you open that directory, you'll find an example snippet, `footer.liquid`, that was included by the Bootstrap template we used.
+
+  Open the file and update its contents with the code below.
+
+      {% raw %}<div class="clearfix"></div>
+      <footer class="footer">
+        <p>&copy; Wisdom for Wanderers {{ now | localized_date: '%Y' }} </p>
+      </footer>{% endraw %}
+
+  The above code should be mostly straight forward, but let's take a brief excursion to explore the new filter encountered here: `localized_date`.
+
+  ## localized_date
+  The [localized_date](http://doc.locomotivecms.com/references/api/filters/localized-date) filter is used for formatting dates.
+
+  In the code above, it is applied to the global variable `now`, which represents the current date and time. We've used global variables before in the form of `page` and `site`. Those interested can [view a complete list of global variables here](http://doc.locomotivecms.com/references/api/objects/global-variables). 
+
+  The filter is then passed a format string indicating how we would like the date or time to be formatted. In the code above, `%Y` means _four digit year_, so the time will be output only as the year. Ruby's [Time#strftime](http://www.ruby-doc.org/core-2.0.0/Time.html#method-i-strftime) is used to interpret the format string, so consult the [Ruby documentation](http://www.ruby-doc.org/core-2.0.0/Time.html#method-i-strftime) for a complete list of possible format string variables.
+
+  Here are some sample pieces of code using `localized_date`:
+
+  - `{% raw %}{{ 'July 1st, 2012' | localized_date: '%-m/%-d/%y' }}{% endraw %}` outputs `7/1/12` 
+  - `{% raw %}{{ now | localized_date: '%r' }}{% endraw %}` outputs `07:09:55 PM`
+  - `{% raw %}{{ today | localized_date: '%A' }}{% endraw %}` outputs `Monday` 
+  - `{% raw %}{{ '2013-12-09' | localized_date: '%A', 'fr' }}{% endraw %}` outputs `lundi`
+
+  Like other filters, `localized_date` can be applied to strings as well as variables. Also, the site's current locale is taken into account when formatting the date, so that days of the week and other locale specific formatting is done for you. To use a locale other than the site's current locale, pass in the locale's ISO code as a second argument. 
+
+  ## Including snippets
+
+  Let's get back to the task at hand. Next, we need to include the footer snippet file inside a page file. Add the following line to `index.liquid` just below the end of the main block.
+
+      {% raw %}{% include 'footer' %}{% endraw %}
+
+  The Liquid `include` tag is used to insert snippets into templates.
+
+  To make the footer less plain, add the following code below the `body *` declaration in  `styles.css`.
+
+      /* the footer */
+      footer {
+        margin-top: 10px;
+        background-color: #333;
+        color: #fff;
+      }
+
+      footer p {
+        padding: 10px;
+        text-align: center;
+      }
+
+  Let's see how the footer looks using Wagon's web server.
+
+  <img src="{{ 'guides/making-blog/2.5/footer.png' | theme_image_url }}" alt="The new footer" />
+
+  Since we included the snippet in the `index.liquid` file, it has been inherited by `about.liquid` as well and the footer displays on both pages.
+
+  While the above footer snippet was a good demonstration of how snippets work, you may be wondering why use a snippet at all? It's true that, in this example, we could have put the contents of `footer.liquid` directly into `index.liquid` and the result would be identical.
+
+  Of course, this isn't always the case. Sometimes, there are elements, such as a side bar, that appear in several, but not all, sibling templates. By putting the side bar's code into a snippet file you can avoid duplicating code across template files. Further, page files, particularly `index.liquid`, can sometimes become quite large and difficult to navigate. In such situations, you may choose to break out some parts into snippets to aid in code organization.
+
+  ## Passing variables to a snippet
+
+  Snippets have one more cool feature worth noting: you can pass variables into them.
+
+  In [lesson 2.3](/making-blog/2-3-assets), we made a frame and light box we for an image on the `about.liquid` page. Let's put the Liquid for this light box into a snippet so that we can easily reuse it for images anywhere on the site.
+
+  Create a new file, `app/views/snippets/img_box.liquid`, and paste in the following code.
+
+      {% raw %}<div class="img-box">
+        <a href="{{ photo | resize: '800x>' }}">
+          <img src="{{ photo | resize: size }}" alt="{{ caption }}" />
+        </a>
+        <p>{{ caption }}</p>
+      </div>{% endraw %}
+
+  The code above is similar to the code in `about.liquid`, but I've changed the resize strings. The enlarged photo string is now _800x>_ instead of _800x_. I added the &gt; because I don't want to resize the image to 800px wide unless it is wider than that to begin with.
+
+  The second resize string has been replaced with a variable, `size`.
+
+  Next, open `about.liquid` and replace the `<div class="img-box">` tag and its contents with the code below.
+
+      {% raw %}{% include 'img_box' with caption, photo, size: "400x" %}{% endraw %}
+
+  The above code includes the *img_box* snippet and uses the keyword `with` to pass three variables to the snippet. We must pass these variables to the snippet because variables defined in a template are not automatically available to included snippets. Only global variables can be used in snippets without first being passed in.
+
+  We can pass already defined variables or assign new variables inline using a colon. In the following example, all three `include` tags will produce the same output.
+      
+      {% raw %}{% assign foo = "baz" %}
+      {% assign bar = "baz" %}
+      {% include 'sample' with foo %}
+      {% include 'sample' with foo: bar %}
+      {% include 'sample' with foo: "baz" %}{% endraw %}
+
+  Let's preview the _About_ page using Wagon's web server.
+
+  <img src="{{ 'guides/making-blog/2.5/footer.png' | theme_image_url }}" alt="It's the same as before" />
+
+  If everything worked correctly, it should look the same as before.
+
+  Let's put our new snippet to the test by using it for another image. Until we put some actual content on the homepage, let's add a photo to spruce things up. I'm going to use <a href="{{ 'guides/making-blog/2.5/temppeliaukio.jpg' | theme_image_url }}">this picture</a> taken at Helsinki's Temppeliaukio Church and you are free to use it too, if you like. Place the image in the `public/images` directory.
+
+  Open `index.liquid` and replace "Coming Soon." with the code shown below.
+
+      {% raw %}<p>Coming Soon.</p>
+      {% assign photo = "temppeliaukio.jpg" | theme_image_url %}
+      {% include 'img_box' with photo, caption: "Temppeliaukio Church, Helsinki", size: "1000x300#" %}{% endraw %}
+
+  This will position the photo under the coming soon text and leave it at full width. The `size` string we specified will crop the photo to be 1000px wide by 300px tall. Preview the page in your browser.
+
+  <img src="{{ 'guides/making-blog/2.5/home_page_photo.png' | theme_image_url }}" alt="It's the same as before" />
+
+  Looks good! And enlarged?
+
+  <img src="{{ 'guides/making-blog/2.5/home_page_photo_enlarged.png' | theme_image_url }}" alt="It's the same as before" />
+
+  Great! Our new lightbox snippet is working.
+
+  # Finishing up
+
+  Commit your changes to the git repository.
+
+      $ git add app/views/snippets/img_box.liquid
+      $ git add public/images/temppeliaukio.jpg
+      $ git commit -am "Added a footer to the site, a photo to the homepage, and an image box snippet."
+
+  Hopefully, you now understand snippets and over the past five lessons have gotten more familiar with Liquid markup and LocomotiveCMS templates.
+
+  In the next section, we will be diving into the very heart of LocomotiveCMS: content types.
+
+
+{% endblock %}

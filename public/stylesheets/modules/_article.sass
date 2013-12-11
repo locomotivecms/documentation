@@ -1,5 +1,9 @@
 #content-column
   article
+    font-size: 15px
+    font-weight: 300
+    line-height: 24px
+
     h1
       font-size: 20px
       font-weight: normal
@@ -38,7 +42,7 @@
       em
         font-weight: normal
         text-decoration: underline
-        font-size: 14px
+        font-size: inherit
 
     ul
       +pretty-bullets("/images/bullet.png", 5px, 5px, 27px)
@@ -47,9 +51,6 @@
 
       li
         color: $light-black
-        font-size: 15px
-        line-height: 24px
-        font-weight: 300
         margin-bottom: 10px
 
         strong
@@ -59,7 +60,6 @@
           color: $deep-blue
     ol
       li
-        line-height: 18px
         margin-bottom: 10px
         a
           color: $deep-blue

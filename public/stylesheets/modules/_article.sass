@@ -1,8 +1,9 @@
 #content-column
   article
-    font-size: 15px
-    font-weight: 300
-    line-height: 24px
+    font-size: 14px
+    font-weight: 400
+    line-height: 20px
+    color: $dark-black
 
     h1
       font-size: 20px
@@ -34,23 +35,25 @@
       background: none
 
     p
+      font-size: inherit
+      font-weight: inherit
+      line-height: inherit
+      color: inherit
+
       a
         color: $deep-blue
       strong
         font-weight: bold
 
       em
-        font-weight: normal
-        text-decoration: underline
         font-size: inherit
+        font-style: italic
 
     ul
-      +pretty-bullets("/images/bullet.png", 5px, 5px, 27px)
+      +pretty-bullets("/images/bullet.png", 5px, 5px, 20px)
       +open-sans
       margin-bottom: 10px
-
       li
-        color: $light-black
         margin-bottom: 10px
 
         strong
@@ -59,6 +62,7 @@
         a
           color: $deep-blue
     ol
+      color: inherit
       li
         margin-bottom: 10px
         a

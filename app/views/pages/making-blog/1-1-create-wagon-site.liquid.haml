@@ -16,172 +16,174 @@ position: 1
 
   Since I would like to make my blog's design responsive, and I'm generally not so good with designing anyway, I plan on using [Twitter Bootstrap](http://www.getbootstrap.com) to help out on the frontend side of things. Fortunately, Wagon comes with some built-in templates for Twitter Bootstrap. We can view Wagon's available templates by using the `wagon list_templates` command.
 
-      $ wagon list_templates
-      blank - A blank LocomotiveCMS site with the minimal files.
-      bootstrap2 - A LocomotiveCMS site with Twitter Bootstrap (v2.3.2) and Font Awesome (v3.2.1).
-      bootstrap3 - A LocomotiveCMS site powered by Twitter bootstrap (v3.0.0).
-      foundation - A LocomotiveCMS site powered by Foundation (v4.3.2).
-      unzip - Unzip a local or remote (http, https, ftp) zipped LocomotiveCMS site.
+  <pre><span>$ wagon list_templates
+  blank - A blank LocomotiveCMS site with the minimal files.
+  bootstrap2 - A LocomotiveCMS site with Twitter Bootstrap (v2.3.2) and Font Awesome (v3.2.1).
+  bootstrap3 - A LocomotiveCMS site powered by Twitter bootstrap (v3.0.0).
+  foundation - A LocomotiveCMS site powered by Foundation (v4.3.2).
+  unzip - Unzip a local or remote (http, https, ftp) zipped LocomotiveCMS site.</pre></span>
 
   As you can see, Wagon comes with several built-in templates, including ones for Bootstrap 2 and Bootstrap 3. Great!
 
   `wagon list_templates` is a handy command and Wagon comes with quite a few more commands, but you don't need to memorize all of them if you can remember just this one: `wagon help`. Let's run that one.
 
-      $ wagon help
-      wagon clone NAME HOST [PATH]  # Clone a remote LocomotiveCMS site
-      wagon destroy ENV [PATH]      # Destroy a remote LocomotiveCMS engine
-      wagon generate TYPE ...ARGS   # Generate resources (content_types, page, snippets) for a LocomotiveCMS site
-      wagon help [COMMAND]          # Describe available commands or one specific command
-      wagon init NAME [PATH]        # Create a brand new LocomotiveCMS site
-      wagon list_templates          # List all the templates to create either a site or a content type
-      wagon pull ENV [PATH]         # Pull a site from a remote LocomotiveCMS engine
-      wagon push ENV [PATH]         # Push a site to a remote LocomotiveCMS engine
-      wagon serve [PATH]            # Serve a LocomotiveCMS site from the file system
-      wagon version                 # Version of the LocomotiveCMS wagon
+  <pre><span>$ wagon help
+  wagon clone NAME HOST [PATH]  # Clone a remote LocomotiveCMS site
+  wagon destroy ENV [PATH]      # Destroy a remote LocomotiveCMS engine
+  wagon generate TYPE ...ARGS   # Generate resources (content\_types, page, snippets) for a LocomotiveCMS site
+  wagon help [COMMAND]          # Describe available commands or one specific command
+  wagon init NAME [PATH]        # Create a brand new LocomotiveCMS site
+  wagon list_templates          # List all the templates to create either a site or a content type
+  wagon pull ENV [PATH]         # Pull a site from a remote LocomotiveCMS engine
+  wagon push ENV [PATH]         # Push a site to a remote LocomotiveCMS engine
+  wagon serve [PATH]            # Serve a LocomotiveCMS site from the file system
+  wagon version                 # Version of the LocomotiveCMS wagon</pre></span>
 
   And, voilà! Here's a list of Wagon's commands and what they do. Let's try another command, `wagon version`.
 
-      $ wagon version
-      1.3.1
+%pre<
+  %span<
+    $ wagon version
+    1.3.1
 
+:markdown
   As advertised, this prints out what version of Wagon you have. At the time of writing, the latest version of Wagon was 1.3.1, but you can [check for the current latest version on RubyGems.org](http://rubygems.org/gems/locomotivecms_wagon). If you don't have the latest version, you might want to upgrade your gems using `gem update`.
 
   Let's go ahead and create the site. According to `wagon help`, `wagon init` creates a new site, but how do we use the Bootstrap template? We can find out by using `wagon help` again.
 
-      $ wagon help init
-      Usage:
-        wagon init NAME [PATH]
+  <pre><span>$ wagon help init
+  Usage:
+    wagon init NAME [PATH]
 
-      Options:
-        -t, [--template=TEMPLATE]  # instead of building from a blank site, you can have a pre-fetched site with form a template (see the templates command)
-                                   # Default: blank
-        -v, [--verbose]            # display the full error stack trace if an error occurs
+  Options:
+    -t, [--template=TEMPLATE]  # instead of building from a blank site, you can have a pre-fetched site with form a template (see the templates command)
+                               # Default: blank
+    -v, [--verbose]            # display the full error stack trace if an error occurs
 
-      Create a brand new LocomotiveCMS site
+  Create a brand new LocomotiveCMS site</span></pre>
 
   Question answered. As `wagon help` points outs, we need to use the `--template` option to specify a template. I won't need IE 6 or 7 support, so I'm going to go with Bootstrap 3. Also, we'll need a name for our site. As you'll remember from the introduction, this is a travel blog, so I'm going to go with "Wisdom for Wanderers," but for the wagon command I'm going to use an underscored version of this, `wisdom_for_wanderers`. We could use a spaced name with quotes, but I don't like spaces in my folder names. Let's run the `wagon init` command.
 
-      $ wagon init wisdom_for_wanderers --template=bootstrap3
-          create  wisdom_for_wanderers
-          create  wisdom_for_wanderers/Gemfile
-          create  wisdom_for_wanderers/app/content_types
-          create  wisdom_for_wanderers/app/views/pages/404.liquid
-          create  wisdom_for_wanderers/app/views/pages/404.liquid.haml
-          create  wisdom_for_wanderers/app/views/pages/index.liquid
-          create  wisdom_for_wanderers/app/views/pages/index.liquid.haml
-          create  wisdom_for_wanderers/app/views/snippets/footer.liquid
-          create  wisdom_for_wanderers/app/views/snippets/footer.liquid.haml
-          create  wisdom_for_wanderers/config.ru
-          create  wisdom_for_wanderers/config/deploy.yml
-          create  wisdom_for_wanderers/config/site.yml
-          create  wisdom_for_wanderers/config/translations.yml
-          create  wisdom_for_wanderers/data
-          create  wisdom_for_wanderers/public/fonts/glyphicons-halflings-regular.eot
-          create  wisdom_for_wanderers/public/fonts/glyphicons-halflings-regular.svg
-          create  wisdom_for_wanderers/public/fonts/glyphicons-halflings-regular.ttf
-          create  wisdom_for_wanderers/public/fonts/glyphicons-halflings-regular.woff
-          create  wisdom_for_wanderers/public/javascripts/bootstrap.js
-          create  wisdom_for_wanderers/public/javascripts/bootstrap.min.js
-          create  wisdom_for_wanderers/public/samples/apple-touch-icon-114-precomposed.png
-          create  wisdom_for_wanderers/public/samples/apple-touch-icon-144-precomposed.png
-          create  wisdom_for_wanderers/public/samples/apple-touch-icon-57-precomposed.png
-          create  wisdom_for_wanderers/public/samples/apple-touch-icon-72-precomposed.png
-          create  wisdom_for_wanderers/public/samples/favicon.png
-          create  wisdom_for_wanderers/public/stylesheets/bootstrap-theme.css
-          create  wisdom_for_wanderers/public/stylesheets/bootstrap-theme.min.css
-          create  wisdom_for_wanderers/public/stylesheets/bootstrap.css
-          create  wisdom_for_wanderers/public/stylesheets/bootstrap.min.css
-      Do you prefer HAML templates ?
+  <pre><span>$ wagon init wisdom_for_wanderers --template=bootstrap3
+    create  wisdom\_for\_wanderers
+    create  wisdom\_for\_wanderers/Gemfile
+    create  wisdom\_for\_wanderers/app/content\_types
+    create  wisdom\_for\_wanderers/app/views/pages/404.liquid
+    create  wisdom\_for\_wanderers/app/views/pages/404.liquid.haml
+    create  wisdom\_for\_wanderers/app/views/pages/index.liquid
+    create  wisdom\_for\_wanderers/app/views/pages/index.liquid.haml
+    create  wisdom\_for\_wanderers/app/views/snippets/footer.liquid
+    create  wisdom\_for\_wanderers/app/views/snippets/footer.liquid.haml
+    create  wisdom\_for\_wanderers/config.ru
+    create  wisdom\_for\_wanderers/config/deploy.yml
+    create  wisdom\_for\_wanderers/config/site.yml
+    create  wisdom\_for\_wanderers/config/translations.yml
+    create  wisdom\_for\_wanderers/data
+    create  wisdom\_for\_wanderers/public/fonts/glyphicons-halflings-regular.eot
+    create  wisdom\_for\_wanderers/public/fonts/glyphicons-halflings-regular.svg
+    create  wisdom\_for\_wanderers/public/fonts/glyphicons-halflings-regular.ttf
+    create  wisdom\_for\_wanderers/public/fonts/glyphicons-halflings-regular.woff
+    create  wisdom\_for\_wanderers/public/javascripts/bootstrap.js
+    create  wisdom\_for\_wanderers/public/javascripts/bootstrap.min.js
+    create  wisdom\_for\_wanderers/public/samples/apple-touch-icon-114-precomposed.png
+    create  wisdom\_for\_wanderers/public/samples/apple-touch-icon-144-precomposed.png
+    create  wisdom\_for\_wanderers/public/samples/apple-touch-icon-57-precomposed.png
+    create  wisdom\_for\_wanderers/public/samples/apple-touch-icon-72-precomposed.png
+    create  wisdom\_for\_wanderers/public/samples/favicon.png
+    create  wisdom\_for\_wanderers/public/stylesheets/bootstrap-theme.css
+    create  wisdom\_for\_wanderers/public/stylesheets/bootstrap-theme.min.css
+    create  wisdom\_for\_wanderers/public/stylesheets/bootstrap.css
+    create  wisdom\_for\_wanderers/public/stylesheets/bootstrap.min.css
+  Do you prefer HAML templates ?</pre></span>
 
   The commanded prints out each file it creates and then asks whether you would like to use [HAML Templates](http://haml.info/). I tend to think stuff like HAML is pretty cool, but to make this tutorial as accessible as possible I'm going to use HTML templates. But, for those following along at home that would like to use HAML, you can do so by typing _yes_. Everyone else, let's type _no_ and continue.
 
-      Do you prefer HAML templates ? no
-          remove  wisdom_for_wanderers/app/views/pages/index.liquid.haml
-          remove  wisdom_for_wanderers/app/views/pages/404.liquid.haml
-          remove  wisdom_for_wanderers/app/views/snippets/footer.liquid.haml
-
-      Congratulations, your site "wisdom_for_wanderers" has been created successfully !
-      Next steps:
-          cd ./wisdom_for_wanderers
-          bundle install
-          bundle exec wagon serve
-          open http://0.0.0.0:3333
+  <pre><span>Do you prefer HAML templates ? no
+      remove  wisdom\_for\_wanderers/app/views/pages/index.liquid.haml
+      remove  wisdom\_for\_wanderers/app/views/pages/404.liquid.haml
+      remove  wisdom\_for\_wanderers/app/views/snippets/footer.liquid.haml
+  Congratulations, your site "wisdom\_for\_wanderers" has been created successfully !
+  Next steps:
+      cd ./wisdom\_for\_wanderers
+      bundle install
+      bundle exec wagon serve
+      open http://0.0.0.0:3333</pre></span>
 
   Our site was created successfully. After the congratulatory message, the command provides our "next steps," the first of which is changing into the project's directory.
 
-      $ cd wisdom_for_wanders
+  <pre><span>$ cd wisdom\_for\_wanders</pre></span>
 
   Next, we need to run `bundle install`, which installs Wagon's gem dependencies. 
 
-      $ bundle install
-      Fetching gem metadata from https://rubygems.org/........
-      Fetching gem metadata from https://rubygems.org/..
-      Resolving dependencies...
-      Using RedCloth (4.2.9) 
-      Using i18n (0.6.5) 
-      Using multi_json (1.2.0) 
-      Using activesupport (3.2.15) 
-      Using coderay (1.1.0) 
-      Using erubis (2.7.0) 
-      Using better_errors (1.0.1) 
-      Using chronic (0.9.1) 
-      Using chunky_png (1.2.9) 
-      Using coffee-script-source (1.6.3) 
-      Using execjs (2.0.2) 
-      Using coffee-script (2.2.0) 
-      Using colorize (0.5.8) 
-      Using commonjs (0.2.7) 
-      Using fssm (0.2.10) 
-      Using sass (3.2.12) 
-      Using compass (0.12.2) 
-      Using daemons (1.1.9) 
-      Using rack (1.5.2) 
-      Using dragonfly (0.9.15) 
-      Using eventmachine (1.0.3) 
-      Using faker (0.9.5) 
-      Installing ffi (1.9.3) 
-      Using tilt (1.3.3) 
-      Using haml (4.0.3) 
-      Using hike (1.2.3) 
-      Using json (1.8.1) 
-      Using multi_xml (0.5.5) 
-      Using httparty (0.12.0) 
-      Using multipart-post (1.2.0) 
-      Using httmultiparty (0.3.10) 
-      Using less (2.2.2) 
-      Using libv8 (3.16.14.3) 
-      Using listen (0.7.3) 
-      Using locomotivecms-liquid (2.6.0) 
-      Using locomotivecms-solid (0.2.2.1) 
-      Using logger (1.2.8) 
-      Using mime-types (1.25) 
-      Using sprockets (2.10.0) 
-      Using sprockets-sass (1.0.2) 
-      Using stringex (1.4.0) 
-      Using tzinfo (1.0.1) 
-      Using zip (2.0.2) 
-      Using locomotivecms_mounter (1.3.1) 
-      Using rack-cache (1.2) 
-      Using redcarpet (3.0.0) 
-      Using thin (1.5.1) 
-      Using thor (0.18.1) 
-      Using will_paginate (3.0.5) 
-      Using locomotivecms_wagon (1.3.1) 
-      Using rb-fsevent (0.9.3) 
-      Using rb-inotify (0.9.2) 
-      Using ref (1.0.5) 
-      Using therubyracer (0.12.0) 
-      Using wdm (0.1.0) 
-      Using bundler (1.3.5) 
-      Your bundle is complete!
-      Use `bundle show [gemname]` to see where a bundled gem is installed.
+  <pre><span>$ bundle install
+  Fetching gem metadata from https://rubygems.org/........
+  Fetching gem metadata from https://rubygems.org/..
+  Resolving dependencies...
+  Using RedCloth (4.2.9) 
+  Using i18n (0.6.5) 
+  Using multi\_json (1.2.0) 
+  Using activesupport (3.2.15) 
+  Using coderay (1.1.0) 
+  Using erubis (2.7.0) 
+  Using better\_errors (1.0.1) 
+  Using chronic (0.9.1) 
+  Using chunky\_png (1.2.9) 
+  Using coffee-script-source (1.6.3) 
+  Using execjs (2.0.2) 
+  Using coffee-script (2.2.0) 
+  Using colorize (0.5.8) 
+  Using commonjs (0.2.7) 
+  Using fssm (0.2.10) 
+  Using sass (3.2.12) 
+  Using compass (0.12.2) 
+  Using daemons (1.1.9) 
+  Using rack (1.5.2) 
+  Using dragonfly (0.9.15) 
+  Using eventmachine (1.0.3) 
+  Using faker (0.9.5) 
+  Installing ffi (1.9.3) 
+  Using tilt (1.3.3) 
+  Using haml (4.0.3) 
+  Using hike (1.2.3) 
+  Using json (1.8.1) 
+  Using multi\_xml (0.5.5) 
+  Using httparty (0.12.0) 
+  Using multipart-post (1.2.0) 
+  Using httmultiparty (0.3.10) 
+  Using less (2.2.2) 
+  Using libv8 (3.16.14.3) 
+  Using listen (0.7.3) 
+  Using locomotivecms-liquid (2.6.0) 
+  Using locomotivecms-solid (0.2.2.1) 
+  Using logger (1.2.8) 
+  Using mime-types (1.25) 
+  Using sprockets (2.10.0) 
+  Using sprockets-sass (1.0.2) 
+  Using stringex (1.4.0) 
+  Using tzinfo (1.0.1) 
+  Using zip (2.0.2) 
+  Using locomotivecms\_mounter (1.3.1) 
+  Using rack-cache (1.2) 
+  Using redcarpet (3.0.0) 
+  Using thin (1.5.1) 
+  Using thor (0.18.1) 
+  Using will\_paginate (3.0.5) 
+  Using locomotivecms_wagon (1.3.1) 
+  Using rb-fsevent (0.9.3) 
+  Using rb-inotify (0.9.2) 
+  Using ref (1.0.5) 
+  Using therubyracer (0.12.0) 
+  Using wdm (0.1.0) 
+  Using bundler (1.3.5) 
+  Your bundle is complete!
+  Use &#96;bundle show [gemname]&#96; to see where a bundled gem is installed.</pre></span>
 
   The `bundle install` command is very informative and it prints out the name of each ruby gem it installs. From here we could start developing, but the last two steps test that everything is setup correctly with Wagon's built-in web server, so let's start the web server.
 
-      $ bundle exec wagon serve
-      >> Thin web server (v1.5.1 codename Straight Razor)
-      >> Maximum connections set to 1024
-      >> Listening on 0.0.0.0:3333, CTRL+C to stop
+  <pre><span>$ bundle exec wagon serve
+  &gt;&gt; Thin web server (v1.5.1 codename Straight Razor)
+  &gt;&gt; Maximum connections set to 1024
+  &gt;&gt; Listening on 0.0.0.0:3333, CTRL+C to stop</pre></span>
 
   Though [Rails](http://www.rubyonrails.org/) veterans will be right at home, some might be wondering what this `bundle exec` business is. Here's the short version: [bundler](http://bundler.io/) is a tool that lets us keep gem dependencies for different projects separate. So, that `bundle install` command doesn't install those gems globally. It installs them just for this project. That way if for some reason later you have a different ruby project that requires different versions of the same gems, each project has its own versions.  But, to make sure that we are running this project's version of a gem, from here on we'll need to put `bundle exec` before all Wagon commands. Okay, truthfully it's not required for *all* commands, but it's just simpler to always add it.
 
@@ -197,70 +199,70 @@ position: 1
 
   Either use `ctrl + c` to shutdown the web server or open a new command line and navigate to the site's project folder. Let's see what files we have by running `find .`. I'm going to briefly comment on each of the files and folders, but if something doesn't make sense, don't worry: we'll be coming back to the important stuff later.
 
-      $ find .
-      .
-      ./app
-      ./app/content_types
+  <pre><span>$ find .
+  .
+  ./app
+  ./app/content_types</pre></span>
 
   The `app/content_types` folder holds YAML files for defining your custom content types. The data for your content types doesn't go in here; this folder just holds the files that define the content types used by your site.
 
-      ./app/views
-      ./app/views/pages
-      ./app/views/pages/404.liquid
-      ./app/views/pages/index.liquid
+  <pre><span>./app/views
+  ./app/views/pages
+  ./app/views/pages/404.liquid
+  ./app/views/pages/index.liquid</pre></span>
 
   The `app/views/pages` folder holds liquid templates for our site. The Bootstrap template we used preloaded the site with an index page and a 404 page.
 
-      ./app/views/snippets
-      ./app/views/snippets/footer.liquid
+  <pre><span>./app/views/snippets
+  ./app/views/snippets/footer.liquid</pre></span>
 
   The `app/views/snippets` folder holds files with liquid markup that can be reused in multiple templates. Just to show us what a sample snippet might look like, the Bootstrap template included one named `footer.liquid`.
 
-      ./config
-      ./config/deploy.yml
-      ./config/site.yml
-      ./config/translations.yml
+  <pre><span>./config
+  ./config/deploy.yml
+  ./config/site.yml
+  ./config/translations.yml</pre></span>
 
   The `config` directly holds various configuration files. `deploy.yml` sets the connection details for LocomotiveCMS Engines we can deploy this site to. `site.yml` sets some general settings for the site. `translations.yml` defines localization strings for your site's templates.
 
-      ./config.ru
+  <pre><span>./config.ru</pre></span>
 
   You'll never need to change this file, so you can ignore it, but don't delete it.
 
-      ./data
+  <pre><span>./data</pre></span>
 
   The `data` directory holds YAML files with data for your content types, often referred to as _content entries_.
 
-      ./Gemfile
-      ./Gemfile.lock
+  <pre><span>./Gemfile
+  ./Gemfile.lock</pre></span>
 
   Two more files you will never need to worry about. These files are used by bundler.
 
-      ./log
-      ./log/wagon.log
+  <pre><span>./log
+  ./log/wagon.log</pre></span>
 
   The `log` folder contains `wagon.log`, which has useful error messages for debugging.
 
-      ./public
-      ./public/fonts
-      ./public/fonts/glyphicons-halflings-regular.eot
-      ./public/fonts/glyphicons-halflings-regular.svg
-      ./public/fonts/glyphicons-halflings-regular.ttf
-      ./public/fonts/glyphicons-halflings-regular.woff
-      ./public/javascripts
-      ./public/javascripts/bootstrap.js
-      ./public/javascripts/bootstrap.min.js
-      ./public/samples
-      ./public/samples/apple-touch-icon-114-precomposed.png
-      ./public/samples/apple-touch-icon-144-precomposed.png
-      ./public/samples/apple-touch-icon-57-precomposed.png
-      ./public/samples/apple-touch-icon-72-precomposed.png
-      ./public/samples/favicon.png
-      ./public/stylesheets
-      ./public/stylesheets/bootstrap-theme.css
-      ./public/stylesheets/bootstrap-theme.min.css
-      ./public/stylesheets/bootstrap.css
-      ./public/stylesheets/bootstrap.min.css
+  <pre><span>./public
+  ./public/fonts
+  ./public/fonts/glyphicons-halflings-regular.eot
+  ./public/fonts/glyphicons-halflings-regular.svg
+  ./public/fonts/glyphicons-halflings-regular.ttf
+  ./public/fonts/glyphicons-halflings-regular.woff
+  ./public/javascripts
+  ./public/javascripts/bootstrap.js
+  ./public/javascripts/bootstrap.min.js
+  ./public/samples
+  ./public/samples/apple-touch-icon-114-precomposed.png
+  ./public/samples/apple-touch-icon-144-precomposed.png
+  ./public/samples/apple-touch-icon-57-precomposed.png
+  ./public/samples/apple-touch-icon-72-precomposed.png
+  ./public/samples/favicon.png
+  ./public/stylesheets
+  ./public/stylesheets/bootstrap-theme.css
+  ./public/stylesheets/bootstrap-theme.min.css
+  ./public/stylesheets/bootstrap.css
+  ./public/stylesheets/bootstrap.min.css</pre></span>
 
   The `public` directory holds all of our site's assets: fonts, javascripts, images, and stylesheets. The `public/samples` directory is for images, and it's name might seem a little unintuitive for now, but will make more sense later. As you can see, the Bootstrap template has included a wide range of assets that we can now use in our site's pages. 
 
@@ -270,8 +272,8 @@ position: 1
 
   Open a command line, navigate to the project directory, and run `git init`.
 
-      $ git init
-      Initialized empty Git repository in /Users/me/source/wisdom_for_wanderers/.git/
+  <pre><span>$ git init
+  Initialized empty Git repository in /Users/me/source/wisdom_for_wanderers/.git/</pre></span>
 
   Next, create a `.gitignore` file in the project directory and fill it in with the following contents.
 
@@ -281,35 +283,35 @@ position: 1
 
   Let's add all of the files in this directory to the repo using `git add` and commit everything.
 
-      $ git add .
-      $ git commit -m "initial commit"
-      [master (root-commit) 25754b5] initial commit
-      25 files changed, 10448 insertions(+)
-        create mode 100644 .gitignore
-        create mode 100644 Gemfile
-        create mode 100644 Gemfile.lock
-        create mode 100644 app/views/pages/404.liquid
-        create mode 100644 app/views/pages/index.liquid
-        create mode 100644 app/views/snippets/footer.liquid
-        create mode 100644 config.ru
-        create mode 100644 config/deploy.yml
-        create mode 100644 config/site.yml
-        create mode 100644 config/translations.yml
-        create mode 100644 public/fonts/glyphicons-halflings-regular.eot
-        create mode 100644 public/fonts/glyphicons-halflings-regular.svg
-        create mode 100644 public/fonts/glyphicons-halflings-regular.ttf
-        create mode 100644 public/fonts/glyphicons-halflings-regular.woff
-        create mode 100644 public/javascripts/bootstrap.js
-        create mode 100644 public/javascripts/bootstrap.min.js
-        create mode 100644 public/samples/apple-touch-icon-114x114-precomposed.png
-        create mode 100644 public/samples/apple-touch-icon-144x144-precomposed.png
-        create mode 100644 public/samples/apple-touch-icon-72x72-precomposed.png
-        create mode 100644 public/samples/apple-touch-icon-precomposed.png
-        create mode 100644 public/samples/favicon.png
-        create mode 100644 public/stylesheets/bootstrap-theme.css
-        create mode 100644 public/stylesheets/bootstrap-theme.min.css
-        create mode 100644 public/stylesheets/bootstrap.css
-        create mode 100644 public/stylesheets/bootstrap.min.css
+  <pre><span>$ git add .
+  $ git commit -m "initial commit"
+  [master (root-commit) 25754b5] initial commit
+  25 files changed, 10448 insertions(+)
+    create mode 100644 .gitignore
+    create mode 100644 Gemfile
+    create mode 100644 Gemfile.lock
+    create mode 100644 app/views/pages/404.liquid
+    create mode 100644 app/views/pages/index.liquid
+    create mode 100644 app/views/snippets/footer.liquid
+    create mode 100644 config.ru
+    create mode 100644 config/deploy.yml
+    create mode 100644 config/site.yml
+    create mode 100644 config/translations.yml
+    create mode 100644 public/fonts/glyphicons-halflings-regular.eot
+    create mode 100644 public/fonts/glyphicons-halflings-regular.svg
+    create mode 100644 public/fonts/glyphicons-halflings-regular.ttf
+    create mode 100644 public/fonts/glyphicons-halflings-regular.woff
+    create mode 100644 public/javascripts/bootstrap.js
+    create mode 100644 public/javascripts/bootstrap.min.js
+    create mode 100644 public/samples/apple-touch-icon-114x114-precomposed.png
+    create mode 100644 public/samples/apple-touch-icon-144x144-precomposed.png
+    create mode 100644 public/samples/apple-touch-icon-72x72-precomposed.png
+    create mode 100644 public/samples/apple-touch-icon-precomposed.png
+    create mode 100644 public/samples/favicon.png
+    create mode 100644 public/stylesheets/bootstrap-theme.css
+    create mode 100644 public/stylesheets/bootstrap-theme.min.css
+    create mode 100644 public/stylesheets/bootstrap.css
+    create mode 100644 public/stylesheets/bootstrap.min.css</pre></span>
 
   Done! We've successfully created a new Wagon site. So far it's just a dummy site, but it's created and we've setup git, so we're ready to start developing.
 

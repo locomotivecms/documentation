@@ -34,7 +34,7 @@ position: 7
 
   Let's deploy to our Engine so we can see how this works in the back-office. Actually, we haven't pushed to an Engine since [Chapter 1.3](/making-blog/1-3-deploy-to-engine), so we will be pushing quite a few changes.
 
-      $ bundle exec wagon push development
+  <pre><span>$ bundle exec wagon push development</span></pre>
 
   After pushing to the Engine, pull the site up in your browser. Everything should look as it does on the Wagon web server. Login to the back-office, navigate to the _Pages_ section under the _Content_ tab, and click the _About_ page. You should now see a user friendly text editor with our content, just like the one below.
 
@@ -50,7 +50,7 @@ position: 7
 
   Let's do a little experiment. If we look at the `about.liquid` file, "And" is still in there right next to "along." What happens if we run `wagon push` again?
 
-      $ bundle exec wagon push development
+  <pre><span>$ bundle exec wagon push development</span></pre>
 
   <img src="{{ 'guides/making-blog/2.4/no_more_and.png' | theme_image_url }}" alt="No more &quot;And&quot;" />
 
@@ -82,9 +82,9 @@ position: 7
 
   The other way, capture, allows you to assign everything between the opening and closing tags to a variable.
 
-      {% raw %}{% capture my_bio %}
-      George Stephenson (9 June 1781 – 12 August 1848) was an English civil engineer and mechanical engineer who built the first public inter-city railway line in the world to use steam locomotives, the Liverpool and Manchester Railway which opened in 1830. Renowned as the "Father of Railways", the Victorians considered him a great example of diligent application and thirst for improvement, with self-help advocate Samuel Smiles particularly praising his achievements. His rail gauge of 4 feet 8 1⁄2 inches (1,435 mm), sometimes called "Stephenson gauge", is the world's standard gauge.
-      {% endcapture %}{% endraw %}
+  <pre><code class="locomotive-liquid">{% raw %}{% capture my_bio %}
+  George Stephenson (9 June 1781 – 12 August 1848) was an English civil engineer and mechanical engineer who built the first public inter-city railway line in the world to use steam locomotives, the Liverpool and Manchester Railway which opened in 1830. Renowned as the "Father of Railways", the Victorians considered him a great example of diligent application and thirst for improvement, with self-help advocate Samuel Smiles particularly praising his achievements. His rail gauge of 4 feet 8 1⁄2 inches (1,435 mm), sometimes called "Stephenson gauge", is the world's standard gauge.
+  {% endcapture %}{% endraw %}</code></pre>
 
   We can now access these values with the variables `my_name` and `my_bio`.
 
@@ -96,7 +96,7 @@ position: 7
 
   Let's push these changes to the Engine and see how they look. We've been pushed to the Engine twice already so far, but we've only changed one file, `about.liquid`. In situations like this, it can be annoying to push all the site's content types, pages and assets. That's why `wagon push` comes with a handy resources option that you can use to specify which things you would like to push. Try it out using  `--resources` or `-r`.
 
-      $ bundle exec wagon push -r pages
+  <pre><span>$ bundle exec wagon push -r pages</span></pre>
 
   A little quicker, right? Go to the _Pages_ section of the back-office and again click _About_. At a first glance, the newly created _caption_ field can't be seen. But just above the text editor for page's body, there are two tabs: _Main_ and _Featured Photo_. These tabs represent which Liquid block holds each editable element. If you click on the _Featured Photo_ tab, you should see the caption field.
 
@@ -146,14 +146,14 @@ position: 7
 
   Push the new About page to your Engine.
 
-      $ bundle exec wagon push development -r pages
-      * Pushing Site
-      * Pushing Pages
-        en
-          updating index..............................................................[done]
-          updating 404................................................................[done]
-          updating about..............................................................[done]
-            updating gyeongbokgung-full.jpg...........................................[done]
+  <pre><span>$ bundle exec wagon push development -r pages
+  * Pushing Site
+  * Pushing Pages
+    en
+      updating index..............................................................[done]
+      updating 404................................................................[done]
+      updating about..............................................................[done]
+        updating gyeongbokgung-full.jpg...........................................[done]</span></pre>
 
   As you can see, the default image gets uploaded as well. Let's checkout the new back-office file uploader.
 
@@ -163,9 +163,9 @@ position: 7
 
   The about page is now fully editable, so I'm pretty satisfied, but there's one more thing regarding editable elements I would like to touch on briefly. When we generated the `about.liquid` file, a commented-out *editable_elements* property was put in the header automatically.
 
-      # editable_elements:
-      # 'some_block/some_slug': "<text>"
-      # 'some_block/some_slug': "<relative path to the file under the public/samples folder>"
+  <pre><code class="yaml"># editable_elements:
+  # &#39;some_block/some_slug&#39;: &quot;&lt;text&gt;&quot;
+  # &#39;some_block/some_slug&#39;: &quot;&lt;relative path to the file under the public/samples folder&gt;&quot;</code></pre>
 
   You can use this property to  populate editable elements with data. We could for example have added something like this in the `about.liquid` header:
 
@@ -182,10 +182,10 @@ position: 7
 
   Let's commit our changes to the repository.
 
-      $ app/views/pages/about.liquid
-      $ git rm public/images/gyeongbokgung-full.jpg
-      $ git add public/samples
-      $ git commit -m "Made about.liquid editable through the back-office using editable elements."
+  <pre><span>$ app/views/pages/about.liquid
+  $ git rm public/images/gyeongbokgung-full.jpg
+  $ git add public/samples
+  $ git commit -m "Made about.liquid editable through the back-office using editable elements."</span></pre>
     
   All done. Only one more chapter in this section left: snippets!
 

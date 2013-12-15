@@ -13,13 +13,13 @@ position: 2
   ## site.yml
   Navigate to the `wisdom_for_wanderers` project folder and open the `config/site.yml` file. This [YAML](http://en.wikipedia.org/wiki/YAML) file sets some basic settings for our site. New to YAML? There's nothing to be scared of. YAML files have the following simple format:
 
-      property_name: Property value
+  <pre><span>property_name: Property value</span></pre>
 
    There's a bit more to YAML than that, but that's the gist.
 
   The first property in `site.yml` is `name`, which we should change to a more human-readable version of our site's name.
 
-      name: Wisdom for Wanderers 
+  <pre><span>name: Wisdom for Wanderers</span></pre>
 
   The next two options, `subdomain` and `domains`, only apply to sites being deployed on multi-site Engines. Multi-site Engine users, you know who you are, fill these in. Everyone else, let's leave these commented out for now.
 
@@ -27,17 +27,15 @@ position: 2
 
   The following `timezone` option lets us set what timezone we want server times to be displayed as. I'm going to set it to US Central Time, like so:
 
-      timezone: "Central Time (US & Canada)"
+  <pre><span>timezone: "Central Time (US & Canada)"</span></pre>
 
   [Rails' ActiveSupport::TimeZone](http://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html) will be used to interpret these strings, so consult the API documentation linked above if you're not sure which strings are valid.
 
   The last settings are related to Search Engine Optimization (SEO). Like everything else in this file, these can be changed later so I won't stress too much about what I enter for now.
 
-      seo_title: Travel Tips for the Adventurous! 
-      meta_keywords: "travel backpacking budget adventure"
-      meta_description: "Learn about cool places to see abroad,
-                        interesting things to eat,
-                        and little travel tips you won't believe you lived without."
+  <pre><span>seo_title: Travel Tips for the Adventurous! 
+  meta_keywords: "travel backpacking budget adventure"
+  meta_description: "Learn about cool places to see abroad, interesting things to eat, and little travel tips you won't believe you lived without."</code></pre>
 
   Great, we're all done with `site.yml`.
 
@@ -71,15 +69,15 @@ position: 2
 
   If you're using LocomotiveHosting, your `deploy.yml` file should look something like this:
 
-      development:
-          host: khaki-dottie-1.locomotivehosting.com
-          api_key: d7284f6baf10571d8ecb498330668f3f52e4458b
+  <pre><span>development:
+      host: khaki-dottie-1.locomotivehosting.com
+      api_key: d7284f6baf10571d8ecb498330668f3f52e4458b</span></pre>
 
   If you're using an Engine on your local machine, your file should look similar to this:
 
-      development:
-          host: localhost:8080
-          api_key: 0e52b493c9bed5bcd681a1514eb19197b01499be
+  <pre><span>development:
+      host: localhost:8080
+      api_key: 0e52b493c9bed5bcd681a1514eb19197b01499be</span></pre>
 
   Congratulations! Our site is now configured.
 
@@ -90,8 +88,8 @@ position: 2
 
   Let's commit our changes to the git repository.
 
-      $ git rm --cached config/deploy.yml
-      $ git commit -am "Changed site configuration and deployment settings."
+  <pre><span>$ git rm --cached config/deploy.yml
+  $ git commit -am "Changed site configuration and deployment settings."</span></pre>
 
 %a.orange-rounded-button{href: "/making-blog/1-3-deploy-to-engine"} Next: deploying to the Engine  
 

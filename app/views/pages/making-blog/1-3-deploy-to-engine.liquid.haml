@@ -13,51 +13,51 @@ position: 3
 
   Open a command line and navigate to the folder's project directory. The `wagon push` command deploys a Wagon site to an Engine. Let's see what arguments it takes.
 
-      $ wagon help push
-      Usage:
-        wagon push ENV [PATH]
+  <pre><span>$ wagon help push
+  Usage:
+    wagon push ENV [PATH]
 
-      Options:
-        -r, [--resources=one two three]  # Only push the resource(s) passed in argument
-        -f, [--force]                    # Force the push of a resource
-        -t, [--translations]             # Push the local translations (by default, they are not)
-        -d, [--data]                     # Push the content entries and the editable elements (by default, they are not)
-        -v, [--verbose]                  # display the full error stack trace if an error occurs
+  Options:
+    -r, [--resources=one two three]  # Only push the resource(s) passed in argument
+    -f, [--force]                    # Force the push of a resource
+    -t, [--translations]             # Push the local translations (by default, they are not)
+    -d, [--data]                     # Push the content entries and the editable elements (by default, they are not)
+    -v, [--verbose]                  # display the full error stack trace if an error occurs
 
-      Push a site to a remote LocomotiveCMS engine
+  Push a site to a remote LocomotiveCMS engine</span></pre>
 
   There's one required argument, `environment`, and a bunch of options that we won't worry about for now. [In section 1.2](1-2-configure-site), we configured our Engine's connection details using the environment _development_.
 
   We're about to deploy, so if you're using a local Engine, turn on MongoDB and start Rails. Let's run `wagon push`!
 
-      $ bundle exec wagon push development
-      * Pushing Site
-        en
-          updating Wisdom for Wanderers.......................................[done]
-      * Pushing Snippets
-        en
-          updating Footer.....................................................[done]
-      * Pushing ContentTypes
-      * Pushing Pages
-        en
-          updating index......................................................[done]
-            updating favicon.png..............................................[done]
-            creating apple-touch-icon-144x144-precomposed.png.................[done]
-            creating apple-touch-icon-114x114-precomposed.png.................[done]
-            creating apple-touch-icon-72x72-precomposed.png...................[done]
-            creating apple-touch-icon-precomposed.png.........................[done]
-          updating 404........................................................[done]
-      * Pushing ThemeAssets
-          updating fonts/glyphicons-halflings-regular.eot.....................[done]
-          updating fonts/glyphicons-halflings-regular.svg.....................[done]
-          updating fonts/glyphicons-halflings-regular.ttf.....................[done]
-          updating fonts/glyphicons-halflings-regular.woff....................[done]
-          updating javascripts/bootstrap.min.js...............................[done]
-          updating javascripts/bootstrap.js...................................[done]
-          updating stylesheets/bootstrap-theme.css............................[done]
-          updating stylesheets/bootstrap-theme.min.css........................[done]
-          updating stylesheets/bootstrap.css..................................[done]
-          updating stylesheets/bootstrap.min.css..............................[done]
+  <pre><span>$ bundle exec wagon push development
+  * Pushing Site
+    en
+      updating Wisdom for Wanderers.......................................[done]
+  * Pushing Snippets
+    en
+      updating Footer.....................................................[done]
+  * Pushing ContentTypes
+  * Pushing Pages
+    en
+      updating index......................................................[done]
+        updating favicon.png..............................................[done]
+        creating apple-touch-icon-144x144-precomposed.png.................[done]
+        creating apple-touch-icon-114x114-precomposed.png.................[done]
+        creating apple-touch-icon-72x72-precomposed.png...................[done]
+        creating apple-touch-icon-precomposed.png.........................[done]
+      updating 404........................................................[done]
+  * Pushing ThemeAssets
+      updating fonts/glyphicons-halflings-regular.eot.....................[done]
+      updating fonts/glyphicons-halflings-regular.svg.....................[done]
+      updating fonts/glyphicons-halflings-regular.ttf.....................[done]
+      updating fonts/glyphicons-halflings-regular.woff....................[done]
+      updating javascripts/bootstrap.min.js...............................[done]
+      updating javascripts/bootstrap.js...................................[done]
+      updating stylesheets/bootstrap-theme.css............................[done]
+      updating stylesheets/bootstrap-theme.min.css........................[done]
+      updating stylesheets/bootstrap.css..................................[done]
+      updating stylesheets/bootstrap.min.css..............................[done]</span></pre>
 
   If your deploy was successful, the output should look something like the output above. Open your browser to your Engine's root URL and take a look. If everything deployed successfully, you'll see our placeholder site.
 
@@ -75,13 +75,13 @@ position: 3
       Unable to read the information about the remote LocomotiveCMS site (undefined method `with_indifferent_access' for nil:NilClass)
   An error like the one above means the `environment` handle you specified in the `wagon push` command doesn't exist in your `deploy.yml` file. Make sure the handle you're using (i.e. development, production, etc...) matches what is in the file.
 
-      unable to get an API token: The API key is invalid. (401)
+  <pre><span>unable to get an API token: The API key is invalid. (401)</span></pre>
   Double check that your API key matches the one in the back-office of your Engine.
 
-      unable to get an API token: Connection refused - connect(2)
+  <pre><span>unable to get an API token: Connection refused - connect(2)</span></pre>
   Wagon can't connect to the host you specified for this environment in `deploy.yml`
 
-      unable to get an API token:  (500)
+  <pre><span>unable to get an API token:  (500)</span></pre>
   Wagon can connect to the host, but received an internal server error when trying to access the LocomotiveCMS API. Are Rails and MongoDB running? Is the back-office working?
 
   <h2 id="testing-the-back-office">Testing the back-office</h2>

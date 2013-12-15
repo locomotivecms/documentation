@@ -13,8 +13,82 @@ position: 4
 
   Ok, let's replace our generic Bootstrap home page with the real home page for our blog. Open the `app/pages/index.liquid` file and delete all of its contents. Paste in the following code.
 
-  <script src="https://gist.github.com/youroff/7411916.js"></script>
+%pre
+  %code
+    :plain
+      {% raw %}---
+      title: Home
+      published: true
+      ---
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang=&quot;en&quot;&gt;
+        &lt;head&gt;
+          &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt; 
+          &lt;meta charset=&quot;utf-8&quot;&gt;
+          &lt;title&gt;
+            {{ page.title }} - {{ site.name }}
+            | {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ site.seo_title }}{% endif %}
+          &lt;/title&gt;
+          &lt;meta name=&quot;description&quot; content=&quot;{% if page.meta_description %}{{ page.meta_description }}{% else %}{{ site.meta_description }}{% endif %}&quot;&gt;
+          &lt;meta name=&quot;keywords&quot; content=&quot;{{ site.meta_keywords }} {{ page.meta_keywords }}&quot;&gt;
 
+          &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;
+          {{ &#39;bootstrap.css&#39; | stylesheet_tag }}
+          &lt;!--[if lt IE 9]&gt;
+            &lt;script src=&quot;//html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;
+          &lt;![endif]--&gt;
+        &lt;/head&gt;
+        &lt;body&gt;        
+          &lt;div class=&quot;container&quot;&gt;
+
+            &lt;!-- Site Title --&gt;
+            &lt;div class=&quot;row&quot;&gt;
+              &lt;div class=&quot;col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1&quot;&gt;
+                &lt;h1&gt;{{ site.name }}&lt;/h1&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Site Navigation --&gt;
+            &lt;div class=&quot;row&quot;&gt;
+              &lt;div class=&quot;col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1&quot;&gt;
+                &lt;nav class=&quot;navbar navbar-default&quot; role=&quot;navigation&quot;&gt;
+                  &lt;!-- Brand and toggle get grouped for better mobile display --&gt;
+                  &lt;div class=&quot;navbar-header&quot;&gt;
+                    &lt;button type=&quot;button&quot; class=&quot;navbar-toggle&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#bs-example-navbar-collapse-1&quot;&gt;
+                      &lt;span class=&quot;sr-only&quot;&gt;Toggle navigation&lt;/span&gt;
+                      &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                      &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                      &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                  &lt;/div&gt;
+                  &lt;!-- Collect the nav links, forms, and other content for toggling --&gt;
+                  &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;bs-example-navbar-collapse-1&quot;&gt;
+                    &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+                      &lt;li {% if page.slug == &quot;index&quot; %}class=&quot;active&quot;{% endif %}&gt;
+                        &lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;
+                      &lt;/li&gt;
+                    &lt;/ul&gt;
+                  &lt;/div&gt;
+                &lt;/nav&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Page Content --&gt;
+            &lt;div class=&quot;row&quot;&gt;
+              &lt;div class=&quot;col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-1&quot;&gt;
+                &lt;h2&gt;{{ page.title }}&lt;/h2&gt;
+                Coming Soon.
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Javascripts --&gt;
+          &lt;script type=&#39;text/javascript&#39; src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js&quot;&gt;&lt;/script&gt;
+          {{ &#39;bootstrap.min.js&#39; | javascript_tag }}
+        &lt;/body&gt;
+      &lt;/html&gt;{% endraw %}
+
+:markdown
   We're going to go through this page line by line, but for now let's see what this looks like. Open a command line and navigate to the project directory. Let's turn on Wagon's web server again by running `bundle exec wagon serve`. Leave the server running and open [http://0.0.0.0:3333](http://0.0.0.0:3333) in your browser. You should see a page like the one below.
 
   <img src="{{ 'guides/making-blog/new_home_page.jpg' | theme_image_url }}" alt="Our new home page" />
@@ -81,7 +155,7 @@ position: 4
 
   For this reason, when linking to assets in your templates, use Liquid filters to link to the URL. What if we want to change the value of _media_? The `stylesheet_tag` filter actually takes a _media_ argument we can use to set it like below.
 
-      {% raw %}{{ 'bootstrap.css' | stylesheet_tag: "screen, print" }}{% endraw %}
+  <pre><code class="locomotive-liquid">{% raw %}{{ 'bootstrap.css' | stylesheet_tag: "screen, print" }}{% endraw %}</code></pre>
 
   Another solution might be to use a completely different filter, `stylesheet_url`, like this:
 
@@ -111,12 +185,12 @@ position: 4
 
   Filters can modify numbers.
 
-      {% raw %}{{ 8 | plus: 10 }}{% endraw %}
+  <pre><code class="locomotive-liquid">{% raw %}{{ 8 | plus: 10 }}{% endraw %}</pre></code>
   Outputs: `18`
 
   Filters can be strung together.
 
-      {% raw %}{{ "MY NAME IS TOM" | dasherize | downcase }}{% endraw %}
+  <pre><code class="locomotive-liquid">{% raw %}{{ "MY NAME IS TOM" | dasherize | downcase }}{% endraw %}</code></pre>
   Outputs: `my-name-is-tom`
 
   Pretty neat, huh? Liquid comes with a good set of filters and LocomotiveCMS has added more on top of that. You can see a list of all the filters and what they do using [Liquid's Documentation](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers) and [LocomotiveCMS's Template Reference](http://doc.locomotivecms.com/references).
@@ -145,37 +219,37 @@ position: 4
       <tr>
           <td><code>==</code></td>
           <td>equals</td>
-          <td>Ex) <code>{% raw %}{% if (2 + 1) == 3 %}{% endraw %}</code></td>
+          <td>Ex) <code class="locomotive-liquid">{% raw %}{% if (2 + 1) == 3 %}{% endraw %}</code></td>
       </tr>
       <tr>
           <td><code>!=</code></td>
           <td>does not equal</td>
-          <td>Ex) <code>{% raw %}{% if 'a' != 'b' %}{% endraw %}</code></td>
+          <td>Ex) <code class="locomotive-liquid">{% raw %}{% if 'a' != 'b' %}{% endraw %}</code></td>
       </tr>
       <tr>
           <td><code>&gt;</code></td>
           <td>greater than</td>
-          <td>Ex) <code>{% raw %}{% if 10 &gt; 5 %}{% endraw %}</code></td>
+          <td>Ex) <code class="locomotive-liquid">{% raw %}{% if 10 &gt; 5 %}{% endraw %}</code></td>
       </tr>
       <tr>
           <td><code>&lt;</code></td>
           <td>less than</td>
-          <td>Ex) <code>{% raw %}{% if 0 &lt; 1 %}{% endraw %}</code></td>
+          <td>Ex) <code class="locomotive-liquid">{% raw %}{% if 0 &lt; 1 %}{% endraw %}</code></td>
       </tr>
       <tr>
           <td><code>&gt;=</code></td>
           <td>greater than or equal to</td>
-          <td>Ex) <code>{% raw %}{% if 10 &gt;= 9 %}{% endraw %}</code></td>
+          <td>Ex) <code class="locomotive-liquid">{% raw %}{% if 10 &gt;= 9 %}{% endraw %}</code></td>
       </tr>
       <tr>
           <td><code>&lt;=</code></td>
           <td>less than or equal to</td>
-          <td>Ex) <code>{% raw %}{% if 7 &lt;= 7 %}{% endraw %}</code></td>
+          <td>Ex) <code class="locomotive-liquid">{% raw %}{% if 7 &lt;= 7 %}{% endraw %}</code></td>
       </tr>
       <tr>
           <td><code>contains</code></td>
           <td></td>
-          <td>Ex) <code>{% raw %}{% if 'foobar' contains 'foo' %}{% endraw %}</code></td>
+          <td>Ex) <code class="locomotive-liquid">{% raw %}{% if 'foobar' contains 'foo' %}{% endraw %}</code></td>
       </tr>
   </table>
 
@@ -193,7 +267,7 @@ position: 4
 
   Let's commit our pages to the git repository before moving on...
 
-      $ git commit -am "Customized the home page."
+  <pre><span>$ git commit -am "Customized the home page."</span></pre>
 
   The home page is complete for now. We still have a long way to go on our blog, but the pace will really pick up from here.
 

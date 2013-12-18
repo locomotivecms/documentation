@@ -1,5 +1,5 @@
 ---
-title: Create a site template
+title: Creating site templates
 listed: true
 ---
 {% extends index %}
@@ -8,11 +8,11 @@ listed: true
 
 :markdown
 
-  # Listing the existing site templates
+  Wagon site templates allow you to create new wagon sites with a predefined set of files in order to expedite the development of new sites.
 
-      wagon list_templates
+  ## Built-in templates
 
-  By default, Wagon includes four site templates.
+  Wagon comes with several built-in site templates. You can get a list of the existing templates using the `wagon list_templates` command. The following built-in templates ship with Wagon.
 
   <table>
     <thead>
@@ -24,112 +24,178 @@ listed: true
     <tbody>
       <tr>
         <td>blank</td>
-        <td>this is the default template, very minimal. No javascripts, no stylesheets, just the index / 404 pages</td>
+        <td>this is the default template. It consists only of an index page and a 404 page.  No javascripts, stylesheets, or other assets are included.
       </tr>
       <tr>
         <td>bootstrap2</td>
-        <td>includes all the files provided by the Twitter Bootstrap package (v2.3.2) as well as the index / 404 pages</td>
+        <td>
+          a minimal site including all assets necessary for Twitter Bootstrap v2.3.2 and Font Awesome 3.2.1.
+        </td>
       </tr>
       <tr>
         <td>bootstrap3</td>
-        <td>includes all the files provided by the Twitter Bootstrap package (v3.0.0) as well as the index / 404 pages</td>
+        <td>
+          a minimal site including all assets necessary for Twitter Bootstrap v3.0.0
+        </td>
       </tr>
       <tr>
         <td>foundation</td>
-        <td>includes all the files provided by the Zurb Foundation package (v4.3.2) as well as the index / 404 pages</td>
+        <td>
+          a minimal site including all assets necessary for Zurb Foundation v4.3.2
+        </td>
       </tr>
     </tbody>
   </table>
 
-  # Assigning a site template when creating a new site
+  You make use of templates by running `wagon init` with the `--template` or `-t` option, like so:
 
-      wagon init my_first_site -t bootstrap2
+  <pre><span>$ wagon init my_first_site --template=bootstrap2</span></pre>
 
   or
 
-      wagon init my_first_site --template=bootstrap2
+  <pre><span>$ wagon init my_first_site -t bootstrap2</span></pre>
 
-  # Coding your site template
 
-  <div class="alert alert-warning">
-    It only works from the <strong>1.4.0 version</strong> of Wagon.
-  </div>
+  ## Custom templates
 
-  It requires some Ruby skills but no so much. Do not worry, we are going
-  to guide you step by step by developing an example.
+  Wagon version 1.4 and higher also supports creating your own site templates.
 
-  ## 1. Prepare your environment
+  To start, create a directory to store your templates in. For this example, we will use the directory `~/wagon_generators`.
 
-      cd ~/workspace
+  <pre><span>$ mkdir ~/wagon_generators</span></pre>
 
-      mkdir -p wagon_generators/my_template/app/views/pages
-      mkdir wagon_generators/my_template/app/views/snippets
-      touch wagon_generators/my_template/app/views/snippets/.empty_directory
+  Next, we need to create a sub-directory that will hold our template. This sub-directory will simply be a collection of files to be created in the root directory of the wagon site when this template is used. We could create each of these files by hand, but to save time, this example will use a new, blank Wagon site as the base.
 
-      mkdir -p wagon_generators/my_template/public/javascripts
-      touch wagon_generators/my_template/public/javascripts/.empty_directory
-      mkdir wagon_generators/my_template/public/stylesheets
-      touch wagon_generators/my_template/public/stylesheets/.empty_directory
+  <pre><span>$ cd ~/wagon_generators 
+  $ wagon init my_template
+  ...
+  $ Do you prefer HAML templates ? no
+  ...</span></pre>
 
-  <div class="alert alert-info">
-    For simplicity, we have not declared all the folders used by Wagon.
-  </div>
-
-  <div class="alert alert-info">
-    The <strong>.empty_directory</strong> file forces the generator to create the parent folder when generating the site.
-  </div>
-
-  ## 2. Define your template in Ruby
-
-  <div class="alert alert-info">
-  We assume you're using Textmate. That is why you will see <strong>mate</strong> to edit a file. If not, please correct it accordingly.
-  </div>
-
-      mate wagon_generators/my_template.rb
-
-  Fill in with the following Ruby code:
+  The only thing left to make the `my_template` directory into a template is to create a a new file, `~/wagon_generators/my_template.rb`,  with the following contents.
 
       class MyTemplate < Locomotive::Wagon::Generators::Site::Base
-
         def self.source_root
           File.join(File.dirname(__FILE__), 'my_template')
         end
-
       end
 
       Locomotive::Wagon::Generators::Site.register(:my_template, MyTemplate, %{
         A simple example of a site generator.
       })
 
-  <div class="alert alert-info">
-    Behind the scene, <strong>Wagon</strong> uses <a href="https://github.com/erikhuda/thor/wiki/Generators">Thor</a> to power the generation of sites.
-  </div>
+  The new site template can now be used by running wagon commands with the `--lib` option.
 
-  <div class="alert alert-info">
-    You will find more complex samples <a href="https://github.com/locomotivecms/wagon/tree/master/lib/locomotive/wagon/generators/site">here</a>.
-  </div>
+  <pre><span>$ wagon list_templates --lib=~/wagon_generators/my_template.rb
+  blank - A blank LocomotiveCMS site with the minimal files.
+  bootstrap2 - A LocomotiveCMS site with Twitter Bootstrap (v2.3.2) and Font Awesome (v3.2.1).
+  bootstrap3 - A LocomotiveCMS site powered by Twitter bootstrap (v3.0.0).
+  foundation - A LocomotiveCMS site powered by Foundation (v4.3.2).
+  unzip - Unzip a local or remote (http, https, ftp) zipped LocomotiveCMS site.
+  my_template - A simple example of a site generator.
 
-  ## 3. Edit your site
+  $ cd ~
+  $ wagon init new_site -t my_template --lib=~/wagon_generators/my_template.rb</span></pre>
 
-  All you have to do is to populate your site by copying your existing stylesheets, javascripts, pages …etc to their target folders inside the template folder.
+  ## Special Features
 
-  For instance, if you want to tweak your index page:
+  The instructions above show you how to create a collection of files to serve as a Wagon site tempalte. However, there are several other special features worth noting.
 
-      mate wagon_generators/my_template/app/views/pages/index.liquid.haml
+  ### Empty directories
 
-  <div class="alert alert-info">
-    More examples of file templates <strong><a href="https://github.com/locomotivecms/wagon/tree/master/generators">here</a></strong>.
-  </div>
+  As you may have noticed, empty directories in a site template are not recreated in sites using the template. To force an empty directory to be created, include an empty file named `.empty_directory` in the directory. So, for the site template we started above, we might want to add several `.empty_directory` files, as shown below. 
 
-  ## 4. Using your template
+  <pre><span>cd ~/wagon_generators/my_template
+  touch public/fonts/.empty_directory
+  touch public/images/.empty_directory
+  touch public/samples/.empty_directory
+  touch public/stylesheets/.empty_directory
+  touch public/javascripts/.empty_directory
+  touch app/views/snippets/.empty_directory
+  touch app/content_types/.empty_directory
+  touch data/.empty_directory</span></pre>
 
-  Let’s see if your template is now part of the available site templates. You should see “my\_template”
+  # Thor templates
+  Since the `wagon generate` command is powered by [Thor](http://whatisthor.com/), templates can make use of Thor's ERB templates. To demonstrate this ability, let's add a Thor template to our site template. Open `~/wagon_generators/my_template/Gemfile`
 
-      wagon list_templates --lib=./wagon_generators/my_template.rb
+      source 'https://rubygems.org'
 
-  Here is the command to create a new Wagon site with your new
-  template:
+      # ruby '1.9.3'
 
-      wagon init another_site --template=my_template --lib=./wagon_generators/my_template.rb
+      gem 'locomotivecms_wagon', '1.4.0'
+
+      group :development do
+        # Mac OS X
+        gem 'rb-fsevent', '~> 0.9.1', require: RUBY_PLATFORM.include?('darwin') && 'rb-fsevent'
+
+        # Unix
+        gem 'therubyracer', require: 'v8', platforms: :ruby
+        gem 'rb-inotify', '~> 0.9', require: RUBY_PLATFORM.include?('linux') && 'rb-inotify'
+
+        # Windows
+        gem 'wdm', '>= 0.1.0', require: RUBY_PLATFORM =~ /mswin|mingw/i && 'wdm'
+      end
+
+      group :misc do
+        # Add your extra gems here
+        # gem 'susy', require: 'susy'
+        # gem 'redcarpet', require: 'redcarpet'
+      end
+
+  In the future, surely the locomotive_wagon gem will eventually be updated again, but this Gemfile locks it at version 1.4.0. One solution might be to remove the version altogether.
+
+      gem 'locomotivecms_wagon', '1.4.0'
+
+  Just to try out Thor templates, let's change the Gemfile to lock Wagon at whatever version of Wagon was used to create a new site. Start by adding the `tt` (Thor Template) extension to the file.
+
+      $ mv Gemfile Gemfile.tt
+
+  Then change the the line to be like the one below.
+
+  Let's change it so that the Gemfile will use whatever version of Wagon was used when the wagon site using this template was created.
+
+      gem 'locomotivecms_wagon', '<%= config[:version] -%>'
+
+  `config` is made available to templates by `Locomotive::Generators::Wagon::Site::Base`, the class that our `MyTemplate` generator extends. By default, it has two values:
+
+  - `config[:version]`: the version of Wagon currently by used
+  - `config[:name]`: the name of the Wagon site as passed to the `init` command
+
+  ### Custom prompts
+
+  The final special feature this guides will cover is the ability to prompt for input when running `wagon init` and then use that input in a site template.
+
+  For example, imagine you would like to pre-populate `config/site.yml` with the desired locales for the site. To start, add a prompt asking what locales should be used to `my_template.rb`. Insert the following method into the `MyTemplate` class in `my_template.rb`.
+
+      def copy_sources
+        @locales = ask('What locales will this site use?')
+        super
+      end
+
+  `#copy_sources` is called when `wagon init` copies all the files from a site template directory to the new wagon site's destination directory . In this case, we would like to ask the user what locales the site will have before copying the files. To do this, we make use of Thor's built-in `Thor::Shell::Basic#ask` to prompt the user for locales and then store the input in an instance variable.
+
+  This instance variable can be accessed in Thor templates. Rename `site.yml` to `site.yml.tt` and change the locales line to read as follows.
+
+      locales: [<%= @locales %>]
+
+  Now, when creating a new site with this site template, we will be prompted for what locales to use.
+
+  <pre><span>$ wagon init another\_site -t my\_template --lib=~/wagon\_generators/my_template.rb
+  What locales will this site use? en, fr
+  ...</span></pre>
+
+  And if you look at the newly generated `another_site/config/site.yml`, you should see the following line:
+
+      locales: [en, fr]
+
+  Great! We were able to use a custom prompt to gather input from the `wagon init` command and insert it into our created site.
+
+  ## Beyond
+
+  This guide has covered using site templates and the basics of creating your own site templates, but we've only just scratched the surface of what you can do with site templates.
+
+  If you are looking for further guidance when making your own templates, be sure to take a look at the [template directories](https://github.com/locomotivecms/wagon/tree/master/generators) and [ruby classes](https://github.com/locomotivecms/wagon/tree/master/lib/locomotive/wagon/generators/site) for the built-in site templates.
+
+  And since generators use the [Thor](http://whatisthor.com/) gem, the [Thor Documentation](http://rdoc.info/github/wycats/thor) and [Thor Wiki](https://github.com/erikhuda/thor/wiki) are also invaluable sources of information.
 
 {% endblock %}

@@ -1,0 +1,425 @@
+---
+title: 3.1 Adding content types
+listed: true
+position: 8
+---
+{% extends 'index' %}
+
+{% block 'content' %}
+
+:markdown
+
+  One essential feature of any CMS is the ability to manage structured content.  Fortunately, this is one of LocomotiveCMS's strongest points.
+
+  Most any website has some sort of structured content. For example, imagine a dance studio's website. One page lists the various classes available and their details, including a description, time, price, difficulty level, instructor and other relevant information. How can we make this page content easily manageable for the studio's management?
+
+  We could add a big *editable_text* field on the page and let the studio's management piece the page together with the rich text editor. But adding and changing class listings would involve styling each one by hand with the rich text editor. For one thing, this approach greatly limits available options for styling and makes it difficult to ensure styles are uniformly applied. 
+
+  But what if we structured this data? In LocomotiveCMS, we can do that using content types. For this situation, we would define a new type called *dance_classes* and assign it various properties, like *title*, *description*, *price*, *schedule*, *instructor*, and so on. This would allow the studio's staff to easily manage the content through the back-office, where dance classes could be added and edited with a custom form displaying fields for the necessary information. And since the content has been structured, we are able to do a lot more with the data: we can uniformly apply styles to the dance classes, paginate them, group them by difficulty, sort them time of day, and so much more. 
+
+  # posts
+
+  Getting back to our site, Wisdom for Wanderers, let's make it into an actual blog by adding our first content type: posts.
+
+  First of all, we need to think about the structure of posts on our site: what fields does a post need? We can always add more later, so let's just start with a few fields:
+
+  - title: the title of the post
+  - posted_at: the date and time of when this post was put online
+  - tags: various tags that describe the content of the post
+  - teaser: a short introduction to the post
+  - featured_image: a photo associated with the post
+  - body: a large, free form field holding the content of the post
+
+  Now that we have a general outline of what we want to do, let's move on to creating it.
+
+  # Generating content types
+
+  As with pages, there is also a `wagon generate content_type` command. Run `wagon help` to get more information.
+
+  <pre><span>$ wagon help generate
+  Usage:
+    wagon generate RESOURCE ARGUMENTS
+
+  Description:
+    Generates a content_type, page, or snippet
+
+    RESOURCE can be set to content_type, page, or snippet.
+
+    Use wagon generate help [RESOURCE] for usage information and examples.</span></pre>
+
+  As you can see, the `generate` subcommand actually has its own `help` subcommand.
+      
+  <pre><span>$ wagon generate help
+  Commands:
+    wagon generate content_type SLUG FIELDS  # Creates a content type with the specified slug and fields.
+    wagon generate help [COMMAND]            # Describe subcommands or one specific subcommand
+    wagon generate page FULLPATH             # Create a page. No need to pass an extension to the FULLPATH arg
+    wagon generate snippet SLUG              # Create a snippet
+
+  Options:
+    -p, [--path=PATH]  # if your LocomotiveCMS site is not in the current path
+                         # Default: .</span></pre>
+
+:markdown
+  It looks like we can pass the `content_type` command two arguments: `SLUG` and `FIELDS`. Let's use the `help [COMMAND]` subcommand mentioned above to get more more guidance regarding the `SLUG` and `FIELDS` arguments.
+  
+  <pre><span>$ wagon generate help content_type
+  Usage:
+    wagon content_type SLUG FIELDS
+
+  Options:
+    -p, [--path=PATH]  # if your LocomotiveCMS site is not in the current path
+                       # Default: .
+
+  Description:
+    Creates a content type with the specified slug and fields.
+
+    SLUG should be plural, lowercase, and underscored.
+
+    FIELDS format: field_1[:TYPE][:REQUIRED] field_2[:TYPE][:REQUIRED] ...
+
+    TYPE values: string, text, integer, float, boolean, email, date, date_time, file, tags, select, belongs_to, has_many, or many_to_many. Default is string.
+
+    To require a field, set REQUIRED to true. The first field is required by default.
+
+    Examples:
+
+    * wagon generate content_type posts title published_at:date_time:true body:text
+
+    * wagon generate content_type products title price:float photo:file category:belongs_to:true</span></pre>
+
+  Ok, lots of information here. `SLUG` is the lowercase, underscored, plural name of our content type. `FIELDS` is a space separated list of lowercase, underscored field names. These fields will be strings by default, but we can change their type by appending a colon and the field type. Finally, if we want this field to be required, we append another colon and the keyword `true`.
+
+  Let's examine the various field types.
+
+  <table>
+      <tr>
+        <td>string</td>
+        <td>
+            A sequence of characters. In the back-office, this field will be displayed as a single line, text type input. Use this for short bits of text, for example a *title* field or *author* field.
+        </td>
+      </tr>
+      <tr>
+        <td>text</td>
+        <td>
+            This is longer, bigger block of text. In the back-office this field will be displayed as multi-line text area. You can control whether you would like the field to allow HTML, which will enable a rich text editor in the back office. Use this field type for larger bits of text, for example the *body* of a message or a *summary* of a video game.
+        </td>
+      </tr>
+      <tr>
+        <td>integer</td>
+        <td>
+            A number without a decimal, like -2, -1, 0, 1, 2, 3, and so on.
+        </td>
+      </tr>
+      <tr>
+        <td>float</td>
+        <td>
+            A number, optionally with a decimal. For example, -1.2, 0, 2.5, or 3.
+        </td>
+      </tr>
+      <tr>
+        <td>boolean</td>
+        <td>
+            Can be set to _true_ or _false_. In the back-office, this is displayed as a "Yes" or "No" switch. For example, imagine an online magazine where some articles are available to everyone while other are only available to premium subscribers. I would want to add a boolean *premium* field to my *articles* content type.
+        </td>
+      </tr>
+      <tr>
+        <td>float</td>
+        <td>
+            A number, optionally with a decimal. For example, -1.2, 0, 2.5, or 3.
+        </td>
+      </tr>
+      <tr>
+        <td>email</td>
+        <td>
+            An email address. Like _string_, it displays as a single line text input in the back-office. Input is validated to make sure it is an email address.
+        </td>
+      </tr>
+      <tr>
+        <td>date</td>
+        <td>
+            A date, like August 19, 2009.
+        </td>
+      </tr>
+      <tr>
+        <td>date_time</td>
+        <td>
+            A date and time, like 8:15 AM, August 6, 1945.
+        </td>
+      </tr>
+      <tr>
+        <td>date</td>
+        <td>
+            A number, optionally with a decimal. For example, -1.2, 0, 2.5, or 3.
+        </td>
+      </tr>
+      <tr>
+        <td>file</td>
+        <td>
+            A file. In the back-office this field will be displayed as a file picker where site editors can upload a file from their computer.
+        </td>
+      </tr>
+      <tr>
+        <td>tags</td>
+        <td>
+            A list of so called tags, or descriptive words. For example a blog post about LocomotiveCMS might be tagged with *CMS*, *Ruby*, *MongoDB*, awesome*, and so on.
+        </td>
+      </tr>
+      <tr>
+        <td>select</td>
+        <td>
+            A list of several options that can be chosen between. In the back-office, this field is displayed as a drop down menu. In databases, this type of field is often called an *enum*. For example, a _books_ content type might have a _format_ field where editors can choose between *Hardcover*, *Paperback*, or *eBook*.
+        </td>
+      </tr>
+      <tr>
+        <td>belongs_to, has_many, many_to_many</td>
+        <td>
+            These are relational types, which we will come back to later.
+        </td>
+      </tr>
+  </table>
+
+  Considering the structure of our posts and the available field types, let's supply the generate command with the necessary information to create the type.
+
+  <pre><span>$ bundle exec wagon generate content_type posts title posted_at:date_time:true tags:tags teaser:text featured_image:file body:text
+    <span style="color:#0000FF">exist</span>
+    <span style="color:#006400">create</span>  app/content_types/posts.yml
+    <span style="color:#006400">create</span>  data/posts.yml</span></pre>
+
+  Great, it looks like that worked. Note that in the above command, I didn't specify a type for title, because string is the default. Also, the first field is always required, so even though I didn't specify it, title will be required.
+
+  Let's look at the first generated file, `app/content_types/posts.yml`.
+
+      # Human readable name of this type
+      name: Posts
+
+      # Lowercase, underscored handle used to access this type
+      slug: posts
+
+      # Explanatory text displayed in the back-office
+      description: A description of the content type for the editors
+
+      # Slug of field used to identify entries by default, such as the title
+      label_field_name: title
+
+      # Valid values: manually, created_at, updated_at, or the slug of any field
+      order_by: manually
+
+      # Valid values: asc (ascending) and desc (descending). Set to asc by default.
+      # order_direction: asc 
+
+      # Specify a field slug to group entries by that field in the back-office.
+      # group_by: <your field>
+
+      # Activate public 'create' API (e.g for a contact form)
+      # public_submission_enabled: false
+
+      # Array of emails to be notified of new entries made with the public API
+      # public_submission_accounts: ['john@example.com']
+
+      # A list describing each field
+      fields: 
+      - title: # The lowercase, underscored name of the field
+          label: Title # Human readable name of the field
+          type: string
+          required: true
+          hint: Explanatory text displayed in the back office
+          localized: false
+
+      - posted_at: # The lowercase, underscored name of the field
+          label: Posted at # Human readable name of the field
+          type: date_time
+          required: true
+          hint: Explanatory text displayed in the back office
+          localized: false
+
+      - tags: # The lowercase, underscored name of the field
+          label: Tags # Human readable name of the field
+          type: tags
+          required: false
+          hint: Explanatory text displayed in the back office
+          localized: false
+
+      - teaser: # The lowercase, underscored name of the field
+          label: Teaser # Human readable name of the field
+          type: text
+          required: false
+          hint: Explanatory text displayed in the back office
+          localized: false
+          # text_formatting: html # html (uses rich text editor) or text (uses plain text editor)
+
+      - featured_image: # The lowercase, underscored name of the field
+          label: Featured image # Human readable name of the field
+          type: file
+          required: false
+          hint: Explanatory text displayed in the back office
+          localized: false
+
+      - body: # The lowercase, underscored name of the field
+          label: Body # Human readable name of the field
+          type: text
+          required: false
+          hint: Explanatory text displayed in the back office
+          localized: false
+          # text_formatting: html # html (uses rich text editor) or text (uses plain text editor)
+
+  Great. I'm glad we didn't have to type all of that. Most of the file should be fairly self-explanatory, thanks to the inline comments. I'm mostly happy with the file, but we need to customize a few things.
+
+  To start, change the `description` field to something more descriptive.
+
+          description: Blog posts about travel
+
+  Like most blogs, these posts will be ordered by the date posted, so specify that.
+
+          order_by: posted_at
+
+  And we will want the posts to go from newest to oldest.
+
+          order_direction: desc 
+
+  We can leave the public submission and group by fields commented out. The field definitions basically look good, though we need to update or remove the `hint` option for each field.
+
+          fields: 
+          - title: # The lowercase, underscored name of the field
+              label: Title # Human readable name of the field
+              type: string
+              required: true
+              localized: false
+
+          - posted_at: # The lowercase, underscored name of the field
+              label: Posted at # Human readable name of the field
+              type: date_time
+              required: true
+              localized: false
+
+          - tags: # The lowercase, underscored name of the field
+              label: Tags # Human readable name of the field
+              type: tags
+              required: false
+              localized: false
+
+          - teaser: # The lowercase, underscored name of the field
+              label: Teaser # Human readable name of the field
+              type: text
+              required: false
+              hint: A short lead-in to the post displayed when listing posts
+              localized: false
+              # text_formatting: html # html (uses rich text editor) or text (uses plain text editor)
+
+          - featured_image: # The lowercase, underscored name of the field
+              label: Featured image # Human readable name of the field
+              type: file
+              required: false
+              hint: An image displayed next to the teaser when listing posts
+              localized: false
+
+          - body: # The lowercase, underscored name of the field
+              label: Body # Human readable name of the field
+              type: text
+              required: false
+              hint: The full post text
+              localized: false
+              text_formatting: html # html (uses rich text editor) or text (uses plain text editor)
+
+  I uncommented the `text_formatting` option for `body` and `teaser`. Since I've left the option at its default value, html, I could have also left the option out, but I think in this situation it's helpful to explicitly define it. Since we're not tackling localization yet, all of the `localization` options are set to false.
+
+  Let's move onto the second generated file, `data/posts.yml`. This file specifies content entries for the posts content type.
+
+      - "Sample 1":
+          teaser: "Debitis et qui optio corporis enim labore. Et dolorem eum beatae officiis nam. Dignissimos iure adipisci est vel."
+          featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
+          body: "Voluptatum nam eius cupiditate. Dignissimos fugit hic ut mollitia aut sunt. Iusto odio magnam sunt eum dolores ea. Ea sunt qui molestiae temporibus. Velit quia similique recusandae sunt qui voluptatem voluptates tempore."
+
+      - "Sample 2":
+          teaser: "Ex et provident error ut. Nihil enim sapiente tempora error sequi et eligendi ea. Molestiae ut esse praesentium voluptates quas asperiores sapiente vel. Aut sequi ut ducimus. A voluptates nobis enim aut et quod labore."
+          featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
+          body: "Temporibus rem provident aut ipsum perspiciatis. Corrupti alias nostrum cupiditate quia numquam ex. Consequuntur fuga debitis eligendi quibusdam eius placeat. Doloremque nesciunt officiis error aut. Non illo animi culpa doloremque."
+
+      - "Sample 3":
+          teaser: "Aut ducimus nesciunt fugiat. Aliquid placeat consequatur sed corrupti molestiae aliquam expedita modi. Sunt ullam fugit et doloremque."
+          featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
+          body: "Excepturi ipsum porro a exercitationem qui aliquid aut harum. Qui tempore animi quo. Quis natus fugiat optio."
+
+      - "Sample 4":
+          teaser: "Eius aut quam ipsam ut et voluptas labore natus. Corrupti repellendus excepturi odit eius qui. Ratione iste velit laborum. Molestias ut laudantium reiciendis sunt et mollitia dolor facilis."
+          featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
+          body: "Quo quod placeat alias aut quia vel nesciunt. Consequuntur sit vitae doloribus rerum. Qui quidem qui dolor asperiores neque soluta. Sunt maxime nostrum rem ut ipsa. Dicta ut iste officia et accusantium itaque hic laborum."
+
+  Each entry is defined with the content type's label field. For our posts type, the *title* field is the label field, as was specified in `app/content_types/posts.yml`
+
+          label_field_name: title
+
+  Under each title, you can specify other fields for the entry.
+
+  These are just sample entries that we will be displayed when using the Wagon web server. The real posts will be entered through the back-office by site editors, so leaving these with *lorem ipsum* text is just fine.
+
+  However, we should add in data for the other fields: posted_at and tags. Also, it's a good idea to leave values for non-required fields blank in some entries so we can design for situations when no value is given. Update the `data/posts.yml` as follows.
+
+          - "Sample 1":
+              posted_at: 08:00 2013-10-1
+              tags: backpacking cheap outdoor
+              teaser: "Debitis et qui optio corporis enim labore. Et dolorem eum beatae officiis nam. Dignissimos iure adipisci est vel."
+              featured_image: http://placehold.it/400x400 # Path to a file in the public/samples folder or to a remote and external file.
+              body: "Voluptatum nam eius cupiditate. Dignissimos fugit hic ut mollitia aut sunt. Iusto odio magnam sunt eum dolores ea. Ea sunt qui molestiae temporibus. Velit quia similique recusandae sunt qui voluptatem voluptates tempore."
+
+          - "Sample 2":
+              posted_at: 08:00 2013-10-8
+              tags: null
+              teaser: "Ex et provident error ut. Nihil enim sapiente tempora error sequi et eligendi ea. Molestiae ut esse praesentium voluptates quas asperiores sapiente vel. Aut sequi ut ducimus. A voluptates nobis enim aut et quod labore."
+              featured_image: http://placehold.it/400x400 # Path to a file in the public/samples folder or to a remote and external file.
+              body: "Temporibus rem provident aut ipsum perspiciatis. Corrupti alias nostrum cupiditate quia numquam ex. Consequuntur fuga debitis eligendi quibusdam eius placeat. Doloremque nesciunt officiis error aut. Non illo animi culpa doloremque."
+
+          - "Sample 3":
+              posted_at: 08:00 2013-10-15
+              tags: expensive hotels luxury dining
+              teaser: "Aut ducimus nesciunt fugiat. Aliquid placeat consequatur sed corrupti molestiae aliquam expedita modi. Sunt ullam fugit et doloremque."
+              featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
+              body: "Excepturi ipsum porro a exercitationem qui aliquid aut harum. Qui tempore animi quo. Quis natus fugiat optio."
+
+          - "Sample 4":
+              posted_at: 08:00 2013-10-22
+              tags: null
+              teaser: "Eius aut quam ipsam ut et voluptas labore natus. Corrupti repellendus excepturi odit eius qui. Ratione iste velit laborum. Molestias ut laudantium reiciendis sunt et mollitia dolor facilis."
+              featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
+              body: "Quo quod placeat alias aut quia vel nesciunt. Consequuntur sit vitae doloribus rerum. Qui quidem qui dolor asperiores neque soluta. Sunt maxime nostrum rem ut ipsa. Dicta ut iste officia et accusantium itaque hic laborum."
+
+  I've added `posted_at` and `tags` fields to each entry. For the optional fields `tags` and `featured_image`, each have two entries where the value is null and two where it is specified.
+
+  # Adding entries in the back-office
+
+  We've configured our generated YAML files to be just right, so let's push this content type to our engine so we can see how these changes are reflected in the back-office.
+
+  <pre><span>$ bundle exec wagon push development -r content_types
+  * Pushing Site
+  * Pushing ContentTypes
+      creating Posts..............................................................[<span style="color:#006400">done</span>]</span></pre>
+
+  Open your engine's back-office. There should now be a _Posts_ button next to the _Pages_ button. Click on it.
+
+  <img src="{{ 'guides/making-blog/3.1/listing_posts.png' | theme_image_url }}" alt="The new Posts area" />
+
+
+  Here we find a page for listing posts and we can see the description text we added in `app/content_types/posts.yml`. The entries we added in `data/posts.yml` are not here because, as we mentioned before, those entries are really just for testing and we want them to be separate from our site's real entries. In situations where you would like the entries in the `data` directory to be pushed to an engine, use the `--data` option with the `wagon push` command.
+
+  Click the _+ new entry_ button to see what adding a new post looks like.
+
+  <img src="{{ 'guides/making-blog/3.1/new_entry_1.png' | theme_image_url }}" alt="Adding a new post" />
+
+  Pretty fancy! If you click on the _Posted at_ field, a date/time selector pops up. Tags can be added by typing some text in the tags field and clicking enter. The teaser and body fields feature a rich text editor that allows you to do all kinds of styling.
+
+  <img src="{{ 'guides/making-blog/3.1/new_entry_2.png' | theme_image_url }}" alt="A little further down on the new post page" />
+
+  You can also see the hints we specified in `app/content_types/posts.yml` displayed below their respective fields.
+
+  ## Finishing up
+
+  There's still lots to learn about content types, but let's finish here for now.
+
+  Add the generated YAML files to the git repository and commit the changes.
+
+  <pre><span>$ git add app/content_types/posts.yml data/posts.yml
+  $ git commit -m "Added posts content type."</span></pre>
+
+  When you're ready, move onto to the next lesson where we will cover how to display content type entries on your site.
+
+{% endblock %}

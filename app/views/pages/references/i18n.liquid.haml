@@ -1,0 +1,116 @@
+---
+title: I18n
+seo_title: Internationalization
+listed: true
+position: 8
+---
+{% extends 'index' %}
+
+{% block 'content' %}
+
+:markdown
+
+  Locomotive CMS provides plenty of features aimed to support international users. It's packed with multilingual admin interface as well as number of primitives that help to easily build complex multilingual sites.
+
+  # Multiple locales
+
+  First off, you have to declare the set of locales before teaching your site the new languages. Change the following settings in `config/site.yml`:
+    
+      locales: [en, fr]
+
+  Since now, you've got an access to all i18n features bounded by these two particular locales.
+  
+  # Helpers
+
+  Once we declared the list of locales that we're going to support, router will recognize their codes in the beginning of the url, otherwise it'll use the default one. So any visitor, if she knew which locales are supported, can see the site in desired locale just by placing its code in front of the url. Hm... Not really convenient, right? There should be some way to explicitly give user information on available locales. And it's there.
+  
+  Meet the `locale_switcher`! This is a helper that produces the set of links to the current page for all supported locales:
+  
+      {% raw %}{{ locale_switcher }}{% endraw %}
+  
+  Turns into...
+  
+      <div id="locale-switcher">
+        <a href="/features" class="current en">en</a>
+        |
+        <a href="/fr/fonctionnalites" class="fr">fr</a>
+      </div>
+  
+  There are some options available:
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th>Value</th>
+        <th style="width: 60%">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="3">
+          <b style="font-weight: bold;">label</b><br/><br/>
+          Content of the links<br/>
+          (default: iso)
+        </td>
+        <td>iso</td>
+        <td>Locale code as set in settings: de, fr, en, ...etc</td>
+      </tr>
+      <tr>
+        <td>locale</td>
+        <td>Fancy name of locale: Deutsch, Français, English, ...etc</td>
+      </tr>
+      <tr>
+        <td>title</td>
+        <td>The page title translated to the target locale</td>
+      </tr>
+      <tr>
+        <td>
+          <b style="font-weight: bold;">sep</b><br/><br/>
+          (default: "|")
+        </td>
+        <td>Any string</td>
+        <td>String to separate links</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  The customized call might look like...
+      
+      {% raw %}{{ locale_switcher label: title, sep: ">>" }}{% endraw %}
+
+  # Translation of Strings
+  
+  If you need to translate some pieces of template, _translate_ filter comes to help. It just substitutes the key with associated translation according to current locale. Use it as follows in the template:
+  
+      {% raw %}{{ 'some_meaningful_key' | translate }}{% endraw %}
+  
+  The place where you store the translations is `config/translations.yml`:
+  
+      some_meaningful_key:
+        en: I'm translated string, yay!
+        fr: Je suis la ligne traduite, hourra!
+  
+  If your current locale is `en`, it'll appear like _"I'm translated string, yay!"_ on the page.
+  
+  # Translation of Content
+
+  The Locomotive's approach to translation of the content is amazing. It's really transparent. Every field can be translated, even files, which is extremely useful if you store images with captions or documents in different locales there. You may choose whether translate field or not on creation of content-type using [localize](/references/content-types/create) option.
+  
+  Once content-type is setup, it's really easy to manage translated content using admin interface. But you may want to see translated entries in development. If that's the case, just use locale codes as sub-keys as we did before. Say if you have content-type `thing` with localized field `description`, it'll look like following in `data/things.yml`:
+  
+       - "First thing":
+           description:
+             en: Something
+             fr: Quelque chose
+  
+  # TimeZones
+  
+  Finally you may want to setup the timezone in `config/site.yml`:
+  
+      timezone: Paris
+      
+  It's important to properly display date of creation of content entries.
+
+
+{% endblock %}

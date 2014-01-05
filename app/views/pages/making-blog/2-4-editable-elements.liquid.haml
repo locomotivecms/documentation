@@ -96,7 +96,7 @@ position: 7
 
   Let's push these changes to the Engine and see how they look. We've been pushed to the Engine twice already so far, but we've only changed one file, `about.liquid`. In situations like this, it can be annoying to push all the site's content types, pages and assets. That's why `wagon push` comes with a handy resources option that you can use to specify which things you would like to push. Try it out using  `--resources` or `-r`.
 
-  <pre><span>$ bundle exec wagon push -r pages</span></pre>
+  <pre><span>$ bundle exec wagon push development -r pages</span></pre>
 
   A little quicker, right? Go to the _Pages_ section of the back-office and again click _About_. At a first glance, the newly created _caption_ field can't be seen. But just above the text editor for page's body, there are two tabs: _Main_ and _Featured Photo_. These tabs represent which Liquid block holds each editable element. If you click on the _Featured Photo_ tab, you should see the caption field.
 

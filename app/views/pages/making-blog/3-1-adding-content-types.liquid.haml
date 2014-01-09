@@ -335,15 +335,7 @@ position: 8
           featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
           body: "Temporibus rem provident aut ipsum perspiciatis. Corrupti alias nostrum cupiditate quia numquam ex. Consequuntur fuga debitis eligendi quibusdam eius placeat. Doloremque nesciunt officiis error aut. Non illo animi culpa doloremque."
 
-      - "Sample 3":
-          teaser: "Aut ducimus nesciunt fugiat. Aliquid placeat consequatur sed corrupti molestiae aliquam expedita modi. Sunt ullam fugit et doloremque."
-          featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
-          body: "Excepturi ipsum porro a exercitationem qui aliquid aut harum. Qui tempore animi quo. Quis natus fugiat optio."
-
-      - "Sample 4":
-          teaser: "Eius aut quam ipsam ut et voluptas labore natus. Corrupti repellendus excepturi odit eius qui. Ratione iste velit laborum. Molestias ut laudantium reiciendis sunt et mollitia dolor facilis."
-          featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
-          body: "Quo quod placeat alias aut quia vel nesciunt. Consequuntur sit vitae doloribus rerum. Qui quidem qui dolor asperiores neque soluta. Sunt maxime nostrum rem ut ipsa. Dicta ut iste officia et accusantium itaque hic laborum."
+      ...
 
   Each entry is defined with the content type's label field. For our posts type, the *title* field is the label field, as was specified in `app/content_types/posts.yml`
 
@@ -353,40 +345,12 @@ position: 8
 
   These are just sample entries that we will be displayed when using the Wagon web server. The real posts will be entered through the back-office by site editors, so leaving these with *lorem ipsum* text is just fine.
 
-  However, we should add in data for the other fields: posted_at and tags. Also, it's a good idea to leave values for non-required fields blank in some entries so we can design for situations when no value is given. Update the `data/posts.yml` as follows.
+  However, we should add in data for the fields which are missing or blank: featured_image, posted_at, and tags. Further, the body samples are a little short. Also it's always a good idea to include plenty of variety in testing data by having text of varying lengths and including some entries that are missing the optional fields.
 
-          - "Sample 1":
-              posted_at: 2013-10-01 20:00:00 -0500
-              tags: [backpacking, cheap, outdoor]
-              teaser: "Debitis et qui optio corporis enim labore. Et dolorem eum beatae officiis nam. Dignissimos iure adipisci est vel."
-              featured_image: http://placehold.it/400x400 # Path to a file in the public/samples folder or to a remote and external file.
-              body: "Voluptatum nam eius cupiditate. Dignissimos fugit hic ut mollitia aut sunt. Iusto odio magnam sunt eum dolores ea. Ea sunt qui molestiae temporibus. Velit quia similique recusandae sunt qui voluptatem voluptates tempore."
-
-          - "Sample 2":
-              posted_at: 2013-10-08 20:00:00 -0500
-              tags: null
-              teaser: "Ex et provident error ut. Nihil enim sapiente tempora error sequi et eligendi ea. Molestiae ut esse praesentium voluptates quas asperiores sapiente vel. Aut sequi ut ducimus. A voluptates nobis enim aut et quod labore."
-              featured_image: http://placehold.it/400x400 # Path to a file in the public/samples folder or to a remote and external file.
-              body: "Temporibus rem provident aut ipsum perspiciatis. Corrupti alias nostrum cupiditate quia numquam ex. Consequuntur fuga debitis eligendi quibusdam eius placeat. Doloremque nesciunt officiis error aut. Non illo animi culpa doloremque."
-
-          - "Sample 3":
-              posted_at: 2013-10-15 20:00:00 -0500
-              tags: [expensive, hotels, luxury, dining]
-              teaser: "Aut ducimus nesciunt fugiat. Aliquid placeat consequatur sed corrupti molestiae aliquam expedita modi. Sunt ullam fugit et doloremque."
-              featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
-              body: "Excepturi ipsum porro a exercitationem qui aliquid aut harum. Qui tempore animi quo. Quis natus fugiat optio."
-
-          - "Sample 4":
-              posted_at: 2013-10-22 20:00:00 -0500
-              tags: null
-              teaser: "Eius aut quam ipsam ut et voluptas labore natus. Corrupti repellendus excepturi odit eius qui. Ratione iste velit laborum. Molestias ut laudantium reiciendis sunt et mollitia dolor facilis."
-              featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
-              body: "Quo quod placeat alias aut quia vel nesciunt. Consequuntur sit vitae doloribus rerum. Qui quidem qui dolor asperiores neque soluta. Sunt maxime nostrum rem ut ipsa. Dicta ut iste officia et accusantium itaque hic laborum."
-
-  I've added `posted_at` and `tags` fields to each entry. For the optional fields `tags` and `featured_image`, each have two entries where the value is null and two where it is specified.
+  So, I used text from [Fillerama](http://chrisvalleskey.com/fillerama/), placeholder images from [placehold.it](http://placehold.it/), and a short Ruby script to generate [a new data/posts.yml file](posts.yml) with high quality sample data, which you can [download here](posts.yml).
 
   <div class="alert alert-info">
-      When entering dates and time into YAML files in the <code>data</code> directory, there's a fair amount of flexibility since the dates will be parsed by Ruby. For date times, I like the unambiguous *YEAR-MONTH-DAY HOURS:MINUTES:SECONDS UTC_OFFSET* format shown above. This data is just for testing purposes so you shouldn't worry too much about its accuracy, but know that if you don't specify a UTC offset, times will be in GMT by default.
+      When entering dates and time into YAML files in the <code>data</code> directory, there's a fair amount of flexibility since the dates will be parsed by Ruby. For date times, I like the unambiguous *YEAR-MONTH-DAY HOURS:MINUTES:SECONDS UTC_OFFSET* format used in the sample file above. This data is just for testing purposes so you shouldn't worry too much about its accuracy, but know that if you don't specify a UTC offset, times will be in GMT by default.
   </div>
 
   # Adding entries in the back-office

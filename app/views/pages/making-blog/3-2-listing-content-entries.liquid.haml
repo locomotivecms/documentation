@@ -202,7 +202,7 @@ position: 9
           for(var i = 0; i < posts.length; i+=3) { equalizeHeights( posts.slice(i, i+3) ); }
         } else if ( $(window).width() >= 768 ) {
           for(var i = 0; i < posts.length; i+=2) { equalizeHeights( posts.slice(i, i+2) ); }
-        }
+        }g
       }
 
   And then add the following two lines inside the `$(document).ready` block.
@@ -236,6 +236,8 @@ position: 9
   $ git add public/stylesheets/styles.css public/javascripts/main.js
   $ git commit -m "Added a page to list the posts."</span></pre>
 
-  Stayed tuned for the next chapter where we will enhance the posts page even further with pagination and tag filtering.
+  Stayed tuned for the next chapter where we will enhance the posts page even further with pagination.
+
+%a.orange-rounded-button{href: "/making-blog/3-3-pagination"} Next: pagination
 
 {% endblock %}

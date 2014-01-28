@@ -18,7 +18,7 @@ position: 8
 
       {% raw %}<div class="clearfix"></div>
       <footer class="footer">
-        <p>&copy; Wisdom for Wanderers {{ now | localized_date: '%Y' }} </p>
+        <p>&copy; {{ site.name }} {{ now | localized_date: '%Y' }} </p>
       </footer>{% endraw %}
 
   The above code should be mostly straight forward, but let's take a brief excursion to explore the new filter encountered here: `localized_date`.

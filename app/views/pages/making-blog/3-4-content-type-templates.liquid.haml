@@ -159,7 +159,33 @@ position: 11
 
   <img src="{{ 'guides/making-blog/3.4/new_home_page.png' | theme_image_url }}" alt="The new home page" />
 
-  Looks great!
+  Looks great! Now, let's make the jumbotron text editable so site editors can change it at will.
+
+      {% raw %}{% capture jumbotron_title %}
+        {% editable_text "jumbotron_title", format: "raw", rows: 1 %}
+        Life's to short not to get away for awhile!
+        {% endeditable_text %}
+      {% endcapture %}
+      {% capture jumbotron_message %}
+        {% editable_text "jumbotron_message", format: "raw", rows: 3 %}
+          Learn about cool places to see abroad, interesting things to eat, and little travel tips you won't believe you lived without.
+        {% endeditable_text %}
+      {% endcapture %}
+      {% capture jumbotron_button %}
+        {% editable_text "jumbotron_button", format: "raw", rows: 1%}
+          Browse our articles
+        {% endeditable_text %}
+      {% endcapture %}
+      <div class="jumbotron">
+        <h1>{{ jumbotron_title | escape }}</h1>
+        <p class="sub-title">{{ jumbotron_message | escape }}</p>
+        <p>
+          <a href="/posts" class="btn btn-primary btn-lg">
+            {{ jumbotron_button | escape }}
+          </a>
+        </p>
+      </div>{% endraw %}
+
 
   ## Finishing up
 

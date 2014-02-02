@@ -57,7 +57,7 @@ position: 8
 
       {% raw %}<title>
         {{ page.title | escape }} - {{ site.name | escape }}
-        | {% if page.seo_title | escape %}{{ page.seo_title | escape }}{% else %}{{ site.seo_title | escape }}{% endif %}
+        | {% if page.seo_title %}{{ page.seo_title | escape }}{% else %}{{ site.seo_title | escape }}{% endif %}
       </title>{% endraw %}
 
   The second place is the first heading tag.

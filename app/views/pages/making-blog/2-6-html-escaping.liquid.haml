@@ -57,7 +57,7 @@ position: 8
 
       {% raw %}<title>
         {{ page.title | escape }} - {{ site.name | escape }}
-        | {% if page.seo_title | escape %}{{ page.seo_title | escape }}{% else %}{{ site.seo_title | escape }}{% endif %}
+        | {% if page.seo_title %}{{ page.seo_title | escape }}{% else %}{{ site.seo_title | escape }}{% endif %}
       </title>{% endraw %}
 
   The second place is the first heading tag.
@@ -66,7 +66,7 @@ position: 8
 
   And the third place is the page heading.
 
-      {% raw %}<h2>{{ page.title }}</h2>{% endraw %}
+      {% raw %}<h2>{{ page.title | escape }}</h2>{% endraw %}
 
   Moving onto the `about.liquid` page, the editable content needs to be escaped. The `about_body` uses a rich, HTML editor, so the content will already be in HTML format, but the photo's caption uses a raw text fields, so that must be escaped.
 

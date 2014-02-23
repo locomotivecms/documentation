@@ -84,6 +84,10 @@ position: 3
   <pre><span>unable to get an API token:  (500)</span></pre>
   Wagon can connect to the host, but received an internal server error when trying to access the LocomotiveCMS API. Are Rails and MongoDB running? Is the back-office working?
 
+  There are no changes in the backoffice? And the default site from the engine tutorial is still showing? Overwriting the existing could be the solution.
+  <pre><span>$ bundle exec wagon push development --force</span></pre>
+
+
   <h2 id="testing-the-back-office">Testing the back-office</h2>
 
   Let's take a quick look at the back-office for our Engine. Open your browser to the Engine's back-office. For most Engines, you can access this at the _locomotive_ subdirectory by default, i.e. _http://www.example.com/locomotive_. LocomotiveHosting users can access a site's back-office at the _admin_ subdirectory or by clicking on the site's name in [your Workspace](https://www.locomotivehosting.com/admin/sites).

@@ -38,6 +38,7 @@ listed: true
   %body
     {% include 'nav' %}
 
+    {% if page.slug == 'index' %}
     %section#page-head
       .inner-container
         %h1 {% editable_text page_head_title, priority: 10, format: raw, rows: 1, line_break: false, fixed: true %}Welcome to the documentation center{% endeditable_text %}
@@ -48,6 +49,7 @@ listed: true
           %br
           Below you’ll find documentation, tutorials and resources on how to use LocomotiveCMS.
         {% endeditable_text %}
+    {% endif %}
 
     #main-generic
 

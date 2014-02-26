@@ -1,7 +1,7 @@
 ---
 title: 3.2 Listing content entries
 listed: true
-position: 9
+position: 10
 ---
 {% extends 'index' %}
 
@@ -9,7 +9,7 @@ position: 9
 
 :markdown
 
-  Now that we have our posts content type setup and a collection of sample entries, let's use them. I'm thinking we should add a new *Posts* page which lists all of the posts, showing their title, a short summary, an image and a link to read the entire article.
+  Now that we have our posts content type setup and a collection of sample entries,  let's use them. I'm thinking we should add a new *Posts* page which lists all of the posts, showing their title, a short summary, an image and a link to read the entire article.
 
   # Creating a basic listing
 
@@ -38,8 +38,8 @@ position: 9
         <div class="posts">
           {% for post in contents.posts %}
             <div class="post-listing">
-              {% if post.featured_image %}
-                <img src="{{ post.featured_image | resize: '400x200#' }}" alt="{{ post.title | escape }}">
+              {% if post.featured_image.url %}
+                <img src="{{ post.featured_image.url | resize: '400x200#' }}" alt="{{ post.title | escape }}">
               {% endif %}
               <h3>{{ post.title | escape }}</h3>
               <div class="teaser">{{ post.teaser }}</div>
@@ -65,11 +65,18 @@ position: 9
 
   Our loop begins by opening a new div tag with the class `post-listing` for each post.
 
-      {% raw %}{% if post.featured_image %}
-          <img src="{{ post.featured_image | resize: '400x200#' }}" alt="{{ post.title | escape }}">
+      {% raw %}{% if post.featured_image.url %}
+          <img src="{{ post.featured_image.url | resize: '400x200#' }}" alt="{{ post.title | escape }}">
       {% endif %}{% endraw %}
 
-  Here, there is first an if statement to see whether this post has an image, because, as you may remember, the `featured_image` field was optional. If there is an image, it creates a new image tag, using the trusty `resize` filter to make the images consistently 400 pixels wide and 200 pixels tall. For the image's `alt` field, we've specified the post's title, and escaped it with the `escape` filter.
+  First, an if tag checks to see whether this post has an image, since, as you may remember, the `featured_image` field was optional. But what's this `.url` business? File fields for content types have several properties by default, including:
+
+    - `url`: the file's full URL
+    - `size`: the file's size in bytes
+    - `filename`: the file name (without the path)
+
+  If the editor has left the featured image field blank, then then the URL will be blank, so we can use the `url` property to see if an image has been uploaded. 
+  If there is an image, it creates a new image tag, using the trusty `resize` filter to make the images consistently 400 pixels wide and 200 pixels tall. For the image's `alt` field, we've specified the post's title, and escaped it with the `escape` filter.
 
       {% raw %}<h3>{{ post.title | escape }}</h3>{% endraw %}
 
@@ -111,8 +118,8 @@ position: 9
           {% for post in contents.posts %}
             <div class="post-listing col-sm-6 col-md-4">
               <div class="thumbnail">
-                {% if post.featured_image %}
-                  <img src="{{ post.featured_image | resize: '400x200#' }}" alt="{{ post.title | escape }}">
+                {% if post.featured_image.url %}
+                  <img src="{{ post.featured_image.url | resize: '400x200#' }}" alt="{{ post.title | escape }}">
                 {% endif %}
                 <h3>{{ post.title | escape }}</h3>
                 <div class="teaser">{{ post.teaser }}</div>
@@ -141,7 +148,7 @@ position: 9
 
   Add the following two lines just before the `{% raw %}{% endfor %}{% endraw %}` tag.
 
-      {% raw %}{% cycle  '', '<div class="clearfix visible-sm">&nbsp;</div>' }}
+      {% raw %}{% cycle  '', '<div class="clearfix visible-sm">&nbsp;</div>' %}
       {% cycle '', '', '<div class="clearfix hidden-sm hidden-xs">&nbsp;</div>'  %}{% endraw %}
 
 

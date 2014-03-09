@@ -11,7 +11,7 @@ position: 4
 
   ## Our new home page
 
-  Ok, let's replace our generic Bootstrap home page with the real home page for our blog. Open the `app/pages/index.liquid` file and delete all of its contents. Paste in the following code.
+  Ok, let's replace our generic Bootstrap home page with the real home page for our blog. Open the `app/pages/views/index.liquid` file and delete all of its contents. Paste in the following code.
 
 %pre
   %code
@@ -23,7 +23,7 @@ position: 4
       &lt;!DOCTYPE html&gt;
       &lt;html lang=&quot;en&quot;&gt;
         &lt;head&gt;
-          &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt; 
+          &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
           &lt;meta charset=&quot;utf-8&quot;&gt;
           &lt;title&gt;
             {{ page.title }} - {{ site.name }}
@@ -38,7 +38,7 @@ position: 4
             &lt;script src=&quot;//html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;
           &lt;![endif]--&gt;
         &lt;/head&gt;
-        &lt;body&gt;        
+        &lt;body&gt;
           &lt;div class=&quot;container&quot;&gt;
 
             &lt;!-- Site Title --&gt;

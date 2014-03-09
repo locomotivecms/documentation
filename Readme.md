@@ -1,35 +1,15 @@
-## Locomotive Documentation Site
+## LocomotiveCMS Documentation
 
-We woud appreciate any contribution to this guide.
+Welcome to the documentation for [LocomotiveCMS](http://www.locomotivecms.com), an open source content management system. You can find this documentation online at [http://doc.locomotivecms.com](http://doc.locomotivecms.com).
 
-## How to contribute ?
+If you find errors, would like to add content, or have other contributions, please open a GitHub issue or submit a pull request. All contributions are greatly appreciated.
 
-Fork the repository and send us a pull request!
+If you need help using LocomotiveCMS, please don't open an issue here. Instead post in our [Google Group](https://groups.google.com/forum/#!forum/locomotivecms). Thanks!
 
-## How to run the doc site locally
+## Contributing
 
-- fork this repository
-- install the required gems ```bundle install```
-- run the server ```bundle exec wagon serve```
-- open your browser http://0.0.0.0:3333
+This repository is itself a LocomotiveCMS Wagon project. To contribute, first fork the repository. You can then clone it to your machine and make changes as you would to any LocomotiveCMS project and preview your changes with `bundle exec wagon serve`.
 
-## What can I do to help?
+Once you've committed your changes, push them to your fork and send us a pull request.
 
-Read the TODO :)
-
-## Conventions
-
-- alerts :
-  - plain html inside, no haml parsed
-  - "blue style" alert is a div with class .alert .alert-info
-  - "orange style" alert is a div with class .alert. .alert-warning
-- code :
-  - raw tag before each liquid sentence
-  - inline : ```{% raw %} {% block %} {% endraw %}```
-  - indent code with two tabs
-- tables : raw html
-- Markdown:
-  - the first md line must be right after :markdown, no empty line or error
-- images :
-  - stored in samples/guides/ ...
-  - <img src="{{ '/samples/guides/templating/FILE.png' }}">
+All contributions are greatly appreciated. Further, we expect that pull requests addressing open issues will be greatly rewarded in the after life. :bow:

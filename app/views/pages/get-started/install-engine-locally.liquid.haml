@@ -13,29 +13,26 @@ position: 5
 
   The instructions below guide you through installing Engine on your local development machine. These guides assumed that you have already <a href="/get-started/install-wagon">installed Wagon</a>.
 
-#install-engine-locally-selector
+#platform-selector
   %h2 Choose the appropriate guide for your operating system
 
   .option
-    .image
-      {{ 'os/macos.png' | theme_image_tag }}
+    .image {{ 'os/macos.png' | theme_image_tag }}
     .link
-      %a{href: "#", data: {section: "macos"}} Mac OS X
+      %a{href: "#mac"} Mac OS X
 
   .option
-    .image
-      {{ 'os/windows.png' | theme_image_tag }}
+    .image {{ 'os/windows.png' | theme_image_tag }}
     .link
-      %a{href: "#", data: {section: "windows"}} Windows
+      %a{href: "#windows"} Windows
 
   .option
-    .image
-      {{ 'os/linux.png' | theme_image_tag }}
+    .image {{ 'os/linux.png' | theme_image_tag }}
     .link
-      %a{href: "#", data: {section: "linux"}} Linux
+      %a{href: "#linux"} Linux
 
-#install-engine-locally-guides
-  .guide#guide_windows
+#platform-guides
+  .guide#windows
     :markdown
       # Installing Engine on Windows
 
@@ -263,7 +260,7 @@ position: 5
 
       All done. You now can deploy and test your sites right from your development machine.
 
-  .guide#guide_macos
+  .guide#mac
     :markdown
       # Installing Engine on Mac OS X
 
@@ -477,7 +474,7 @@ position: 5
       All done. You now can deploy and test your sites right from your development machine.
 
 
-  .guide#guide_linux
+  .guide#linux
     :markdown
       # Installing Engine on Linux
 

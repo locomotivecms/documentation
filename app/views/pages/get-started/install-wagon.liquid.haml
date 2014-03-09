@@ -11,29 +11,26 @@ position: 4
 %p
   Wagon is a command line tool for creating LocomotiveCMS sites. Wagon has lots of great features, like site, page, and content type generators; modern development tools like HAML, SASS, Less, and CoffeeScript; and an embedded web server for previewing sites locally.
 
-#install-wagon-selector
+#platform-selector
   %h2 Choose the appropriate guide for your operating system
 
   .option
-    .image
-      {{ 'os/macos.png' | theme_image_tag }}
+    .image {{ 'os/macos.png' | theme_image_tag }}
     .link
-      %a{href: "#", data: {section: "macos"}} Mac OS X
+      %a{href: "#mac"} Mac OS X
 
   .option
-    .image
-      {{ 'os/windows.png' | theme_image_tag }}
+    .image {{ 'os/windows.png' | theme_image_tag }}
     .link
-      %a{href: "#", data: {section: "windows"}} Windows
+      %a{href: "#windows"} Windows
 
   .option
-    .image
-      {{ 'os/linux.png' | theme_image_tag }}
+    .image {{ 'os/linux.png' | theme_image_tag }}
     .link
-      %a{href: "#", data: {section: "linux"}} Linux
+      %a{href: "#linux"} Linux
 
-#install-wagon-guides
-  .guide#guide_windows
+#platform-guides
+  .guide#windows
     :markdown
       # Installing Wagon on Windows
 
@@ -98,7 +95,7 @@ position: 4
 
       Wagon is ready to use and you can start creating your first LocomotiveCMS site.
 
-  .guide#guide_macos
+  .guide#mac
     :markdown
       # Installing Wagon on Mac OS X
 
@@ -280,7 +277,7 @@ position: 4
       Wagon is now ready to use and you can start creating your first LocomotiveCMS site.
 
 
-  .guide#guide_linux
+  .guide#linux
     :markdown
       # Installing Wagon on Linux
 

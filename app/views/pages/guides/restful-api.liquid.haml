@@ -23,11 +23,11 @@ listed: true
 
   You can either pass your **email / password**
 
-      curl -d 'email=us...@example.com&password=secret' http://<your site>/locomotive/api/tokens.json
+      curl -d 'email=us...@example.com&password=secret' 'http://<your site>/locomotive/api/tokens.json'
 
   or your **API key**
 
-      curl -d 'api_key=.....' http://<your site>/locomotive/api/tokens.json
+      curl -d 'api_key=.....' 'http://<your site>/locomotive/api/tokens.json'
 
   You should read something like this in your terminal:
 
@@ -37,7 +37,7 @@ listed: true
 
   # 2. Get information about the current site
 
-      curl http://<your site>/locomotive/api/current_site.json?auth_token=K9zm8niKTxuM4ZMNK7Ct
+      curl 'http://<your site>/locomotive/api/current_site.json?auth_token=K9zm8niKTxuM4ZMNK7Ct'
 
   The output will look something like:
 
@@ -51,7 +51,7 @@ listed: true
 
   Let's say we want to update the name of the site:
 
-      curl -X PUT -d 'site[name]=TEST' http://<your site>/locomotive/api/current_site.json?auth_token=K9zm8niKTxuM4ZMNK7Ct
+      curl -X PUT -d 'site[name]=TEST' 'http://<your site>/locomotive/api/current_site.json?auth_token=K9zm8niKTxuM4ZMNK7Ct'
 
   It should return the JSON output of the updated site.
 
@@ -59,7 +59,7 @@ listed: true
 
   Let's add a page under the index page (/hello-world):
 
-      curl -X POST -d 'page[title]=Hello world&page[slug]=hello-world&page[parent_fullpath]=index&page[raw_template]=Built with the API&page[listed]=true&page[published]=true' http://<your site>/locomotive/api/current_site.json?auth_token=K9zm8niKTxuM4ZMNK7Ct
+      curl -X POST -d 'page[title]=Hello world&page[slug]=hello-world&page[parent_fullpath]=index&page[raw_template]=Built with the API&page[listed]=true&page[published]=true' 'http://<your site>/locomotive/api/current_site.json?auth_token=K9zm8niKTxuM4ZMNK7Ct'
 
 
 

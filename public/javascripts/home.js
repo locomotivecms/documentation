@@ -17,9 +17,9 @@ $(function() {
     $(this).toggleClass('expanded');
   });
   
-  $('#install-wagon-selector').on('click', 'a', function(e){
+  $('#install-wagon-selector, #install-engine-locally-selector').on('click', 'a', function(e){
     e.preventDefault();
-    $('#install-wagon-guides').find('.guide').hide();
+    $('#install-wagon-guides, #install-engine-locally-guides').find('.guide').hide();
     $("#guide_" + $(this).data('section')).fadeIn();
   });
 

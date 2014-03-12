@@ -48,7 +48,7 @@ position: 2
         ---
         {% extends 'index' %}
         {% block main %}
-        <h1>{{ event.title }} on {{ event.event_date || localized_date: '%m/%d/%Y' }}</h1>
+        <h1>{{ event.title }} on {{ event.event_date | localized_date: '%m/%d/%Y' }}</h1>
         <p>{{ event.description }}</p>
         {% endblock %}{% endraw %}
 

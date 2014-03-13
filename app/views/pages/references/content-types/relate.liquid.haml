@@ -27,11 +27,11 @@ position: 3
       - author:
           label: Author
           type: belongs_to
-          target: authors
+          class_name: authors
 
   The key `author` here is a property that we will call on a book instance. It does not have to match the name of related model. For example, we could name our relation `writer`.
 
-  The `target` parameter (vice versa) must contain the slug of the model; otherwise, we couldn't know which model exactly we want to bind here.
+  The `class_name` parameter (vice versa) must contain the slug of the model; otherwise, we couldn't know which model exactly we want to bind here.
 
   Also, we may want to add the `required: true` option if the book without an author shouldn't exist in our library.
 
@@ -77,7 +77,7 @@ position: 3
       - books:
           label: Books
           type: has_many
-          target: books
+          class_name: books
           inverse_of: author
           ui_enabled: true
 
@@ -111,7 +111,7 @@ position: 3
       - authors:
           label: Author
           type: many_to_many
-          target: authors
+          class_name: authors
           inverse_of: books
           ui_enabled: true
 
@@ -120,7 +120,7 @@ position: 3
       - books:
           label: Books
           type: many_to_many
-          target: books
+          class_name: books
           inverse_of: authors
           ui_enabled: true
 

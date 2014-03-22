@@ -96,6 +96,10 @@ position: 7
   
       RAILS_ENV=production bundle exec rake assets:precompile
 
+  <div class="alert alert-warning">
+  Note that this task is memory intensive and will likely have issues on smaller VM's. If you run into issues, consider precompiling locally and pushing the assets to your hosting environment.
+  </div>
+
   # 6. Serve the application
 
   Finally, you will need to serve the application itself. When deploying on your own server, the most popular application servers for Rails are Phusion Passenger, Puma, and Unicorn. 

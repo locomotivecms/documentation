@@ -80,7 +80,7 @@ position: 8
   Create a new file, `app/views/snippets/img_box.liquid`, and paste in the following code.
 
       {% raw %}<div class="img-box">
-        <a href="{{ photo | resize: '800x>' }}">
+        <a href="{{ photo | resize: '800x' }}">
           <img src="{{ photo | resize: size }}" alt="{{ caption }}" />
         </a>
         <p>{{ caption }}</p>

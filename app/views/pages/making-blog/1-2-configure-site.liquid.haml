@@ -88,8 +88,11 @@ position: 2
 
   Let's commit our changes to the git repository.
 
-  <pre><span>$ git rm --cached config/deploy.yml
-  $ git commit -am "Changed site configuration and deployment settings."</span></pre>
+  <pre><span>
+    $ git rm --cached config/deploy.yml
+    $ echo 'config/deploy.yml' >> .gitignore    
+    $ git commit -am "Changed site configuration and deployment settings."
+  </span></pre>
 
 %a.orange-rounded-button{href: "/making-blog/1-3-deploy-to-engine"} Next: deploying to the Engine  
 

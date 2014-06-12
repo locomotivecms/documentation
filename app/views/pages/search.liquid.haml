@@ -44,10 +44,15 @@ searchable: false
 
   {% else %}
 
-  {% if site.search.size == 0 %}
+  {% search_for params.search, per_page: 10, page: params.page %}
+
+  {% if result.total_entries == 0 %}
+
   %p.no-results Sorry, no results were found.
+
   {% else %}
-  {% for result in site.search %}
+
+  {% for result in search.results %}
   %article
     %header
       %a{ href: "/{{result.fullpath}}" } {{ result.title }}
@@ -55,7 +60,10 @@ searchable: false
     .content
       %p {{ result.highlighted.searchable_content }}
   {% endfor %}
+
   {% endif %}
+
+  {% endsearch_for %}
 
   {% endif %}
 

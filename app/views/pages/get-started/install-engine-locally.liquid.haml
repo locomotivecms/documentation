@@ -1,5 +1,5 @@
 ---
-title: Install Engine locally 
+title: Install Engine locally
 published: true
 listed: true
 position: 4
@@ -42,11 +42,11 @@ position: 4
       - [Ruby](https://www.ruby-lang.org/) 1.9.3 or higher
       - [Ruby on Rails](http://rubyonrails.org/) 3.2.x
       - [MongoDB](http://www.mongodb.org/)
-      
+
       The good news is that when you [installed Wagon](/get-started/install-wagon), you already took care of installing the first three. That leaves just mongoDB. Let's get started
 
       ## Step 1: Installing mongoDB
-      
+
       Visit the [mongoDB downloads page](http://www.mongodb.org/downloads) and download the appropriate Windows binary for your computer. A 64-bit binary won't work on 32-bit computers and vice-versa, so be sure to select the correct version. If you unsure of your OS architecture, open a new Command Prompt (found in the _Start Menu_ under `All Programs \ Accessories`) and enter the command below.
 
       <pre><span>C:\Users\your_name&gt; wmic os get osarchitecture
@@ -113,7 +113,6 @@ position: 4
       -1- Add the following line.
 
           gem 'locomotive_cms', '~> 2.4.1', :require => 'locomotive/engine'
-      
 
       -2- Add under the following line under the assets group.
 
@@ -155,7 +154,7 @@ position: 4
 
       <pre><span>C:\Users\your_name\Documents\acme_cms&gt; bundle exec rails g locomotive:install
       [deprecated] I18n.enforce_available_locales will default to true in the future. If you really want to skip validation of your locale you can set I18n.enforce_available_locales = false to avoid this message.
-      WARNING: unable to load the content types, 
+      WARNING: unable to load the content types,
       Problem:
         No configuration could be found for a session named 'default'.
       Summary:
@@ -167,7 +166,7 @@ position: 4
             <span style="color:#006400">create</span>  config/initializers/dragonfly.rb
             <span style="color:#006400">create</span>  config/mongoid.yml
              <span style="color:#006400">route</span>  mount Locomotive::Engine => '/locomotive', as: 'locomotive' # you can change the value of the path, by default set to "/locomotive"
-            
+
             <span style="color:#006400">remove</span>  public/index.html
       ===============================================================================
 
@@ -196,7 +195,31 @@ position: 4
 
       ===============================================================================</span></pre>
 
-      This command has installed several configuration files and given us instructions on how to proceeed. Since this is just a development Engine, we can ignore most of these instructions. 
+      This command has installed several configuration files and given us instructions on how to proceed. Since this is just a development Engine, we can ignore most of these instructions.
+
+      <div class="alert alert-info">
+      <h3>Multi-Site Installations</h3>
+      <p>When setting up an Engine, you must decide if the Engine will host only a single site, or if it will host multiple LocomotiveCMS sites. If your Engine will only host a single site, skip this section. For a multi-site installations, please follow the instructions below.</p>
+
+      <h4>Domains</h4>
+      <p>Even in development, multi-site engines must have a dedicated, top-level domain, such as <em>example.com</em>. Each Locomotive site hosted on the Engine must have a subdomain of this top level domain. A site can of course also optionally have its own top level domains, but it must have a subdomain of the engine's domain.</p>
+
+      <p>A great way to simulate this in development is to add the domains to your computer's hosts file. Run <code>sudo open /etc/hosts</code> and add in the following lines.</p>
+      <pre><span>127.0.0.1 myengine.dev
+      127.0.0.1 site-a.myengine.dev
+      127.0.0.1 site-b.myengine.dev
+      127.0.0.1 site-c.myengine.dev
+      ...</span></pre>
+
+      <h4>Configuration</h4>
+      <p>Open <code>config/initializers/locomotive.rb</code> and delete the line <code>config.multi_sites = false</code>. Next, uncomment the mulit-site configuration block and set the domain you entered in your hosts file.</p>
+      <pre><code>config.multi_sites do |multi_sites|
+        multi_sites.domain = 'myengine.dev'
+        multi_sites.reserved_subdomains = %w(www admin email blog webmail mail support help site sites)
+      end</code></pre>
+
+      <p>Your engine can now support multiple sites.</p>
+      </div>
 
       The one thing we will do is change the name of our mongoid database to avoid any potential conflicts with other LocomotiveCMS installations. Open `config\mongoid.yml` and change the `database` values, as shown in the example below.
 
@@ -270,14 +293,14 @@ position: 4
       - [Ruby](https://www.ruby-lang.org/) 1.9.3 or higher
       - [MongoDB](http://www.mongodb.org/)
       - [Ruby on Rails](http://rubyonrails.org/) 3.2.x
-      
+
       The good news is that when you [installed Wagon](/get-started/install-wagon), you already took care of installing the first two. That leaves MongoDB and Ruby on Rails 3. Let's get started.
 
       ## Step 1: Installing mongoDB
-      
+
       The easiest way to install mongoDB on Mac OS X is with [Homebrew](http://brew.sh/). Fortunately, when we [installed Wagon](/get-started/install-wagon) we also installed Homebrew, so you should already have this.
 
-      Open a new terminal session (you can find the Terminal application under `Application/Utilities`). Run `brew update` to make sure that Homebrew has the latest formulas for mongoDB. Then run `brew install mongodb`.
+      Open a new terminal session (you can with `/Applications/Utilities/Terminal.app`). Run `brew update` to make sure that Homebrew has the latest formulas for mongoDB. Then run `brew install mongodb`.
 
       <pre><span>$ brew update
       $ brew install mongodb</span></pre>
@@ -324,7 +347,7 @@ position: 4
       -2- Add the following line under the assets group.
 
           gem 'compass-rails',  '~> 1.1.3'
-      
+
       -3- Uncomment the following line.
 
           gem 'unicorn'
@@ -368,7 +391,7 @@ position: 4
 
       <pre><span>$ bundle exec rails g locomotive:install
       [deprecated] I18n.enforce_available_locales will default to true in the future. If you really want to skip validation of your locale you can set I18n.enforce_available_locales = false to avoid this message.
-      WARNING: unable to load the content types, 
+      WARNING: unable to load the content types,
       Problem:
         No configuration could be found for a session named 'default'.
       Summary:
@@ -380,7 +403,7 @@ position: 4
             <span style="color:#006400">create</span>  config/initializers/dragonfly.rb
             <span style="color:#006400">create</span>  config/mongoid.yml
              <span style="color:#006400">route</span>  mount Locomotive::Engine => '/locomotive', as: 'locomotive' # you can change the value of the path, by default set to "/locomotive"
-            
+
             <span style="color:#006400">remove</span>  public/index.html
       ===============================================================================
 
@@ -409,8 +432,7 @@ position: 4
 
       ===============================================================================</span></pre>
 
-      This command has installed several configuration files and given us instructions on how to proceeed. Since this is just a development engine, we will skip most of these instructions. 
-
+      This command has installed several configuration files and given us instructions on how to proceed. Since this is just a development engine, we will skip most of these instructions.
 
       But to avoid any potential conflicts with other LocomotiveCMS installations, let's change the name of our mongoid databases in `config/mongoid.yml`, as shown in the example below.
 
@@ -484,17 +506,17 @@ position: 4
       - [Ruby](https://www.ruby-lang.org/) 1.9.3 or higher
       - [MongoDB](http://www.mongodb.org/)
       - [Ruby on Rails](http://rubyonrails.org/) 3.2.x
-      
+
       The good news is that when you [installed Wagon](/get-started/install-wagon), you already took care of installing the first two. That leaves MongoDB and Ruby on Rails 3. Let's get started.
 
-      You're a Linux user, so we're going to assume you're fairly handy with the command line and do this with a minimum of hand holding. 
+      You're a Linux user, so we're going to assume you're fairly handy with the command line and do this with a minimum of hand holding.
 
       ## Step 1: Installing mongoDB
-      
+
       MongoDB installation is easy. Visit the mongoDB's guide to [installing on Linux](/manual/administration/install-on-linux/), select your distribution, and follow the instructions. We recommend reading the guide yourself, but you can find a summary below.
 
       ### For Fedora:
-      
+
       <pre><span>yum install mongo-10gen mongo-10gen-server</span></pre>
 
       ### For Ubuntu:
@@ -505,7 +527,7 @@ position: 4
       sudo apt-get install mongodb-10gen</span></pre>
 
 
-      Once installed, open a new terminal and run the `mongod` command to start mongoDB. 
+      Once installed, open a new terminal and run the `mongod` command to start mongoDB.
 
       <pre><span>$ mongod
       all output going to: /usr/local/var/log/mongodb/mongo.log</span></pre>
@@ -542,7 +564,7 @@ position: 4
       -1- Add the following line.
 
           gem 'locomotive_cms', '~> 2.4.1', :require => 'locomotive/engine'
-      
+
       -2- Add the following line under the assets group.
 
           gem 'compass-rails',  '~> 1.1.3'
@@ -595,7 +617,7 @@ position: 4
 
       <pre><span>$ bundle exec rails g locomotive:install
       [deprecated] I18n.enforce_available_locales will default to true in the future. If you really want to skip validation of your locale you can set I18n.enforce_available_locales = false to avoid this message.
-      WARNING: unable to load the content types, 
+      WARNING: unable to load the content types,
       Problem:
         No configuration could be found for a session named 'default'.
       Summary:
@@ -607,7 +629,7 @@ position: 4
             <span style="color:#006400">create</span>  config/initializers/dragonfly.rb
             <span style="color:#006400">create</span>  config/mongoid.yml
              <span style="color:#006400">route</span>  mount Locomotive::Engine => '/locomotive', as: 'locomotive' # you can change the value of the path, by default set to "/locomotive"
-            
+
             <span style="color:#006400">remove</span>  public/index.html
       ===============================================================================
 
@@ -636,7 +658,31 @@ position: 4
 
       ===============================================================================</span></pre>
 
-      This command has installed several configuration files and given us instructions on how to proceed. Since this is just a development Engine, we can ignore most of these intructions. 
+      This command has installed several configuration files and given us instructions on how to proceed. Since this is just a development Engine, we can ignore most of these instructions.
+
+      <div class="alert alert-info">
+      <h3>Multi-Site Installations</h3>
+      <p>When setting up an Engine, you must decide if the Engine will host only a single site, or if it will host multiple LocomotiveCMS sites. If your Engine will only host a single site, skip this section. For a multi-site installations, please follow the instructions below.</p>
+
+      <h4>Domains</h4>
+      <p>Even in development, multi-site engines must have a dedicated, top-level domain, such as <em>example.com</em>. Each Locomotive site hosted on the Engine must have a subdomain of this top level domain. A site can of course also optionally have its own top level domains, but it must have a subdomain of the engine's domain.</p>
+
+      <p>A great way to simulate this in development is to add the domains to your computer's hosts file. Run <code>sudo nano /etc/hosts</code> and add in the following lines.</p>
+      <pre><span>127.0.0.1 myengine.dev
+      127.0.0.1 site-a.myengine.dev
+      127.0.0.1 site-b.myengine.dev
+      127.0.0.1 site-c.myengine.dev
+      ...</span></pre>
+
+      <h4>Configuration</h4>
+      <p>Open <code>config/initializers/locomotive.rb</code> and delete the line <code>config.multi_sites = false</code>. Next, uncomment the mulit-site configuration block and set the domain you entered in your hosts file.</p>
+      <pre><code>config.multi_sites do |multi_sites|
+        multi_sites.domain = 'myengine.dev'
+        multi_sites.reserved_subdomains = %w(www admin email blog webmail mail support help site sites)
+      end</code></pre>
+
+      <p>Your engine can now support multiple sites.</p>
+      </div>
 
       However, to avoid any potential conflicts with other LocomotiveCMS installations, let's change the name of our mongoid databases in `config/mongoid.yml`, as shown in the example below.
 

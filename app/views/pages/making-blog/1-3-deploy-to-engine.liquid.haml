@@ -61,7 +61,7 @@ position: 3
 
   If your deploy was successful, the output should look something like the output above. Open your browser to your Engine's root URL and take a look. If everything deployed successfully, you'll see our placeholder site.
 
-  <img src="{{ 'guides/making-blog/placeholder_site.jpg' | theme_image_url }}" alt="Our placeholder site" />
+  <img src="{{ 'guides/making-blog/1.3/placeholder_site.jpg' | theme_image_url }}" alt="Our placeholder site" />
 
   ## Troubleshooting
 
@@ -84,13 +84,17 @@ position: 3
   <pre><span>unable to get an API token:  (500)</span></pre>
   Wagon can connect to the host, but received an internal server error when trying to access the LocomotiveCMS API. Are Rails and MongoDB running? Is the back-office working?
 
+  There are no changes in the backoffice? And the default site from the engine tutorial is still showing? Overwriting the existing could be the solution.
+  <pre><span>$ bundle exec wagon push development --force</span></pre>
+
+
   <h2 id="testing-the-back-office">Testing the back-office</h2>
 
   Let's take a quick look at the back-office for our Engine. Open your browser to the Engine's back-office. For most Engines, you can access this at the _locomotive_ subdirectory by default, i.e. _http://www.example.com/locomotive_. LocomotiveHosting users can access a site's back-office at the _admin_ subdirectory or by clicking on the site's name in [your Workspace](https://www.locomotivehosting.com/admin/sites).
 
   Remember those settings we made in the `config/site.yml` file? Let's see if those deployed to our Engine. In the back-office, click the _Settings_ tab, and under the _Site_ section you should see the settings we made in the `config/site.yml` file, including the site's name, locale, time zone, and SEO settings.
 
-  <img src="{{ 'guides/making-blog/back_office_settings.jpg' | theme_image_url }}" alt="Our configuration settings in the back-office." />
+  <img src="{{ 'guides/making-blog/1.3/back_office_settings.jpg' | theme_image_url }}" alt="Our configuration settings in the back-office." />
 
   Great. We've done some basic configuration and have tested our deployment settings, so let's start making the site.
 

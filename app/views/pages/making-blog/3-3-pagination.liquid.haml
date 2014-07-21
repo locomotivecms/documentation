@@ -1,0 +1,164 @@
+---
+title: 3.3 Pagination
+listed: true
+position: 11
+---
+{% extends 'index' %}
+
+{% block 'content' %}
+
+:markdown
+
+  Right now we have just 24 sample posts, so displaying all the posts on a single page isn't such a big deal. But the real site could potentially have hundreds of posts and displaying all of them at once would really hamper page loading times.
+
+  That's why we're going to split the posts up into pages; LocomotiveCMS makes this topic easy. Let's take a look.
+
+  To paginate a collection, use the paginate tag. Update your `app/views/pages/posts.liquid` template to use the paginate tag as shown below.
+
+        {% raw %}{% block main %}
+          <div class="row posts">
+            {% paginate contents.posts by 12 %}
+              {% for post in paginate.collection %}
+                ...
+              {% endfor %}
+            {% endpaginate %}
+          </div>
+        {% endblock %}{% endraw %}
+
+  The paginate tag has the following format: <code>{% raw %}{% paginate <em>collection</em> by <em>entries\_per\_page</em> %}{% endraw %}</code>. Above, I've paginated the posts collection, opting to show twelve entries per page. Our responsive design alternatively breaks to one, two, or three entries per row, so twelve–being divisible by all of those–is a good number.
+
+  Within the paginate tag, you have access to the `paginate` drop's variety of useful variables, described in the table below.
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>collection</td>
+        <td>Array</td>
+        <td>An array of entries for the current page, taken from the collection originally passed into paginate</td>
+      </tr>
+      <tr>
+        <td>current_page</td>
+        <td>Integer</td>
+        <td>The number of the current page</td>
+      </tr>
+      <tr>
+        <td>previous_page</td>
+        <td>Integer</td>
+        <td>
+          The number of the previous page. If there is no previous page, nil is returned.
+        </td>
+      </tr>
+      <tr>
+        <td>next_page</td>
+        <td>Integer</td>
+        <td>The number of the next page. If there is no next page, nil is returned.</td>
+      </tr>
+      <tr>
+        <td>total_entries</td>
+        <td>Integer</td>
+        <td>The total number of entries in the collection which was passed in.</td>
+      </tr>
+      <tr>
+        <td>per_page</td>
+        <td>Integer</td>
+        <td>The number of entries to be shown per page.</td>
+      </tr>
+      <tr>
+        <td>total_pages</td>
+        <td>Integer</td>
+        <td>The total number of pages.</td>
+      </tr>
+      <tr>
+        <td>parts</td>
+        <td>Array</td>
+        <td>A collection of drops, each representing a page navigation item. Each returned part has three elements:
+        <ul>
+          <li>`title`: the page number as a string</li>
+          <li>`url`: the URL of the this page </li>
+          <li>`is_link`: a boolean representing whether or not this page should be linked to or not. In other words, if it is the current page, this is false, as we would not want to link to the current page.</li>
+        </ul>
+      <tr>
+        <td>previous</td>
+        <td>Array</td>
+        <td>
+          A drop representing the previous page. <code>previous</code> has three elements.
+          <ul>
+              <li>`title`: the previous page's number as a string</li>
+              <li>`url`: the URL of the previous page </li>
+              <li>`is_link`: will always be false as the previous page will never be the current page.</li>
+          </ul>
+          If there is no previous page, this property will return false.
+        </td>
+      </tr>
+      <tr>
+        <td>next</td>
+        <td>Array</td>
+        <td>
+          A drop representing the next page. <code>next</code> has three elements.
+          <ul>
+              <li>`title`: the next page's number as a string</li>
+              <li>`url`: the URL of the next page </li>
+              <li>`is_link`: will always be false as the next page will never be the current page.</li>
+          </ul>
+          If there is no next page, this property will return false.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  Back to our `posts.liquid` page, let's see what the _Posts_ page looks like with the wagon server.
+
+  <img src="{{ 'guides/making-blog/3.3/first_page_only.png' | theme_image_url}}" alt="The first page" />
+
+  It's showing only 12 entries, so the posts have been broken up into pages, but we still need some navigation in order to get to the next page.
+
+  Start by creating a new snippet.
+
+  <pre><span>$ bundle exec wagon generate snippet pagination
+    Do you prefer a HAML template ? no
+          <span style="font-weight: bold; color: #2FB41D">create</span>  app/views/snippets/pagination.liquid</span></pre>
+
+  In `posts.liquid`, include the snippet just above the `{% raw %}{%endpaginate%}{% endraw %}` tag and be sure to pass in the `paginate` variable.
+
+      {% raw %}{% include 'pagination', paginate %}{% endraw %}
+
+  Open `app/views/snippets/pagination.liquid` and paste in the following content.
+
+      {% raw %}<div class="text-center">
+        <ul class="pagination">
+          <li{% unless paginate.previous_page %} class="disabled"{% endunless %}>
+            <a href="{{ paginate.previous.url }}">&laquo;</a>
+          </li>
+          {% for page in paginate.parts %}
+            <li{% unless page.is_link %} class="active"{% endunless %}>
+              <a href="{{ page.url }}">{{ page.title }}</a>
+            </li>
+          {% endfor %}
+          <li{% unless paginate.next_page %} class="disabled"{% endunless %}>
+            <a href="{{ paginate.next.url }}">&raquo;</a>
+          </li>
+        </ul>
+      </div>{% endraw %}
+
+  Above, we use the paginate drop and [Bootstrap's pagination component](http://getbootstrap.com/components/#pagination) to create page navigation for our _Posts_ page.
+
+  <img src="{{ 'guides/making-blog/3.3/pagination_navigation.png' | theme_image_url}}" alt="Our page navigation" />
+
+  It looks like it's working.
+
+  ## Finishing up
+
+  This was a short chapter, but don't blame me, LocomotiveCMS just made it so darn easy. Let's commit these changes and move onto to the next lesson: content type templates.
+
+  <pre><span>git commit -m "Added pagination to the posts page."</span></pre>
+
+%a.orange-rounded-button{href: "/making-blog/3-4-content-type-templates"} Next: content type templates
+
+{% endblock %}

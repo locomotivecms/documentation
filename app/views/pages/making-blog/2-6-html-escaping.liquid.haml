@@ -1,0 +1,94 @@
+---
+title: 2.6 HTML Escaping
+listed: true
+position: 8
+---
+{% extends 'index' %}
+
+{% block 'content' %}
+
+:markdown
+
+  HTML escaping: the great equalizer. Even Kings must escape their HTML! (Lest they be exposed to XSS attack vectors.) If you have some web development experience under your belt, you are probably pretty familiar with this. Everyone else, pay attention in the next section.
+
+  ## What is HTML escaping?
+
+  In HTML, there are a handful of super special characters, namely: `<`, `>`, `&`, and `"`. When using these characters, it's important to let HTML know if you want to use them normally, or in their special capacity.
+
+  Say I have an image tag.
+
+      <img src="photo.jpg" alt="Today's phrase: "Selamat pagi"" />
+
+  Do you see the problem? The first double quote inside the quotes could be interpreted as the closing quote for the alt tag, and not a quotation marker. The correct version of this is:
+
+      <img src="photo.jpg" alt="Today's phrase: &quot;Selamat pagi&quot;" />
+
+  Or what about the following sentence:
+
+      If 3<x and x>y and y<4 then x and y must be a fractional numbers. 
+
+  Are we opening a tag, _x_, with two HTML5 style attributes, _and_ and _x_? No, but it might look like that to a computer.
+
+  The good news is that modern browsers are actually quite intelligent and in 99.99% of cases, the browser knows what you want. Of course, if we are using content submitted from untrusted sources, the issue becomes bigger. Say we collect user submitted comments and put them in a paragraph tag, like so.
+
+      {% raw %}<p>{{ comment }}</p>{% endraw %}
+
+  This is fine, unless the content of `comment` (that the user submitted is):
+
+      <script>something terrible...</script>
+
+  Woops. Moral of the story, anytime you insert content into a template, whether it's from a trusted or untrusted source, better safe than sorry: escape your HTML. For how to do that, continue below.
+
+  ## How to escape HTML in Liquid
+
+  You can escape HTML using the `escape` filter. So the following:
+
+      {% raw %}{{ 'html & escaping <go> "together"' | escape }}{% endraw %}
+
+  Becomes:
+
+      html &amp; escaping &lt;go&gt; &quot;together&quot;
+
+  ## Escaping our site
+
+  Let's revisit our site and use HTML escaping where necessary. Where is it necessary? Anywhere where content is coming from a back-office editable field that isn't already in an HTML format.
+
+  There is such content in three places on the `index.liquid` page. The first is the title tag. All of those values can be changed in the back-office, so let's escape them.
+
+      {% raw %}<title>
+        {{ page.title | escape }} - {{ site.name | escape }}
+        | {% if page.seo_title %}{{ page.seo_title | escape }}{% else %}{{ site.seo_title | escape }}{% endif %}
+      </title>{% endraw %}
+
+  The second place is the first heading tag.
+
+      {% raw %}<h1>{{ site.name | escape }}</h1>{% endraw %}
+
+  And the third place is the page heading.
+
+      {% raw %}<h2>{{ page.title | escape }}</h2>{% endraw %}
+
+  Moving onto the `about.liquid` page, the editable content needs to be escaped. The `about_body` uses a rich, HTML editor, so the content will already be in HTML format, but the photo's caption uses a raw text fields, so that must be escaped.
+
+  Let's escape the alt tag's content in `snippets/img_box.liquid` so we don't have to worry about it again.
+
+      {% raw %}<div class="img-box">
+        <a href="{{ photo | resize: '800x>' }}">
+          <img src="{{ photo | resize: size }}" alt="{{ caption | escape }}" />
+        </a>
+        <p>{{ caption | escape }}</p>
+      </div>{% endraw %}
+
+  The final portion of the site that needs escaping is the footer snippet.
+
+      {% raw %}<p>
+        &copy; {{ site.name | escape }} {{ now | localized_date: '%Y' }}
+      </p>{% endraw %}
+
+  ## Finishing up
+
+  This mini-chapter went by quickly. Layering on HTML escaping onto the beginning tutorials would have been a little tedious, so I put off covering it until now, but now that it's out of the way, we can forge ahead to more exciting waters: content models.
+  
+%a.orange-rounded-button{href: "/making-blog/3-1-adding-content-types"} Next: adding content types
+
+{% endblock %}

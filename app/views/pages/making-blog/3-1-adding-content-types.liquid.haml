@@ -1,7 +1,7 @@
 ---
 title: 3.1 Adding content types
 listed: true
-position: 8
+position: 9
 ---
 {% extends 'index' %}
 
@@ -96,13 +96,13 @@ position: 8
       <tr>
         <td>string</td>
         <td>
-            A sequence of characters. In the back-office, this field will be displayed as a single line, text type input. Use this for short bits of text, for example a *title* field or *author* field.
+            A sequence of characters. In the back-office, this field will be displayed as a single line, text type input. Use this for short bits of text, for example a <em>title</em> field or <em>author</em> field.
         </td>
       </tr>
       <tr>
         <td>text</td>
         <td>
-            This is longer, bigger block of text. In the back-office this field will be displayed as multi-line text area. You can control whether you would like the field to allow HTML, which will enable a rich text editor in the back office. Use this field type for larger bits of text, for example the *body* of a message or a *summary* of a video game.
+            This is longer, bigger block of text. In the back-office this field will be displayed as multi-line text area. You can control whether you would like the field to allow HTML, which will enable a rich text editor in the back office. Use this field type for larger bits of text, for example the <em>body</em> of a message or a <em>summary</em> of a video game.
         </td>
       </tr>
       <tr>
@@ -120,19 +120,13 @@ position: 8
       <tr>
         <td>boolean</td>
         <td>
-            Can be set to _true_ or _false_. In the back-office, this is displayed as a "Yes" or "No" switch. For example, imagine an online magazine where some articles are available to everyone while other are only available to premium subscribers. I would want to add a boolean *premium* field to my *articles* content type.
-        </td>
-      </tr>
-      <tr>
-        <td>float</td>
-        <td>
-            A number, optionally with a decimal. For example, -1.2, 0, 2.5, or 3.
+            Can be set to <em>true</em> or <em>false</em>. In the back-office, this is displayed as a "Yes" or "No" switch. For example, imagine an online magazine where some articles are available to everyone while other are only available to premium subscribers. I would want to add a boolean <em>premium</em> field to my <em>articles</em> content type.
         </td>
       </tr>
       <tr>
         <td>email</td>
         <td>
-            An email address. Like _string_, it displays as a single line text input in the back-office. Input is validated to make sure it is an email address.
+            An email address. Like <em>string</em>, it displays as a single line text input in the back-office. Input is validated to make sure it is an email address.
         </td>
       </tr>
       <tr>
@@ -148,12 +142,6 @@ position: 8
         </td>
       </tr>
       <tr>
-        <td>date</td>
-        <td>
-            A number, optionally with a decimal. For example, -1.2, 0, 2.5, or 3.
-        </td>
-      </tr>
-      <tr>
         <td>file</td>
         <td>
             A file. In the back-office this field will be displayed as a file picker where site editors can upload a file from their computer.
@@ -162,13 +150,13 @@ position: 8
       <tr>
         <td>tags</td>
         <td>
-            A list of so called tags, or descriptive words. For example a blog post about LocomotiveCMS might be tagged with *CMS*, *Ruby*, *MongoDB*, awesome*, and so on.
+            A list of so called tags, or descriptive words. For example a blog post about LocomotiveCMS might be tagged with <em>CMS</em>, <em>Ruby</em>, <em>MongoDB</em>, <em>awesome</em>, and so on.
         </td>
       </tr>
       <tr>
         <td>select</td>
         <td>
-            A list of several options that can be chosen between. In the back-office, this field is displayed as a drop down menu. In databases, this type of field is often called an *enum*. For example, a _books_ content type might have a _format_ field where editors can choose between *Hardcover*, *Paperback*, or *eBook*.
+            A list of several options that can be chosen between. In the back-office, this field is displayed as a drop down menu. In databases, this type of field is often called an <em>enum</em>. For example, a _books_ content type might have a _format_ field where editors can choose between <em>Hardcover</em>, <em>Paperback</em>, or <em>eBook</em>.
         </td>
       </tr>
       <tr>
@@ -335,15 +323,7 @@ position: 8
           featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
           body: "Temporibus rem provident aut ipsum perspiciatis. Corrupti alias nostrum cupiditate quia numquam ex. Consequuntur fuga debitis eligendi quibusdam eius placeat. Doloremque nesciunt officiis error aut. Non illo animi culpa doloremque."
 
-      - "Sample 3":
-          teaser: "Aut ducimus nesciunt fugiat. Aliquid placeat consequatur sed corrupti molestiae aliquam expedita modi. Sunt ullam fugit et doloremque."
-          featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
-          body: "Excepturi ipsum porro a exercitationem qui aliquid aut harum. Qui tempore animi quo. Quis natus fugiat optio."
-
-      - "Sample 4":
-          teaser: "Eius aut quam ipsam ut et voluptas labore natus. Corrupti repellendus excepturi odit eius qui. Ratione iste velit laborum. Molestias ut laudantium reiciendis sunt et mollitia dolor facilis."
-          featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
-          body: "Quo quod placeat alias aut quia vel nesciunt. Consequuntur sit vitae doloribus rerum. Qui quidem qui dolor asperiores neque soluta. Sunt maxime nostrum rem ut ipsa. Dicta ut iste officia et accusantium itaque hic laborum."
+      ...
 
   Each entry is defined with the content type's label field. For our posts type, the *title* field is the label field, as was specified in `app/content_types/posts.yml`
 
@@ -353,40 +333,12 @@ position: 8
 
   These are just sample entries that we will be displayed when using the Wagon web server. The real posts will be entered through the back-office by site editors, so leaving these with *lorem ipsum* text is just fine.
 
-  However, we should add in data for the other fields: posted_at and tags. Also, it's a good idea to leave values for non-required fields blank in some entries so we can design for situations when no value is given. Update the `data/posts.yml` as follows.
+  However, we should add in data for the fields which are missing or blank: featured_image, posted_at, and tags. Further, the body samples are a little short. Also it's always a good idea to include plenty of variety in testing data by having text of varying lengths and including some entries that are missing the optional fields.
 
-          - "Sample 1":
-              posted_at: 2013-10-01 20:00:00 -0500
-              tags: [backpacking, cheap, outdoor]
-              teaser: "Debitis et qui optio corporis enim labore. Et dolorem eum beatae officiis nam. Dignissimos iure adipisci est vel."
-              featured_image: http://placehold.it/400x400 # Path to a file in the public/samples folder or to a remote and external file.
-              body: "Voluptatum nam eius cupiditate. Dignissimos fugit hic ut mollitia aut sunt. Iusto odio magnam sunt eum dolores ea. Ea sunt qui molestiae temporibus. Velit quia similique recusandae sunt qui voluptatem voluptates tempore."
-
-          - "Sample 2":
-              posted_at: 2013-10-08 20:00:00 -0500
-              tags: null
-              teaser: "Ex et provident error ut. Nihil enim sapiente tempora error sequi et eligendi ea. Molestiae ut esse praesentium voluptates quas asperiores sapiente vel. Aut sequi ut ducimus. A voluptates nobis enim aut et quod labore."
-              featured_image: http://placehold.it/400x400 # Path to a file in the public/samples folder or to a remote and external file.
-              body: "Temporibus rem provident aut ipsum perspiciatis. Corrupti alias nostrum cupiditate quia numquam ex. Consequuntur fuga debitis eligendi quibusdam eius placeat. Doloremque nesciunt officiis error aut. Non illo animi culpa doloremque."
-
-          - "Sample 3":
-              posted_at: 2013-10-15 20:00:00 -0500
-              tags: [expensive, hotels, luxury, dining]
-              teaser: "Aut ducimus nesciunt fugiat. Aliquid placeat consequatur sed corrupti molestiae aliquam expedita modi. Sunt ullam fugit et doloremque."
-              featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
-              body: "Excepturi ipsum porro a exercitationem qui aliquid aut harum. Qui tempore animi quo. Quis natus fugiat optio."
-
-          - "Sample 4":
-              posted_at: 2013-10-22 20:00:00 -0500
-              tags: null
-              teaser: "Eius aut quam ipsam ut et voluptas labore natus. Corrupti repellendus excepturi odit eius qui. Ratione iste velit laborum. Molestias ut laudantium reiciendis sunt et mollitia dolor facilis."
-              featured_image: null # Path to a file in the public/samples folder or to a remote and external file.
-              body: "Quo quod placeat alias aut quia vel nesciunt. Consequuntur sit vitae doloribus rerum. Qui quidem qui dolor asperiores neque soluta. Sunt maxime nostrum rem ut ipsa. Dicta ut iste officia et accusantium itaque hic laborum."
-
-  I've added `posted_at` and `tags` fields to each entry. For the optional fields `tags` and `featured_image`, each have two entries where the value is null and two where it is specified.
+  So, I used text from [Fillerama](http://chrisvalleskey.com/fillerama/), placeholder images from [placehold.it](http://placehold.it/), and a short Ruby script to generate [a new data/posts.yml file](posts.yml) with high quality sample data, which you can [download here](posts.yml).
 
   <div class="alert alert-info">
-      When entering dates and time into YAML files in the <code>data</code> directory, there's a fair amount of flexibility since the dates will be parsed by Ruby. For date times, I like the unambiguous *YEAR-MONTH-DAY HOURS:MINUTES:SECONDS UTC_OFFSET* format shown above. This data is just for testing purposes so you shouldn't worry too much about its accuracy, but know that if you don't specify a UTC offset, times will be in GMT by default.
+      When entering dates and time into YAML files in the <code>data</code> directory, there's a fair amount of flexibility since the dates will be parsed by Ruby. For date times, I like the unambiguous *YEAR-MONTH-DAY HOURS:MINUTES:SECONDS UTC_OFFSET* format used in the sample file above. This data is just for testing purposes so you shouldn't worry too much about its accuracy, but know that if you don't specify a UTC offset, times will be in GMT by default.
   </div>
 
   # Adding entries in the back-office
@@ -424,6 +376,8 @@ position: 8
   <pre><span>$ git add app/content_types/posts.yml data/posts.yml
   $ git commit -m "Added posts content type."</span></pre>
 
-  When you're ready, move onto to the next lesson where we will cover how to display content type entries on your site.
+  When you're ready, move onto to the next lesson where we will cover how to list content type entries on your site.
+
+%a.orange-rounded-button{href: "/making-blog/3-2-listing-content-entries"} Next: listing content entries
 
 {% endblock %}

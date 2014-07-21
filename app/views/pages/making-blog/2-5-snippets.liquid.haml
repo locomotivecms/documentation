@@ -18,7 +18,7 @@ position: 8
 
       {% raw %}<div class="clearfix"></div>
       <footer class="footer">
-        <p>&copy; Wisdom for Wanderers {{ now | localized_date: '%Y' }} </p>
+        <p>&copy; {{ site.name }} {{ now | localized_date: '%Y' }} </p>
       </footer>{% endraw %}
 
   The above code should be mostly straight forward, but let's take a brief excursion to explore the new filter encountered here: `localized_date`.
@@ -138,8 +138,8 @@ position: 8
 
   Hopefully, you now understand snippets and over the past five lessons have gotten more familiar with Liquid markup and LocomotiveCMS templates.
 
-  In the next section, we will be diving into the very heart of LocomotiveCMS: content types.
+  In the next section, we will cover some basic house keeping: HTML escaping.
 
-%a.orange-rounded-button{href: "/making-blog/3-1-adding-content-types"} Next: adding content types
+%a.orange-rounded-button{href: "/making-blog/2-6-html-escaping"} Next: HTML escaping
 
 {% endblock %}

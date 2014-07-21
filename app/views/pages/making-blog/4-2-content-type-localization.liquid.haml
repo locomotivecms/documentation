@@ -1,0 +1,220 @@
+---
+title: 4.2 Content Type Localization
+listed: true
+position: 14
+---
+{% extends 'index' %}
+
+{% block 'content' %}
+
+:markdown
+  In the last chapter, we took the first step towards localizing our site by localizing strings and editable content fields in our page templates. This chapter covers localizing the site's content types, completing our site's localization into Japanese. Let's get started.
+
+  ## Updating the content type definitions
+
+  If you were paying attention when we originally created the `app/content_types/posts.yml` and `app/content_types/photos.yml` files, you may have already guessed how to localize a content type. Let's go through it together.
+
+  Open `app/content_types/posts.yml` and edit the `fields` property to match the code shown below.
+
+      fields: 
+      - title: # The lowercase, underscored name of the field
+          label: Title # Human readable name of the field
+          type: string
+          required: true
+          localized: true
+
+      - posted_at: # The lowercase, underscored name of the field
+          label: Posted at # Human readable name of the field
+          type: date_time
+          required: true
+          localized: false
+
+      - tags: # The lowercase, underscored name of the field
+          label: Tags # Human readable name of the field
+          type: tags
+          required: false
+          localized: false
+
+      - teaser: # The lowercase, underscored name of the field
+          label: Teaser # Human readable name of the field
+          type: text
+          required: true
+          hint: A short lead-in to the post displayed when listing posts
+          localized: true
+          text_formatting: html # html (uses rich text editor) or text (uses plain text editor)
+
+      - featured_image: # The lowercase, underscored name of the field
+          label: Featured image # Human readable name of the field
+          type: file
+          required: false
+          hint: An image displayed next to the teaser when listing posts
+          localized: false
+
+      - body: # The lowercase, underscored name of the field
+          label: Body # Human readable name of the field
+          type: text
+          required: false
+          hint: The full post text
+          localized: true
+          text_formatting: html # html (uses rich text editor) or text (uses plain text editor)
+
+      - photos: # Name of the field
+          label: Photos
+          type: has_many
+          required: false
+          localized: false
+          class_name: photos # Define the slug of the target content type (eg. comments)
+          inverse_of: post  # Define the name of the field referring to Tests in the target content type (eg. post)
+          ui_enabled: true # If you want to manage the entries of the relationship directly from the source entry
+
+  Everything looks pretty much the same, except that in three places we have changed `localized: false` to `localized: true`. The title, teaser, and body fields now all have their localized property set to true.
+
+  The content type has now been localized! If we pushed the site to an Engine now, site editors could write each post in both English and a Japanese. The Japanese posts would have their own titles, teasers, and bodies. Other fields would be shared.
+
+  Before moving on, I want to point out what we didn't localize. We didn't localize the `featured_image` field. This field is for photographs that, on our site, don't need to be localized. The Japanese and English localizations of this post will have the same featured image. I can imagine other situations where we would want a file field to be localized, such as a PDF document with lots of text or certain kinds of marketing images. In such situations, set the `localized` property to true, and then each localization of the entry will have it's own version of the file.
+
+  Another field we didn't localize is `photos`. Localizing the `photos` field would mean that we wanted the English and Japanese versions of this post to be associated with different sets of photos. Again, there might be times when you need this feature, but for our site, the same set of photos will work in all languages.
+
+  Finally, I didn't localize the `tags` field. Many Japanese websites, while mostly in Japanese, often have navigation menus or small features (like tags) written in English. This gives the site a cool, exotic feel. So, I left this unlocalized to save us some work. Ahem, I mean to make the site cool.
+
+  Let's move onto the photos content type. Open `app/content_types/photos.yml` and edit the fields property to look like the code shown below.
+
+      fields: 
+      - caption: # The lowercase, underscored name of the field
+          label: Caption # Human readable name of the field
+          type: string
+          required: true
+          localized: true
+
+      - file: # The lowercase, underscored name of the field
+          label: File # Human readable name of the field
+          type: file
+          required: true
+          localized: false
+
+      - post: # Name of the field
+          label: Post # Human readable name of the field
+          type: belongs_to
+          required: true
+          localized: false
+          class_name: posts
+  
+  This one is even easier. Just change the `localized` property for the `caption` field to true. Since we will use the same photo for both locales, we don't need to localize the `file` field. And since we use the same post entry for either language, we don't need to localize the `post` field either.
+
+  At this point, site editors can fully localize the site's content entries. But for now, let's test the localized entries in Wagon.
+
+  ## Updating the content entries
+
+  The content entries we use in Wagon our just for testing purposes, as the site editors will be responsible for adding the actual content. So, I'm going to fill in our Japanese content entries scraped from the web.
+
+  Localizing content entries is simple. A field `foo_bar` would be localized, like so:
+
+      foo_bar:
+          en: baz
+          ja: バズ
+
+  I've localized the first entry from `data/posts.yml` and put it below. Let's take a closer look.
+
+  <pre><code class="hljs yaml">- Mr. F:
+      _slug:
+          ja: mr-f
+      title:
+          ja: セロも風の司会おっかさん家を楽屋をし狸たまし。
+      posted_at: '2013-08-04 15:00:00 -0500'
+      tags: [Camping, South America, Outdoor, Urban, Expensive]
+      featured_image: http://placehold.it/640x480.png
+      teaser:
+          en: &lt;p&gt;That's what it said on 'Ask Jeeves.' Army had half a day.&lt;/p&gt;
+          ja: &lt;p&gt;セロも風の司会おっかさん家を楽屋をし狸たまし。&lt;/p&gt;
+      body:
+          en: &lt;p&gt;That's what it said on 'Ask Jeeves.' Army had half a day. Bad news. Andy Griffith turned us down. He didn't like his trailer.&lt;/p&gt;&lt;h3&gt;Good Grief!&lt;/h3&gt;&lt;p&gt;Really? Did nothing cancel? ...&lt;/p&gt;
+          ja: &lt;p&gt;文は人フリーが引用扱う文ますです以下、引用できるれ方針を侵害物適法の執筆ルールを避けるれるばは定めませ、一つのライセンスは、.よれ互換を一定さものについて決議独自ななているあるた。ただし、ペディアの利用日も、権利の引用できる検証可能うパブリックが-し、その方針をすると下に対応疑わことに考慮されるあっ。...&lt;/p&gt;</code></pre>
+
+  Starting with the simple stuff: we added `en` and `ja` properties to the `teaser` and `body` fields with the localized content for each language. Next, look at the `title` field. The `title` field is the default field for the posts content type, which means it is used as the header for content entries. So the English value for `title` is already set at the top of the content entry, and we only need to add the `ja` localization for the `title` property.
+
+  Finally, what's this `_slug` business? A little review: LocomotiveCMS generates a human readable, URL friendly _slug_ for every content type. The slug is based on the default field. Imagine a _movies_ content type with a default _title_ field. For a movie entry titled, _Life is Beautiful_, LocomotiveCMS will automatically generate the slug `life-is-beautiful`. This allows us the reference the entry in URLs, like this one: `http://www.great-stuff.io/movies/life-is-beautiful` .
+
+  LocomotiveCMS will also automatically generate a localized slug for your localized content type! If great-stuff.io adds Italian localization, and we create a localization of the movie entry above, giving it the title, _La vita è bella_, LocomotiveCMS will automatically generate a localized slug for the post, in this case: `la-vita-e-bella`. So the localized URL would ready: `http://www.great-stuff.io/it/movies/la-vita-e-bella`. Pretty neat, right?
+
+  Of course, you can also manually specify the slugs, both in the back-office and in Wagon. That's what we're doing here. We're saying: "Wagon, don't mess with auto-generating the slug, use the value I've given here."
+
+  Why? Well it turns out that correctly transliterating Japanese Kanji into alphabetic characters is actually an pretty difficult task for computers, even in our lofty age. The slugs generated by LocomotiveCMS are an unintelligible mix of Chinese and Japanese transliterations (as Chinese and Japanese share many characters). No fault of LocomotiveCMS here as phonology is well outside the project's scope. The automatically generated slugs work great for most languages, but Japanese is a bit of an edge case. So, we're doing what many Japanese sites do instead: use English URLs.
+
+  Okay, enough explanation. You can download the new, localized versions of `data/posts.yml` and `data/photos.yml` below.
+
+  - [4-2-posts.yml](/making-blog/4-2-posts.yml)
+  - [4-2-photos.yml](/making-blog/4-2-photos.yml)
+
+  Delete the content entry files currently in the data directory, download the files above to the data directory, and rename them to `posts.yml` and `photos.yml`, respectively.
+
+
+  ## Displaying the localized entries
+
+  Now that we have some localized content entries, let's work on displaying them.
+
+  Before we get going, a quick heads up: the Wagon web server only loads content entries when it starts. So, if you have restarted the Wagon web server since adding the files above to the data directory, do so now.
+
+  Open `app/views/pages/posts.liquid`. We've already localized the "Read More" text with a translations string. And since the content entries are localized by the files above, this page is pretty much done. But we do need to localize the URLs for the read more links, so replace the read more link with the code below.
+
+      {% raw %}<a href="/{{ locale }}/posts/{{ post._slug }}" class="btn btn-primary">
+        {{ 'read_more' | translate }}
+      </a>{% endraw %}
+
+  The code above adds the current locale to the URL using the global `locale` variable. Let's take a look.
+
+  <img src="{{ 'guides/making-blog/4.2/posts_page_ja.png' | theme_image_url | resize: '699x' }}" alt="The posts page in Japanese" />
+
+  Looks nice!
+
+  If you click on one of the read more links, you will be brought to an empty page. This is because we haven't localized the template yet. Create a new file, `app/views/pages/posts/content_type_tempalte.ja.liquid` and paste in the YAML header shown below.
+
+      ---
+      title: 記事テンプレート
+      listed: false
+      published: true
+      content_type: posts
+      ---
+
+  Since the template is empty, it will inherit from the default template. Back on the posts page, click on the read more link for an article.
+
+  <img src="{{ 'guides/making-blog/4.2/weird_date.png' | theme_image_url | resize: '699x'  }}" alt="Uh oh, this date sucks." />
+
+  Pretty nice. But the date there isn't exactly what I had in mind. For one thing we need to localize the words "Posted," "at," and "on." And clearly something isn't right with "TRANSLATION MISSING: JA.TIME.AM" and "i, 24 2013."
+
+  We have again run into an issue caused by the fact that English and Japanese are very different languages. There are many ways to solve this and I'll show you how I would do it. Open `config/translations.yml` and add the following lines to the end of the file. Start by adding the following strings to the end of the file.
+
+      posted_at_format:
+        en: 'Posted at %-I:%M %p on %B, %-d %Y'
+        ja: '%Y年%-m月%-d日 %H:%M'
+
+  Back in, `app/views/pages/posts/content_type.liquid`, replace the  `<h3>` tag with the code below.
+
+      {% raw %}<h3 class="posted-at">
+        {% assign posted_at_format = 'posted_at_format' | translate %}
+        {{ post.posted_at | localized_date: posted_at_format }}
+      </h3>{% endraw %}
+
+  First, using the `{% raw %}{% assign %}{% endraw %}` tag and `translate` filter, we assign the value of the translation key we created, to a variable called `posted_at_format`. So, depending on the current localization of the site, this variable's value will either be `Posted at %-I:%M %p on %B, %-d %Y` or `%Y年%-m月%-d日 %H:%M`.Then, we run the post's date (stored in `post.posted_at`) through the `localized_date` filter, passing in the current locales format with the `posted_at_format` variable.
+
+  The result? In Japanese.
+
+  <img src="{{ 'guides/making-blog/4.2/post_page_ja.png' | theme_image_url | resize: '699x'  }}" alt="The post page in Japanese" />
+
+  In English
+
+  <img src="{{ 'guides/making-blog/4.2/post_page_en.png' | theme_image_url | resize: '699x'  }}" alt="The post page in English" />
+
+  Looks great!
+
+  ## Finishing up
+
+  In just two lessons we've created a Japanese localization for our site. Not too bad. Let's commit our changes to the git repository.
+
+  <pre><span>$ git add app/content_types/posts.yml app/content_types/photos.yml data/photos.yml data/posts.yml app/views/pages/posts.liquid app/views/pages/posts/content_type_template.ja.liquid app/views/pages/posts/content_type_template.liquid config/translations.yml
+  $ git commit -m "Localized the content entries"</span></pre>
+
+  Stay tuned for the next section, where we will to take a break from coding and explore LocomotiveCMS's slick back-office.
+
+{% endblock %}
+
+

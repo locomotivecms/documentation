@@ -1,0 +1,195 @@
+---
+title: 3.5 Related types
+listed: true
+position: 13
+---
+{% extends 'index' %}
+
+{% block 'content' %}
+
+:markdown
+
+  Today, we'll explore a new topic: related content types. By now, you've gotten a taste of what you can do with a content type, but that's just half the story, because content types can also be related to one another. Let's take a look.
+
+  ## Creating the photos content type
+
+  Currently, site editors can include photos in the body section of blog photos using the back-office's rich text editor, which allows photos to be mixed in with the text. However, I think it would also be useful if site editors could put small galleries of photos below each post in order to really showcase the destinations written about.
+
+  To do this, we'll need a new content type: photos. Let's use the `wagon generate` command to jump-start the process.
+
+  <pre><span>$ bundle exec wagon generate content_type photos caption:string file:file:required post:belongs_to:required
+         <span style="font-weight: bold; color: #400BD9">exist</span>
+        <span style="font-weight: bold; color: #2FB41D">create</span>  app/content_types/photos.yml
+        <span style="font-weight: bold; color: #2FB41D">create</span>  data/photos.yml</span></pre>
+
+  Open `app/content_types/photos.yml` and review its contents. This mostly looks pretty good, but let's make a few changes. First of all, we need a better description.
+
+      # Explanatory text displayed in the back-office
+      description: Photos displayed at the bottom of posts.
+
+  The fields section will remain largely untouched, though we can remove the hints, since these fields require very little explanation.
+
+      fields:
+          - caption: # The lowercase, underscored name of the field
+              label: Caption # Human readable name of the field
+              type: string
+              required: true
+              localized: false
+
+          - file: # The lowercase, underscored name of the field
+              label: File # Human readable name of the field
+              type: file
+              required: true
+              localized: false
+
+          - post: # Name of the field
+              label: Post # Human readable name of the field
+              type: belongs_to
+              required: true
+              localized: false
+              class_name: posts
+
+  The post field uses a type we haven't encountered yet: `belongs_to`. Those familiar with database design will be familiar with a *belongs-to* (also known as a *has-a*) relationship.
+
+  For everyone else, a *belongs-to* relationship is fairly simple: it's when one type belongs to another type. For example, imagine that our blog had comments below each post. Each comment would be _belong to_ a post. If I wrote a comment on a post about Paris, it wouldn't suddenly also appear under a post about Thai, because it *belongs to* the Paris post. Or imagine that we are making an online CD shop and decide to categorize each CD by a single genre. In this case, we would need two content types: _CDs_ and _genres_. Then, each CD entry would *belong to* a single genre. Simple right? If you want to get technical [Wikipedia has an in-depth overview of the belongs to relationship](http://en.wikipedia.org/wiki/Has-a).
+
+  Back to our `photos.yml` file. The `class_name` property of the `post` field sets what content type the photo belongs to. In this case, each photo belongs to a post, so I've changed this value to _posts_.
+
+  The generate also created `data/photos.yml`, so let's examine that file, as well.
+
+      - "Sample 1":
+          file: null # Path to a file in the public/samples folder or to a remote and external file.
+          post: null # Permalink of the target entry
+
+      - "Sample 2":
+          file: null # Path to a file in the public/samples folder or to a remote and external file.
+          post: null # Permalink of the target entry
+
+      - "Sample 3":
+          file: null # Path to a file in the public/samples folder or to a remote and external file.
+          post: null # Permalink of the target entry
+
+      - "Sample 4":
+          file: null # Path to a file in the public/samples folder or to a remote and external file.
+          post: null # Permalink of the target entry
+
+  This should be mostly familiar from when we created the posts content type. Each entry starts with the photo's caption, since we indicated that the _caption_ field was the label for the photos content type. Under each caption are the remaining fields: file and post. In the file field, we can enter either a file path or a URL to a file (in this case an image file). For the `post` field, we can specify the slug of the post to which this photo belongs.
+
+  As with posts, this dummy content is pretty sparse; just enough to get you started. When developing a site without access to the actual content, it's important to use filler data that matches the variety and volume you expect on the actual site. So, I've whipped up a much better `photos.yml` file, which you should use and [can download here](/making-blog/photos.yml).
+
+  What can we do this photos content type? As with posts, we can access it through the `contents` global drop. For example, we could loop through all the photos like so:
+
+      {% raw %}{% for photo in contents.photos %}
+        <p>
+          <img src="{{ photo.file }}" alt="{{ photo.caption }}"/><br />
+          Belongs to: {{ photo.post.title }}
+        </p>
+      {% endfor %}{% endraw %}
+
+  As you can see, the post property gives us access to the post to which the photo belongs. Above we displayed the title, but we could have just as easily accessed any other post field: `posted_at`, `tags`, `featured_image`, and so on.
+
+  ## Updating the posts content type
+
+  The new photos content type implemented above is pretty cool, but we still can't implement the feature we originally wanted: the ability to put a photo gallery of related photos at the bottom of each post.
+
+  One way to do it would be to use the combination of a for loop an [_if_](http://doc.locomotivecms.com/references/api/logic/if-else-unless) tag. For example, at the bottom of our `posts/content_type_template.liquid` page:
+
+      {% raw %}{% for photo in contents.photos %}
+          {% if photo.post._slug == post._slug %}
+              <img src="{{ photo.file }}" /> 
+          {% endif %}
+      {% endfor %}{% endraw %}
+
+  But looping through *every* photo isn't very performant. A more performant version of this method would be to use the [*with\_scope*](http://doc.locomotivecms.com/references/api/tags/with-scope) tag with a for loop.
+
+  However, would I would ideally like to be able to do is this:
+
+      {% raw %}{% for photo in post.photos %}
+          <img src="{{ photo.file }}" /> 
+      {% endfor %}{% endraw %}
+
+  Isn't that clean looking? At the bottom of every post, I want to display all the photos for that post, and I think the above markup expresses that very nicely. To enable this we need to add a `photos` field to the posts content type. Add the following under the `fields` property of the `app/content_types/posts.yml` file.
+
+      - photos: # Name of the field
+          label: Photos
+          type: has_many
+          required: false
+          localized: false
+          class_name: photos # Define the slug of the target content type (eg. comments)
+          inverse_of: post  # Define the name of the field referring to Tests in the target content type
+          ui_enabled: true # If you want to manage the entries of the relationship directly from the source entry
+
+  Here, instead of a *belongs_to* relationship type, we've used the *has_many* relationship type. So called *has many* relationships are the natural counterpart to *belongs to* relationships. Again imagine that our blog had comments: each comment *belongs to* a blog post and each blog post *has many* comments. Or again envision our online CD store: each CD *belongs to* a genre while each genre *has many* CDs.
+
+  On our site, each post has many photos, so we selected the *has_many* type. As with *belongs_to*, we need to specify the *class\_name* property, which is the content type being referenced (here, _photos_). Further, we must specify the *inverse\_of* property. Set this property to the name of the corresponding *belongs_to* attribute in the referenced content type (here, *post*).
+
+  By the way, it may seem like there are a lot of redundant names being passed around: the photos attribute of the posts content type has a `class_type` of photos and a `inverse_of` value of post. However, these options allow you to give your content type fields names that don't correspond to the related content type, which can allow for more semantic code in some situations.
+
+  There's one more new option to go over: `ui_enabled`. This option sets whether you would like site editors in the back-office to be able to manage these related entries directly from the this content type entry. In our case, if this is false, photos can be added and edited through the photos section, where each entry is associated with a post through a dropdown menu. If it is set to true, in addition to the photos section, site editors will be able to add photos to a post when adding or editing a post. I think, for our situation, that makes the most sense, so I've set it to true.
+
+  Last order of business, what about `data/posts.yml`? Do we need add a photos field to all the posts? Actually, we have already associated photos to posts by way of the post field in `data/photos.yml`, so we don't need to do a thing. 
+
+  ## Implementing the photo gallery
+
+  Now that we've set up our posts-photos relationship, let's add the photo gallery feature we've been talking about.
+
+  Open `app/views/pages/posts/content_type_template.liquid` and add in the following code below the closing `</article>` tag.
+
+      {% raw %}{% if post.photos.size > 0 %}
+        <h3>Photos</h3>
+          <div class="photos row">
+            {% for photo in post.photos %}
+              <div class="photo col-xs-6 col-sm-4 col-md-3">
+                {% assign caption = photo.caption %}
+                {% assign size = '350x300#' %}
+                {% include 'img_box', photo: photo.file, caption, size  %}
+              </div>
+              {% cycle  '', '<div class="clearfix visible-xs">&nbsp;</div>' %}
+              {% cycle '', '', '<div class="clearfix visible-sm ">&nbsp;</div>' %}
+              {% cycle '', '', '', '<div class="clearfix hidden-sm hidden-xs">&nbsp;</div>' %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}{% endraw %}
+
+  Let's quickly walk through this code. It begins with an if tag, as we only want to include a photo gallery if there actually are some photos associated with this post. Then we loop through the posts, using the `img_box` snippet we created earlier to display each one.
+
+  You may have notice that I again got fancy with the [Bootstrap grid](http://getbootstrap.com/css/#grid), but I'll let you dig into the details on your own, if you are interested.
+
+  The final touch needed for these photo galleries is a tweak to the spacing, so add this to your `public/stylesheets/styles.css` file.
+
+      div.photos div.img-box {
+        margin-bottom: 20px;
+      }
+
+  Time to take a look. Each post was randomly given zero to twenty photos, so click around and see what the various volumes look like. 
+
+  <img src="{{ 'guides/making-blog/3.5/photo_gallery.png' | theme_image_url }}" alt="Our new photo gallery" />
+
+  Click on one or two just to test the light box again.
+
+  <img src="{{ 'guides/making-blog/3.5/enlarged_image.png' | theme_image_url }}" alt="An enlarged gallery photo" />
+
+  And squish the browser to various sizes to get a sense of the responsive layout.
+
+  <img src="{{ 'guides/making-blog/3.5/responsive_gallery.png' | theme_image_url }}" alt="Our gallery all squished up" />
+
+ 
+  Everything looks good.
+
+  ## Finishing Up
+
+  Today we learned the basics of relating content types in LocomotiveCMS. Relating content types is a powerful tool that can help you avoid putting redundant content into your CMS, make administration more intuitive for site editors, and make your templates easier to write and maintain.
+
+  Let's commit our changes.
+
+  <pre><span>$ git add app/content_types/photos.yml app/content_types/posts.yml app/views/pages/posts/content_type_template.liquid data/photos.yml public/stylesheets/styles.css
+  $ git commit -m "Added feature to show related photos at bottom of posts."</span></pre>
+  
+  This wraps up our study of content types in LocomotiveCMS, but stick around because we will be breaking ground on a really fun topic in the next section: localization.
+
+%a.orange-rounded-button{href: "/making-blog/4-1-page-localization"} Next: page localization
+
+{% endblock %}
+
+

@@ -1,0 +1,206 @@
+---
+title: 3.4 Content type templates
+listed: true
+position: 12
+---
+{% extends 'index' %}
+
+{% block 'content' %}
+
+:markdown
+
+  Now that we have a nice paginated list of posts, let's move onto to displaying full posts individually. I would like the URL `/posts/some-title` to lead to a page showing the post with the slug _some-title_. To do this, we need to create a content type template.
+
+  Start by generating a new page.
+
+  <pre><span>$ bundle exec wagon generate page posts/content_type_template
+  Do you prefer a HAML template ? no
+  <span style="font-weight: bold; color: #2FB41D">create</span>   app/views/pages/posts/content_type_template.liquid
+  <span style="font-weight: bold; color: #B42419;">conflict</span>  app/views/pages/posts.liquid
+  Overwrite /Users/me/wisdom_for_wanderers/app/views/pages/posts.liquid? (enter "h" for help) [Ynaqdh] n
+      <span style="font-weight: bold; color: #9FA01C;">skip</span>  app/views/pages/posts.liquid</span></pre>
+
+  Content type templates are put in sub-directories with the name of the content type. The file name of a content type template should always be `content_type_template.liquid`.
+
+  Above we generated the file `app/views/pages/posts/content_type_template.liquid` to be the template for our _posts_ content type. The generator also offered to create a `app/views/pages/posts.liquid` for us, but I turned down that offer since I didn't want to overwrite our current `posts.liquid` file.
+
+  The reason it stepped in to make sure we had a `posts.liquid` file is that templates in sub-directories inherit from the liquid file with the same name. Leave behind content types for a moment, and assume we we are just making some plain jane page templates with the following structure:
+
+  - legal.liquid
+  - legal/privacy_policy.liquid
+  - legal/terms_of_use.liquid
+  - legal/dmca.liquid
+
+  Given the above file structure, `legal.liquid` is the parent template of `privacy_policy.liquid`, `terms_of_use.liquid`, and `dmca.liquid`. So if these child templates specify `{% raw %}{% extends parent %}{% endraw %}`, they will will inherit from `legal.liquid`, which in turn inherits from `index.liquid`. So, for example, `dmca.liquid` can override blocks specified in `legal.liquid`.
+
+  As you would expect, the URLs of the legal pages match the directory structure:
+
+  - /legal
+  - /legal/privacy-policy
+  - /legal/terms-of-use
+  - /legal/dmca
+
+  Also, if we specified `listed: true` in the headers of the above templates, `Legal` would appear as a top level navigation item alongside _Posts_ and _About_. _Privacy Policy_, _Terms of Use_, and _DMCA_ would appear as children navigation items under _Legal_ .
+
+  Make sense? Let's get back to our posts template. Modify the `posts/content_type_template.liquid` header to look like the YAML below.
+
+      ---
+      title: Post Template
+      listed: false
+      published: true
+      content_type: posts
+      ---
+
+  To start, the title is set to _Post Template_. The actual title of a content type template is always the label for the content type entry being displayed. In the case of our posts content type, the _title_ field is used as the label, so our page's title will be title of whatever post is being displayed. However, the title specified in the header still shows up for site editors in the _Pages_ section of the back-office, so I've set the title as _Post Tempate_.
+
+  After the title, we've indicated that we would not like to have the page listed in the site navigation and that the page is published. Finally, we encounter a new setting, `content_type` which allows us to specify what content type this page is a template for; in our case, it's the _posts_ content type.
+
+  Let's move onto the body. Paste in the following content.
+
+      {% raw %}{% extends parent %}
+
+      {% block main %}
+
+      <article class="post">
+        <h3 class="posted-at">
+          Posted at {{ post.posted_at | localized_date: '%-I:%M %p' }} on {{ post.posted_at | localized_date: '%B, %-d %Y' }}
+        </h3>
+        
+        {% if post.tags %}
+          <p class="tags">
+            <i class="glyphicon glyphicon-tags"></i>
+            {% for tag in post.tags %}
+              <span class="label label-primary">{{ tag | escape }}</span>
+            {% endfor %}
+          </p>
+        {% endif %}
+        <div class="body">
+          {{ post.body }}
+        </div>
+      </article>
+
+      {% endblock %}{% endraw %}
+
+  The body start with the familiar extends tag and the rest of the template's content is enclosed in the main block.
+
+  To start off, we display the post's date using the `localized_date` filter we met in [section 2.5](/making-blog/2.5-snippets). In a content type template, you always have access to a variable that represents the current entry. So if the visitor makes their way to `/posts/some-title`, the `post` drop holds the entry with the slug _some-title_. If we had a content type for widgets, the `widget` drop would be represent the current widget, and so on.
+
+  Next, we loop through the post's tags, displaying them with [Bootstrap labels](http://getbootstrap.com/components/#labels). Finally, we display the post's body. Note that we didn't display the featured image again. This was a conscious choice. Since the back-office allows editors to freely upload, manipulate, and insert images directly into rich text fields (like the body field), we'll let editors handle how they want pictures displayed in the article themselves.
+
+  Let's see how this template works in practice. Start the wagon web server and open your browser to the _Posts_ page. Click on a "Read More" link for one of the posts.
+
+  <img src="{{ 'guides/making-blog/3.4/unstyled_post_template.png' | theme_image_url }}" alt="The unstyled post template" />
+
+  Basically, it looks like what I expected, but why does the title say _Post Template_? Shouldn't it say _Afternoon Delight_ since that is the name of the post I am viewing? Well, it should because the `page.title` value of a content type template should be the value of the current entry's label. Interestingly, if we were looking at this page on the Engine (i.e. the real, live site), it would say _Afternoon Delight_, as expected.
+
+  Truth be told, there is currently a bug in Wagon which results in content type templates not correctly setting their title. Of Wagon and Engine, Engine came first and is obviously the more important of the two since it serves the live site. As a result, Wagon is a little behind in some areas and you might notice a few other places where Wagon's functionality has not quite matched Engine's yet. But, don't worry: these issues are being dealt with and the LocomotiveCMS team will soon finish rounding off Wagon's remaining rough edges.
+
+  If we were to view this page in an Engine, it would look like the screen shot below.
+
+  <img src="{{ 'guides/making-blog/3.4/post_template_on_engine.png' | theme_image_url }}" alt="The post as it would appear on Engine" />
+
+  Title mismatch aside, I'm pretty happy with the post template. Though I would like to make the post's date a little more discrete and increase the tag spacing a little bit. Add the following CSS to the `public/styles.css` file. 
+
+
+      /* posts/content_type_template.liquid */
+      article.post p.tags span {
+        margin-left: 10px;
+      }
+
+      article.post h3.posted-at {
+        font-size: 20px;
+        margin-top: 0px;
+        color: #999;
+      }
+
+  Take another look in the browser.
+
+  <img src="{{ 'guides/making-blog/3.4/styled_post_template.png' | theme_image_url }}" alt="The post template, styled" />
+
+  Much better.
+
+  ## Bonus: Fixing the home page
+
+  Now that our site can fully display blog posts, it has the essentials necessary to be considered an actual blog. Before now, our site was working towards becoming a blog, but not yet fully functional. Now, we have met the minimum requirements and achieved the status of "blog": we've reached version 1.0. To celebrate our site's coming of age, let's remove the home page's bland "Coming Soon" and replace it with what every true home page has: a jumbotron call to action!
+
+  Open `index.liquid` and replace the main block with the content below.
+
+      {% raw %}{% block main %}
+        <div class="jumbotron">
+          <h1>Life's to short not to get away for awhile!</h1>
+          <p class="sub-title">
+            Learn about cool places to see abroad, interesting things to eat, and little travel tips you won't believe you lived without.
+          </p>
+          <p>
+            <a href="/posts" class="btn btn-primary btn-lg">
+              Browse our articles
+            </a>
+          </p>
+        </div>
+      {% endblock %}{% endraw %}
+
+  Style the [jumbotron](http://getbootstrap.com/components/#jumbotron) element above by adding the following styles into the `public/stylesheets/styles.css` file.
+
+      /* home page */
+      body.index .jumbotron {
+        color: #fff;
+        text-align: justify;
+        background-image: url('../images/new_york_at_night.jpg');
+        background-position: center top;
+      }
+      body.index .jumbotron {
+        padding-top: 10px;
+        padding-bottom: 25%;
+      }
+
+  You'll notice that the styles above reference a new image file, which you can [download here: new\_york\_at\_night.jpg](/images/guides/making-blog/3.4/new_york_at_night.jpg).
+
+  Preview the new home page in your browser.
+
+  <img src="{{ 'guides/making-blog/3.4/new_home_page.png' | theme_image_url }}" alt="The new home page" />
+
+  Looks great! Now, let's make the jumbotron text editable so site editors can change it at will.
+
+      {% raw %}{% capture jumbotron_title %}
+        {% editable_text "jumbotron_title", format: "raw", rows: 1 %}
+        Life's to short not to get away for awhile!
+        {% endeditable_text %}
+      {% endcapture %}
+      {% capture jumbotron_message %}
+        {% editable_text "jumbotron_message", format: "raw", rows: 3 %}
+          Learn about cool places to see abroad, interesting things to eat, and little travel tips you won't believe you lived without.
+        {% endeditable_text %}
+      {% endcapture %}
+      {% capture jumbotron_button %}
+        {% editable_text "jumbotron_button", format: "raw", rows: 1%}
+          Browse our articles
+        {% endeditable_text %}
+      {% endcapture %}
+      <div class="jumbotron">
+        <h1>{{ jumbotron_title | escape }}</h1>
+        <p class="sub-title">{{ jumbotron_message | escape }}</p>
+        <p>
+          <a href="/posts" class="btn btn-primary btn-lg">
+            {{ jumbotron_button | escape }}
+          </a>
+        </p>
+      </div>{% endraw %}
+
+
+  ## Finishing up
+
+  Today was pretty exciting. We created a post template to display individual posts, bringing our blog to "minimal viable product" status, as it were. Then, to celebrate we fancied up the home page a bit, and voilà, we're at _Wisdom for Wanderers_ 1.0.
+
+  Let's commit our changes.
+
+  <pre><span>$ git add app/views/pages/index.liquid public/stylesheets/styles.css app/views/pages/posts/ public/images/new_york_at_night.jpg
+  $ git rm public/images/temppeliaukio.jpg
+  $ git commit -m "Added a post template and a call to action on the home page."</span></pre>
+
+  In the next section we'll take a look at relating content types.
+
+%a.orange-rounded-button{href: "/making-blog/3-5-related-types"} Next: related types
+
+{% endblock %}
+
+

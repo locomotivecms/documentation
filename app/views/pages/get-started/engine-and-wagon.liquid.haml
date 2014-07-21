@@ -1,0 +1,31 @@
+---
+title: Engine and Wagon
+published: true
+listed: true
+position: 2
+---
+{% extends 'index' %}
+
+{% block content %}
+
+:markdown
+
+  Developing a site with a CMS is often tedious because most CMS solutions get in the way of your workflow. To solve this problem, LocomotiveCMS is divided into two parts: Engine and Wagon.
+
+  ## Engine
+  The LocmotiveCMS Engine is a Rails engine that's installed into a Rails application. This engine runs in production, dealing with page requests, handling the restful API, and running the back-office where site editors can update the site's content.
+
+  In general, the only time you'll spend with Engine is at the beginning when you're setting up LocomotiveCMS. You'll have to install the gem, do some configuration, and get Rails running. But after that, you're pretty much done working with Engine.
+
+  And actually, if you use [LocomotiveHosting](http://www.locomotivehosting.com), you don't need to worry about Engine at all, since it sets up Engine for you.
+
+  ## Wagon
+  Wagon is a command line tool that let's you develop for LocomotiveCMS right on your local machine. 
+
+  With Wagon, you can generate the scaffolding for a new LocomotiveCMS site and start adding the content types and templates you need using any text editor. And thanks to Wagon's built-in web server, you can preview the site with your computer's web browser.
+
+  Wagon can also deploy sites to any LocomotiveCMS Engine using the <code>wagon push</code> command. Your changes will immediately be reflected on that site without restarting or making any changes to the Rails app.
+
+  To help you work faster, Wagon comes with support for tools like SASS, LESS, HAML, and CoffeeScript. It also works well with source version control systems like git and svn.
+
+{% endblock %}

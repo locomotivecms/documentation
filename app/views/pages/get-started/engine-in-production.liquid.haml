@@ -1,5 +1,5 @@
 ---
-title: Engine in Production 
+title: Engine in Production
 published: true
 listed: true
 position: 7
@@ -14,14 +14,14 @@ position: 7
   Readers looking specifically to host their Engine on Heroku should consult our [Heroku guide](/get-started/heroku). Those just looking to setup Engine on their local machine for development purposes should read our [Install Engine locally guide](/get-started/install-engine-locally).
 
 
-  Since the the exact steps for setting up a LocomotiveCMS Engine in production vary greatly depending on the environment, it is not possible for us to give detailed step by step instructions. But the general steps below for setting up LocomotiveCMS on a Linux server can be adapted to most situations. 
+  Since the the exact steps for setting up a LocomotiveCMS Engine in production vary greatly depending on the environment, it is not possible for us to give detailed step by step instructions. But the general steps below for setting up LocomotiveCMS on a Linux server can be adapted to most situations.
 
 
   # 1. Setup MongoDB
 
   LocomotiveCMS Engine uses the [MongoDB](http://www.mongodb.org/) database. The mongoDB database can be hosted on the same server as the Rails app (which you will install later), on a separate server, or through a service, such as [MongoLab](https://mongolab.com/) or [MongoHQ](http://www.mongohq.com/).
 
-  For instructions on installing MongoDB, please see the [MongoDB installtion documentation](http://docs.mongodb.org/manual/installation/). 
+  For instructions on installing MongoDB, please see the [MongoDB installtion documentation](http://docs.mongodb.org/manual/installation/).
 
   # 2. Install ImageMagick
   On the same server as the Rails app (which you will install later), you need to install [ImageMagick](http://www.imagemagick.org/), an image manipulation library.
@@ -36,7 +36,7 @@ position: 7
 
   Otherwise, you can install Ruby 2.0.0 with a Ruby version manager like [RVM](https://rvm.io/) or [rbenv](https://github.com/sstephenson/rbenv).
 
-  And of course, you can install Ruby by compiling the source. The [Ruby website's installation page](https://www.ruby-lang.org/en/installation/) does a good job of outlining the various options. 
+  And of course, you can install Ruby by compiling the source. The [Ruby website's installation page](https://www.ruby-lang.org/en/installation/) does a good job of outlining the various options.
 
   # 3. Create the Ruby on Rails app
 
@@ -55,7 +55,7 @@ position: 7
       gem 'locomotive_cms', '~> 2.4.1', :require => 'locomotive/engine'
 
       group :assets do
-        gem 'compass-rails',  '~> 1.1.3'
+        gem 'compass-rails',  '~> 1.0.3'
         gem 'sass-rails',     '~> 3.2.4'
         gem 'coffee-rails',   '~> 3.2.2'
         gem 'uglifier',       '~> 1.2.4'
@@ -70,7 +70,7 @@ position: 7
     Note that you can also create the app locally and deploy it to your server using something like [capistrano](http://capistranorb.com/).
     </div>
 
-      
+
   # 4. Setup LocomotiveCMS
 
   Run the LocomotiveCMS install generator.
@@ -86,14 +86,14 @@ position: 7
   - config/devise.yml
   - config/routes.rb
 
-  The default options in the files will be sufficient for many setups. Be sure to update `config/mongoid.yml` with the correct host for your database and change the database names to something specific to your app. 
+  The default options in the files will be sufficient for many setups. Be sure to update `config/mongoid.yml` with the correct host for your database and change the database names to something specific to your app.
 
   The `config/initializers/locomotive.rb` file includes many important settings like the default locale, email settings, and settings to activate multi-site.
 
   # 5. Precompile assets
 
   As with any Rails application, you need to precompile the assets when the engine runs within the production environment.
-  
+
       RAILS_ENV=production bundle exec rake assets:precompile
 
   <div class="alert alert-warning">
@@ -102,7 +102,7 @@ position: 7
 
   # 6. Serve the application
 
-  Finally, you will need to serve the application itself. When deploying on your own server, the most popular application servers for Rails are Phusion Passenger, Puma, and Unicorn. 
+  Finally, you will need to serve the application itself. When deploying on your own server, the most popular application servers for Rails are Phusion Passenger, Puma, and Unicorn.
 
   If this is your first time deploying a Rails application, checkout the [Rails deployment documentation](http://rubyonrails.org/deploy).
 

@@ -8,7 +8,7 @@ position: 2
 {% block 'content' %}
 
 :markdown
-  Wagon site created: check. Next up, we need to do some basic configuration for our site. 
+  Wagon site created: check. Next up, we need to do some basic configuration for our site.
 
   ## site.yml
   Navigate to the `wisdom_for_wanderers` project folder and open the `config/site.yml` file. This [YAML](http://en.wikipedia.org/wiki/YAML) file sets some basic settings for our site. New to YAML? There's nothing to be scared of. YAML files have the following simple format:
@@ -21,7 +21,7 @@ position: 2
 
   <pre><span>name: Wisdom for Wanderers</span></pre>
 
-  The next two options, `subdomain` and `domains`, only apply to sites being deployed on multi-site Engines. Multi-site Engine users, you know who you are, fill these in. Everyone else, let's leave these commented out for now.
+  The next two options, `subdomain` and `domains`, only apply to sites being deployed on multisite Engines. Multi-site Engine users, you know who you are, fill these in. Everyone else, let's leave these commented out for now.
 
   The `locales` option let's us specify what languages our website will be available in. For now, I'm going to leave this with the default value: _[en]_.
 
@@ -33,7 +33,7 @@ position: 2
 
   The last settings are related to Search Engine Optimization (SEO). Like everything else in this file, these can be changed later so I won't stress too much about what I enter for now.
 
-  <pre><span>seo_title: Travel Tips for the Adventurous! 
+  <pre><span>seo_title: Travel Tips for the Adventurous!
   meta_keywords: "travel backpacking budget adventure"
   meta_description: "Learn about cool places to see abroad, interesting things to eat, and little travel tips you won't believe you lived without."</code></pre>
 
@@ -45,7 +45,7 @@ position: 2
   ## deploy.yml
   That leaves one configuration file: `deploy.yml`. This file lists the connection details for LocomotiveCMS Engines we will deploy our site to. This file can specify as many Engines as we like. For real sites, it's common to deploy a site to different engines, such as a _development_ Engine on your local machine, a _staging_ Engine where the client can review changes, and a _production_ Engine that hosts the live site.
 
-  As per the [prerequisites](/making-blog), this tutorial assumes that you have already setup an Engine somewhere. It could be an Engine on your local machine, an Engine on a web server, or a [LocomotiveHosting](http://www.locomotivehosting.com) site.  
+  As per the [prerequisites](/making-blog), this tutorial assumes that you have already setup an Engine somewhere. It could be an Engine on your local machine, an Engine on a web server, or a [LocomotiveHosting](http://www.locomotivehosting.com) site.
 
   Regardless of what kind of Engine you setup, you will need to enter three things into `deploy.yml`:
 
@@ -90,10 +90,10 @@ position: 2
 
   <pre><span>
     $ git rm --cached config/deploy.yml
-    $ echo 'config/deploy.yml' >> .gitignore    
+    $ echo 'config/deploy.yml' >> .gitignore
     $ git commit -am "Changed site configuration and deployment settings."
   </span></pre>
 
-%a.orange-rounded-button{href: "/making-blog/1-3-deploy-to-engine"} Next: deploying to the Engine  
+%a.orange-rounded-button{href: "/making-blog/1-3-deploy-to-engine"} Next: deploying to the Engine
 
 {% endblock %}

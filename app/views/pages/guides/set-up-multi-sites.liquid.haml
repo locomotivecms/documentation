@@ -1,0 +1,108 @@
+---
+title: Setup multi-sites
+published: true
+listed: true
+---
+{% extends index %}
+
+{% block content %}
+
+:markdown
+
+  # Introduction
+
+  You need a TLD for Engine. All sites will be a subdomain for the main domain. Each subdomain matches a LocomotiveCMS site.
+
+  - _Main domain served by the engine_: myhosting.dev
+  - _Site A_: alpha.myhosting.dev
+  - _Site B_: bravo.myhosting.dev
+  - ...
+  and so on.
+
+  Of course, sites may also have their own TLDs, but the engine as a whole needs it’s own TLD.
+
+  In addition to the subdomain which represents the default entry point (ex: alpha.myhosting.dev), a site can have other "domain" aliases. Actually, the LocomotiveCMS engine is able to retrieve the site based on the requested domain.
+
+  # How to test it locally
+
+  ## 1. TLDs
+
+  If you’re doing this in development, you can add the TLDs and subdomains into your host file.
+
+  Open your **/etc/hosts** file.
+
+  <div class="alert alert-warning">
+    You will need your unix root password to execute the following shell command.
+  </div>
+
+      sudo vi /etc/hosts
+
+  Add the following lines if you want to follow the example above.
+
+      127.0.0.1 myhosting.dev
+      127.0.0.1 alpha.myhosting.dev
+      127.0.0.1 bravo.myhosting.dev
+
+  ## 2. Engine
+
+  After setting up your LocomotiveCMS engine, crack open **config/initializer/locomotive.rb**. Uncomment the multi-site setting:
+
+      config.multi_sites do |multi_sites|
+        # each new website you add will have a default entry based on a subdomain
+        # and the multi_site_domain value (ex: website_1.locomotivehosting.com).
+        multi_sites.domain = 'myhosting.dev'
+        ...
+      end
+      # config.multi_sites = false
+
+  Restart your LocomotiveCMS engine. Now, you will be able to create a new site with **alpha** or **bravo** as the subdomain.
+
+  # How to set it up in production
+
+  You have to own a domain name and also have fully access to it in order to enable the multi-sites functionality.
+
+  <div class="alert alert-info">
+    Let's say you purchased the <strong>myhosting.com</strong> domain name.
+  </div>
+
+  # 1. Configure your DNS
+
+  Basically, you will have to add the following lines in your DNS zone.
+
+      * 10800 IN A <IP ADDRESS OF YOUR SERVER>
+      domains 10800 IN A <IP ADDRESS OF YOUR SERVER>
+
+  # 2. Configure your engine
+
+  Open your **config/initializer/locomotive.rb** file.
+
+      config.multi_sites do |multi_sites|
+        ...
+        multi_sites.domain = 'myhosting.com'
+        ...
+      end
+      # config.multi_sites = false
+
+  Once it is done, deploy your code to the production server.
+
+  # 3. Create a new site
+
+  Use the LocomotiveCMS back-office to create a new site. Use any subdomain you want since the wildcard entry has been correctly added to the DNS.
+
+  # 4. Add a new domain name to your site
+
+  First, add the new domain name (ex: **myawesomesite.com**) to the list of domains inside the LocomotiveCMS back-office of your site.
+
+  Then, the new domain name will have to point to **domains.myhosting.com**. You can do it by adding a new CNAME entry in the DNS settings of your **myawesomesite.com** site.
+
+        www 10800 IN CNAME domains.locomotivehosting.com.
+
+  <div class="alert alert-warning">
+    You can not add a CNAME to a root domain name. A good solution is to make a web redirection from the root domain name to www.
+    <br/>
+    You could also use a reverse proxy but we recommend the first solution.
+  </div>
+
+  Now, if you type **www.myawesomesite.com** in your browser, you will see the LocomotiveCMS site you coded.
+
+{% endblock %}

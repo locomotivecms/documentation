@@ -53,6 +53,9 @@ listed: true
     Note: If you call the method <strong>reindex()</strong> on a content type, all entries <u>older than the model definition</u> will be reindexed.
   </div>
 
+  <div class="alert alert-info">
+    Note: If you are adding the search gem in after having created content, you will need to create the indexes.  From root path of your Locomotive engine: `rake db:mongoid:create_indexes`
+  </div>
   ## Pages
 
   By default, all the pages are searchable, except the __404 (page not found)__ one.

@@ -92,7 +92,7 @@ position: 4
       When we installed Wagon, we setup the bitnami Ruby stack, which includes Ruby on Rails. You should have Rails 3.2.x, but let's double check. Open a new bitnami command prompt by selecting `All Programs \ Bitnami Ruby Stack \ Use Bitnami Ruby Stack` from the _Start Menu_.
 
       <pre><span>C:\Bitnami\rubystack-1.9.3-22&gt; rails -v
-      Rails 3.2.17</span></pre>
+      Rails 3.2.19</span></pre>
 
       Now change to a directory where you would like to create the Rails project that will host our LocomotiveCMS engine.
 
@@ -112,24 +112,26 @@ position: 4
 
       -1- Add the following line.
 
-          gem 'locomotive_cms', '~> 2.4.1', :require => 'locomotive/engine'
+          gem 'locomotive_cms', '~> 2.5.5', :require => 'locomotive/engine'
 
       -2- Add under the following line under the assets group.
 
-          gem 'compass-rails',  '~> 1.1.3'
+          gem 'compass',  '~> 0.12.7'
+          gem 'compass-rails',  '~> 1.1.7'
 
       Below is a sample Gemfile with all commented out gems removed.
 
           source 'https://rubygems.org'
 
-          gem 'rails', '3.2.17'
+          gem 'rails', '3.2.19'
 
-          gem 'locomotive_cms', '~> 2.4.1', :require => 'locomotive/engine'
+          gem 'locomotive_cms', '~> 2.5.5', :require => 'locomotive/engine'
 
           # Gems used only for assets and not required
           # in production environments by default.
           group :assets do
-            gem 'compass-rails',  '~> 1.1.3'
+            gem 'compass',  '~> 0.12.7'
+            gem 'compass-rails',  '~> 1.1.7'
             gem 'sass-rails',   '~> 3.2.3'
             gem 'coffee-rails', '~> 3.2.1'
             gem 'uglifier', '>= 1.0.3'
@@ -256,7 +258,7 @@ position: 4
 
       <pre><span>C:\Users\your_name\Documents\acme_cms&gt; bundle exec rails server
       => Booting WEBrick
-      => Rails 3.2.16 application starting in development on http://0.0.0.0:3000
+      => Rails 3.2.19 application starting in development on http://0.0.0.0:3000
       => Call with -d to detach
       => Ctrl-C to shutdown server
       [2014-03-09 14:36:19] INFO  WEBrick 1.3.1
@@ -316,7 +318,7 @@ position: 4
 
       Ruby on Rails can installed with the `gem install` command. Note that LocomotiveCMS Engine requires Ruby on Rails _3_, not the newer Ruby on Rails 4. Rails 4 support is coming in the next major version of LocomotiveCMS. Thus, we need the `--version` option to get the correct version
 
-      <pre><span>$ gem install rails --version=3.2.16
+      <pre><span>$ gem install rails --version=3.2.19
       Fetching: multi_json-1.9.0.gem (100%)
       Successfully installed multi_json-1.9.0
       ...blah blah blah, installing lots of gems and documentation
@@ -341,12 +343,13 @@ position: 4
 
       -1- Add the following line.
 
-          gem 'locomotive_cms', '~> 2.4.1', :require => 'locomotive/engine'
+          gem 'locomotive_cms', '~> 2.5.5', :require => 'locomotive/engine'
 
 
-      -2- Add the following line under the assets group.
+      -2- Add the following lines under the assets group.
 
-          gem 'compass-rails',  '~> 1.1.3'
+          gem 'compass',  '~> 0.12.7'
+          gem 'compass-rails',  '~> 1.1.7'
 
       -3- Uncomment the following line.
 
@@ -356,14 +359,15 @@ position: 4
 
           source 'https://rubygems.org'
 
-          gem 'rails', '3.2.17'
+          gem 'rails', '3.2.19'
 
-          gem 'locomotive_cms', '~> 2.4.1', :require => 'locomotive/engine'
+          gem 'locomotive_cms', '~> 2.5.5', :require => 'locomotive/engine'
 
           # Gems used only for assets and not required
           # in production environments by default.
           group :assets do
-            gem 'compass-rails',  '~> 1.1.3'
+            gem 'compass',  '~> 0.12.7'
+            gem 'compass-rails',  '~> 1.1.7'
             gem 'sass-rails',   '~> 3.2.3'
             gem 'coffee-rails', '~> 3.2.1'
             gem 'uglifier', '>= 1.0.3'
@@ -538,7 +542,7 @@ position: 4
 
       Ruby on Rails can be installed with the `gem install` command. Note that LocomotiveCMS Engine requires Ruby on Rails _3_, not the newer Ruby on Rails 4. Rails 4 support is coming in the next major version of LocomotiveCMS. Thus, we need the `--version` option to get the correct version
 
-      <pre><span>$ gem install rails --version=3.2.16
+      <pre><span>$ gem install rails --version=3.2.19
       Fetching: multi_json-1.9.0.gem (100%)
       Successfully installed multi_json-1.9.0
       ...blah blah blah, installing lots of gems and documentation
@@ -563,11 +567,12 @@ position: 4
 
       -1- Add the following line.
 
-          gem 'locomotive_cms', '~> 2.4.1', :require => 'locomotive/engine'
+          gem 'locomotive_cms', '~> 2.5.5', :require => 'locomotive/engine'
 
       -2- Add the following line under the assets group.
 
-          gem 'compass-rails',  '~> 1.1.3'
+          gem 'compass',  '~> 0.12.7'
+          gem 'compass-rails',  '~> 1.1.7'
 
       -3- Uncomment the following line under the assets group.
 
@@ -581,14 +586,15 @@ position: 4
 
           source 'https://rubygems.org'
 
-          gem 'rails', '3.2.17'
+          gem 'rails', '3.2.19'
 
-          gem 'locomotive_cms', '~> 2.4.1', :require => 'locomotive/engine'
+          gem 'locomotive_cms', '~> 2.5.5', :require => 'locomotive/engine'
 
           # Gems used only for assets and not required
           # in production environments by default.
           group :assets do
-            gem 'compass-rails',  '~> 1.1.3'
+            gem 'compass',  '~> 0.12.7'
+            gem 'compass-rails',  '~> 1.1.7'
             gem 'sass-rails',   '~> 3.2.3'
             gem 'coffee-rails', '~> 3.2.1'
             gem 'uglifier', '>= 1.0.3'

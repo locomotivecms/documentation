@@ -44,6 +44,12 @@ searchable: false
 
   {% else %}
 
+  {% if params.search == '' or params.search == nil %}
+
+  %p.no-results Sorry, no results were found.
+
+  {% else %}
+
   {% search_for params.search, per_page: 10, page: params.page %}
 
   {% if result.total_entries == 0 %}
@@ -64,6 +70,8 @@ searchable: false
   {% endif %}
 
   {% endsearch_for %}
+
+  {% endif %}
 
   {% endif %}
 

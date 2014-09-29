@@ -18,7 +18,7 @@ listed: true
   Nesting blocks is fine.
   </div>
 
-  For more information about using the block tag, including nested blocks, check out the [basics of templating guide](/references/liquid-language).
+  For more information about using the block tag, including nested blocks, check out the [basics of templating guide](/references/page-inheritance).
 
   ## Syntax
 
@@ -32,6 +32,10 @@ listed: true
 
       {% block content %}
         Content goes here
+      {% endblock %}
+
+      {% block content/header %}
+        Nested blocks can be updated directly
       {% endblock %}{% endraw %}
 
 {% endblock %}

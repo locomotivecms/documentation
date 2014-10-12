@@ -6,21 +6,37 @@
   $column-width   : 295px
   $gutter-width   : 50px
   $grid-padding   : 20px
+
+  $susy: (columns: $total-columns, gutter-width: $gutter-width, column-width: $column-width, gutters: $gutter-width / $column-width, container: auto)
+  +layout($susy)
   +container
-  //+susy-grid-background
+
+  padding-left: $grid-padding
+  padding-right: $grid-padding
 
 =four-cols-grid
   $total-columns  : 4
   $column-width   : 217px
   $gutter-width   : 39px
   $grid-padding   : 20px
+
+  $susy: (columns: $total-columns, gutter-width: $gutter-width, column-width: $column-width, gutters: $gutter-width / $column-width, container: auto)
+  +layout($susy)
   +container
-  //+susy-grid-background
+
+  padding-left: $grid-padding
+  padding-right: $grid-padding
+
 
 =five-cols-grid
   $total-columns  : 5
   $column-width   : 175px
   $gutter-width   : 27px
   $grid-padding   : 20px
+
+  $susy: (columns: $total-columns, gutter-width: $gutter-width, column-width: $column-width, gutters: $gutter-width / $column-width, container: auto)
+  +layout($susy)
   +container
-  // +susy-grid-background
+
+  padding-left: $grid-padding
+  padding-right: $grid-padding

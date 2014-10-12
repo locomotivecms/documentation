@@ -25,7 +25,7 @@ listed: true
 
   For the mongoid backend, you just need to specify it in the _require_ part of the Gemfile line:
 
-      gem 'locomotivecms-search', '>= 0.2.6', require: 'locomotive/search/mongoid'
+      gem 'locomotivecms-search', '>= 0.3.5', require: 'locomotive/search/mongoid'
 
   ## Algolia
 
@@ -33,13 +33,17 @@ listed: true
 
   In order to use it as backend, you have to specify it in the Gemfile like this:
 
-      gem 'locomotivecms-search', '>= 0.2.6', require: 'locomotive/search/algolia'
+      gem 'locomotivecms-search', '>= 0.3.5', require: 'locomotive/search/algolia'
 
   In addition to that, you also need to configure the algolia client.
   You can do it easiliy in a _search.rb_ initializer:
 
       require "activesearch/algolia/client"
       ActiveSearch::Algolia::Client.configure("api_key", "app_id", "index_name")
+
+  If you develop your LocomotiveCMS sites with **Wagon**, you will have to install the following gem in the Gemfile of your site:
+
+      gem 'locomotivecms-search-wagon', '~> 0.3.5'
 
   # 2. Mark your site content as searchable
 
@@ -53,6 +57,9 @@ listed: true
     Note: If you call the method <strong>reindex()</strong> on a content type, all entries <u>older than the model definition</u> will be reindexed.
   </div>
 
+  <div class="alert alert-info">
+    Note: If you are adding the search gem in after having created content, you will need to create the indexes.  From root path of your Locomotive engine: `rake db:mongoid:create_indexes`
+  </div>
   ## Pages
 
   By default, all the pages are searchable, except the __404 (page not found)__ one.
@@ -98,7 +105,7 @@ listed: true
   Just add this code:
 
       {%raw%}
-      <form action="/{{ locale }}/search" method="GET">
+      <form action="{% path_to search %}" method="GET">
         <label for="search">Search</label>
         <input type="text" name="search" id="search">
         <input type="submit" value="Search">
@@ -109,25 +116,54 @@ listed: true
     The important part is the action parameter, since <strong>it must point to the slug of your search results page</strong>.
   </div>
 
-  <div class="alert alert-warning">
-    The name of the search input <u>must</u> be <strong>"search"</strong>.
-  </div>
-
   # 4. Display the search results
 
   Create a new page that will display your search results. Its code might be something like this:
 
-      {%raw%}
-      {% for result in site.search %}
-        <li>
-          <p><a href="/{{ result.fullpath }}">{{ result.title }}</a></p>
-          <p>
-            {{ result.highlighted.searchable_content }}
-          </p>
-        </li>
-      {% endfor %}
-      {%endraw%}
+  <div class="alert alert-info">
+    This new page used to display the results should have <strong>search</strong> as the <strong>handle</strong> attribute, in order to work with the previous html form.
+  </div>
 
-  As you can see, when a search string is passed in the URL, you can fetch the results by using `site.search`.
+      {%raw%}{% if params.query == '' or params.query == nil %}
+
+        <p>Sorry, no results were found.</p>
+
+      {% else %}
+
+        {% search_for params.query, per_page: 10, page: params.page %}
+
+          {% if result.total_entries == 0 %}
+
+            <p>Sorry, no results were found.</p>
+
+          {% else %}
+
+            <p>{{ search.total_entries }} elements found.</p>
+
+            <ul>
+            {% for result in search.results %}
+              <li>
+                <h2>
+                  # if the entry is a page or a content type with a title attribute
+                  <a href="/{{result.fullpath}}">{{ result.title }}</a>
+                </h2>
+                <div>
+                  {{ result.highlighted.searchable_content }}
+                </div>
+              </li>
+            {% endfor %}
+            </ul>
+
+            {% if search.total_pages > params.page %}
+              <p>
+                <a href="?page={{ params.page | plus: 1 }}&query={{ params.query }}">Next page</a>
+              </p>
+            {% endif %}
+
+          {% endif %}
+
+        {% endsearch_for %}
+
+      {% endif %}{%endraw%}
 
 {% endblock %}

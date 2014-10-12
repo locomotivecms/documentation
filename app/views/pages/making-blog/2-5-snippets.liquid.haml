@@ -104,7 +104,7 @@ position: 8
   The above code includes the *img_box* snippet and uses the `with` keyword to pass three variables to the snippet. We must pass these variables to the snippet because variables defined in a template are not automatically available to included snippets. Only global variables can be used in snippets without first being passed in.
 
   We can pass already defined variables or assign new variables inline using a colon. In the following example, all three `include` tags will produce the same output.
-      
+
       {% raw %}{% include 'sample' with foo: "baz" %}
 
       {% assign foo = "baz" %}
@@ -146,7 +146,7 @@ position: 8
   $ git add app/views/pages/index.liquid public/images/temppeliaukio.jpg
   $ git commit -am "Added a footer to the site, a photo to the homepage, and an image box snippet."</span></pre>
 
-  Hopefully, you now understand snippets. In the next section, we will finish up this section of pages with some basic house keeping: HTML escaping. 
+  Hopefully, you now understand snippets. In the next section, we will finish up this section of pages with some basic house keeping: HTML escaping.
 
 %a.orange-rounded-button{href: "/making-blog/2-6-html-escaping"} Next: HTML escaping
 

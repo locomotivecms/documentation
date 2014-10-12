@@ -42,12 +42,11 @@ position: 6
       '400x'      # resizes to 400 pixels wide, keeps aspect ratio
       'x300'      # resizes to 300 pixels tall, keeps aspect ratio
       '400x300!'  # resizes to 400 x 300 pixels, changing aspect ratio if necessary
-      '400x300#'  # like above, but crops with center gravity to maintains aspect ratio 
+      '400x300#'  # like above, but crops with center gravity to maintains aspect ratio
       '400x300>'  # resizes only if the image is larger than 400 x 300 pixels
       '400x300<'  # resizes only if the image is smaller than 400 x 300 pixels
-      
 
-  The resize string is interpreted by the [DragonFly gem](http://markevans.github.io/dragonfly/). For a complete guide to what is possible, check out the [resize filter documentation](/references/api/filters/resize). 
+  The resize string is interpreted by the [DragonFly gem](http://markevans.github.io/dragonfly/). For a complete guide to what is possible, check out the [resize filter documentation](/references/api/filters/resize).
 
   Let's take another look at our page.
 
@@ -204,12 +203,12 @@ position: 6
 
   ## Fonts
 
-  To demonstrate LocomotiveCMS's support for custom fonts, we are going to change our site to use a non-standard font. I'm going to use [Open Sans](http://www.google.com/fonts/specimen/Open+Sans). 
+  To demonstrate LocomotiveCMS's support for custom fonts, we are going to change our site to use a non-standard font. I'm going to use [Open Sans](http://www.google.com/fonts/specimen/Open+Sans).
 
   Actually, Open Sans is supported by [Google's excellent Web Fonts service](http://www.google.com/fonts), so if this were a real site, I would probably just use Google Web Fonts to handle the font files. But for the sake of learning, we're going to pretend that Open Sans isn't available on Google Web Fonts and walk through adding the font with our own files.
 
   For truly cross-browser compatible custom fonts, we need the font in four formats.
-    
+
     1. _woff_: an compressed standard currently supported by the latest versions of all major Desktop browsers and the latest versions of many mobile browsers
     2. _eot_: needed to support Internet Explorer 6, 7, and 8
     3. _svg_: needed for some mobile browsers, including older versions of iOS Safari
@@ -219,7 +218,7 @@ position: 6
 
   You should now have the following eight files in the directory.
 
-    <pre><span>$ ls -1 public/fonts/open_sans 
+    <pre><span>$ ls -1 public/fonts/open_sans
     OpenSans-Italic-webfont.eot
     OpenSans-Italic-webfont.svg
     OpenSans-Italic-webfont.ttf
@@ -230,7 +229,7 @@ position: 6
     OpenSans-Regular-webfont.woff</span></pre>
 
   Next, create a new CSS file, `public/stylesheets/fonts.css`. Define these fonts by pasting the following code into the file.
-      
+
       @font-face {
         font-family: 'Open Sans';
         src: url('../fonts/open_sans/OpenSans-Regular-webfont.eot');

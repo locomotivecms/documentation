@@ -67,13 +67,15 @@
 
 @media #{$desktop}
   #content-column
-    +span-columns(3, 4)
+    // +span-columns(3, 4)
+    +span(3 of 4)
     #fork-me
       text-align: right
 
   #sidebar-column
     min-height: 400px
-    +span-columns(1 omega, 4)
+    // +span-columns(1 omega, 4)
+    +span(1 omega of 4)
     padding-left: gutter(4)
     border-left: 1px solid $medium-grey
 
@@ -185,7 +187,8 @@
   .inner-container
     +container
     .description
-      +span-columns(2,2)
+      // +span-columns(2,2)
+      +span(2 of 2)
       margin-top: 20px
       .left
         font-size: 15px
@@ -194,7 +197,8 @@
         a
           +orange-rounded-button
     .columns
-      +span-columns(2,2)
+      // +span-columns(2,2)
+      +span(2 of 2)
       margin-top: 50px
       padding-bottom: 70px
       .quick-links, .newsletter, .tweets
@@ -241,21 +245,26 @@
 @media #{$desktop}
   #subfooter
     .left
-      +span-columns(2, $total-columns)
+      // +span-columns(2, $total-columns)
+      +span(2 of $total-columns)
     .right
       text-align: right
       padding-top: 0px
-      +span-columns(1 omega, $total-columns)
+      // +span-columns(1 omega, $total-columns)
+      +span(1 omega of $total-columns)
 
   #footer
     .inner-container
       .description
-        +span-columns(2,2)
+        // +span-columns(2,2)
+        +span(2 of 2)
         .left
-          +span-columns(1,2)
+          // +span-columns(1,2)
+          +span(1 of 2)
         .right
           text-align: right
-          +span-columns(1 omega,2)
+          // +span-columns(1 omega,2)
+          +span(1 omega of 2)
       .columns
         .quick-links
           float: left

@@ -63,7 +63,7 @@ position: 3
       When asked if you would like to open Bitnami Ruby Stack in the browser, uncheck that box as we won't be using it at the moment. Click the _Finish_ button.
 
       ## Step 2: Install Bundler and Rake
-      
+
       From the _Start Menu_ open `All Programs / Bitnami Ruby Stack / Use Bitnami Ruby Stack`. This will open a command prompt. Use the `gem install` command to install bundler and rake, as shown below.
 
       <pre><span>C:\Bitnami\rubystack-1.9.3-22&gt;gem install bundler
@@ -87,7 +87,7 @@ position: 3
       Temporarily enhancing PATH to include DevKit...
       ...
       Installing RDoc documentation for locomotivecms_wagon-1.4.0...</span></pre>
-      
+
       The command will ouput lots of information and will take at least several minutes. Once finished, run the <code>wagon version</code> command to check that everything is working.
 
       <pre><span>C:\Bitnami\rubystack-1.9.3-22&gt;wagon version
@@ -128,7 +128,7 @@ position: 3
 
       The [Homebrew website](http://www.brew.sh) provides some text that we can use to install Homebrew, also shown below.
 
-      <pre><span>ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"</span></pre>
+      <pre><span>ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</span></pre>
 
       Copy this text and open the Terminal, which you can find under the <code>/Applications/Utilties</code> folder. Paste the above command into the Terminal and press enter to run the command. Homebrew will require your password to complete the installation.
 
@@ -345,7 +345,9 @@ position: 3
       1 gem installed</span></pre>
 
       ## Step 4: Install Wagon
-      Finally, we are ready to install Wagon itself. Like Bundler and Rake, wagon is a ruby gem, so we can install it by running <code>gem install locomotivecms\_wagon</code>.
+      Finally, we are ready to install Wagon itself. Like Bundler and Rake, wagon is a ruby gem, so we can install it by running
+
+      <pre><span>$ gem install locomotivecms_wagon</span></pre>
 
       Once it finishes, check that wagon installed correctly by running the <code>wagon version</code> command.
 

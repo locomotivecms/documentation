@@ -5,3 +5,5 @@
 /config/deploy.yml
 log/*.log
 config/compass.rb
+log
+Gemfile.lock

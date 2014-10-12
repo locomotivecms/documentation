@@ -65,7 +65,7 @@ position: 12
         <h3 class="posted-at">
           Posted at {{ post.posted_at | localized_date: '%-I:%M %p' }} on {{ post.posted_at | localized_date: '%B, %-d %Y' }}
         </h3>
-        
+
         {% if post.tags %}
           <p class="tags">
             <i class="glyphicon glyphicon-tags"></i>
@@ -83,7 +83,7 @@ position: 12
 
   The body start with the familiar extends tag and the rest of the template's content is enclosed in the main block.
 
-  To start off, we display the post's date using the `localized_date` filter we met in [section 2.5](/making-blog/2.5-snippets). In a content type template, you always have access to a variable that represents the current entry. So if the visitor makes their way to `/posts/some-title`, the `post` drop holds the entry with the slug _some-title_. If we had a content type for widgets, the `widget` drop would be represent the current widget, and so on.
+  To start off, we display the post's date using the `localized_date` filter we met in [section 2.5](/making-blog/2-5-snippets). In a content type template, you always have access to a variable that represents the current entry. So if the visitor makes their way to `/posts/some-title`, the `post` drop holds the entry with the slug _some-title_. If we had a content type for widgets, the `widget` drop would be represent the current widget, and so on.
 
   Next, we loop through the post's tags, displaying them with [Bootstrap labels](http://getbootstrap.com/components/#labels). Finally, we display the post's body. Note that we didn't display the featured image again. This was a conscious choice. Since the back-office allows editors to freely upload, manipulate, and insert images directly into rich text fields (like the body field), we'll let editors handle how they want pictures displayed in the article themselves.
 
@@ -99,7 +99,7 @@ position: 12
 
   <img src="{{ 'guides/making-blog/3.4/post_template_on_engine.png' | theme_image_url }}" alt="The post as it would appear on Engine" />
 
-  Title mismatch aside, I'm pretty happy with the post template. Though I would like to make the post's date a little more discrete and increase the tag spacing a little bit. Add the following CSS to the `public/styles.css` file. 
+  Title mismatch aside, I'm pretty happy with the post template. Though I would like to make the post's date a little more discrete and increase the tag spacing a little bit. Add the following CSS to the `public/styles.css` file.
 
 
       /* posts/content_type_template.liquid */
@@ -121,11 +121,14 @@ position: 12
 
   ## Bonus: Fixing the home page
 
-  Now that our site can fully display blog posts, it has the essentials necessary to be considered an actual blog. Before now, our site was working towards becoming a blog, but not yet fully functional. Now, we have met the minimum requirements and achieved the status of "blog": we've reached version 1.0. To celebrate our site's coming of age, let's remove the home page's bland "Coming Soon" and replace it with what every true home page has: a jumbotron call to action!
+  Now that our site can fully display blog posts, it has the essentials necessary to be considered an actual blog; we've reached version 1.0. To celebrate our site's coming of age, let's remove the home page's bland "Coming Soon" text and replace it with what every true home page has: a jumbotron call to action!
 
-  Open `index.liquid` and replace the main block with the content below.
+  Open `index.liquid` and replace the h2 tag and main block with the content below.
 
-      {% raw %}{% block main %}
+      {% raw %}{% if page.slug != "index" %}
+        <h2>{{ page.title | escape }}</h2>
+      {% endif %}
+      {% block 'main' %}
         <div class="jumbotron">
           <h1>Life's to short not to get away for awhile!</h1>
           <p class="sub-title">
@@ -142,13 +145,13 @@ position: 12
   Style the [jumbotron](http://getbootstrap.com/components/#jumbotron) element above by adding the following styles into the `public/stylesheets/styles.css` file.
 
       /* home page */
-      body.index .jumbotron {
+      body.page-index .jumbotron {
         color: #fff;
         text-align: justify;
         background-image: url('../images/new_york_at_night.jpg');
         background-position: center top;
       }
-      body.index .jumbotron {
+      body.page-index .jumbotron {
         padding-top: 10px;
         padding-bottom: 25%;
       }
@@ -159,11 +162,11 @@ position: 12
 
   <img src="{{ 'guides/making-blog/3.4/new_home_page.png' | theme_image_url }}" alt="The new home page" />
 
-  Looks great! Now, let's make the jumbotron text editable so site editors can change it at will.
+  Looks great! Now, let's make the jumbotron text editable so site editors can change it at will. Replace the jumbotron div with the code below.
 
       {% raw %}{% capture jumbotron_title %}
         {% editable_text "jumbotron_title", format: "raw", rows: 1 %}
-        Life's to short not to get away for awhile!
+          Life's to short not to get away for awhile!
         {% endeditable_text %}
       {% endcapture %}
       {% capture jumbotron_message %}
@@ -189,7 +192,7 @@ position: 12
 
   ## Finishing up
 
-  Today was pretty exciting. We created a post template to display individual posts, bringing our blog to "minimal viable product" status, as it were. Then, to celebrate we fancied up the home page a bit, and voilà, we're at _Wisdom for Wanderers_ 1.0.
+  Today was pretty exciting. We created a post template to display individual posts, rounded off the site as a complete (if simple) blog. We've created a minimal viable product, as it were. To celebrate we fancied up the home page a bit, and voilà, we're at _Wisdom for Wanderers_ 1.0.
 
   Let's commit our changes.
 

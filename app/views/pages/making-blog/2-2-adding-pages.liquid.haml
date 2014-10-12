@@ -14,13 +14,13 @@ position: 5
   ## Wagon generators
   We could simply create a new file, `app/views/pages/about.liquid`, but I'm going to take this opportunity to show you another handy Wagon feature: `wagon generate`. `wagon generate` is a time-saving command that generates boilerplate for LocomotiveCMS pages, content types, and snippets.
 
-  Open a command line and navigate to the site's project directory. Now, let's run the following command.
+  Open a command line,  navigate to the site's project directory, and run the following command.
 
       $ bundle exec wagon generate page about
       Do you prefer a HAML template ? no
           create  app/views/pages/about.liquid
 
-  As you can see, I again opted for regular HTML-style Liquid templates and Wagon created a file: `app/views/pages/about.liquid`. Let's check it out.
+  As you can see, I again opted for regular HTML-style Liquid templates. Wagon then created a file: `app/views/pages/about.liquid`. Let's check it out.
 
       ---
       title: About
@@ -54,7 +54,7 @@ position: 5
 
   The `wagon generate` command fills the created file with some common header options that you can comment in or out to suit your needs. It also makes a "Hello World" body. Regarding the YAML header, you've already met `title` and `published`, but that still leaves quite a few unknowns. Let's look at three of them.
 
-  - `listed`: LocomotiveCMS has a cool feature, `{% raw %}{% nav %}{% endraw %}`, that automatically generates site navigation. `listed` is a boolean flag indicating whether or not this page is listed in the site's navigation. Keep this value as `true`.
+  - `listed`: LocomotiveCMS has a cool feature, `{% raw %}{% nav %}{% endraw %}`, that automatically generates site navigation. `listed` is a boolean flag indicating whether or not this page should appear in the site's navigation. Keep this value as `true`.
   - `position`: An integer representing what position this page holds in the navigation mentioned above. Lower numbers are listed before higher numbers. Uncomment this option and keep the value at _1_.
   - `redirect_url`: setting this value will cause this page to redirect to the specified URL. Imagine that in the future, I decide to put the contents of the _About_ page onto the homepage instead. I could delete the page and visitors to this URL would be met with a 404 error. Or, I could leave this file empty, except for one line in the YAML header: `redirect_url: "/"`. Doing so would redirect all visitors to the home page. But we won't be using this for our page, so let's delete it.
 
@@ -65,13 +65,11 @@ position: 5
 
       {% raw %}{% extends parent %}{% endraw %}
 
-  In LocomotiveCMS, all pages are part of an inherticance tree. The parent of any page under `app/views/pages` is the _index_ page. The parent of any page under the `app/views/pages/foo/` directory is `app/views/pages/foo.liquid`.
+  In LocomotiveCMS, all pages are part of an inherticance tree. The parent of any page under `app/views/pages` is `app/views/pages/index.liquid`. The parent of any page under the `app/views/pages/foo/` directory is `app/views/pages/foo.liquid`.
 
-  When a page _extends_ a parent page, it inherits the body of the parent page. Turn on the Wagon web server and open your browser to [http://0.0.0.0:3333/about](http://0.0.0.0:3333/about). You should see this.
+  When a page extends a parent page, it inherits the body of the parent page. Turn on the Wagon web server and open your browser to [http://localhost:3333/about](http://localhost:3333/about). You should see this.
 
-{{ "guides/making-blog/2.2/about_page.png" | theme_image_tag: "The About Page" }}
-
-:markdown
+  <p><img src="{{ 'guides/making-blog/2.2/about_page.png' | theme_image_url }}" alt=The About Page" /></p>
 
   Despite not having any of `index.liquid`'s content, this page looks very similar to `index.liquid`. The only differences are the places where we used the `page.title` variable. That's because, as mentioned above, extending a parent means inheriting the body of the parent. Extending a page is the equivalent of copying the parent page's body and pasting it into this page's body; the page keeps its YAML header values but otherwise looks like the parent.
 
@@ -79,7 +77,7 @@ position: 5
 
   Open `app/views/pages/index.liquid` and enclose "Coming soon." with a block tag like so.
 
-      {% raw %}{% block main %}
+      {% raw %}{% block 'main' %}
           Coming Soon.
       {% endblock %}{% endraw %}
 
@@ -90,16 +88,14 @@ position: 5
 
   We've inherited from the home page and overridden the _main_ block with new content.
 
-  What happens if a child doesn't override a parent's block? See for yourself by changing `about.liquid`'s block from _main_ to _test_ and preview the site in your browser. If the child doesn't specify a block, the parent's block is used. Ok, change `about.liquid`'s block name back to _main_.
+  What happens if a child doesn't override a parent's block? See for yourself by changing `about.liquid`'s block name from _main_ to _test_ and preview the site in your browser. If the child doesn't specify a block, the parent's block is used. Ok, change `about.liquid`'s block name back to _main_.
 
-  Let's make our site a little less fake by using some real content. Replace `about.liquid`'s _main_ block with the text below.
+  Let's make our site a little less fake by using some real content. Replace `about.liquid`'s _main_ block with the code below.
 
-      {% raw %}{% block main %}
+      {% raw %}{% block 'main' %}
 
           <p>
-              Thanks for visiting Wisdom for Wanderers!
-              This blog aims to introduce readers to cool things to see, eat, and do all over the world.
-              And along the way, I'll share some handy travel tips that can make wandering the globe easier and more fun than ever. The blog tends to focus on sights and places a little off the tourist trail, so unadventurous beware.
+              Thank you for visiting Wisdom for Wanderers! This blog aims to introduce readers to cool things to see, eat, and do all over the world. And along the way, I'll share some handy travel tips that can make wandering the globe easier and more fun than ever. The blog tends to focus on sights and places a little off the tourist trail, so unadventurous beware.
           </p>
 
           <p>
@@ -115,17 +111,17 @@ position: 5
 
   In `index.liquid`, just after the _Home_ link's closing `</li>`, add the following line:
 
-      {% raw %}{% nav 'site', no_wrapper: true, active_class: "active" %}{% endraw %}
+      {% raw %}{% nav "site", no_wrapper: true, active_class: "active" %}{% endraw %}
 
-  I'm going to break down this line, but for a full explanation of the _nav_ tag, see the [nav reference page](http://doc.locomotivecms.com/references/api/tags/nav). The nav tag prints a list of page links, and the first argument specifies which pages go in the list. The options are _site_, _parent_, and _page_. Choosing _site_, gets all child pages of `app/views/pages/index.liquid`, _parent_ gets children of the parent page, and _page_ gets all children of this page.
+  I'm going to break down this line, but for a full explanation of the _nav_ tag, see the [nav reference page](/references/api/tags/nav). The nav tag prints a list of page links, and the first argument specifies which pages go in the list. The options are _site_, _parent_, and _page_. Choosing _site_, gets all child pages of `app/views/pages/index.liquid`, _parent_ gets children of the parent page, and _page_ gets all children of this page.
 
-  This is the site-wide navigation bar, so I chose _site_. The next argument, `no_wrapper` indicates that we don't want these links to be wrapped in `<nav>` and `<ul>` tags, which makes sense in this situation. The final argument specifies the CSS class name added to an `<li>` tag when its link is the current page. I specified _active_, since that's the class name used in Bootstrap.
+  This is the site-wide navigation bar, so I chose _site_. The next argument, `no_wrapper` indicates that we don't want these links to be wrapped in `<nav>` and `<ul>` tags, which makes sense for this situation. The final argument specifies the CSS class name added to an `<li>` tag when its link is the current page. I specified _active_, since that's the class name used in Bootstrap.
 
   Let's see what this looks like.
 
   <img src="{{ "guides/making-blog/2.2/new_menu.png" | theme_image_url }}" alt="Our new navigation menu" />
 
-  Looks nice and now, when we create new pages, the pages will be added to the navigation menu automatically.
+  Looks nice. Now, when we create new pages, they will be added to the navigation menu automatically.
 
   ## 404 Page
   While we are on the topic of pages, surely you've noticed the `404.liquid` file sitting in the `app/views/pages` directory. This is a special page that will show when visitors try to visit a non-existent page. Take a look at the contents.
@@ -161,10 +157,12 @@ position: 5
   Take another look at the preview in your browser. Nothing special, but it's good enough for now. Let's finish up.
 
   ## Finishing up
-  Mission complete: we added a new page to our site and modified the 404 page for bonus points. Let's save our work.
+  Mission complete: we added a new page to our site, added it to the navigation menu, and modified the 404 page for bonus points. Let's save our work.
 
-  <pre><span>git add app/views/pages/about.liquid
-  git commit -am "Added an about page, updated the site navigation, and modified the 404 text."</span></pre>
+  <pre><span>$ git add app/views/pages/index.liquid
+  $ git add app/views/pages/about.liquid
+  $ git add app/views/pages/404.liquid
+  $ git commit -m "Added an about page, updated the site navigation, and modified the 404 text."</span></pre>
 
   Ok, stay tuned for the next lesson where we'll cover using assets like images, CSS, JavaScript, and custom fonts.
 

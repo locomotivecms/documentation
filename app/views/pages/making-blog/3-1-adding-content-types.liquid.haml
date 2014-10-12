@@ -19,16 +19,16 @@ position: 9
 
   # posts
 
-  Getting back to our site, Wisdom for Wanderers, let's make it into an actual blog by adding our first content type: posts.
+  Getting back to our site, _Wisdom for Wanderers_, let's make it into an actual blog by adding our first content type: posts.
 
-  First of all, we need to think about the structure of posts on our site: what fields does a post need? We can always add more later, so let's just start with a few fields:
+  First of all, we need to think about the structure of posts on our site. What fields does a post need? We can always add more later, so let's just start with a few fields:
 
-  - title: the title of the post
-  - posted_at: the date and time of when this post was put online
-  - tags: various tags that describe the content of the post
-  - teaser: a short introduction to the post
-  - featured_image: a photo associated with the post
-  - body: a large, free form field holding the content of the post
+  - `title`: the title of the post
+  - `posted_at`: the date and time of when this post was put online
+  - `tags`: various tags that describe the content of the post
+  - `teaser`: a short introduction to the post
+  - `featured_image`: a photo associated with the post
+  - `body`: a large, free form field holding the content of the post
 
   Now that we have a general outline of what we want to do, let's move on to creating it.
 
@@ -156,7 +156,7 @@ position: 9
       <tr>
         <td>select</td>
         <td>
-            A list of several options that can be chosen between. In the back-office, this field is displayed as a drop down menu. In databases, this type of field is often called an <em>enum</em>. For example, a _books_ content type might have a _format_ field where editors can choose between <em>Hardcover</em>, <em>Paperback</em>, or <em>eBook</em>.
+            A list of several options that can be chosen between. In the back-office, this field is displayed as a drop down menu. In databases, this type of field is often called an <em>enum</em>. For example, a <em>books</em> content type might have a <em>format</em> field where editors can choose between <em>Hardcover</em>, <em>Paperback</em>, or <em>eBook</em>.
         </td>
       </tr>
       <tr>
@@ -251,7 +251,7 @@ position: 9
           localized: false
           # text_formatting: html # html (uses rich text editor) or text (uses plain text editor)
 
-  Great. I'm glad we didn't have to type all of that. Most of the file should be fairly self-explanatory, thanks to the inline comments. I'm mostly happy with the file, but we need to customize a few things.
+  I'm glad we didn't have to type all of that. Most of the file should be fairly self-explanatory, thanks to the inline comments. I'm mostly happy with the file, but we need to customize a few things.
 
   To start, change the `description` field to something more descriptive.
 
@@ -267,47 +267,47 @@ position: 9
 
   We can leave the public submission and group by fields commented out. The field definitions basically look good, though we need to update or remove the `hint` option for each field.
 
-          fields: 
-          - title: # The lowercase, underscored name of the field
-              label: Title # Human readable name of the field
-              type: string
-              required: true
-              localized: false
+      fields: 
+      - title: # The lowercase, underscored name of the field
+          label: Title # Human readable name of the field
+          type: string
+          required: true
+          localized: false
 
-          - posted_at: # The lowercase, underscored name of the field
-              label: Posted at # Human readable name of the field
-              type: date_time
-              required: true
-              localized: false
+      - posted_at: # The lowercase, underscored name of the field
+          label: Posted at # Human readable name of the field
+          type: date_time
+          required: true
+          localized: false
 
-          - tags: # The lowercase, underscored name of the field
-              label: Tags # Human readable name of the field
-              type: tags
-              required: false
-              localized: false
+      - tags: # The lowercase, underscored name of the field
+          label: Tags # Human readable name of the field
+          type: tags
+          required: false
+          localized: false
 
-          - teaser: # The lowercase, underscored name of the field
-              label: Teaser # Human readable name of the field
-              type: text
-              required: false
-              hint: A short lead-in to the post displayed when listing posts
-              localized: false
-              # text_formatting: html # html (uses rich text editor) or text (uses plain text editor)
+      - teaser: # The lowercase, underscored name of the field
+          label: Teaser # Human readable name of the field
+          type: text
+          required: false
+          hint: A short lead-in to the post displayed when listing posts
+          localized: false
+          text_formatting: html # html (uses rich text editor) or text (uses plain text editor)
 
-          - featured_image: # The lowercase, underscored name of the field
-              label: Featured image # Human readable name of the field
-              type: file
-              required: false
-              hint: An image displayed next to the teaser when listing posts
-              localized: false
+      - featured_image: # The lowercase, underscored name of the field
+          label: Featured image # Human readable name of the field
+          type: file
+          required: false
+          hint: An image displayed next to the teaser when listing posts
+          localized: false
 
-          - body: # The lowercase, underscored name of the field
-              label: Body # Human readable name of the field
-              type: text
-              required: false
-              hint: The full post text
-              localized: false
-              text_formatting: html # html (uses rich text editor) or text (uses plain text editor)
+      - body: # The lowercase, underscored name of the field
+          label: Body # Human readable name of the field
+          type: text
+          required: false
+          hint: The full post text
+          localized: false
+          text_formatting: html # html (uses rich text editor) or text (uses plain text editor)
 
   I uncommented the `text_formatting` option for `body` and `teaser`. Since I've left the option at its default value, html, I could have also left the option out, but I think in this situation it's helpful to explicitly define it. Since we're not tackling localization yet, all of the `localization` options are set to false.
 
@@ -333,47 +333,39 @@ position: 9
 
   These are just sample entries that we will be displayed when using the Wagon web server. The real posts will be entered through the back-office by site editors, so leaving these with *lorem ipsum* text is just fine.
 
-  However, we should add in data for the fields which are missing or blank: featured_image, posted_at, and tags. Further, the body samples are a little short. Also it's always a good idea to include plenty of variety in testing data by having text of varying lengths and including some entries that are missing the optional fields.
+  However, we should add in data for the fields which are missing or blank: featured\_image, posted\_at, and tags. Further, the body samples are a little short. And finally, it's always a good idea to include plenty of variety in testing data by having text of varying lengths and including some entries that are missing the optional fields.
 
-  So, I used text from [Fillerama](http://chrisvalleskey.com/fillerama/), placeholder images from [placehold.it](http://placehold.it/), and a short Ruby script to generate [a new data/posts.yml file](posts.yml) with high quality sample data, which you can [download here](posts.yml).
+  So, I used text from [Fillerama](http://chrisvalleskey.com/fillerama/), placeholder images from [placehold.it](http://placehold.it/), and a short Ruby script to generate a new ` file with high quality sample data. You can can download it here: [new data/posts.yml](posts.yml).
 
-  <div class="alert alert-info">
-      When entering dates and time into YAML files in the <code>data</code> directory, there's a fair amount of flexibility since the dates will be parsed by Ruby. For date times, I like the unambiguous *YEAR-MONTH-DAY HOURS:MINUTES:SECONDS UTC_OFFSET* format used in the sample file above. This data is just for testing purposes so you shouldn't worry too much about its accuracy, but know that if you don't specify a UTC offset, times will be in GMT by default.
-  </div>
-
-  # Adding entries in the back-office
-
-  We've configured our generated YAML files to be just right, so let's push this content type to our engine so we can see how these changes are reflected in the back-office.
-
-  <pre><span>$ bundle exec wagon push development -r content_types
-  * Pushing Site
-  * Pushing ContentTypes
-      creating Posts..............................................................[<span style="color:#006400">done</span>]</span></pre>
-
-  Open your engine's back-office. There should now be a _Posts_ button next to the _Pages_ button. Click on it.
-
-  <img src="{{ 'guides/making-blog/3.1/listing_posts.png' | theme_image_url }}" alt="The new Posts area" />
+  Place the file the `data` diretory. Let's take a look at the first entry.
 
 
-  Here we find a page for listing posts and we can see the description text we added in `app/content_types/posts.yml`. The entries we added in `data/posts.yml` are not here because, as we mentioned before, those entries are really just for testing and we want them to be separate from our site's real entries. In situations where you would like the entries in the `data` directory to be pushed to an engine, use the `--data` option with the `wagon push` command.
+  <pre><code class="yaml">- Mr. F:
+    posted_at: '2013-08-04 15:00:00 -0500'
+    tags: [Camping, South America, Outdoor, Urban, Expensive]
+    featured_image: samples/placeholders/640x480.png
+    teaser: &lt;p&gt;That's what it said on 'Ask Jeeves.' Army had half a day.&lt;/p&gt;
+    body: &lt;p&gt;That's what it said on 'Ask Jeeves.' Army had half a day. Bad news....</code></pre>
 
-  Click the _+ new entry_ button to see what adding a new post looks like.
+  I've added in the posted_at, tags, and featured image fields. I've also changed the content of the title, teaser, and body fields.
 
-  <img src="{{ 'guides/making-blog/3.1/new_entry_1.png' | theme_image_url }}" alt="Adding a new post" />
+  You'll notice the `posted_at` field uses a date and time in the  <em>YEAR-MONTH-DAY HOURS:MINUTES:SECONDS UTC_OFFSET</em> format. But actually, there's a fair amount of flexibility since the dates will be parsed by Ruby. I like the unambiguous format used in the sample file above. Also, this data is just for testing purposes so you shouldn't worry too much about its accuracy, but if you don't specify a UTC offset, times will be in GMT by default.
 
-  Pretty fancy! If you click on the _Posted at_ field, a date/time selector pops up. Tags can be added by typing some text in the tags field and clicking enter. The teaser and body fields feature a rich text editor that allows you to do all kinds of styling.
-
-  <img src="{{ 'guides/making-blog/3.1/new_entry_2.png' | theme_image_url }}" alt="A little further down on the new post page" />
-
-  You can also see the hints we specified in `app/content_types/posts.yml` displayed below their respective fields.
+  You'll also notice that the `featured_image` fields all reference images of various formats and sizes in a `samples/placeholders` directory. You can this placeholders directory with the referenced files here: [placeholders.zip]({{ 'images/guides/making-blog/3.1/placeholders.zip' | theme_image_url }}).
+  
 
   ## Finishing up
 
-  There's still lots to learn about content types, but let's finish here for now.
+  In this chapter we created our first content type, though we haven't done much with it yet. I don't like ending this chapter with so little to show for our work, so I'll give you a little preview of what these files have setup.
 
-  Add the generated YAML files to the git repository and commit the changes.
+  The screenshot below is of the back-office interface for editing these content types, which is automatically setup for you when you create content types. Pretty cool, huh?
+
+  <img src="{{ 'guides/making-blog/3.1/new_entry_1.png' | theme_image_url }}" alt="Adding a new post" />
+
+  There's still lots to learn about content types, but let's finish here for now. Add the new files to the git repository and commit the changes.
 
   <pre><span>$ git add app/content_types/posts.yml data/posts.yml
+  $ git add public/samples/placeholders
   $ git commit -m "Added posts content type."</span></pre>
 
   When you're ready, move onto to the next lesson where we will cover how to list content type entries on your site.

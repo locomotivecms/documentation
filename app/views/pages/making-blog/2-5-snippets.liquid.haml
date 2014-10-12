@@ -32,16 +32,23 @@ position: 8
 
   Here are some sample pieces of code using `localized_date`:
 
-  - `{% raw %}{{ 'July 1st, 2012' | localized_date: '%-m/%-d/%y' }}{% endraw %}` outputs `7/1/12` 
-  - `{% raw %}{{ now | localized_date: '%r' }}{% endraw %}` outputs `07:09:55 PM`
-  - `{% raw %}{{ today | localized_date: '%A' }}{% endraw %}` outputs `Monday` 
-  - `{% raw %}{{ '2013-12-09' | localized_date: '%A', 'fr' }}{% endraw %}` outputs `lundi`
+  <pre><code>{% raw %}{{ 'July 1st, 2012' | localized_date: '%-m/%-d/%y' }}
+  &lt;!-- Outputs: 7/1/12 --&gt;
+  
+  {{ now | localized_date: '%r' }}
+  &lt;!-- Outputs: 07:09:55 PM --&gt;
+  
+  {{ today | localized_date: '%A' }}
+  &lt;!-- Outputs: Monday --&gt;
+  
+  {{ '2013-12-09' | localized_date: '%A', 'fr' }}
+  &lt;!-- Outputs: lundi --&gt;{% endraw %}</code></pre>
 
   Like other filters, `localized_date` can be applied to strings as well as variables. Also, the site's current locale is taken into account when formatting the date, so that days of the week and other locale specific formatting is done for you. To use a locale other than the site's current locale, pass in the locale's ISO code as a second argument. 
 
   ## Including snippets
 
-  Let's get back to the task at hand. Next, we need to include the footer snippet file inside a page file. Add the following line to `index.liquid` just below the end of the main block.
+  Back to the task at hand, let's include the footer snippet file in our index page. Add the following line to `app/views/pages/index.liquid` just below the end of the main block.
 
       {% raw %}{% include 'footer' %}{% endraw %}
 
@@ -67,13 +74,13 @@ position: 8
 
   Since we included the snippet in the `index.liquid` file, it has been inherited by `about.liquid` as well and the footer displays on both pages.
 
-  While the above footer snippet was a good demonstration of how snippets work, you may be wondering why use a snippet at all? It's true that, in this example, we could have put the contents of `footer.liquid` directly into `index.liquid` and the result would be identical.
+  While the above footer snippet was a good demonstration of how snippets work, you may be wondering why use a snippet at all? In this example, it's true putting the contents of `footer.liquid` directly into `index.liquid` would have an indentical result.
 
-  Of course, this isn't always the case. Sometimes, there are elements, such as a side bar, that appear in several, but not all, sibling templates. By putting the side bar's code into a snippet file you can avoid duplicating code across template files. Further, page files, particularly `index.liquid`, can sometimes become quite large and difficult to navigate. In such situations, you may choose to break out some parts into snippets to aid in code organization.
+  But this isn't always the case. For example, imagine you had a side bar that appeared in some, but not all, sibling templates. By putting the side bar's code into a snippet file you can avoid duplicating code across template files. Further, page files, particularly `index.liquid`, can sometimes become quite large and difficult to navigate. In such situations, breaking some code into snippets can aid in code organization.
 
   ## Passing variables to a snippet
 
-  Snippets have one more cool feature worth noting: you can pass variables into them.
+  Snippets have one more cool feature worth noting: you can pass variables to them.
 
   In [lesson 2.3](/making-blog/2-3-assets), we made a frame and light box we for an image on the `about.liquid` page. Let's put the Liquid for this light box into a snippet so that we can easily reuse it for images anywhere on the site.
 
@@ -86,29 +93,31 @@ position: 8
         <p>{{ caption }}</p>
       </div>{% endraw %}
 
-  The code above is similar to the code in `about.liquid`, but I've changed the resize strings. The enlarged photo string is now _800x>_ instead of _800x_. I added the &gt; because I don't want to resize the image to 800px wide unless it is wider than that to begin with.
+  The code above is similar to the code in `about.liquid`, but I've changed the resize strings. The enlarged photo string is now _800x>_ instead of _800x_. I added the &gt; because I don't want to resize the image to 800px wide unless it is wider than that to begin with. The Gyeongbokgung picture we used was wider than 800 pixels, but now we are abastracting this for general use and future pictures might be smaller.
 
-  The second resize string has been replaced with a variable, `size`.
+  The resize string for the small version has been replaced with a variable, `size`.
 
-  Next, open `about.liquid` and replace the `<div class="img-box">` tag and its contents with the code below.
+  Open `about.liquid` and replace the `<div class="img-box">` tag and its contents with the code below.
 
       {% raw %}{% include 'img_box' with caption, photo, size: "400x" %}{% endraw %}
 
-  The above code includes the *img_box* snippet and uses the keyword `with` to pass three variables to the snippet. We must pass these variables to the snippet because variables defined in a template are not automatically available to included snippets. Only global variables can be used in snippets without first being passed in.
+  The above code includes the *img_box* snippet and uses the `with` keyword to pass three variables to the snippet. We must pass these variables to the snippet because variables defined in a template are not automatically available to included snippets. Only global variables can be used in snippets without first being passed in.
 
   We can pass already defined variables or assign new variables inline using a colon. In the following example, all three `include` tags will produce the same output.
       
-      {% raw %}{% assign foo = "baz" %}
-      {% assign bar = "baz" %}
-      {% include 'sample' with foo %}
-      {% include 'sample' with foo: bar %}
-      {% include 'sample' with foo: "baz" %}{% endraw %}
+      {% raw %}{% include 'sample' with foo: "baz" %}
 
-  Let's preview the _About_ page using Wagon's web server.
+      {% assign foo = "baz" %}
+      {% include 'sample' with foo %}
+
+      {% assign bar = "baz" %}
+      {% include 'sample' with foo: bar %}{% endraw %}
+
+  Let's preview the _About_ page using Wagon's web server.  If everything worked correctly, it should look the same as before.
 
   <img src="{{ 'guides/making-blog/2.5/footer.png' | theme_image_url }}" alt="It's the same as before" />
 
-  If everything worked correctly, it should look the same as before.
+  Looks the same, great!
 
   Let's put our new snippet to the test by using it for another image. Until we put some actual content on the homepage, let's add a photo to spruce things up. I'm going to use <a href="{{ 'guides/making-blog/2.5/temppeliaukio.jpg' | theme_image_url }}">this picture</a> taken at Helsinki's Temppeliaukio Church and you are free to use it too, if you like. Place the image in the `public/images` directory.
 
@@ -126,19 +135,18 @@ position: 8
 
   <img src="{{ 'guides/making-blog/2.5/home_page_photo_enlarged.png' | theme_image_url }}" alt="It's the same as before" />
 
-  Great! Our new lightbox snippet is working.
+  Beautiful! Our new lightbox snippet is working.
 
   # Finishing up
 
   Commit your changes to the git repository.
 
-  <pre><span>$ git add app/views/snippets/img_box.liquid
-  $ git add public/images/temppeliaukio.jpg
+  <pre><span>$ git add app/views/snippets/img_box.liquid app/views/snippets/footer.liquid
+  $ git add app/views/pages/about.liquid
+  $ git add app/views/pages/index.liquid public/images/temppeliaukio.jpg
   $ git commit -am "Added a footer to the site, a photo to the homepage, and an image box snippet."</span></pre>
 
-  Hopefully, you now understand snippets and over the past five lessons have gotten more familiar with Liquid markup and LocomotiveCMS templates.
-
-  In the next section, we will cover some basic house keeping: HTML escaping.
+  Hopefully, you now understand snippets. In the next section, we will finish up this section of pages with some basic house keeping: HTML escaping. 
 
 %a.orange-rounded-button{href: "/making-blog/2-6-html-escaping"} Next: HTML escaping
 

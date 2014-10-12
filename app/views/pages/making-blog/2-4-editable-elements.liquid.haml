@@ -11,7 +11,7 @@ position: 7
 
   More often than not, you will want your site's content to be editable not just by developers, but by copy writers or others that do not necessarily have any knowledge of HTML, let alone of using the Wagon command line tool.
 
-  But currently, changing our blog's copy requires editing Liquid template files. In this chapter we will remedy this by using editable elements, which allow you to make portions of a page editable through the LocomotiveCMS Back-office.
+  But currently, changing our blog's copy requires editing Liquid template files. In this chapter we will remedy this by using editable elements, which allow you to make portions of a page editable through the LocomotiveCMS back-office.
 
   ## editable_text
 
@@ -30,37 +30,19 @@ position: 7
 
   The `editable_text` tag makes a block of text editable through the back-office. The tag can [take various options](http://doc.locomotivecms.com/references/api/tags/editable-text), but here we just use one: `rows`. This option specifies the height of the text area for this element in the back-office. The default value is 10, but this is a big chunk of text so I decided to bump it up to 20.
 
-  Between the opening and closing `editable_text` tags is the on the page previously. Text between these tags is the default text that shows up when testing the site with the Wagon web server. Further, the first time an editable text element is pushed to an Engine, this text will be used to populate the element.
+  We've put the text that was previously on the page between the opening and closing `editable_text` tags. Text between these tags is the default text that shows up when testing the site with the Wagon web server. Further, the first time an editable text element is pushed to an Engine, this text will be used to populate the element in the back-office.
 
-  Let's deploy to our Engine so we can see how this works in the back-office. Actually, we haven't pushed to an Engine since [Chapter 1.3](/making-blog/1-3-deploy-to-engine), so we will be pushing quite a few changes.
+  If you pull up the page in the Wagon web browser, everything should look just as it did before. 
 
-  <pre><span>$ bundle exec wagon push development</span></pre>
-
-  After pushing to the Engine, pull the site up in your browser. Everything should look as it does on the Wagon web server. Login to the back-office, navigate to the _Pages_ section under the _Content_ tab, and click the _About_ page. You should now see a user friendly text editor with our content, just like the one below.
+  Of course the whole point of editable elements is that site editors can edit them. However, we're going to stay focused and just continue dealing with the Wagon side of things for now. However, when we do publish this site to an engine, this text will be editable with a user friendly text editor with our content, like the one show below.
 
   <img src="{{ 'guides/making-blog/2.4/about_body_editor.png' | theme_image_url }}" alt="The rich text editor for the About body element" />
 
-  Site editors can use this rich text editor to edit content without any knowledge of HTML or Liquid. The editor has many features, but I'll let you explore those on your own.
-
-  I've given the copy a second read and I think I can cut the "And" from "And along the way," to tighten up the text a little. Use the editor to delete the "And" and capitalize "along." Scroll down to the bottom of the page and click the _Save_ button. Now look at the site's _About_ page.
-
-  <img src="{{ 'guides/making-blog/2.4/no_more_and.png' | theme_image_url }}" alt="No more &quot;And&quot;" />
-
-  As you can see, "And" is gone.
-
-  Let's do a little experiment. If we look at the `about.liquid` file, "And" is still in there right next to "along." What happens if we run `wagon push` again?
-
-  <pre><span>$ bundle exec wagon push development</span></pre>
-
-  <img src="{{ 'guides/making-blog/2.4/no_more_and.png' | theme_image_url }}" alt="No more &quot;And&quot;" />
-
-  There's still no "And." That's because the text in the `about.liquid` file isn't the real deal. That's just default text and thus will not overwrite text put in the editable field by site editors, which is convenient. Generally developers are not the ones writing copy and we would not want to overwrite changes made in the back-office every time we pushed to the engine.
-
-  # Capture, format, hints, push -r, and blocks
+  # Capture, format, hints, and blocks
 
   Let's make more of the _About_ page's content editable. Remove the `<div>` tag holding the photo and replace it with the code below.
 
-      {% raw %}{% block featured_photo %}
+      {% raw %}{% block 'featured_photo' %}
           {% capture caption %}
             {% editable_text "caption", format: "raw", rows: 3, hint: "Text displayed below the photo and in the ALT attribute." %}
               Gyeongbokgung, Seoul
@@ -83,7 +65,12 @@ position: 7
   The other way, capture, allows you to assign everything between the opening and closing tags to a variable.
 
   <pre><code class="locomotive-liquid">{% raw %}{% capture my_bio %}
-  George Stephenson (9 June 1781 – 12 August 1848) was an English civil engineer and mechanical engineer who built the first public inter-city railway line in the world to use steam locomotives, the Liverpool and Manchester Railway which opened in 1830. Renowned as the "Father of Railways", the Victorians considered him a great example of diligent application and thirst for improvement, with self-help advocate Samuel Smiles particularly praising his achievements. His rail gauge of 4 feet 8 1⁄2 inches (1,435 mm), sometimes called "Stephenson gauge", is the world's standard gauge.
+  <p>
+    George Stephenson (9 June 1781 – 12 August 1848) was an English civil engineer and mechanical engineer who built the first public inter-city railway line in the world to use steam locomotives, the Liverpool and Manchester Railway which opened in 1830. Renowned as the "Father of Railways", the Victorians considered him a great example of diligent application and thirst for improvement, with self-help advocate Samuel Smiles particularly praising his achievements.
+  </p>
+  <p>
+    His rail gauge of 4 feet 8 1⁄2 inches (1,435 mm), sometimes called "Stephenson gauge", is the world's standard gauge.
+  </p>
   {% endcapture %}{% endraw %}</code></pre>
 
   We can now access these values with the variables `my_name` and `my_bio`.
@@ -94,17 +81,13 @@ position: 7
 
   The other new attribute is _hint_. The value of hint is displayed in the back-office below the field to give editors guidance on how to use the field.
 
-  Let's push these changes to the Engine and see how they look. We've been pushed to the Engine twice already so far, but we've only changed one file, `about.liquid`. In situations like this, it can be annoying to push all the site's content types, pages and assets. That's why `wagon push` comes with a handy resources option that you can use to specify which things you would like to push. Try it out using  `--resources` or `-r`.
-
-  <pre><span>$ bundle exec wagon push development -r pages</span></pre>
-
-  A little quicker, right? Go to the _Pages_ section of the back-office and again click _About_. At a first glance, the newly created _caption_ field can't be seen. But just above the text editor for page's body, there are two tabs: _Main_ and _Featured Photo_. These tabs represent which Liquid block holds each editable element. If you click on the _Featured Photo_ tab, you should see the caption field.
+  How these editable fields would look to a site editor is shown with in the screenshot below.
 
   <img src="{{ 'guides/making-blog/2.4/caption_editor.png' | theme_image_url }}" alt="The caption editor." />
 
-  This demonstrates another use for Liquid blocks: in addition to their function of allowing child templates to overwrite portions of parent templates, blocks can be used to organize editable elements into tabs in the back-office, as we have done here.
+  You might notice from the screenshot that these editable elements have been put under a separate tab from the _About Body_ element. These elements are diplayed under the _Featured Image_ tab because these were in the _Featured Image_ block. In addition to their function of allowing child templates to overwrite portions of parent templates, blocks can be used to organize editable elements into tabs in the back-office, as we have done here.
 
-  Note that because we specified the caption element's format as raw, only a plain text area is shown, instead of the rich text editor used for the *about\_body* element. Also, the hint we added can be seen just below the text area.
+  Also note that because we specified the caption element's format as raw, only a plain text area is shown, instead of the rich text editor used for the *About Body* element. And finally, the hint we added can be seen just below the text area.
 
   # Editable file
 
@@ -112,9 +95,9 @@ position: 7
 
   Since the photo on the page will no longer be a static, let's move the `gyeongbokgung-full.jpg` file out of the `public/images` folder. Create a new folder,  `public/samples/pages` and move `gyeongbokgung-full.jpg` into the directory. Generally, the `public/images` directory is used for static images that are part of site's design, whereas the `public/samples` directory is used for dynamic images belonging to editable elements or content types.
 
-  Next, delete the *featured_photo* block from your `about.liquid` file and replace it with the code below.
+  Next, delete the *featured_photo* block from your `about.liquid` file and replace it with the new code below.
 
-      {% raw %}{% block featured_photo %}
+      {% raw %}{% block 'featured_photo' %}
         {% capture caption %}
           {% editable_text "caption", format: "raw", rows: 3, hint: "Text displayed below the photo and in the ALT attribute." %}
             Gyeongbokgung, Seoul
@@ -141,21 +124,10 @@ position: 7
         {% endeditable_file %}
       {% endcapture %}{% endraw %}
 
-  The default value would be "\n\t\n\t\t/samples/pages/gyeongbokgung-full.jpg
-  \n\t\n" (where \n and \t represent new lines and tabs, respectively). To prevent those tabs and new lines from ending up in our file path, we need to put the Liquid Markup on a single line.
+  The default value would be `\n\t\n\t\t/samples/pages/gyeongbokgung-full.jpg
+  \n\t\n` (where \n and \t represent new lines and tabs, respectively). To prevent those tabs and new lines from ending up in our file path, we need to put the Liquid Markup on a single line.
 
-  Push the new About page to your Engine.
-
-  <pre><span>$ bundle exec wagon push development -r pages
-  * Pushing Site
-  * Pushing Pages
-    en
-      updating index..............................................................[done]
-      updating 404................................................................[done]
-      updating about..............................................................[done]
-        updating gyeongbokgung-full.jpg...........................................[done]</span></pre>
-
-  As you can see, the default image gets uploaded as well. Let's checkout the new back-office file uploader.
+  A preview of what the back-office file uploader for the new editable file element is shown below.
 
   <img src="{{ 'guides/making-blog/2.4/photo_editor.png' | theme_image_url }}" alt="The photo editor" />
 
@@ -172,11 +144,11 @@ position: 7
       editable_elements:
         'main/about_body': "<p>Thanks for visiting Wisdom for Wanders! This..."
 
-  Doing so sets the actual value for the editable element, not just the default value. So if we ran `wagon push`, changed the content in the back-office, then ran `wagon push` again, our back-office changes would be overridden by these header values. We don't want to do that, so let's delete these commented out header properties from `about.liquid`.
+  This would be a nice alternative to putting the default text in the page, but there's one problem. Due to a currently open bug, any text in the `editable_elements` header will overwrite editable elements values in the back-office. So if we ran `wagon push`, changed the content in the back-office, then ran `wagon push` again, our back-office changes would be overridden by these header values.
 
-  Of course, these header values also have a purpose. If at some future point we wanted pull a site down from the Engine (perhaps as a backup), the values for editable elements would be stored in these properties. Further, our original default text, which may have been lorem ipsum or some other filler, would be likewise preserved in the Liquid template.
+  Ideally, you would be able to choose when you wanted back-office edits to be overwritten, and hopefully we finish a fix for that soon and this will be yet another nice feature of LocomotiveCMS. In the meantime, let's delete the commented out editable elements header from the file so we don't accidentally delete any editor changes in the future.
 
-  Hopefully that make sense and be careful not to include the "editable_elements" property in your Wagon page headers.
+  Of course, these header values also have a purpose currently. If at some future point we wanted pull a site down from the Engine (perhaps as a backup), the values for editable elements would be stored in these properties. Further, our original default text, which may have been lorem ipsum or some other filler, would be likewise preserved in the Liquid template.
 
   # Finishing Up
 
@@ -186,8 +158,8 @@ position: 7
   $ git rm public/images/gyeongbokgung-full.jpg
   $ git add public/samples
   $ git commit -m "Made about.liquid editable through the back-office using editable elements."</span></pre>
-    
-  All done. Only one more chapter in this section left: snippets!
+  
+  All done. Let's move onto snippets!
 
 %a.orange-rounded-button{href: "/making-blog/2-5-snippets"} Next: snippets
 

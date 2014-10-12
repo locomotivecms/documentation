@@ -17,23 +17,23 @@ position: 8
 
   Say I have an image tag.
 
-      <img src="photo.jpg" alt="Today's phrase: "Selamat pagi"" />
+      <img src="photo.jpg" alt="Indonesian Phrase of the Day: "Selamat pagi"" />
 
   Do you see the problem? The first double quote inside the quotes could be interpreted as the closing quote for the alt tag, and not a quotation marker. The correct version of this is:
 
       <img src="photo.jpg" alt="Today's phrase: &quot;Selamat pagi&quot;" />
 
-  Or what about the following sentence:
+  Or what about the following somewhat contrived sentence:
 
-      If 3<x and x>y and y<4 then x and y must be a fractional numbers. 
+  <pre><span>If 3&lt;x and x&gt;y and y&lt;4 then x and y must not be integers.</span></pre>
 
   Are we opening a tag, _x_, with two HTML5 style attributes, _and_ and _x_? No, but it might look like that to a computer.
 
-  The good news is that modern browsers are actually quite intelligent and in 99.99% of cases, the browser knows what you want. Of course, if we are using content submitted from untrusted sources, the issue becomes bigger. Say we collect user submitted comments and put them in a paragraph tag, like so.
+  The good news is that modern browsers are actually quite intelligent. In most cases, the browser understands what you meant, even when you don't properly escape your HTML. Of course, if we are using content submitted from untrusted sources, the issue becomes more serious. Say we collect user submitted comments and put them in a paragraph tag, like so.
 
       {% raw %}<p>{{ comment }}</p>{% endraw %}
 
-  This is fine, unless the content of `comment` (that the user submitted is):
+  This is fine, unless the user submits a comment like this:
 
       <script>something terrible...</script>
 
@@ -43,34 +43,47 @@ position: 8
 
   You can escape HTML using the `escape` filter. So the following:
 
-      {% raw %}{{ 'html & escaping <go> "together"' | escape }}{% endraw %}
+      {% raw %}{{ 'html & escaping "go" <together>' | escape }}{% endraw %}
 
   Becomes:
 
-      html &amp; escaping &lt;go&gt; &quot;together&quot;
+      html &amp; escaping &quot;go&quot; &lt;together&gt;
 
   ## Escaping our site
 
   Let's revisit our site and use HTML escaping where necessary. Where is it necessary? Anywhere where content is coming from a back-office editable field that isn't already in an HTML format.
 
-  There is such content in three places on the `index.liquid` page. The first is the title tag. All of those values can be changed in the back-office, so let's escape them.
+  Open the `app/views/pages/index.liquid` page. First, let's replace the keywords and description meta tags with the code below.
+
+      {% raw %}<meta name="keywords" content="{{ site.meta_keywords | escape }} {{ page.meta_keywords | escape }}">
+      {% if page.meta_description %}
+        <meta name="description" content="{{ page.meta_description | escape }}">
+      {% else %}
+        <meta name="description" content="{{ site.meta_description | escape }}">
+      {% endif %}{% endraw %}
+
+  Next, replace the title tag with the code below.
 
       {% raw %}<title>
-        {{ page.title | escape }} - {{ site.name | escape }}
-        | {% if page.seo_title %}{{ page.seo_title | escape }}{% else %}{{ site.seo_title | escape }}{% endif %}
+        {{ page.title | escape }} - {{ site.name | escape }} |
+        {% if page.seo_title %}
+          {{ page.seo_title | escape }}
+        {% else %}
+          {{ site.seo_title | escape }}
+        {% endif %}
       </title>{% endraw %}
 
-  The second place is the first heading tag.
+  Two more places that need fixing. The site title needs to be escaped.
 
       {% raw %}<h1>{{ site.name | escape }}</h1>{% endraw %}
 
-  And the third place is the page heading.
+  As does the page heading.
 
       {% raw %}<h2>{{ page.title | escape }}</h2>{% endraw %}
 
-  Moving onto the `about.liquid` page, the editable content needs to be escaped. The `about_body` uses a rich, HTML editor, so the content will already be in HTML format, but the photo's caption uses a raw text fields, so that must be escaped.
+  Some of the editable content on the about page needs to be escaped. We don't need to escape the `about_body` field, because it uses the rich, HTML editor. That means its content will already be in HTML format. However, the photo's caption uses raw text, so that must be escaped.
 
-  Let's escape the alt tag's content in `snippets/img_box.liquid` so we don't have to worry about it again.
+  Let's escape the alt tag's content in `snippets/img_box.liquid` so we don't have to worry about it again on other pages.
 
       {% raw %}<div class="img-box">
         <a href="{{ photo | resize: '800x>' }}">
@@ -79,7 +92,7 @@ position: 8
         <p>{{ caption | escape }}</p>
       </div>{% endraw %}
 
-  The final portion of the site that needs escaping is the footer snippet.
+  The final portion of the site that needs escaping is the site title in the footer snippet.
 
       {% raw %}<p>
         &copy; {{ site.name | escape }} {{ now | localized_date: '%Y' }}
@@ -87,7 +100,13 @@ position: 8
 
   ## Finishing up
 
-  This mini-chapter went by quickly. Layering on HTML escaping onto the beginning tutorials would have been a little tedious, so I put off covering it until now, but now that it's out of the way, we can forge ahead to more exciting waters: content models.
+  This mini-chapter went by quickly. Let's save our changes to git.
+
+  <pre><span>$ git add app/views/pages/index.liquid
+  $ git add app/views/snippets/footer.liquid app/views/snippets/img_box.liquid
+  $ git commit -m "Added proper HTML escaping."</span></pre>
+
+  Layering on HTML escaping onto the beginning tutorials would have been a little tedious, so I put off covering it until now. Now that it's out of the way, we can forge ahead to more exciting waters: content models.
   
 %a.orange-rounded-button{href: "/making-blog/3-1-adding-content-types"} Next: adding content types
 

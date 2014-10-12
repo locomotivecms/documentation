@@ -19,13 +19,13 @@ position: 6
 
   While you can use `public/samples` directory for all of your images, I prefer to use the `samples` directory only for images attached to content entries or editable items, topics we will get to later. For images that are just a part of the site's design, such as a logo or the photo we are about to add, I prefer to use the `public/images` directory.
 
-  Let's create the `public/images` directory and add a photo that matches with our site. I'm going to use this handsome photo of [Seoul's Gyeongbokgung](http://en.wikipedia.org/wiki/Gyeongbokgung): <a href="{{ 'guides/making-blog/2.3/gyeongbokgung-full.jpg' | theme_image_url }}">gyeongbokgung-full.jpg</a>. You're welcome to use this photo if you like, or provide your own photo.
+  Let's create the `public/images` directory and add a photo that matches with our site. I'm going to use this handsome photo of Seoul's Gyeongbokgung: <a href="{{ 'guides/making-blog/2.3/gyeongbokgung-full.jpg' | theme_image_url }}">gyeongbokgung-full.jpg</a>. You're welcome to use this photo if you like, or provide your own photo.
 
   Now open `app/views/pages/about.liquid` and add the following line just above the first paragraph of text.
 
       {% raw %}<img src="{{ 'gyeongbokgung-full.jpg' | theme_image_url }}" alt="Gyeongbokgung" />{% endraw %}
 
-  Can you guess what `theme_image_url` does? Like the `stylesheet_url` filter we encountered earlier, it creates an absolute path to the image that works both in Wagon and Engine. Let's take a look. Start Wagon's built-in web server and open [http://0.0.0.0:3333/about](http://0.0.0.0:3333/about) in your web browser.
+  Can you guess what `theme_image_url` does? Like the `stylesheet_url` filter we encountered earlier, it creates an absolute path to the image that works both in Wagon and Engine. Let's take a look. Start Wagon's built-in web server and open [http://localhost:3333/about](http://localhost:3333/about) in your web browser.
 
   <img src="{{ 'guides/making-blog/2.3/huge_image.png' | theme_image_url }}" alt="The image is huge!" />
 
@@ -33,21 +33,21 @@ position: 6
 
       {% raw %}<img src="{{ 'gyeongbokgung-full.jpg' | theme_image_url | resize: '400x'  }}" alt="Gyeongbokgung" />{% endraw %}
 
-  Meet `resize`. This filter let's us serve resized images. To be clear: this image isn't being resized with CSS or HTML; ImageMagick is used to resize the image to the provided specifications and cached so that it can be served to visitors.
+  Meet `resize`. This filter let's us serve resized images. To be clear: this image isn't being resized with CSS or HTML. The image is resized with Imagemagick to given specifications and then cached so that it can be instantly served to visitors.
 
   This is a huge timer saver. What if the design changes again and we want use a different size of the image? Just change the resize string. Want to crop it? Change the resize string. Want to serve different sizes of the same image depending on their screen resolution using CSS? One image, several resize strings. And this isn't even getting into its uses with images uploaded by site editors where you can't first use your image editor, even if you wanted to.
 
-  Resize strings use the basic format of `width`x`height` and are measured in pixels. Here are some common resize strings.
+  Resize strings use the basic format of `width x height` and are measured in pixels. Here are some common resize strings.
 
-      '400x'       # resizes to target width, keeps aspect ratio
-      'x300'       # resizes to target height, keeps aspect ratio
-      '400x300!'   # resizes to target size, changing aspect ratio if necessary
-      '400x300#'   # resizes to target size, to keep aspect ratio may crop with center gravity
-      '400x300>'   # resizes only if the image is larger than this
-      '400x300<'   # resizes only if the image is smaller than this
+      '400x'      # resizes to 400 pixels wide, keeps aspect ratio
+      'x300'      # resizes to 300 pixels tall, keeps aspect ratio
+      '400x300!'  # resizes to 400 x 300 pixels, changing aspect ratio if necessary
+      '400x300#'  # like above, but crops with center gravity to maintains aspect ratio 
+      '400x300>'  # resizes only if the image is larger than 400 x 300 pixels
+      '400x300<'  # resizes only if the image is smaller than 400 x 300 pixels
       
 
-  The resize string is interpreted by the [DragonFly gem](http://markevans.github.io/dragonfly/). For a complete guide to what is possible, check out the [resize filter documentation](http://doc.locomotivecms.com/references/filters/misc/resize). 
+  The resize string is interpreted by the [DragonFly gem](http://markevans.github.io/dragonfly/). For a complete guide to what is possible, check out the [resize filter documentation](/references/api/filters/resize). 
 
   Let's take another look at our page.
 
@@ -59,13 +59,13 @@ position: 6
 
   Let's make the _About_ page easier on the eyes by providing some nice styles for the image. Disclaimer for designers in the audience: I probably couldn't design my way out of a paper bag, so please excuse my "minimalistic" design choices.
 
-  Open `app/views/pages/index.liquid` and add the following line just below the _bootstrap.css_ link tag.
+  Open `app/views/pages/index.liquid` and add the following line just below the _bootstrap.min.css_ link tag.
 
       {% raw %}{{ 'styles.css' | stylesheet_tag }}{% endraw %}
 
   Let's also add a class to the page's body tag.
 
-      {% raw %}<body class="{{ page.slug }}">{% endraw %}
+      {% raw %}<body class="page-{{ page.slug }}">{% endraw %}
 
   This uses the page's slug to make a unique CSS class for each page. This is useful as it let's us put all of our CSS in a single file. When we want certain styles to apply only on specific pages, we can use this CSS class.
 
@@ -92,18 +92,18 @@ position: 6
 
       /* phones */
       @media (max-width: 767px) {
-        body.about .img-box {
-          width:300px;
+        body.page-about .img-box {
+          width: 300px;
           margin: 0px auto 10px auto;
         }
 
-        h1, h2 { text-align:center; }
+        h1, h2 { text-align: center; }
       }
 
       /* tablets and up */
       @media (min-width: 768px) {
-        body.about .img-box {
-          width:400px;
+        body.page-about .img-box {
+          width: 400px;
           margin-left: 20px;
           float: right;
         }
@@ -114,8 +114,8 @@ position: 6
   The last step to applying these styles is the add the `img-box` class to our image in `app/views/pages/about.liquid`. We can do that by replacing our current image with the code below.
 
       {% raw %}<div class="img-box">
-          <img src="{{ 'gyeongbokgung-full.jpg' | theme_image_url | resize: '400x'  }}" alt="Gyeongbokgung" />
-          <p>Gyeongbokgung, Seoul</p>
+        <img src="{{ 'gyeongbokgung-full.jpg' | theme_image_url | resize: '400x'  }}" alt="Gyeongbokgung" />
+        <p>Gyeongbokgung, Seoul</p>
       </div>{% endraw %}
 
   This also adds a caption below the photo. Let's preview this in our browser.
@@ -137,10 +137,10 @@ position: 6
   First thing we need to due is include a link to a larger image in `about.liquid`.
 
       {% raw %}<div class="img-box">
-          <a href="{{ 'gyeongbokgung-full.jpg' | theme_image_url | resize: '800x' }}">
-            <img src="{{ 'gyeongbokgung-full.jpg' | theme_image_url | resize: '400x'  }}" alt="Gyeongbokgung" />
-          </a>
-          <p>Gyeongbokgung, Seoul</p>
+        <a href="{{ 'gyeongbokgung-full.jpg' | theme_image_url | resize: '800x' }}">
+          <img src="{{ 'gyeongbokgung-full.jpg' | theme_image_url | resize: '400x'  }}" alt="Gyeongbokgung" />
+        </a>
+        <p>Gyeongbokgung, Seoul</p>
       </div>{% endraw %}
 
   Here we make our image a link to a large version of the image, again using the handy `resize` filter to generate a large version of the photo.
@@ -169,7 +169,7 @@ position: 6
 
   This simple script uses jQuery to add a light box to every `img-box` image. If they click on the image, it creates a light box showing an enlarged version. If they click the light box, it closes.
 
-  Of course this script won't do anything if we don't include it, so add this line underneath the `bootstrap.js` script tag in `index.liquid`.
+  Of course this script won't do anything if we don't include it, so add this line underneath the `bootstrap.min.js` script tag in `index.liquid`.
 
       {% raw %}{{ 'main.js' | javascript_tag }}{% endraw %}
 
@@ -178,17 +178,17 @@ position: 6
       /* if they click on a boxed image, enlarge it */
       #lightbox {
         position: fixed;
-        top:0px; left:0px;
-        width:100%; height:100%;
-        padding-bottom:50px;
-        text-align:center;
+        top: 0px; left: 0px;
+        width: 100%; height: 100%;
+        padding-bottom: 50px;
+        text-align: center;
         background-color: #fff;
-        z-index:1000;
+        z-index: 1000;
       }
 
       #lightbox img {
         max-width: 100%;
-        max-height:100%;
+        max-height: 100%;
       }
 
       #lightbox p {
@@ -215,36 +215,42 @@ position: 6
     3. _svg_: needed for some mobile browsers, including older versions of iOS Safari
     4. _ttf_: support for older, non-IE desktop browsers and some older mobile browsers
 
-  We can [download all of these versions from FontSquirrel](http://www.fontsquirrel.com/fonts/open-sans). After you download the _Webfont Kit_ for Open Sans, create a new directory in the project folder: `public/fonts/open_sans/`. Now move the _woff_, _eot_, _svg_, and _ttf_ files for the regular and italic versions of Open Sans from the Webfont Kit into the directory.
+  We can [download all of these versions from FontSquirrel](http://www.fontsquirrel.com/fonts/open-sans). Click on the _Webfont Kit_ tab, leave all the formats selected, and click the download button. After it downloads, create a new directory in the project folder: `public/fonts/open_sans/`. Now move the _woff_, _eot_, _svg_, and _ttf_ files for the regular and italic versions of Open Sans from the Webfont Kit into the directory.
 
-  You should now have the following files in the directory.
+  You should now have the following eight files in the directory.
 
-    <pre><span>$ ls public/fonts/open_sans 
-    OpenSans-Italic-webfont.eot   OpenSans-Italic-webfont.ttf   OpenSans-Regular-webfont.eot  OpenSans-Regular-webfont.ttf
-    OpenSans-Italic-webfont.svg   OpenSans-Italic-webfont.woff  OpenSans-Regular-webfont.svg  OpenSans-Regular-webfont.woff</span></pre>
+    <pre><span>$ ls -1 public/fonts/open_sans 
+    OpenSans-Italic-webfont.eot
+    OpenSans-Italic-webfont.svg
+    OpenSans-Italic-webfont.ttf
+    OpenSans-Italic-webfont.woff
+    OpenSans-Regular-webfont.eot
+    OpenSans-Regular-webfont.svg
+    OpenSans-Regular-webfont.ttf
+    OpenSans-Regular-webfont.woff</span></pre>
 
-  Next, define these fonts in a CSS file by creating a new file named `public/stylesheets/fonts.css` with the following contents.
+  Next, create a new CSS file, `public/stylesheets/fonts.css`. Define these fonts by pasting the following code into the file.
       
       @font-face {
-          font-family: 'Open Sans';
-          src: url('../fonts/open_sans/OpenSans-Regular-webfont.eot');
-          src:
-              url('../fonts/open_sans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-              url('../fonts/open_sans/OpenSans-Regular-webfont.woff') format('woff'),
-              url('../fonts/open_sans/OpenSans-Regular-webfont.ttf') format('truetype'),
-              url('../fonts/open_sans/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
-          font-style: normal;
+        font-family: 'Open Sans';
+        src: url('../fonts/open_sans/OpenSans-Regular-webfont.eot');
+        src:
+          url('../fonts/open_sans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+          url('../fonts/open_sans/OpenSans-Regular-webfont.woff') format('woff'),
+          url('../fonts/open_sans/OpenSans-Regular-webfont.ttf') format('truetype'),
+          url('../fonts/open_sans/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+        font-style: normal;
       }
 
       @font-face {
-          font-family: 'Open Sans';
-          src: url('../fonts/open_sans/OpenSans-Italic-webfont.eot');
-          src:
-              url('../fonts/open_sans/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
-              url('../fonts/open_sans/OpenSans-Italic-webfont.woff') format('woff'),
-              url('../fonts/open_sans/OpenSans-Italic-webfont.ttf') format('truetype'),
-              url('../fonts/open_sans/OpenSans-Italic-webfont.svg#open_sansitalic') format('svg');
-          font-style: italic;
+        font-family: 'Open Sans';
+        src: url('../fonts/open_sans/OpenSans-Italic-webfont.eot');
+        src:
+          url('../fonts/open_sans/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+          url('../fonts/open_sans/OpenSans-Italic-webfont.woff') format('woff'),
+          url('../fonts/open_sans/OpenSans-Italic-webfont.ttf') format('truetype'),
+          url('../fonts/open_sans/OpenSans-Italic-webfont.svg#open_sansitalic') format('svg');
+        font-style: italic;
       }
 
   Of course, we'll also need to link to this file in `index.liquid`, just above the `styles.css` link tag.
@@ -267,7 +273,10 @@ position: 6
   ## Finishing up
   Let's save our changes to the git repository.
 
-  <pre><span>$ git add .
+  <pre><span>$ git add public/fonts/open_sans public/images
+  $ git add public/stylsheets/styles.css public/stylsheets/fonts.css
+  $ git add public/javascripts/main.js
+  $ git add app/views/pages/index.liquid app/views/pages/about.liquid
   $ git add -u
   $ git commit -m "added a photo to the about page including border styles and a light box, changed font to Open Sans"</span></pre>
 

@@ -27,7 +27,7 @@ position: 11
 
   The paginate tag has the following format: <code>{% raw %}{% paginate <em>collection</em> by <em>entries\_per\_page</em> %}{% endraw %}</code>. Above, I've paginated the posts collection, opting to show twelve entries per page. Our responsive design alternatively breaks to one, two, or three entries per row, so twelve–being divisible by all of those–is a good number.
 
-  Within the paginate tag, you have access to the `paginate` drop's variety of useful variables, described in the table below.
+  Within the paginate tag, you have access to the `paginate` drop, which contains a variety of useful variables described in the table below.
 
   <table>
     <thead>
@@ -117,17 +117,15 @@ position: 11
 
   <img src="{{ 'guides/making-blog/3.3/first_page_only.png' | theme_image_url}}" alt="The first page" />
 
-  It's showing only 12 entries, so the posts have been broken up into pages, but we still need some navigation in order to get to the next page.
-
-  Start by creating a new snippet.
+  It's showing only 12 entries, so the posts have been broken up into pages, but we still need some navigation in order to get to the next page. Start by creating a new snippet.
 
   <pre><span>$ bundle exec wagon generate snippet pagination
     Do you prefer a HAML template ? no
           <span style="font-weight: bold; color: #2FB41D">create</span>  app/views/snippets/pagination.liquid</span></pre>
 
-  In `posts.liquid`, include the snippet just above the `{% raw %}{%endpaginate%}{% endraw %}` tag and be sure to pass in the `paginate` variable.
+  In `posts.liquid`, include the snippet just above the `{% raw %}{% endpaginate %}{% endraw %}` tag and be sure to pass in the `paginate` variable.
 
-      {% raw %}{% include 'pagination', paginate %}{% endraw %}
+      {% raw %}{% include 'pagination' with paginate %}{% endraw %}
 
   Open `app/views/snippets/pagination.liquid` and paste in the following content.
 
@@ -157,7 +155,8 @@ position: 11
 
   This was a short chapter, but don't blame me, LocomotiveCMS just made it so darn easy. Let's commit these changes and move onto to the next lesson: content type templates.
 
-  <pre><span>git commit -m "Added pagination to the posts page."</span></pre>
+  <pre><span>$ git add app/views/pages/posts.liquid app/views/snippets/pagination.liquid
+  $ git commit -m "Added pagination to the posts page."</span></pre>
 
 %a.orange-rounded-button{href: "/making-blog/3-4-content-type-templates"} Next: content type templates
 

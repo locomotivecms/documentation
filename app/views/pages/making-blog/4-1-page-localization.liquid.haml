@@ -15,7 +15,7 @@ position: 14
 
   Some sites don't need to be localized. If you're working on such a site that only needs to be displayed in a single language, feel free to skip this section for now. If you decide to localize the site later or start working on a different project that needs localization, you can always come back.
 
-  ## Template Localization
+  ## Setting Localization
 
   Let's start localizing our blog. In addition to the present English localization, I am going to create a Japanese localization of the site. I chose Japanese because it's the only other language I speak, but feel free to follow along with a different language of your choice.
 
@@ -23,7 +23,45 @@ position: 14
 
       locales: [en, ja]
 
-  Start up the Wagon web server and preview the site.
+  The line above specifies that we have two localizations for our site: English and Japanese. The localization listed first is always the default localization. So, in this case English is the default localization. You can specify languages using their ISO code. By default, LocomotiveCMS supports:
+
+  - English (en)
+  - German (de)
+  - French (fr)
+  - Polish (pl)
+  - Brazilian Portugese (pt-BR)
+  - Italian (it)
+  - Dutch (nl)
+  - Norwegian (nb)
+  - Spanish (es)
+  - Russian (ru)
+  - Estonian (et)
+  - Japanese (ja)
+  - Simplified Chinese (zh-CN)
+
+  While we're here in `site/config.yml`, let's also localize the SEO variables. These settings, like many settings in Wagon can be localized using the following format.
+
+      foo_bar:
+        en: baz
+        ja: バズ
+
+  Change the SEO variables to the values shown below.
+
+      seo_title:
+        en: "Travel Tips for the Adventurous!"
+        ja: "冒険の一歩を踏み出しましょう"
+      meta_keywords:
+        en: "travel backpacking budget adventure"
+        ja: "旅行 バックパッキング 安い旅行 冒険"
+      meta_description:
+        en: "Learn about cool places to see abroad, interesting things to eat, and little travel tips you won't believe you lived without."
+        ja: "おすすめスポット、素敵な料理、観光アドバイスなどの現地旅行情報を配信中！"
+
+  One thing to note: the `name` property in `config/site.yml` is one of the very few values which cannot be localized. Not to worry, we will soon encounter localization strings with which we can easily localize our site's title. Actually, for this site I won't be localizing the title as it's quite usual for Japanese websites to use English titles, but I've included this as a warning for those localizing their own sites.
+
+  ## Template Localization
+
+  Now that we've enabled localization, preview the site by visiting [http://localhost:3333](http://localhost:3333).
 
   <img src="{{ 'guides/making-blog/4.1/pre_localization.png' | theme_image_url }}" alt="Our site before localization" />
 
@@ -31,7 +69,7 @@ position: 14
 
   <img src="{{ 'guides/making-blog/4.1/pre_localization_en.png' | theme_image_url }}" alt="The English localization URL" />
 
-  Still the same. Whichever language comes first in `site.yml`'s locale property is the default language, making our default locale English. When the URL doesn't specify a locale, the default locale is used. So, for our site, '/' is the same as '/en'.
+  Still the same. Whichever language comes first in `site.yml`'s locale property is the default language, making our default locale English. When the URL doesn't specify a locale, the default locale is used. So, for our site, `/` is the same as `/en`.
 
   Let's try another page, [http://localhost:3333/en/fdsafas](http://localhost:3333/en/fdsafas).
 
@@ -48,17 +86,18 @@ position: 14
       published: true
       ---
       {% extends 'index' %}
+
       {% block 'main' %}
-      <p>
-        申し訳ありません。そのページは存在しません。
-      </p>
+        <p>
+          申し訳ありません。そのページは存在しません。
+        </p>
       {% endblock %}{% endraw %}
 
   Let's give that page another try.
-      
+
   <img src="{{ 'guides/making-blog/4.1/404_ja.png' | theme_image_url }}" alt="The Japanese 404 page" />
 
-  Better, but there is still a lot of English on this page (such as  the menu and title) that the template is inheriting from the `index.liquid` template.
+  Better, but there is still some English on this page (such as the navigation menu and title) that the template is inheriting from the `index.liquid` template.
 
   Let's localize `index.liquid`, too. Create another new file, `app/views/pages/index.ja.liquid` and paste in the contents shown below.
 
@@ -69,15 +108,15 @@ position: 14
 
   Take a look.
 
-  <img src="{{ 'guides/making-blog/4.1/pre_localization_ja.png' | theme_image_url }}" alt="The Japanese 404 page" />
+  <img src="{{ 'guides/making-blog/4.1/pre_localization_ja.jpg' | theme_image_url }}" alt="The Japanese 404 page" />
 
-  The template was blank, but the page has been rendered just like the English version. When you leave a localized template's body blank, the template will inherit the body from the corresponding template in the default locale. 
+  The template was blank, but the page has been rendered just like the English version. When you leave a localized template's body blank, the template will inherit the body from the corresponding template in the default locale.
 
   But if we inherit the default locale's body, how do we change the text to reflect the current locale's language? There are several ways, but we will start with translation strings.
 
   ## Translation strings
 
-  We have a lot of stuff that needs translating on the home page, but let's start small. Open `index.liquid` and find the _Home_ link in the navigation menu and replace it with the code below.
+  We have a lot of stuff that needs translating on the home page, but let's start small. Open `index.liquid`, find the _Home_ link in the navigation menu and replace it with the code below.
 
       {% raw %}<a href="/{{ locale }}">{{ 'home_page' | translate }}</a>{% endraw %}
 
@@ -90,30 +129,29 @@ position: 14
   Open `config/translations.yml` and add the following code to the file.
 
       home_page:
-          en: Home
-          ja: ホーム
+        en: Home
+        ja: ホーム
 
   If you visit the Japanese localization of the page, you will see the string has changed.
 
   <img src="{{ 'guides/making-blog/4.1/ja_home_link.png' | theme_image_url }}" alt="The Home link in Japanese" />
 
-  Otherwise, it still displays correctly in English.
+  It also still displays correctly in English.
 
   <img src="{{ 'guides/making-blog/4.1/pre_localization_en.png' | theme_image_url }}" alt="The Home link in English" />
 
-  
   I can think of one other place where we need a translation string. Create a Japanese localization of the posts template, `app/views/pages/posts.ja.liquid`, and paste in the following code.
 
       ---
       slug: posts
-      title: 記事 
+      title: 記事
       published: true
       position: 1
       ---
 
-  Then in the default posts template (`posts.liquid`), change the _Read More_ link to code below.
+  Then in the default posts template (`posts.liquid`), change the _Read More_ link to code below, which uses a translation string and changes the link to be locale sensitive.
 
-      {% raw %}<a href="/posts/{{ post._slug }}" class="btn btn-primary">
+      {% raw %}<a href="/{{ locale }}/posts/{{ post._slug }}" class="btn btn-primary">
         {{ 'read_more' | translate }}
       </a>{% endraw %}
 
@@ -129,83 +167,91 @@ position: 14
 
   Looking good. You can also see that as we localize our templates, the `{% raw %}{% nav %}{% endraw %}` tag updates our navigation menu with the appropriate localized titles for us.
 
-  Now here's something to note about translation strings: like content entries and editable element values, these can be edited from the back-office. That means that what we put in Wagon is just for testing. we want the actual string to be managed from the back-office. As a result, translations string are _not_ pushed to the Engine when you run `wagon push` by default. 
-
-  However, sometimes it's convenient to push your translations file to your Engine. Let's do that now using the `-t` or `--translations` option.
-
-  <pre><span>$ bundle exec wagon push development --translations
-  * Pushing Site
-      updating Wisdom for Wanderers...............................................[<span style="color:#B42419;">error</span>]
-  <span style="color:#B42419;">Your site locales (en, ja) do not match exactly the ones of your target (en)
-  Use the force option in order to force your locale settings.</span></span></pre>
-
-  Woops. This is the first time we've pushed to the Engine since adding the Japanese locale, so we'll need to use the `--force` option. Let' try that again.
-
-  <pre><span>$ bundle exec wagon push development --translations --force</span></pre>
-
-  After your site finishes deploying, visit the site on your Engine and confirm that the translations strings are working. 
+  Now here's something to note about translation strings: like content entries and editable element values, these can be edited from the back-office. That means that what we put in Wagon is just for testing. The actual string values will be managed from the back-office once we push our site to an engine.
 
   ## Back-office editable elements
 
-  Some on the content on our site is managed through editable text and editable file elements that can be edited through the back-office. Other content such as the site title and meta data can also be edited through the back-office. When page templates inherit from the default locale, localizing these elements is done automatically in the back office. Let's take a look.
+  Next up, let's look at how we can localize editable elements when developing our site with Wagon. The values of editable elements will of course later be managed through the back-office area, but it's nice to localize these values during testing (especially with a visually distinct language like Japanese).
 
-  Open the back-office of the Engine's where we just recently deployed our site, click the _Pages_ button, and select the _Home_ page.
+  Let's start by localizing the jumbotron text on the home page. Open `app/views/pages/index.ja.liquid` and paste the following YAML into the header.
 
-  <img src="{{ 'guides/making-blog/4.1/home_en_back_office.png' | theme_image_url }}" alt="The English Home page viewed from the back-office" />
+      editable_elements:
+        'main/jumbotron_title': しばらく旅に出ませんか？
+        'main/jumbotron_message': おすすめスポット、素敵な料理、観光アドバイスなどの現地旅行情報を配信中！
+        'main/jumbotron_button': 記事に進む
 
-  We can see the jumbotron editable elements we created here. You'll also notice that in the top-right corner there is now a drop-down from which we can change the locale. Change it to Japanese. When a localized template is created, it's editable elements are given the same values as in the default locale, but these values are stored separately and changing them will not affect the default values. Change the fields with the values below.
 
-  <pre><span>Jumbotron title: しばらく旅に出ませんか？
+  On the English pages we set the editable element default values by putting the text between the opening and closing editable tags. Another method of setting editable values is to do so in the header, as shown above. We could have also chosen to use this method on the English pages if we had wanted to.
 
-  Jumbotron message: おすすめスポット、素敵な料理、観光アドバイスなどの現地旅行情報を配信中！
+  The values above are specified in the following format:
 
-  Jumbotron button: 記事に進む</span></pre>
+      editable_elements:
+        'block_name/element_name': Value
 
-  <img src="{{ 'guides/making-blog/4.1/home_ja_back_office.png' | theme_image_url }}" alt="Saving the new Japanese Text" />
-
-  Scroll down and click the _Save_ button to save the changes. Visit your Engine's site to see how the changes look.
+  Let's preview the changes in your browser.
 
   <img src="{{ 'guides/making-blog/4.1/new_ja_home_page.png' | theme_image_url }}" alt="The new " />
 
-  Looks good. Let's move onto localizing the _About_ page. Back in the site's Wagon project folder, create a new file, `app/views/pages/about.ja.liquid`, and paste in the following code.
+  Looks good. Though the button still links to the post page without specifying the locale. Let's change it to specify the locale, as we did with the home link above.
+
+      <p>
+        <a href="/{{ locale }}/posts" class="btn btn-primary btn-lg">
+          {{ jumbotron_button | escape }}
+        </a>
+      </p>
+
+
+  Let's move onto localizing the _About_ page. Create a new file, `app/views/pages/about.ja.liquid`, and paste in the following code.
 
       ---
       slug: about
       title: サイトについて
       published: true
       position: 2
+      editable_elements:
+        'main/caption': ソールの景福宮
+        'main/about_body': <p>ウィズダム・フォア・ワンダラーへようこそ。このサイトは世界中の面白い場所や旅行中に体験できることを共有する場として作られました。本サイトではおすすめの観光スポットだけではなく、便利な「旅行術」も紹介しています。 普通の旅行に飽きてしまった人、何か新しいことに挑戦してみたい人、ウィズダム・フォア・ワンダラーを利用して冒険の一歩を踏み出しましょう。ボン・ボヤージュ！</p>
       ---
 
-  Push this new page to your engine.
-
-  <pre><span>$ bundle exec wagon push development -r pages</span></pre>
-
-  In the back-office, make sure the Japanese localization is selected from the drop-down and navigate to the _About_ page. Leave the featured photo image file as is, but change the caption of the featured photo as well as the about body of the page to the values shown below.
-
-  <pre><span>Caption: ソールの景福宮
-
-  About body: ウィズダム・フォア・ワンダラーへようこそ。このサイトは世界中の面白い場所や旅行中に体験できることを共有する場として作られました。本サイトではおすすめの観光スポットだけではなく、便利な「旅行術」も紹介しています。 普通の旅行に飽きてしまった人、何か新しいことに挑戦してみたい人、ウィズダム・フォア・ワンダラーを利用して冒険の一歩を踏み出しましょう。ボン・ボヤージュ！</span></pre>
-
-
-  Save the changes and take a look.
+  And take another look.
 
   <img src="{{ 'guides/making-blog/4.1/new_ja_about_page.png' | theme_image_url }}" alt="The new Japanese localized About page" />
 
-  The final things that we need to localize is the site's meta data. In the back-office, click the _Settings_ tab and go to the _Site_ section. Scroll down and change the meta data under _SEO settings_ with the values below.
+  Looking good!
 
-  <pre><span>SEO Title: 冒険の一歩を踏み出しましょう
+  Only one problem. If you look again at the English version of the home page or about page you will notice that the editable areas are now blank! This is a bit of a strange behavior, we might even call it a bug, and hopefully LocomotiveCMS will fix this in future versions. But for the moment, defining the values of editable elements through the YAML header of a page <strong>or any localized version of that page</strong> will cause the default value of an editable element tag not to be displayed.
 
-  Meta keywords: 旅行 バックパッキング 安い旅行 冒険
+  So let's get our home and about pages working again by adding the editable element values to their headers. I've provided the resulting headers below so you can quickly paste them in.
 
-  Meta description: おすすめスポット、素敵な料理、観光アドバイスなどの現地旅行情報を配信中！</span></pre>
+  Header for the home page:
 
-  <img src="{{ 'guides/making-blog/4.1/ja_meta_data_back_office.png' | theme_image_url }}" alt="Entering Japanese localized meta data into the back-office" />
+      ---
+      title: Home
+      published: true
+      editable_elements:
+        'main/jumbotron_title': Life's to short not to get away for awhile!
+        'main/jumbotron_message': Learn about cool places to see abroad, interesting things to eat, and little travel tips you won't believe you lived without.
+        'main/jumbotron_button': Browse our articles
+      ---
 
-  And now even the site's meta data is localized. Perfect!
+  And the header for the about page:
 
-  <img src="{{ 'guides/making-blog/4.1/ja_meta_data_in_source.png' | theme_image_url }}" alt="Our newly entered Japanese meta-data" />
+      ---
+      title: About
+      listed: true
+      published: true
+      position: 2
 
-  # Locale Switcher
+      editable_elements:
+        'main/caption': Gyeongbokgung, Seoul
+        'main/about_body': "<p>Thanks for visiting Wisdom for Wanderers! This blog aims to introduce readers to cool things to see, eat, and do all over the world. And along the way, I'll share some handy travel tips that can make wandering the globe easier and more fun than ever. The blog tends to focus on sights and places a little off the tourist trail, so unadventurous beware.</p>
+        <p>I hope you enjoy the site and bon voyage!</p>"
+      ---
+
+
+  If you go to the English version of the site in your browser, things should look better now.
+
+  ## Locale Switcher
 
   Last thing we will add to this lesson is a locale switcher to be displayed in the footer, so that site visitors can easily change the site to be displayed in their native language. Open `app/views/snippets/footer.liquid` and replace with the copyright paragraph with the code shown below.
 
@@ -231,7 +277,7 @@ position: 14
   These entries probably look backwards at first, but that's what we want. If I'm an English speaker who has wound up on the Japanese version of the site, _English_ is easier to spot than 英語。 So how does our switcher look?
 
   When viewing the English version of the site:
-  
+
   <img src="{{ 'guides/making-blog/4.1/en_locale_switcher.png' | theme_image_url }}" alt="The locale switcher when viewing the English version of the site" />
 
   And when viewing the Japanese version of the site:
@@ -248,22 +294,16 @@ position: 14
 
   But when dealing with languages that have different character sets, it is not uncommon that page styles and even page layouts need to vary by locale.  Then there are cultural differences. For example, while a marketing photo that features a happily kissing couple might be fine for the U.S., it's probably not a good idea to use that photo in Malaysia.
 
-  Finally, there is the fact that sometimes sites don't just need to be translated linguistically or culturally. Sometimes different regions need a different site: different pages, different content, or even a different design.
+  Finally, there is the fact that sometimes sites need to be translated not only linguistically. Sometimes different regions need a different pages, different content, or even a different design than the main site.
 
   LocomotiveCMS has the flexibility to accommodate all of these situations. When you're localizing a page that changes a lot depending on the locale, you can completely override the default locale's template. When you just need to change some text here and there, you can inherit the default locale's template by leaving the template's body blank, and change the content's language with translations strings. Further, you can mix and match the above strategies, using each where needed on a page by page and locale by locale basis, so you can override only where you need to, and inherit the rest of the time.
 
-  Ok, commit the changes to the source repository.
+  Ok, let'scommit the changes to the source repository.
 
-  <pre><span>$ git add app/views/pages/404.ja.liquid
-  $ git add app/views/pages/about.ja.liquid
-  $ git add app/views/pages/index.ja.liquid
-  $ git add app/views/pages/index.liquid
-  $ git add app/views/pages/posts.ja.liquid
-  $ git add app/views/pages/posts.liquid
+  <pre><span>$ git add app/views/pages
   $ git add app/views/snippets/footer.liquid
-  $ git add config/site.yml
-  $ git add config/translations.yml
-  $ git commit -m "Added Japanese localization for pages"</span></pre>
+  $ git add config/site.yml config/translations.yml
+  $ git commit -m "Added Japanese localization for all pages"</span></pre>
 
   The next lesson continues with localization, focusing on how to localize content types to round off our site's Japanese localization.
 

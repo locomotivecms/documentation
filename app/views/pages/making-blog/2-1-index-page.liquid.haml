@@ -8,152 +8,145 @@ position: 4
 {% block 'content' %}
 
 :markdown
+  Let's replace our generic Bootstrap home page with the real home page for our blog. Open a new terminal shell, navigate to the project directory, and start the Wagon web server with the `bundle exec wagon serve` command. Leave this web server running during the tutorial so that you can preview the changes we make in your browser at [http://localhost:3333](http://localhost:3333).
 
-  ## Our new home page
+  ## The header
 
-  Ok, let's replace our generic Bootstrap home page with the real home page for our blog. Open the `app/pages/views/index.liquid` file and delete all of its contents. Paste in the following code.
+  Open the `app/pages/views/index.liquid` file and delete all of its contents. Paste in the following code.
 
-%pre
-  %code
-    :plain
-      {% raw %}---
-      title: Home
-      published: true
-      ---
-      &lt;!DOCTYPE html&gt;
-      &lt;html lang=&quot;en&quot;&gt;
-        &lt;head&gt;
-          &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
-          &lt;meta charset=&quot;utf-8&quot;&gt;
-          &lt;title&gt;
-            {{ page.title }} - {{ site.name }}
-            | {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ site.seo_title }}{% endif %}
-          &lt;/title&gt;
-          &lt;meta name=&quot;description&quot; content=&quot;{% if page.meta_description %}{{ page.meta_description }}{% else %}{{ site.meta_description }}{% endif %}&quot;&gt;
-          &lt;meta name=&quot;keywords&quot; content=&quot;{{ site.meta_keywords }} {{ page.meta_keywords }}&quot;&gt;
+  <pre><code>{% raw %}---
+  title: Home
+  published: true
+  ---
+  &lt;!DOCTYPE html&gt;
+  &lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+      &lt;meta charset="utf-8"&gt;
+      &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+      &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
 
-          &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;
-          {{ &#39;bootstrap.css&#39; | stylesheet_tag }}
-          &lt;!--[if lt IE 9]&gt;
-            &lt;script src=&quot;//html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;
-          &lt;![endif]--&gt;
-        &lt;/head&gt;
-        &lt;body&gt;
-          &lt;div class=&quot;container&quot;&gt;
+      &lt;meta name=&quot;keywords&quot; content=&quot;{{ site.meta_keywords }} {{ page.meta_keywords }}&quot;&gt;
+      {% if page.meta_description %}
+        &lt;meta name=&quot;description&quot; content=&quot;{{ page.meta_description }}&quot;&gt;
+      {% else %}
+        &lt;meta name=&quot;description&quot; content=&quot;{{ site.meta_description }}&quot;&gt;
+      {% endif %}
 
-            &lt;!-- Site Title --&gt;
-            &lt;div class=&quot;row&quot;&gt;
-              &lt;div class=&quot;col-md-10 col-md-offset-1 col-sm-12&quot;&gt;
-                &lt;h1&gt;{{ site.name }}&lt;/h1&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
+      &lt;title&gt;
+        {{ page.title }} - {{ site.name }} |
+        {% if page.seo_title %}
+          {{ page.seo_title }}
+        {% else %}
+          {{ site.seo_title }}
+        {% endif %}
+      &lt;/title&gt;
 
-            &lt;!-- Site Navigation --&gt;
-            &lt;div class=&quot;row&quot;&gt;
-              &lt;div class=&quot;col-md-10 col-md-offset-1 col-sm-12&quot;&gt;
-                &lt;nav class=&quot;navbar navbar-default&quot; role=&quot;navigation&quot;&gt;
-                  &lt;!-- Brand and toggle get grouped for better mobile display --&gt;
-                  &lt;div class=&quot;navbar-header&quot;&gt;
-                    &lt;button type=&quot;button&quot; class=&quot;navbar-toggle&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#bs-example-navbar-collapse-1&quot;&gt;
-                      &lt;span class=&quot;sr-only&quot;&gt;Toggle navigation&lt;/span&gt;
-                      &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
-                      &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
-                      &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
-                    &lt;/button&gt;
-                  &lt;/div&gt;
-                  &lt;!-- Collect the nav links, forms, and other content for toggling --&gt;
-                  &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;bs-example-navbar-collapse-1&quot;&gt;
-                    &lt;ul class=&quot;nav navbar-nav&quot;&gt;
-                      &lt;li {% if page.slug == &quot;index&quot; %}class=&quot;active&quot;{% endif %}&gt;
-                        &lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;
-                      &lt;/li&gt;
-                    &lt;/ul&gt;
-                  &lt;/div&gt;
-                &lt;/nav&gt;
-              &lt;/div&gt;
-            &lt;/div&gt;
+      {{ &#39;bootstrap.min.css&#39; | stylesheet_tag }}
+      &lt;!--[if lt IE 9]&gt;
+      &lt;script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"&gt;&lt;/script&gt;
+      &lt;script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"&gt;&lt;/script&gt;
+      &lt;![endif]--&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      Coming soon.
+    &lt;/body&gt;
+  &lt;/html&gt;{% endraw %}</code></pre>
 
-            &lt;!-- Page Content --&gt;
-            &lt;div class=&quot;row&quot;&gt;
-              &lt;div class=&quot;col-md-10 col-md-offset-1 col-sm-12&quot;&gt;
-                &lt;h2&gt;{{ page.title }}&lt;/h2&gt;
-                Coming Soon.
-              &lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-
-          &lt;!-- Javascripts --&gt;
-          &lt;script type=&#39;text/javascript&#39; src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js&quot;&gt;&lt;/script&gt;
-          {{ &#39;bootstrap.min.js&#39; | javascript_tag }}
-        &lt;/body&gt;
-      &lt;/html&gt;{% endraw %}
-
-:markdown
-  We're going to go through this page line by line, but for now let's see what this looks like. Open a command line and navigate to the project directory. Let's turn on Wagon's web server again by running `bundle exec wagon serve`. Leave the server running and open [http://0.0.0.0:3333](http://0.0.0.0:3333) in your browser. You should see a page like the one below.
-
-  <img src="{{ 'guides/making-blog/2.1/new_home_page.jpg' | theme_image_url }}" alt="Our new home page" />
+  Let's go through this line by line.
 
   ## The YAML header
-  Back in your text editor, let's walk through this file. The first thing you will notice is the YAML header at the top of the file.
+
+  At the very top of the file there is a YAML header is surrounded by a pair of triple dashes. All LocomotiveCMS templates start with YAML headers like this one. The header can set various properties for the page.
 
       ---
       title: Home
       published: true
       ---
-  The YAML header is surrounded by a pair of triple dashes and contains YAML that sets various properties for the page. This page sets just two options: `title` and `published`. As you can probably guess, `title` sets the page's title and `published` is a boolean flag that determines whether this page should be publicly accessible by anyone, or if the page is still under review and should only be accessible to site editors.
 
-  Aside from the two properties above, there are around a dozen other properties that can be specified, but we'll come back to these later.
+  This page sets two options: `title` and `published`. As you can probably guess, `title` sets the page's title and `published` is a boolean flag that determines whether this page should be publicly accessible by anyone, or if the page is still under review and should only be accessible to site editors.
 
-  ## Output markup and droplets
-  After some boilerplate HTML, the next interesting part comes in the `title` tag, where we see our first piece of [Liquid Markup](http://liquidmarkup.org/). Liquid Markup, originally created by the good folks at [Shopify](http://www.shopify.com), is one of Ruby's most popular templating languages.
+  Aside from the two properties above, there are around a dozen other properties that can be specified, but we'll come back to those later.
 
-  We first encounter Liquid's _output markup_, which is demarcated by pairs of double curly brackets. Liquid interprets and outputs whatever is between the brackets.
+  ## Output markup and drops
 
-      {% raw %}{{ page.title }} - {{ site.name }}{% endraw %}
-
-  The above code first outputs the variable `page.title`, which comes from the `title` property set in the page's YAML header. LocomotiveCMS automatically loads all of the YAML header values for a page into the `page` _droplet_, which we see above. Programmers can think of Liquid droplets like objects or hashes. If that doesn't make sense to you, you can think of droplets as collections of related variables. You can access a droplet's variables by putting a period after the droplet name, followed by the variable's name.
-
-  After `page.title` has been evaluated, Liquid then outputs the site's name, as set in the `config/site.yml` file, using the `site.name` variable. This time the variable is stored in the `site` droplet. Together, the result is: _Home - Wisdom for Wanderers_.
-
-  That's pretty easy to understand, but some may be wondering why we don't just put that text into this page directly and avoid all this Liquid markup business? Good question. The first reason is that, as you may remember from [section 1.3](1-3-deploy-to-engine), the `name` property in `config/site.yml` and the `title` property in `app/pages/index.liquid`'s YAML header are editable through the LocomotiveCMS back-office. That means that site editors can change these values at anytime using the back-office's GUI.
-
-  The second reason is that `index.liquid` is not just a page; thanks to LocomotiveCMS's page inheritance system, it also serves as a template for child pages. As such, the value of the `<title>` tag can't be a static value, but instead needs to change on a page-by-page basis. We'll come back to page inheritance later.
-
-  ## Liquid tags
-  Now, for some sites, the above might be all we need in the title tag. But let's assume that, for SEO purposes, I would like to the use a few more keywords in the title tag.
-
-      {% raw %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ site.seo_title }}{% endif %}{% endraw %}
-
-  Here we are introduced to Liquid's second type of markup: _tag markup_. Liquid tags are indicated with paired curly brackets and percentage signs.
-
-  Liquid tags can perform all kinds of functions, but here we have a simple _if_ statement: output the variable `page.seo_title` if it exists. Otherwise, output the variable `site.seo_title`. We didn't define a `seo_title` property in this page's YAML header, so `page.seo_title` doesn't exist, which means that the `seo_title` property defined in `config/site.yml` will be output instead. This lets us add keywords to the title on a page-by-page basis. When we don't define page-specific title keywords, it falls back to the site-wide title keywords. Pretty cool, huh?
-
-  Putting it all together, this page's title will be _Home - Wisdom for Wanderers | Travel Tips for the Adventurous!_
-
-  After the title tag, we have some more Liquid markup that should look a little more familiar now. Output `page.meta_description` if it exists. Otherwise, fall back to `site.meta_description`.
-
-      {% raw %}<meta name="description" content="{% if page.meta_description %}{{ page.meta_description }}{% else %}{{ site.meta_description }}{% endif %}">{% endraw %}
-
-  Next comes the the `keywords` meta tag.
+  The template continues with some boilerplate HTML: a doctype and a few meta tags. The next interesting part comes in the `<meta type="keywords">` tag where we can see our first piece of [Liquid Markup](http://liquidmarkup.org/). Liquid Markup, originally created by the good folks at [Shopify](http://www.shopify.com), is one of Ruby's most popular templating languages.
 
       {% raw %}<meta name="keywords" content="{{ site.meta_keywords }} {{ page.meta_keywords }}">{% endraw %}
 
-  Here, both the site's keywords and the page's keywords are shown. If either one isn't defined, Liquid will simply output nothing for each of those statements.
+  In Liquid, pairs of double curly brackets indicate _output markup_.  Output markup outputs whatever is between the curly brackets.
+
+  Here, we output `site.meta_keywords`. Do you remember the `config/site.yml` file from [Chapter 1.2](/making-blog/1-2-configure-site)? Wagon loads all of the properties set in `config/site.yml` into a _drop_ called `site` that we can access in our templates. drops are collections of variables. You can access a drop's variables by putting a period after the drop name, followed by the variable's name.
+
+  After outputting `site.meta_keywords`, there's a space, and we then use Liquid to output `page.meta_keywords`. Similar to the `site` drop, Wagon loads all the properties set in a page's YAML header and puts them into the `page` drop.
+
+  Let's see what this looks like. Open your browser to [http://localhost:33333](http://localhost:33333), where you will be greeted by the world's most boring web page. View the source.
+
+  <p><img src="{{ 'guides/making-blog/2.1/view_source_1.png' | theme_image_url | resize: '699x>' }}" alt="Our simple home page's source code" /></p>
+
+  Hey, looky there. The keywords we assigned to `meta_keywords` in `config/site.yml` are in the meta tag! At the end, there's a space, but nothing afterwards. That's because we didn't assign the property `meta_keywords` in the page header. When a variable is empty or unassigned, Liquid outputs nothing.
+
+  Just to test this, replace the page header with the code below.
+
+      ---
+      title: Home
+      published: true
+      meta_keywords: panda biscuits
+      ---
+
+  Refresh the page and view the source again in your browser.
+
+  <p><img src="{{ 'guides/making-blog/2.1/view_source_2.png' | theme_image_url | resize: '699x>' }}" alt="Our source code after adding panda biscuits" /></p>
+
+  Behold! The page's keywords were now added in addition to the site-wide keywords. That was just to make a point, so go ahead and delete the `meta_keywords` property from the page header.
+
+  This is all great, but some may be wondering: why reference `page.meta_keywords` if it's empty? Further, why are we using variables at all? Why not just put the text directly into the HTML like so:
+
+      <meta name="keywords" content="travel backpacking budget adventure">
+
+  Good question! The first reason is because all of these variables are editable in the LocomotiveCMS back-office. LocomotiveCMS comes with a back-office where site editors can login and edit the site's content using an easy graphical user interface. Page header variables can be easily chagned by site editors. However, if we just put the text directly in the page, editors won't be able to change the SEO keywords.
+
+  The second reason is that `index.liquid` is not just a page. Thanks to LocomotiveCMS's page inheritance system, it also serves as a template for child pages. As such, we want the value of `page.meta_keywords` to change, depending on which page we are looking at. We'll come back to page inheritance later.
+
+
+  ## Liquid tags
+  Let's get back to our `index.liquid` template. Right after the keywords meta tag, we encounter another piece of Liquid markup.
+
+      {% raw %}{% if page.meta_description %}
+        <meta name="description" content="{{ page.meta_description }}">
+      {% else %}
+        <meta name="description" content="{{ site.meta_description }}">
+      {% endif %}{% endraw %}
+
+
+  Here we are introduced to a second type of Liquid markup: _tag markup_. Liquid tags are indicated with paired curly brackets and percentage signs.
+
+  Liquid tags can perform all kinds of functions, but here we have a simple if statement: if `page.meta_description` exists, make a meta tag with the value of `page.meta_description`. Otherwise, make a meta tag with the value of `site.meta_description`. So if a page has a page specific meta description defined, we'll use that. Otherwise, we'll just use the global, site meta description.
+
+  Take another look at the source.
+
+  <p><img src="{{ 'guides/making-blog/2.1/view_source_3.png' | theme_image_url | resize: '699x>' }}" alt="The source of the meta description" /></p>
+
+  As you can see, we didn't define `meta_description` in the `index.liquid` page header, so the site meta description is used.
+
+  Next up is the page's `<title>` tag, which uses some of the Liquid output markup and tag markup that you've just learned. Take a look at the code and see if you can figure out what it does. You can always check your understanding by looking at the page source in your web browser.
+
 
   ## Liquid filters
-  After a standard viewport meta tag, we encounter this interesting line:
+  In the next line of `index.liquid` we encounter this interesting line:
 
-      {% raw %}{{ 'bootstrap.css' | stylesheet_tag }}{% endraw %}
+      {% raw %}{{ 'bootstrap.min.css' | stylesheet_tag }}{% endraw %}
 
-  Liquid _filters_ come after a pipe (|) character inside output markup and, in some way, modify what comes before the pipe character. Here, the `stylesheet_tag` filter takes the name of a CSS file in the `public/stylesheets` directory and creates a link tag for that stylesheet. This isn't just a time-saving shortcut. It's actually necessary due to the way LocomotiveCMS handles assets. If you preview this page using Wagon's web server and view the source, you'll see the above Liquid becomes:
+  Liquid _filters_ can be used inside output markup. Filters in some way modify whatever comes before the pipe character.
 
-      <link href="/stylesheets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+  The `stylesheets_tag` filter takes the name of file in the `public/stylesheets` directory and creates an HTML `<link> tag referencing it. If you preview this page using Wagon's web server and view the source, you'll see the above Liquid becomes:
 
-  However, if you were to deploy this site to an Engine and view the source, it would look closer to something like this:
+      <link href="/stylesheets/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" />
 
-      <link href="/sites/52759abbb5f1c932fe000002/theme/stylesheets/bootstrap.css" media="screen" rel="stylesheet" type="text/css">
+  This isn't just a time-saving shortcut. It's actually necessary due to the way LocomotiveCMS handles assets. If you were to deploy this site to an Engine and view the source, the same line would look something like this:
 
-  For this reason, when linking to assets in your templates, use Liquid filters to link to the URL. What if we want to change the value of _media_? The `stylesheet_tag` filter actually takes a _media_ argument we can use to set it like below.
+      <link href="/sites/52759abbb5f1c932fe000002/theme/stylesheets/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+
+  For this reason, when linking to assets in your templates, use Liquid filters to generate the tag. What if we want to change the value of the media attribute? The `stylesheet_tag` filter actually takes a _media_ argument, as shown in the example below.
 
   <pre><code class="locomotive-liquid">{% raw %}{{ 'bootstrap.css' | stylesheet_tag: "screen, print" }}{% endraw %}</code></pre>
 
@@ -161,59 +154,118 @@ position: 4
 
       {% raw %}<link href="{{ 'bootstrap.css' | stylesheet_url }}" media="screen, print" rel="stylesheet" type="text/css">{% endraw %}
 
-  Liquid filters can do way more than just modify URLs. Let's explore some other filters. You can put these experiments in `index.liquid` below the "Coming soon" text and test the results with the Wagon web server.
+  Liquid filters can do way more than just modify URLs. Let's explore some other filters. You can try these experiments in `index.liquid` below the "Coming soon" text and check the results with the Wagon web server.
 
   Filters can modify strings.
 
-      {% raw %}{{ 'test' | capitalize }}{% endraw %}
-  Outputs: `Test`
+  <pre><code>{% raw %}{{ 'test' | capitalize }}
+  &lt;!-- Outputs: Test --&gt;{% endraw %}</code></pre>
 
   Filters can also modify variables.
 
-      {% raw %}{{ page.title | upcase }}{% endraw %}
-  Outputs: `HOME`
+  <pre><code>{% raw %}{{ page.title | upcase }}
+  &lt;!-- Outputs: HOME --&gt;{% endraw %}</code></pre>
 
   Filters can accept an argument.
 
-      {% raw %}{{ site.name | truncate: 10 }}{% endraw %}
-  Outputs: `Wisdom ...`
+  <pre><code>{% raw %}{{ site.name | truncate: 10 }}
+  &lt;!-- Outputs: Wisdom ... --&gt;{% endraw %}</code></pre>
 
-  Filters can accept mulitple arguments.
+  Filters can accept multiple arguments.
 
-      {% raw %}{{ site.name | truncate: 8, "---" }}{% endraw %}
-  Outputs: `Wisdo---`
+  <pre><code>{% raw %}{{ site.name | truncate: 8, "!!!" }}
+  &lt;!-- Outputs: Wisdo!!! --&gt;{% endraw %}</code></pre>
 
   Filters can modify numbers.
 
-  <pre><code class="locomotive-liquid">{% raw %}{{ 8 | plus: 10 }}{% endraw %}</pre></code>
-  Outputs: `18`
+  <pre><code>{% raw %}{{ 8 | plus: 10 }}
+  &lt;!-- Outputs: 18 --&gt;{% endraw %}</code></pre>
 
   Filters can be strung together.
 
-  <pre><code class="locomotive-liquid">{% raw %}{{ "MY NAME IS TOM" | dasherize | downcase }}{% endraw %}</code></pre>
-  Outputs: `my-name-is-tom`
+  <pre><code>{% raw %}{{ "MY NAME IS TOM" | dasherize | downcase }}
+  &lt;!-- Outputs: my-name-is-tom --&gt;{% endraw %}</code></pre>
 
   Pretty neat, huh? Liquid comes with a good set of filters and LocomotiveCMS has added more on top of that. You can see a list of all the filters and what they do using [Liquid's Documentation](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers) and [LocomotiveCMS's Template Reference](http://doc.locomotivecms.com/references).
 
+  ## The body
+
+  Onto the `<body>` of the page! Paste the following code into the body.
+
+  <pre><code>{% raw %}&lt;div class="container"&gt;
+    &lt;!-- Site Title --&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="col-md-10 col-md-offset-1 col-sm-12"&gt;
+        &lt;h1&gt;{{ site.name }}&lt;/h1&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Site Navigation --&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="col-md-10 col-md-offset-1 col-sm-12"&gt;
+        &lt;nav class="navbar navbar-default" role="navigation"&gt;
+          &lt;!-- Brand and toggle get grouped for better mobile display --&gt;
+          &lt;div class="navbar-header"&gt;
+            &lt;button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav"&gt;
+              &lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;
+              &lt;span class="icon-bar"&gt;&lt;/span&gt;
+              &lt;span class="icon-bar"&gt;&lt;/span&gt;
+              &lt;span class="icon-bar"&gt;&lt;/span&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+          &lt;!-- Collect the nav links, forms, and other content for toggling --&gt;
+          &lt;div class="collapse navbar-collapse" id="main-nav"&gt;
+            &lt;ul class="nav navbar-nav"&gt;
+              &lt;li {% if page.slug == "index" %}class="active"{% endif %}&gt;
+                &lt;a href="/"&gt;Home&lt;/a&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/nav&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Page Content --&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="col-md-10 col-md-offset-1 col-sm-12"&gt;
+        &lt;h2&gt;{{ page.title }}&lt;/h2&gt;
+        Coming Soon.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Javascripts --&gt;
+  &lt;script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"&gt;&lt;/script&gt;
+  {{ 'bootstrap.min.js' | javascript_tag }}{% endraw %}</code></pre>
+
+
+  You've probably noticed that the page now has quite a few div and span tags making use of Bootstrap classes. These are there to make this page responsive, so that it can be viewed on phones, tablets, and desktops. They also create the navigation bar under the title.
+
+  Go ahead and take a look in the browser.
+
+  <p><img src="{{ 'guides/making-blog/2.1/new_home_page.png' | theme_image_url | resize: '699x>' }}" alt="Our new home page" /></p>
+
+  What exactly these Bootstrap classes do is a bit outside the scope of this tutorial, but I'd encourage anyone interested to checkout [Bootstrap's excellent documentation site](http://getbootstrap.com/).
+
   ## Page slugs and operators
 
-  Onto the `<body>` of the page! Let's study this bit of Liquid from the menu:
+  Let's study this bit of Liquid from the navigation bar in the body:
 
-      <li {% raw %}{% if page.slug=="index" %}class="active"{% endif %}{% endraw %}>
+      {% raw %}<li{% if page.slug == "index" %}class="active"{% endif %}>
         <a href="/">Home</a>
-      </li>
+      </li>{% endraw %}
 
   `page.slug` is a variable representing the page's _slug_. In LocomotiveCMS, page slugs configure the URL of a page. If a page's slug is _foo-bar-baz_, then the page can be accessed at the URL `/foo-bar-baz`. Page slugs should be all lowercase, hyphenized, and unique among pages in the same directory.
 
   Like `page.title` or `page.meta_description`, `page.slug` can be set in the YAML header using the `slug` option. By default, all pages are assigned a slug based on their file name, so we usually omit this option from the header.
 
-  This file is `index.liquid`, so the slug is _index_ by default. If we created a file `app/views/pages/things_to_pack.liquid`, the slug would be _things-to-pack_. Note that the underscores became hyphens. This situation probably won't come up, but if you wanted the slug of `things_to_pack.liquid` to be `packing`, you could do so by adding the following line to `things_to_pack.liquid`'s YAML header.
+  This file is `index.liquid`, so the slug is _index_ by default. If we created a file `app/views/pages/things_to_pack.liquid`, the slug would be _things-to-pack_. Note that the underscores became hyphens. This situation probably won't come up, but if you wanted the slug of `things_to_pack.liquid` to be `packing`, you could do so by adding the following line to the YAML header in `things_to_pack.liquid`.
 
       slug: packing
 
   As you might have noticed, the slug _index_ is a special slug that allows us to access the page at the root URL. Since `index.liquid`'s slug is _index_, the page is accessible at `/`.
 
-  Back to the Liquid code above, the next new bit is `==`. As in many programming languages, Liquid uses `==` as a comparison operator. So, `{% raw %}{% if page.slug == "index" %}{% endraw %}` could be translated as "if page.slug equals _index_". Liquid features the usual suspects in terms of comparison operators, shown in the table below.
+  Back to the Liquid code above, the next new bit is `==`. As in many programming languages, Liquid uses `==` as a comparison operator. So, `{% raw %}{% if page.slug == "index" %}{% endraw %}` could be translated as "if the value of page.slug equals _index_". Liquid features the usual suspects in terms of comparison operators. They are shown in the table below.
 
   <table>
       <tr>
@@ -255,22 +307,22 @@ position: 4
 
   Let's take a look at that Liquid markup again:
 
-      <li {% raw %}{% if page.slug=="index" %}class="active"{% endif %}{% endraw %}>
+      {% raw %}<li {% if page.slug == "index" %}class="active"{% endif %}>
         <a href="/">Home</a>
-      </li>
+      </li>{% endraw %}
 
-  So, if we put everything together, this Liquid markup means: if the slug of the current page is "index", then add `class="active"` to this `<li>` tag.
+  If we put everything together, this Liquid markup means: if the slug of the current page is "index", then add class="active" to this `<li>` tag. For those interested, `active` is a Bootstrap class used for marking the current location in navigation.
 
   ## Finishing up
 
-  There's only a few more pieces of Liquid markup on the page, but I'll let you find those on your own. If you're not sure what they do, you can always consult [LocomotiveCMS's Template Reference](http://doc.locomotivecms.com/references).
+  There's are a few more pieces of Liquid markup on the page, but I'll let you find those on your own. If you're not sure what they do, you can always consult [LocomotiveCMS's Template Reference](http://doc.locomotivecms.com/references).
 
-  Let's commit our pages to the git repository before moving on...
+  Let's commit our pages to the git repository before moving on.
 
-  <pre><span>$ git commit -am "Customized the home page."</span></pre>
+  <pre><span>$ git add app/views/pages/index.liquid
+  $ git commit -m "Customized the home page."</span></pre>
 
   The home page is complete for now. We still have a long way to go on our blog, but the pace will really pick up from here.
-
 
 %a.orange-rounded-button{href: "/making-blog/2-2-adding-pages"} Next: adding pages
 

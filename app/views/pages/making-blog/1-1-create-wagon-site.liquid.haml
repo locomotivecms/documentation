@@ -44,9 +44,9 @@ position: 1
   And, voilà! Here's a list of Wagon's commands and what they do. Let's try another command, `wagon version`.
 
   <pre><span>$ wagon version
-  1.4.0</span></pre>
+  1.5.0</span></pre>
 
-  As advertised, this prints out what version of Wagon you have. At the time of writing, the latest version of Wagon was 1.4.0, but you can [check for the current latest version on RubyGems.org](http://rubygems.org/gems/locomotivecms_wagon). If you don't have the latest version, you might want to upgrade your gems using `gem update`.
+  As advertised, this prints out what version of Wagon you have. At the time of writing, the latest version of Wagon was 1.5.0, but you can [check for the current latest version on RubyGems.org](http://rubygems.org/gems/locomotivecms_wagon). If you don't have the latest version, you might want to upgrade your gems using `gem update`.
 
   ## Creating a new Wagon project
 
@@ -193,7 +193,7 @@ position: 1
   <div class="alert alert-info">
     <p>What's this <code>bundle exec</code> business?</p>
     <p>
-      Here's the short version: <a href="http://bundler.io/">bundler</a> is a tool that lets us keep gem dependencies for different projects separate. The <code>bundle install</code> command doesn't install those gems globally. It installs them just for this project. That way if for some reason later you have a different ruby project that requires different versions of the same gems, each project has its own versions. 
+      Here's the short version: <a href="http://bundler.io/">bundler</a> is a tool that lets us keep gem dependencies for different projects separate. The <code>bundle install</code> command doesn't install those gems globally. It installs them just for this project. That way if for some reason later you have a different ruby project that requires different versions of the same gems, each project has its own versions.
     </p>
     <p>
       So, to make sure that we are running this project's version of a gem, we must put <code>bundle exec</code> before all Wagon commands. Actually, it's not required for <em>all</em> commands, but it's just simpler to always add it.
@@ -314,5 +314,5 @@ position: 1
   Done! We've successfully created a new Wagon site. So far it's just a dummy site, but it's created and we've setup git, so we're ready to start developing.
 
 %a.orange-rounded-button{href: "/making-blog/1-2-configure-site"} Next: configuring the site
-  
+
 {% endblock %}

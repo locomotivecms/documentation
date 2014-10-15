@@ -93,7 +93,7 @@ position: 8
         <p>{{ caption }}</p>
       </div>{% endraw %}
 
-  The code above is similar to the code in `about.liquid`, but I've changed the resize strings. The enlarged photo string is now _800x>_ instead of _800x_. I added the &gt; because I don't want to resize the image to 800px wide unless it is wider than that to begin with. The Gyeongbokgung picture we used was wider than 800 pixels, but now we are abastracting this for general use and future pictures might be smaller.
+  The code above is similar to the code in `about.liquid`, but I've changed the resize strings. The enlarged photo string is now _800x>_ instead of _800x_. I added the &gt; because I don't want to resize the image to 800px wide unless it is wider than that to begin with. The Gyeongbokgung picture we used was wider than 800 pixels, but now we are abstracting this for general use and future pictures might be smaller.
 
   The resize string for the small version has been replaced with a variable, `size`.
 

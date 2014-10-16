@@ -105,7 +105,7 @@ position: 14
 
   ## Updating the content entries
 
-  The content entries we use in Wagon our just for testing purposes, as the site editors will be responsible for adding the actual content. So, I'm going to fill in our Japanese content entries with dummy text scraped from the web.
+  The content entries we use in Wagon are just for testing purposes, as the site editors will be responsible for adding the actual content. So, I'm going to fill in our Japanese content entries with dummy text scraped from the web.
 
   Localizing content entries is simple. A field `foo_bar` would be localized, like so:
 
@@ -156,7 +156,7 @@ position: 14
 
   <img src="{{ 'guides/making-blog/4.2/posts_page_ja.png' | theme_image_url | resize: '699x' }}" alt="The posts page in Japanese" />
 
-  Looks nice! But if you click on one of the read more links, you will be brought to an empty page. This is because we haven't localized the template yet. Create a new file, `app/views/pages/posts/content_type_tempalte.ja.liquid` and paste in the YAML header shown below.
+  Looks nice! But if you click on one of the read more links, you will be brought to an empty page. This is because we haven't localized the template yet. Create a new file, `app/views/pages/posts/content_type_template.ja.liquid` and paste in the YAML header shown below.
 
       ---
       title: 記事テンプレート

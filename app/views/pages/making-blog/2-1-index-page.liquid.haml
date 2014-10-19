@@ -15,7 +15,7 @@ position: 4
   Open the `app/pages/views/index.liquid` file and delete all of its contents. Paste in the following code.
 
   <pre><code>{% raw %}---
-  title: Home
+  title: Home3
   published: true
   ---
   &lt;!DOCTYPE html&gt;
@@ -79,7 +79,7 @@ position: 4
 
   After outputting `site.meta_keywords`, there's a space, and we then use Liquid to output `page.meta_keywords`. Similar to the `site` drop, Wagon loads all the properties set in a page's YAML header and puts them into the `page` drop.
 
-  Let's see what this looks like. Open your browser to [http://localhost:33333](http://localhost:33333), where you will be greeted by the world's most boring web page. View the source.
+  Let's see what this looks like. Open your browser to [http://localhost:3333](http://localhost:3333), where you will be greeted by the world's most boring web page. View the source.
 
   <p><img src="{{ 'guides/making-blog/2.1/view_source_1.png' | theme_image_url | resize: '699x>' }}" alt="Our simple home page's source code" /></p>
 

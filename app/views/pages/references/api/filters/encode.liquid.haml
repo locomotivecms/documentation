@@ -1,0 +1,29 @@
+---
+title: encode
+seo_title: "Encode an URI"
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Escape an URI. Useful when using Liquid to generate a JSON response.
+
+  ## Syntax
+
+      {% raw %}{{ <URI> | encode }}{% endraw %}
+
+  ## Example
+
+      {% raw %}{{ "http:://www.example.com?key=hello world" | encode }}{% endraw %}
+
+  outputs
+
+      http%3A%3A%2F%2Fwww.example.com%3Fkey%3Dhello+world
+
+{% endblock %}

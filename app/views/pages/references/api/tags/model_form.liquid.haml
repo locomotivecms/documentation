@@ -1,0 +1,37 @@
+---
+title: model_form
+published: true
+listed: true
+---
+{% extends 'references/api' %}
+
+{% block content %}
+
+:markdown
+
+  ## Description
+
+  Display the form html tag with the appropriate hidden fields in order to create a content entry from a public site.
+  It handles callbacks, csrf and target url out of the box.
+
+  <div class="alert alert-info">This tag requires Wagon 1.5+ and LocomotiveCMS 2.5.5+</div>
+
+  ## Syntax
+
+      {% raw %}{% model_form <your model>, <options> %}<your html form>{% endform_form %}{% endraw %}
+
+  ## Examples
+
+      {% raw %}{% model_form 'newsletter_addresses' %}
+        <input type='text' name='content[email]' />
+        <input type='submit' value='Add' />
+      {% endform_form %}{% endraw %}
+
+  With options:
+
+      {% raw %}{% model_form 'newsletter_addresses', class: 'a-css-class', success: '/welcome', error: '/error' %}
+        <input type='text' name='content[email]' />
+        <input type='submit' value='Add' />
+      {% endform_form %}{% endraw %}
+
+{% endblock %}

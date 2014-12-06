@@ -31,7 +31,9 @@ position: 10
   In our navigation menu, I would like this posts page to come right after the home option, so I set the position to _1_. However, `about.liquid` also has it's position set to _1_, so open `about.liquid` and change the position to _2_.
 
   Onto the body. Paste in the following code.
-      {% raw %}{% extends parent %}
+      {% raw %}
+      
+      {% extends parent %}
 
       {% block main %}
         <div class="posts">
@@ -62,7 +64,7 @@ position: 10
 
       {% raw %}{% for post in contents.posts %}{% endraw %}
 
-  The `contents` droplet gives us access our content entries collections. `contents.posts` is a list containing all the posts. Since we are using the wagon server, the variable is populated with the entries from `data/posts.yml`. The syntax of the for loop should be familiar to programmers: for every item in `content.posts`, put that item into the `post` variable and then execute the following code.
+  The `contents` droplet gives us access to our content entries collections. `contents.posts` is a list containing all the posts. Since we are using the wagon server, the variable is populated with the entries from `data/posts.yml`. The syntax of the for loop should be familiar to programmers: for every item in `content.posts`, put that item into the `post` variable and then execute the following code.
 
   <pre><code class="hljs html">&lt;div class="post-listing"&gt;</code></pre>
 
@@ -78,7 +80,7 @@ position: 10
     - `size`: the file's size in bytes
     - `filename`: the file name (without the path)
 
-  If the editor has left the featured image field blank, then then the URL will be blank, so we can use the `url` property to see if an image has been uploaded.
+  If the editor has left the featured image field blank, then the URL will be blank, so we can use the `url` property to see if an image has been uploaded.
   If there is an image, it creates a new image tag, using the trusty `resize` filter to make the images consistently 400 pixels wide and 200 pixels tall. For the image's `alt` field, we've specified the post's title, and escaped it with the `escape` filter.
 
       {% raw %}<h3>{{ post.title | escape }}</h3>{% endraw %}

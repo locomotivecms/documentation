@@ -75,7 +75,7 @@ position: 4
 
   In Liquid, pairs of double curly brackets indicate _output markup_.  Output markup outputs whatever is between the curly brackets.
 
-  Here, we output `site.meta_keywords`. Do you remember the `config/site.yml` file from [Chapter 1.2](/making-blog/1-2-configure-site)? Wagon loads all of the properties set in `config/site.yml` into a _drop_ called `site` that we can access in our templates. drops are collections of variables. You can access a drop's variables by putting a period after the drop name, followed by the variable's name.
+  Here, we output `site.meta_keywords`. Do you remember the `config/site.yml` file from [Chapter 1.2](/making-blog/1-2-configure-site)? Wagon loads all of the properties set in `config/site.yml` into a _drop_ called `site` that we can access in our templates, drops are collections of variables. You can access a drop's variables by putting a period after the drop name, followed by the variable's name.
 
   After outputting `site.meta_keywords`, there's a space, and we then use Liquid to output `page.meta_keywords`. Similar to the `site` drop, Wagon loads all the properties set in a page's YAML header and puts them into the `page` drop.
 

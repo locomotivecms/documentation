@@ -13,9 +13,9 @@ position: 9
 
   Most any website has some sort of structured content. For example, imagine a dance studio's website. One page lists the various classes available and their details, including a description, time, price, difficulty level, instructor and other relevant information. How can we make this page content easily manageable for the studio's management?
 
-  We could add a big *editable_text* field on the page and let the studio's management piece the page together with the rich text editor. But adding and changing class listings would involve styling each one by hand with the rich text editor. For one thing, this approach greatly limits available options for styling and makes it difficult to ensure styles are uniformly applied. 
+  We could add a big *editable_text* field on the page and let the studio's management piece the page together with the rich text editor. But adding and changing class listings would involve styling each one by hand with the rich text editor. For one thing, this approach greatly limits available options for styling and makes it difficult to ensure styles are uniformly applied.
 
-  But what if we structured this data? In LocomotiveCMS, we can do that using content types. For this situation, we would define a new type called *dance_classes* and assign it various properties, like *title*, *description*, *price*, *schedule*, *instructor*, and so on. This would allow the studio's staff to easily manage the content through the back-office, where dance classes could be added and edited with a custom form displaying fields for the necessary information. And since the content has been structured, we are able to do a lot more with the data: we can uniformly apply styles to the dance classes, paginate them, group them by difficulty, sort them time of day, and so much more. 
+  But what if we structured this data? In LocomotiveCMS, we can do that using content types. For this situation, we would define a new type called *dance_classes* and assign it various properties, like *title*, *description*, *price*, *schedule*, *instructor*, and so on. This would allow the studio's staff to easily manage the content through the back-office, where dance classes could be added and edited with a custom form displaying fields for the necessary information. And since the content has been structured, we are able to do a lot more with the data: we can uniformly apply styles to the dance classes, paginate them, group them by difficulty, sort them time of day, and so much more.
 
   # posts
 
@@ -48,7 +48,7 @@ position: 9
     Use wagon generate help [RESOURCE] for usage information and examples.</span></pre>
 
   As you can see, the `generate` subcommand actually has its own `help` subcommand.
-      
+
   <pre><span>$ wagon generate help
   Commands:
     wagon generate content_type SLUG FIELDS  # Creates a content type with the specified slug and fields.
@@ -62,7 +62,7 @@ position: 9
 
 :markdown
   It looks like we can pass the `content_type` command two arguments: `SLUG` and `FIELDS`. Let's use the `help [COMMAND]` subcommand mentioned above to get more more guidance regarding the `SLUG` and `FIELDS` arguments.
-  
+
   <pre><span>$ wagon generate help content_type
   Usage:
     wagon content_type SLUG FIELDS
@@ -194,7 +194,7 @@ position: 9
       order_by: manually
 
       # Valid values: asc (ascending) and desc (descending). Set to asc by default.
-      # order_direction: asc 
+      # order_direction: asc
 
       # Specify a field slug to group entries by that field in the back-office.
       # group_by: <your field>
@@ -206,7 +206,7 @@ position: 9
       # public_submission_accounts: ['john@example.com']
 
       # A list describing each field
-      fields: 
+      fields:
       - title: # The lowercase, underscored name of the field
           label: Title # Human readable name of the field
           type: string
@@ -263,11 +263,11 @@ position: 9
 
   And we will want the posts to go from newest to oldest.
 
-          order_direction: desc 
+          order_direction: desc
 
   We can leave the public submission and group by fields commented out. The field definitions basically look good, though we need to update or remove the `hint` option for each field.
 
-      fields: 
+      fields:
       - title: # The lowercase, underscored name of the field
           label: Title # Human readable name of the field
           type: string
@@ -335,7 +335,7 @@ position: 9
 
   However, we should add in data for the fields which are missing or blank: featured\_image, posted\_at, and tags. Further, the body samples are a little short. And finally, it's always a good idea to include plenty of variety in testing data by having text of varying lengths and including some entries that are missing the optional fields.
 
-  So, I used text from [Fillerama](http://chrisvalleskey.com/fillerama/), placeholder images from [placehold.it](http://placehold.it/), and a short Ruby script to generate a new ` file with high quality sample data. You can can download it here: [new data/posts.yml](posts.yml).
+  So, I used text from [Fillerama](http://chrisvalleskey.com/fillerama/), placeholder images from [placehold.it](http://placehold.it/), and a short Ruby script to generate a new `posts.yml` file with high quality sample data. You can can download it here: [new data/posts.yml](posts.yml).
 
   Place the file the `data` diretory. Let's take a look at the first entry.
 
@@ -351,8 +351,9 @@ position: 9
 
   You'll notice the `posted_at` field uses a date and time in the  <em>YEAR-MONTH-DAY HOURS:MINUTES:SECONDS UTC_OFFSET</em> format. But actually, there's a fair amount of flexibility since the dates will be parsed by Ruby. I like the unambiguous format used in the sample file above. Also, this data is just for testing purposes so you shouldn't worry too much about its accuracy, but if you don't specify a UTC offset, times will be in GMT by default.
 
-  You'll also notice that the `featured_image` fields all reference images of various formats and sizes in a `samples/placeholders` directory. You can this placeholders directory with the referenced files here: [placeholders.zip]({{ 'images/guides/making-blog/3.1/placeholders.zip' | theme_image_url }}).
-  
+  You'll also notice that the `featured_image` fields all reference images of various formats and sizes in a `samples/placeholders` directory. You can this placeholders directory with the referenced files here:
+  <a href="{{ 'guides/making-blog/3.1/placeholders.zip' | theme_image_url }}">placeholders.zip</a>.
+
 
   ## Finishing up
 

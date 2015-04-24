@@ -61,6 +61,12 @@ listed: true
 
       curl -X POST -d 'page[title]=Hello world&page[slug]=hello-world&page[parent_fullpath]=index&page[raw_template]=Built with the API&page[listed]=true&page[published]=true' 'http://<your site>/locomotive/api/current_site.json?auth_token=K9zm8niKTxuM4ZMNK7Ct'
 
+  # 5. Upload a file
 
+  Assuming we have a content type "gallery_item" with a name:string and foto:file field. To upload a image with curl via the API:
+
+      curl -i -F entry[name]=Foto1 -F foto=@image.png -X POST 'http://<your site>/locomotive/api/content_types/gallery_item/entries.json?auth_token=K9zm8niKTxuM4ZMNK7Ct'
+
+  This will create a new entry in "GalleryItem" with the name "Foto1" and attach the local file image.png
 
 {% endblock %}

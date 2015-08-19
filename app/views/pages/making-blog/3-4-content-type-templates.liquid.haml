@@ -89,17 +89,9 @@ position: 12
 
   Let's see how this template works in practice. Start the wagon web server and open your browser to the _Posts_ page. Click on a "Read More" link for one of the posts.
 
-  <img src="{{ 'guides/making-blog/3.4/unstyled_post_template.png' | theme_image_url }}" alt="The unstyled post template" />
+  <img src="{{ 'guides/making-blog/3.4/post_template_on_engine.png' | theme_image_url }}" alt="The post as it would appear on both Engine and Wagon" />
 
-  Basically, it looks like what I expected, but why does the title say _Post Template_? Shouldn't it say _Afternoon Delight_ since that is the name of the post I am viewing? Well, it should because the `page.title` value of a content type template should be the value of the current entry's label. Interestingly, if we were looking at this page on the Engine (i.e. the real, live site), it would say _Afternoon Delight_, as expected.
-
-  Truth be told, there is currently a bug in Wagon which results in content type templates not correctly setting their title. Of Wagon and Engine, Engine came first and is obviously the more important of the two since it serves the live site. As a result, Wagon is a little behind in some areas and you might notice a few other places where Wagon's functionality has not quite matched Engine's yet. But, don't worry: these issues are being dealt with and the LocomotiveCMS team will soon finish rounding off Wagon's remaining rough edges.
-
-  If we were to view this page in an Engine, it would look like the screen shot below.
-
-  <img src="{{ 'guides/making-blog/3.4/post_template_on_engine.png' | theme_image_url }}" alt="The post as it would appear on Engine" />
-
-  Title mismatch aside, I'm pretty happy with the post template. Though I would like to make the post's date a little more discrete and increase the tag spacing a little bit. Add the following CSS to the `public/styles.css` file.
+  To finish it up, I would like to make the post's date a little more discrete and increase the tag spacing a little bit. Add the following CSS to the `public/styles.css` file.
 
 
       /* posts/content_type_template.liquid */
@@ -205,5 +197,3 @@ position: 12
 %a.orange-rounded-button{href: "/making-blog/3-5-related-types"} Next: related types
 
 {% endblock %}
-
-

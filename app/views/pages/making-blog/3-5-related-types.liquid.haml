@@ -17,10 +17,14 @@ position: 13
 
   To do this, we'll need a new content type: photos. Let's use the `wagon generate` command to jump-start the process.
 
-  <pre><span>$ bundle exec wagon generate content_type photos caption:string file:file:required post:belongs_to:required
+  <pre><span>$ bundle exec wagon generate content_type photos caption:string file:file:required
          <span style="font-weight: bold; color: #400BD9">exist</span>
         <span style="font-weight: bold; color: #2FB41D">create</span>  app/content_types/photos.yml
         <span style="font-weight: bold; color: #2FB41D">create</span>  data/photos.yml</span></pre>
+        
+  <pre><span>$ bundle exec wagon generate relationship photos belongs_to posts
+        <span style="font-weight: bold; color: #2FB41D">append</span>  append  app/content_types/photos.yml
+        <span style="font-weight: bold; color: #2FB41D">append</span>  append  app/content_types/posts.yml</span></pre>
 
   Open `app/content_types/photos.yml` and review its contents. This mostly looks pretty good, but let's make a few changes. First of all, we need a better description.
 

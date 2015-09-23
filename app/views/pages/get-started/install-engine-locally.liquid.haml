@@ -92,7 +92,7 @@ position: 4
       When we installed Wagon, we setup the bitnami Ruby stack, which includes Ruby on Rails. You should have Rails 3.2.x, but let's double check. Open a new bitnami command prompt by selecting `All Programs \ Bitnami Ruby Stack \ Use Bitnami Ruby Stack` from the _Start Menu_.
 
       <pre><span>C:\Bitnami\rubystack-1.9.3-22&gt; rails -v
-      Rails 3.2.19</span></pre>
+      Rails 3.2.21</span></pre>
 
       Now change to a directory where you would like to create the Rails project that will host our LocomotiveCMS engine.
 
@@ -100,7 +100,7 @@ position: 4
 
       Create a new Rails project with the `rails new` command shown below. Change *acme_cms* to a name of your choosing.
 
-      <pre><span>C:\Users\your_name\Documents&gt; rails _3.2.16_ new acme_cms --skip-active-record --skip-test-unit --skip-javascript --skip-bundle</span></pre>
+      <pre><span>C:\Users\your_name\Documents&gt; rails _3.2.21_ new acme_cms --skip-active-record --skip-test-unit --skip-javascript --skip-bundle</span></pre>
 
       We used several skip options to remove unneeded modules. These options respectively tell rails not to install ActiveRecord, unit test files, and the default JavaScript files. `--skip-bundle` let's Rails know not to immediately run `bundle install` as we will be editing our Gemfile.
 
@@ -112,7 +112,7 @@ position: 4
 
       -1- Add the following line.
 
-          gem 'locomotive_cms', '~> 2.5.6', :require => 'locomotive/engine'
+          gem 'locomotive_cms', '~> 2.5.7', :require => 'locomotive/engine'
 
       -2- Add under the following line under the assets group.
 
@@ -123,9 +123,9 @@ position: 4
 
           source 'https://rubygems.org'
 
-          gem 'rails', '3.2.19'
+          gem 'rails', '3.2.21'
 
-          gem 'locomotive_cms', '~> 2.5.6', :require => 'locomotive/engine'
+          gem 'locomotive_cms', '~> 2.5.7', :require => 'locomotive/engine'
 
           # Gems used only for assets and not required
           # in production environments by default.
@@ -343,7 +343,7 @@ position: 4
 
       -1- Add the following line.
 
-          gem 'locomotive_cms', '~> 2.5.6', :require => 'locomotive/engine'
+          gem 'locomotive_cms', '~> 2.5.7', :require => 'locomotive/engine'
 
 
       -2- Add the following lines under the assets group.
@@ -359,9 +359,9 @@ position: 4
 
           source 'https://rubygems.org'
 
-          gem 'rails', '3.2.19'
+          gem 'rails', '3.2.21'
 
-          gem 'locomotive_cms', '~> 2.5.6', :require => 'locomotive/engine'
+          gem 'locomotive_cms', '~> 2.5.7', :require => 'locomotive/engine'
 
           # Gems used only for assets and not required
           # in production environments by default.
@@ -567,7 +567,7 @@ position: 4
 
       -1- Add the following line.
 
-          gem 'locomotive_cms', '~> 2.5.6', :require => 'locomotive/engine'
+          gem 'locomotive_cms', '~> 2.5.7', :require => 'locomotive/engine'
 
       -2- Add the following line under the assets group.
 
@@ -586,9 +586,9 @@ position: 4
 
           source 'https://rubygems.org'
 
-          gem 'rails', '3.2.19'
+          gem 'rails', '3.2.21'
 
-          gem 'locomotive_cms', '~> 2.5.6', :require => 'locomotive/engine'
+          gem 'locomotive_cms', '~> 2.5.7', :require => 'locomotive/engine'
 
           # Gems used only for assets and not required
           # in production environments by default.

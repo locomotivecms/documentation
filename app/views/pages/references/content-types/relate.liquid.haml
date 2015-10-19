@@ -129,16 +129,16 @@ position: 3
   The only thing left is to take a look at the seed data for this kind of relation (`data/books.yml`):
 
       - "War and Peace":
-          authors: [Leo Tolstoy]
+          authors: ["Leo Tolstoy"]
 
       - "The Cherry Orchard":
-          authors: [Anton Tchekhov]
+          authors: ["Anton Tchekhov"]
 
       - "Anna Karenina":
-          authors: [Leo Tolstoy]
+          authors: ["Leo Tolstoy"]
 
       - "Anna Karenina in the Cherry Orchard":
-          authors: [Leo Tolstoy, Anton Tchekhov]
+          authors: ["Leo Tolstoy", "Anton Tchekhov"]
 
   Now if we take the last book and iterate over authors, we will see `Leo Tolstoy` and `Anton Tchekhov`:
 

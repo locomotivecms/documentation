@@ -189,14 +189,14 @@ position: 10
 
   Getting closer, but no cigar. The rows are too close together, and I don't like that thumbnails in the same row aren't the same height.
 
-  Easy fix first: add this to `public/assets/styles.css`.
+  Easy fix first: add this to `public/stylesheets/styles.css`.
 
       /* posts.liquid */
       body.page-posts div.post-listing {
         margin-bottom: 20px;
       }
 
-  That solves the spacing, but what about the heights? Everyone knows that equalizing heights with CSS will cost you your youth, so I'm thinking JavaScript. There are plenty of plugins that do this, but it will probably be as simpler to implement it ourselves. Add the following two functions to the top of `public/assets/javascripts/main.js`.
+  That solves the spacing, but what about the heights? Everyone knows that equalizing heights with CSS will cost you your youth, so I'm thinking JavaScript. There are plenty of plugins that do this, but it will probably be as simpler to implement it ourselves. Add the following two functions to the top of `public/javascripts/main.js`.
 
       function equalizeHeights(items) {
         var maxHeight = 0;

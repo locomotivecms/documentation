@@ -19,32 +19,36 @@ position: 1
   Since I would like to make my blog's design responsive, and I'm generally not so good with designing anyway, I plan on using [Twitter Bootstrap](http://www.getbootstrap.com) to help out on the frontend side of things. Fortunately, Wagon comes with some built-in templates for Twitter Bootstrap. We can view Wagon's available templates by using the `wagon list_templates` command.
 
   <pre><span>$ wagon list_templates
-  blank - A blank LocomotiveCMS site with the minimal files.
-  bootstrap2 - A LocomotiveCMS site with Twitter Bootstrap (v2.3.2) and Font Awesome (v3.2.1).
-  bootstrap3 - A LocomotiveCMS site powered by Twitter bootstrap (v3.0.0).
-  foundation - A LocomotiveCMS site powered by Foundation (v4.3.2).
-  unzip - Unzip a local or remote (http, https, ftp) zipped LocomotiveCMS site.</span></pre>
+  blank - A blank site with the minimal files.
+  line_case - A simple portfolio site.
+  bootstrap - A site powered by Bootstrap (v3.3.5).
+  foundation5 - A site powered by Foundation (v5.4.7).
+  unzip - Unzip a local or remote (http, https, ftp) zipped site.
 
-  As you can see, Wagon comes with several built-in templates, including ones for Bootstrap 2 and Bootstrap 3. Great!
+  As you can see, Wagon comes with several built-in templates, including one for Bootstrap. Great!
 
   `wagon list_templates` is a handy command and Wagon comes with quite a few more commands, but you don't need to memorize all of them if you can remember just this one: `wagon help`. Let's run that one.
 
   <pre><span>$ wagon help
-  wagon clone NAME HOST [PATH]  # Clone a remote LocomotiveCMS site
-  wagon destroy ENV [PATH]      # Destroy a remote LocomotiveCMS engine
-  wagon generate TYPE ...ARGS   # Generate resources (content_types, page, snippets) for a LocomotiveCMS site
-  wagon help [COMMAND]          # Describe available commands or one specific command
-  wagon init NAME [PATH]        # Create a brand new LocomotiveCMS site
-  wagon list_templates          # List all the templates to create either a site or a content type
-  wagon pull ENV [PATH]         # Pull a site from a remote LocomotiveCMS engine
-  wagon push ENV [PATH]         # Push a site to a remote LocomotiveCMS engine
-  wagon serve [PATH]            # Serve a LocomotiveCMS site from the file system
-  wagon version                 # Version of the LocomotiveCMS wagon</span></pre>
+  wagon auth [EMAIL] [PASSWORD] [PLATFORM_URL]  # Log into your Locomotive platform
+  wagon backup NAME HOST [PATH]                 # Backup a remote Locomotive site
+  wagon delete ENV RESOURCE [SLUG] [PATH]       # Delete a resource from a remote Locomotive Engine.
+  wagon deploy ENV [PATH]                       # Deploy a site to a remote Locomotive Engine
+  wagon generate RESOURCE ARGUMENTS [PATH]      # Generates a content_type, page, or snippet
+  wagon help [COMMAND]                          # Describe available commands or one specific command
+  wagon init NAME [PATH] [GENERATOR_OPTIONS]    # Create a brand new site
+  wagon list_templates                          # List all the templates to create either a site or a content type
+  wagon pull ENV [PATH]                         # [DEPRECATED, use sync instead] Pull a site from a remote Locomotive Engine.
+  wagon serve [PATH]                            # Serve a site from the file system
+  wagon stop [PATH]                             # Stop serving a site previously launched by the serve command with the -d option
+  wagon sync ENV [PATH]                         # Synchronize the local content with the one from a remote Locomotive site.
+  wagon version                                 # Version of the Locomotive Wagon
+  </span></pre>
 
   And, voilà! Here's a list of Wagon's commands and what they do. Let's try another command, `wagon version`.
 
   <pre><span>$ wagon version
-  1.5.1</span></pre>
+  2.0.0</span></pre>
 
   As advertised, this prints out what version of Wagon you have. At the time of writing, the latest version of Wagon was 1.5.1, but you can [check for the current latest version on RubyGems.org](http://rubygems.org/gems/locomotivecms_wagon). If you don't have the latest version, you might want to upgrade your gems using `gem update`.
 
@@ -54,14 +58,18 @@ position: 1
 
   <pre><span>$ wagon help init
   Usage:
-    wagon init NAME [PATH]
+  wagon init NAME [PATH] [GENERATOR_OPTIONS]
 
   Options:
-    -t, [--template=TEMPLATE]  # instead of building from a blank site, you can have a pre-fetched site with form a template (see the templates command)
-                               # Default: blank
-    -v, [--verbose]            # display the full error stack trace if an error occurs
+    -t, [--template=TEMPLATE]                # instead of building from a blank site, you can also have a pre-fetched site from a template (see the templates command)
+                                             # Default: blank
+    -l, [--lib=LIB]                          # Path to an external ruby lib or generator
+        [--skip-bundle], [--no-skip-bundle]  # Don't run bundle install
+    -v, [--verbose], [--no-verbose]          # display the full error stack trace if an error occurs
+        [--force-color], [--no-force-color]  # Whether or not to use ANSI color in the output.
 
-  Create a brand new LocomotiveCMS site</span></pre>
+  Create a brand new site
+  </span></pre>
 
   Question answered. As `wagon help init` points outs, we need to use the `--template` option to specify a template. I won't need IE 6 or 7 support, so I'm going to go with Bootstrap 3.
 
@@ -203,13 +211,13 @@ position: 1
 
   The command line is now unresponsive. That's because the web server is running in this shell. We can't run any commands in this shell so long as the web server is running. You can quit the web server at any time by pressing `ctrl + c`. For now, leave it running.
 
-  Open `http://0.0.0.0:3333` in a web browser. It should look like the screenshot below, since we're just using the standard Bootstrap 3 template.
+  Open <a href="http://0.0.0.0:3333">http://0.0.0.0:3333</a> in a web browser. It should look like the screenshot below, since we're just using the standard Bootstrap 3 template.
 
   <p>
     <img src="{{ 'guides/making-blog/1.1/default_home_page.png' | theme_image_url | resize: '699x>' }}" alt="The Bootstrap 3 template's default home page" />
   </p>
 
-  Success! Our newly created site is working just dandy.
+  Success! Our newly created site is working great.
 
   ## Exploring the project directory
 
@@ -256,7 +264,7 @@ position: 1
   <pre><span>├── log
   │   └── wagon.log</span></pre>
 
-  The `wagon.log` file contains error messages which can useful when debugging.
+  The `wagon.log` file contains error messages which can be useful when debugging.
 
   <pre><span>└── public
       ├── fonts

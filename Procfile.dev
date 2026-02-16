@@ -1,0 +1,3 @@
+web: bundle exec sitepress server
+css_assets: npx @tailwindcss/cli -i ./assets/stylesheets/site.source.css -o ./assets/stylesheets/site.css --watch
+js_assets: yarn esbuild ./assets/javascripts/site.source.js --bundle --outfile=./assets/javascripts/site.js --watch

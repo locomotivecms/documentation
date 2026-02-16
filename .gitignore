@@ -1,0 +1,16 @@
+build
+
+.DS_Store
+.env
+.byebug_history
+.rspec_status
+build/
+node_modules/
+assets/javascripts/site.js
+assets/javascripts/search-index.json
+assets/stylesheets/site.css
+assets/ai/full_site.md
+docs/
+components/pro
+scripts/ai_migrate_gitbook.rb
+components/docs

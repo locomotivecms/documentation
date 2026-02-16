@@ -1,0 +1,42 @@
+<div class="isolate">
+  <div class="bg-white dark:bg-zinc-900">
+    <%= render AppLayout::TopbarComponent.new(current_page: current_page, pages: pages) do |topbar| %>
+      <% topbar.with_links do %>
+        <% topbar_links.each do |link| %>
+          <%= link %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <div class="px-6 lg:px-8">
+      <div class="mx-auto max-w-xl lg:max-w-7xl">
+        <div class="mx-auto flex max-w-xl items-start gap-x-12 lg:max-w-7xl">
+          <%= render AppLayout::SidebarComponent.new(site: site, current_page: current_page, pages: pages) %>
+
+          <main class="min-w-0 flex-1 gap-x-12 pt-8 pb-16 lg:pt-12">
+            <% if current_page.parent.present? && current_page.parent.request_path != '/' %>
+              <p class="text-xs mb-2 uppercase text-zinc-500 dark:text-zinc-400">
+                <%= current_page.parent.data.fetch("title", File.basename(current_page.parent.request_path)) %>
+              </p>
+            <% end %>
+
+            <div class="prose dark:prose-invert !max-w-none">
+              <%= content %>
+            </div>
+
+            <%= render AppLayout::PageFooterComponent.new(pages: pages, current_page: current_page) %>
+          </main>
+
+          <%= render AppLayout::PageNavComponent.new(page_content: content) %>
+        </div>
+      </div>
+    </div>
+    <div class="block lg:hidden space-x-2 flex justify-center items-center py-4">
+      <% topbar_links.each do |link| %>
+        <div>
+          <%= link %>
+          <% if link != topbar_links.last %><span>/</span><% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

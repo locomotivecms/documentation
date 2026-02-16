@@ -1,0 +1,21 @@
+# Global Settings Configuration
+# This file contains all the global settings for your site
+
+# Site Information
+site:
+  title: "LocomotiveCMS Documentation"
+  github_repo: "locomotivecms/documentation"
+
+appearance:
+  theme: "light"
+
+# Features
+features:
+  analytics_enabled: true
+  search_enabled: true
+
+# SEO
+seo:
+  plausible_domain: "doc.locomotivecms.com"
+  meta_description: "Documentation for the Locomotive CMS"
+  meta_keywords: "locomotivecms, cms, documentation, platform"

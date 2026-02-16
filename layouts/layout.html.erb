@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased <%= settings.appearance['theme'] %>">
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= current_page.data.fetch("title", settings.site['title']) %></title>
+    <%= favicon_link_tag 'favicon.svg', type: 'image/svg+xml' %>
+
+    <% if settings.seo['meta_description'] %>
+      <meta name="description" content="<%= settings.seo['meta_description'] %>">
+    <% end %>
+
+    <% if settings.seo['meta_keywords'] %>
+      <meta name="keywords" content="<%= settings.seo['meta_keywords'] %>">
+    <% end %>
+
+    <!-- Prevent flash of unstyled content -->
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme')
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        const root = document.documentElement
+
+        if (savedTheme) {
+          document.documentElement.classList.toggle('dark', savedTheme === 'dark')
+        } else {
+          document.documentElement.classList.toggle('dark', prefersDark)
+        }
+      })()
+    </script>
+
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" rel="preload" as="style" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <%= stylesheet_link_tag "site", rel: :preload, as: 'style' %>
+    <%= stylesheet_link_tag "site" %>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <%= javascript_include_tag 'site', defer: true %>
+
+    <% if settings.features['analytics_enabled'] %>
+      <script defer data-domain="doc.locomotivecms.com" src="https://plausible.io/js/script.file-downloads.outbound-links.js"></script>
+      <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+    <% end %>
+  </head>
+  <body class="font-sans">
+    <%= render AppLayoutComponent.new(site: site, current_page: current_page) do |layout| %>
+      <% layout.with_topbar_link label: 'Website', href: 'https://www.locomotivecms.com' %>
+      <% layout.with_topbar_link href: 'https://github.com/locomotivecms/engine' do %>
+        <i class="fa-brands fa-github"></i><span class="ml-2">Source Code</span>
+      <% end %>
+
+      <%= yield %>
+    <% end %>
+  </body>
+</html>

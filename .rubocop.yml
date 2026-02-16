@@ -1,0 +1,103 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'build/**/*'
+
+Layout/IndentationWidth:
+  Enabled: true
+  Width: 2
+
+Layout/IndentHash:
+  Enabled: true
+  Width: 2
+
+Layout/IndentArray:
+  Enabled: true
+  Width: 2
+
+Layout/IndentAssignment:
+  Enabled: true
+  Width: 2
+
+Layout/IndentFirstArgument:
+  Enabled: true
+  Width: 2
+
+Layout/IndentFirstArrayElement:
+  Enabled: true
+  Width: 2
+
+Layout/IndentFirstHashElement:
+  Enabled: true
+  Width: 2
+
+Layout/IndentFirstParameter:
+  Enabled: true
+  Width: 2
+
+Layout/IndentHeredoc:
+  Enabled: true
+  Width: 2
+
+Layout/IndentMultilineMethodCallBraceLayout:
+  Enabled: true
+  Width: 2
+
+Layout/IndentMultilineMethodCallChain:
+  Enabled: true
+  Width: 2
+
+Layout/IndentMultilineOperationIndentation:
+  Enabled: true
+  Width: 2
+
+Layout/IndentMultilineString:
+  Enabled: true
+  Width: 2
+
+Layout/IndentTernaryOperator:
+  Enabled: true
+  Width: 2
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'spec/**/*'
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/ClassLength:
+  Max: 150
+
+Metrics/ModuleLength:
+  Max: 150
+
+Metrics/BlockLength:
+  Max: 50
+  Exclude:
+    - 'spec/**/*'
+    - 'config/**/*'

@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@source "../../components/**/*";
+@source "../../layouts/**/*";
+@source "../../pages/**/*";
+@source "../../liquid/**/*";
+
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: InterVariable, sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: "DM Sans", system-ui, sans-serif;
+  }
+}

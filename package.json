@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "esbuild": "^0.25.6",
+    "tailwindcss": "^4.1.11"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@tailwindcss/cli": "^4.1.11",
+    "el-transition": "^0.0.7"
+  }
+}

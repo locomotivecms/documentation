@@ -1,0 +1,43 @@
+<div class="relative" data-controller="search" data-search-index-url-value="<%= asset_path 'search-index.json' %>">
+  <button
+    type="button"
+    class="inline-flex items-center justify-center rounded-lg p-2 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-200 focus:outline-none"
+    aria-label="Open search"
+    data-action="click->search#toggleDropdown"
+    data-search-target="toggle"
+  >
+    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  </button>
+  <div
+    data-search-target="dropdown"
+    class="absolute right-0 mt-2 w-96 z-30 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-lg p-4 hidden"
+  >
+    <div class="relative mb-2">
+      <input
+        data-search-target="input"
+        data-action="input->search#search keyup.enter->search#search"
+        type="text"
+        placeholder="Search docs..."
+        class="w-full rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 pr-10 text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:focus:ring-zinc-600 shadow-sm transition"
+        autocomplete="off"
+      />
+      <button
+        type="button"
+        data-search-target="button"
+        data-action="click->search#clear"
+        class="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 focus:outline-none"
+        tabindex="-1"
+        aria-label="Clear search"
+      >
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <ul
+      data-search-target="results"
+      class="mt-2 bg-white dark:bg-zinc-900 rounded-md max-h-80 overflow-y-auto hidden"
+    ></ul>
+  </div>
+</div>

@@ -1,5 +1,12 @@
 <div class="isolate">
   <div class="bg-white dark:bg-zinc-900">
+    <div data-controller="banner" data-banner-key-value="hosting-migration-v1" class="relative bg-indigo-600 px-4 py-2.5 text-center text-sm text-white">
+      <span class="inline-block sm:inline">Running a LocomotiveCMS site? We can host and maintain it for you.</span>
+      <a href="mailto:did@locomotivecms.com?subject=Site%20hosting%20migration" class="ml-1 font-semibold underline underline-offset-2 hover:text-indigo-100">Contact us &rarr;</a>
+      <button type="button" data-action="banner#dismiss" class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-indigo-200 hover:text-white" aria-label="Dismiss">
+        <svg class="size-4" viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/></svg>
+      </button>
+    </div>
     <%= render AppLayout::TopbarComponent.new(current_page: current_page, pages: pages) do |topbar| %>
       <% topbar.with_links do %>
         <% topbar_links.each do |link| %>

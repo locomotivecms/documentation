@@ -71,12 +71,13 @@ class ApplicationMarkdown < MarkdownRails::Renderer::Rails
   def preprocess(full_document)
     reset_tabs_html
     liquid_template = Liquid::Template.parse(full_document, environment: liquid_environment, error_mode: :lax)
-    liquid_template.render({},
+    result = liquid_template.render({},
       registers: {
         markdown_renderer: self.renderer,
         tabs_html: tabs_html
       }
     )
+    pre_render_html_code_blocks(result)
   end
 
   def postprocess(full_document)
@@ -94,6 +95,29 @@ class ApplicationMarkdown < MarkdownRails::Renderer::Rails
   end
 
   private
+
+  # Workaround for a Redcarpet bug: when an HTML tag (e.g. <div>) starts a line
+  # inside a fenced code block, Redcarpet incorrectly treats it as an HTML block
+  # instead of code content, which breaks markdown rendering for the rest of the
+  # document. We pre-render these code blocks to <pre><code> HTML so Redcarpet
+  # never sees raw HTML tags inside fenced code blocks.
+  def pre_render_html_code_blocks(text)
+    text.gsub(/^```(\w*)\n(.*?)^```$/m) do
+      match = Regexp.last_match
+      lang = match[1]
+      code = match[2]
+      if code.match?(/^\s*<[a-z\/!]/mi)
+        highlighted = highlight_code(code.chomp, lang.empty? ? nil : lang)
+        if lang.present?
+          %(<pre class="#{lang}"><code>#{highlighted}</code></pre>)
+        else
+          "<pre><code>#{highlighted}</code></pre>"
+        end
+      else
+        match[0]
+      end
+    end
+  end
 
   def liquid_environment
     @liquid_environment ||= Liquid::Environment.build do |environment|

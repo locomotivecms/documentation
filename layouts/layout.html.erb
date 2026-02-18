@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= current_page.data.fetch("title", settings.site['title']) %></title>
-    <%= favicon_link_tag 'favicon.svg', type: 'image/svg+xml' %>
+    <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
 
     <% if settings.seo['meta_description'] %>
       <meta name="description" content="<%= settings.seo['meta_description'] %>">
@@ -51,6 +51,8 @@
       <% layout.with_topbar_link href: 'https://github.com/locomotivecms/engine' do %>
         <i class="fa-brands fa-github"></i><span class="ml-2">Source Code</span>
       <% end %>
+
+      <h1><%= current_page.data.fetch("title", File.basename(current_page.request_path)) %></h1>
 
       <%= yield %>
     <% end %>

@@ -2,8 +2,8 @@
   <div class="mx-auto flex w-full max-w-xl items-center justify-between lg:max-w-7xl">
     <div class="flex items-center gap-2 sm:gap-4">
       <%= link_to '/', class: 'flex items-center gap-2', aria: { label: 'Home' } do %>
-        <%= image_tag "logo.svg", class: "h-4" %>
-        <span class="text-sm font-bold dark:text-white"><%= settings.site['title'] %></span>
+        <%= image_tag "logo-black.png", class: "h-5 dark:hidden" %>
+        <%= image_tag "logo-white.png", class: "h-5 hidden dark:block" %>
       <% end %>
     </div>
 

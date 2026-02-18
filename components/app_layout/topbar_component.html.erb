@@ -58,7 +58,14 @@
           <% else %>
             <optgroup label="<%= page.title %>">
               <% page.children.each do |child| %>
-                <option value="<%= child.path %>" <%= 'selected' if child.resource == current_page %>><%= child.title %></option>
+                <% if child.children? %>
+                  <option value="<%= child.path %>" <%= 'selected' if child.resource == current_page %>><%= child.title %></option>
+                  <% child.children.each do |grandchild| %>
+                    <option value="<%= grandchild.path %>" <%= 'selected' if grandchild.resource == current_page %>>&nbsp;&nbsp;<%= grandchild.title %></option>
+                  <% end %>
+                <% else %>
+                  <option value="<%= child.path %>" <%= 'selected' if child.resource == current_page %>><%= child.title %></option>
+                <% end %>
               <% end %>
             </optgroup>
           <% end %>

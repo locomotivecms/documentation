@@ -7,7 +7,7 @@ Pages are the fundamental building blocks of your website. Below you can find ou
 
 ## Choose your page slug
 
-The page slug is its name in the url, in a Wagon site it's defined by the filename without extension. It should only contains alphabetic characters, numbers and "-" or "_". The full path of a page contains its parent (and ancestors).
+The page slug is its name in the url, in a Wagon site it's defined by the filename without extension. It should only contains alphabetic characters, numbers and "-" or "\_". The full path of a page contains its parent (and ancestors).
 
 ```
 + index
@@ -24,7 +24,6 @@ By default, Wagon converts underscores to dashes in the filename of a page. In S
 If you do want to use an underscore, just override the `slug` attribute in the page YAML file.
 {% endhint %}
 
-
 ## Use the command line generator
 
 ```shell
@@ -33,8 +32,8 @@ wagon generate page <<your page slug>>
 
 You will be asked 2 things:
 
-* whether you want HAML template: answer 'no' if you're not familiar with HAML.
-* whether you want a localized template: answer 'no' (multilingual is another topic...)
+- whether you want HAML template: answer 'no' if you're not familiar with HAML.
+- whether you want a localized template: answer 'no' (multilingual is another topic...)
 
 It will generate a file: **app/views/page/{user["your page slug"]}.liquid**.
 
@@ -44,7 +43,6 @@ It will generate a file: **app/views/page/{user["your page slug"]}.liquid**.
 `bundle exec wagon generate page company/presentation`.
 It will create **app/views/pages/company.liquid** and **app/views/pages/company/presentation.liquid**.
 {% endhint %}
-
 
 ## Page header
 
@@ -62,25 +60,25 @@ If your page extends another one, remember it should be the first instruction af
 
 Here are some possible options that can be used in the page header:
 
-| Property | Description |
-| :--- | :--- |
-| title | The page title is used in the backoffice and in your template. You can use `{% raw %}{{ page.title }}{% endraw %}` to display it in your page template. |
-| handle | Used when invoked by the `link_to` (or `path_to`)tag. |
-| published | If set to false, the page won't be publicly visible once hosted in an engine. It will be visible within the Wagon webserver. |
-| listed | The listed option is used to decide if the page should be listed in the menu. |
-| position | Set the position among sibling pages. This is used for ordering in menus. Accepts integers (1, 2, 3, ...) |
-| seo_title | Set the title for SEO, you can use it through the `{% raw %}{% seo %}{% endraw %}` tag or `{% raw %}{{ page.seo_title }}{% endraw %}` in your page template. |
-| meta_description | Same as `seo_title` for the meta description. You can use `{% raw %}{{ page.meta_description }}{% endraw %}` in your page template. |
-| meta_keywords | Same as `seo_title` for the meta keywords. You can use `{% raw %}{{ page.meta_keywords }}{% endraw %}` in your page template. |
-| redirect_url | Set a redirection to the given url (301). |
-| allow_layout | If set to false, the page's layout won't be changeable in the back-office. |
-| response_type | While not included in the page header by default, the default setting is `text/html`. Other possible values are `application/json`, `application/xml`, `application/rss+xml`. * \*Note:\*\* If you have set the response type to anything other than text/html, simply removing the property will not return the page to the default setting in the Back Office. You will need to explicitly set it to text/html. |
-
+| Property         | Description                                                                                                                                                                                                                                                                                                                                                                                                        |
+| :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| title            | The page title is used in the backoffice and in your template. You can use `{% raw %}{{ page.title }}{% endraw %}` to display it in your page template.                                                                                                                                                                                                                                                            |
+| handle           | Used when invoked by the `link_to` (or `path_to`)tag.                                                                                                                                                                                                                                                                                                                                                              |
+| published        | If set to false, the page won't be publicly visible once hosted in an engine. It will be visible within the Wagon webserver.                                                                                                                                                                                                                                                                                       |
+| listed           | The listed option is used to decide if the page should be listed in the menu.                                                                                                                                                                                                                                                                                                                                      |
+| position         | Set the position among sibling pages. This is used for ordering in menus. Accepts integers (1, 2, 3, ...)                                                                                                                                                                                                                                                                                                          |
+| seo_title        | Set the title for SEO, you can use it through the `{% raw %}{% seo %}{% endraw %}` tag or `{% raw %}{{ page.seo_title }}{% endraw %}` in your page template.                                                                                                                                                                                                                                                       |
+| meta_description | Same as `seo_title` for the meta description. You can use `{% raw %}{{ page.meta_description }}{% endraw %}` in your page template.                                                                                                                                                                                                                                                                                |
+| meta_keywords    | Same as `seo_title` for the meta keywords. You can use `{% raw %}{{ page.meta_keywords }}{% endraw %}` in your page template.                                                                                                                                                                                                                                                                                      |
+| redirect_url     | Set a redirection to the given url (301).                                                                                                                                                                                                                                                                                                                                                                          |
+| allow_layout     | If set to false, the page's layout won't be changeable in the back-office.                                                                                                                                                                                                                                                                                                                                         |
+| response_type    | While not included in the page header by default, the default setting is `text/html`. Other possible values are `application/json`, `application/xml`, `application/rss+xml`. **Note:** If you have set the response type to anything other than text/html, simply removing the property will not return the page to the default setting in the Back Office. You will need to explicitly set it to text/html. |
 
 {% hint style="warning" %}
-**Multiple child pages + a content_type_template**
+**Multiple child pages + a `content_type_template`**
 
 Note when you have a content-type-template in a parent folder with multiple other child pages like this:
+
 ```
 + index
     + projects
@@ -89,5 +87,6 @@ Note when you have a content-type-template in a parent folder with multiple othe
         + page_2
         + ...
 ```
+
 You have to add positions which are lower to all the child pages (page_1, page_2, ...). It is recommended to give the content-type-template a position of 99. Other pages can get a lower number (1 -> 98).
 {% endhint %}

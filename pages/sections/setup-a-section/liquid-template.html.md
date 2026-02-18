@@ -3,26 +3,28 @@ title: Liquid template
 order: 2
 ---
 
-Sections use the same Liquid syntax as the rest of the LocomotiveCMS framework. 
+Sections use the same Liquid syntax as the rest of the LocomotiveCMS framework.
 
 The `section` liquid drop is available inside the Liquid template of the section. It contains all the content filled by the user in the back-office.
 
-### Example
+## Example
 
 {% code title="section" %}
 {% raw %}
+
 ```liquid
 <section id="{{ section.anchor_id }}" {{ section.locomotive_attributes }}>
   <h2>{{ section.settings.greeting_word }}</h2>
 
   {% for block in section.blocks %}
     <div {{ block.locomotive_attributes }}>
-      Here is a <strong>{{ block.type }}</strong> block. 
+      Here is a <strong>{{ block.type }}</strong> block.
       Name: {{ block.settings.name }}
     </div>
   {% endfor %}
 </section>
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -33,15 +35,16 @@ It can be any valid DOM element like a **DIV**, **SECTION**, **NAV**, ...etc.
 The only requirement is to put `{% raw %}{{ section.locomotive_attributes }}{% endraw %}` in the opening tag.
 {% endhint %}
 
-
 ## Settings
 
 You can call settings like this:
 
 {% raw %}
+
 ```
 {{ section.settings.<setting id> }}
 ```
+
 {% endraw %}
 
 For instance, if the `id` of the setting is `title` and you want to display it, you'll have to write the following statement: `{% raw %}{{ section.settings.title }}{% endraw %}`.
@@ -54,10 +57,10 @@ For instance, if the `id` of the setting is `title` and you want to display it, 
 It helps our editor UI to refresh the content in the most efficient way. Otherwise, the whole section will be rendered when the content will be updated which is not optimal.
 {% endhint %}
 
-
 **Url type fields** come with extra methods. Given the setting with `my_link` as its id, you will write the following Liquid code to display a HTML link:
 
 {% raw %}
+
 ```liquid
 <a href="{{ section.settings.my_link }}"  {{ section.settings.my_link.new_window_attribute }}>
   My link
@@ -67,12 +70,13 @@ It helps our editor UI to refresh the content in the most efficient way. Otherwi
   My link
 </a>
 ```
+
 {% endraw %}
 
 ## Blocks
 
 The blocks of your section are stored in an array and can be iterated through with
-`{% raw %}{% for block in section.blocks %}{% endraw %}`. 
+`{% raw %}{% for block in section.blocks %}{% endraw %}`.
 
 The provided block object contains all the settings through the `settings` key.
 Example: `{% raw %}{{ block.settings.name }}{% endraw %}`
@@ -85,9 +89,11 @@ Example: `{% raw %}{% if block.type == 'video' %}{% endraw %}...{% raw %}{% endi
 
 In order to avoid unnecessary calls to the server to re-render the whole section when modifying a simple text setting, we strongly recommend to wrap the block within a tag like this:
 {% raw %}
+
 ```
 <TAG ... {{ block.locomotive_attributes }}>
 ```
+
 {% endraw %}
 where TAG can be any HTML5 tag.
 {% endhint %}

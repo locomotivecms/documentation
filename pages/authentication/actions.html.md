@@ -13,31 +13,31 @@ This action creates a new user and automatically signs her/him in. The sign up f
 
 **Form parameters**
 
-| Name | Description |
-| :--- | :--- |
-| auth_action | * \*sign_up\*\* (cannot be changed for Locomotive CMS hosting customers) |
-| auth_content_type | the slug of your "users" content type with one password type field |
-| auth_id_field | name of your field used to identify the user. |
-| auth_password_field | name of your password type field |
-| auth_callback | path to the page once the user has been authenticated with success. |
-| auth_entry\[] | HTML form attributes of the user model. Require the value of [auth_id_field][auth_id_field], [auth_password_field][auth_password_field] and [auth_password_field_confirmation][auth_password_field_confirmation]. Example: auth_entry[email], auth_entry[password] and auth_entry[password_confirmation][password_confirmation] |
-| auth_disable_email | don't send the welcome email if it sets to '1' or 'true'. |
-| auth_email_handle | the handle of the Locomotive page used as the email template |
-| auth_email_subject | the subject of the welcome email |
-| auth_email_smtp_namespace | namespace in site metafields used to store your SMTP settings. Default: smtp\ See explanation [here](/guides/custom-smtp-server). |
-
+| Name                      | Description                                                                                                                                                                                                                                                                                                                     |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| auth_action               | **sign_up** (cannot be changed for Locomotive CMS hosting customers)                                                                                                                                                                                                                                                            |
+| auth_content_type         | the slug of your "users" content type with one password type field                                                                                                                                                                                                                                                              |
+| auth_id_field             | name of your field used to identify the user.                                                                                                                                                                                                                                                                                   |
+| auth_password_field       | name of your password type field                                                                                                                                                                                                                                                                                                |
+| auth_callback             | path to the page once the user has been authenticated with success.                                                                                                                                                                                                                                                             |
+| auth_entry\[]             | HTML form attributes of the user model. Require the value of [auth_id_field][auth_id_field], [auth_password_field][auth_password_field] and [auth_password_field_confirmation][auth_password_field_confirmation]. Example: auth_entry[email], auth_entry[password] and auth_entry[password_confirmation][password_confirmation] |
+| auth_disable_email        | don't send the welcome email if it sets to '1' or 'true'.                                                                                                                                                                                                                                                                       |
+| auth_email_handle         | the handle of the Locomotive page used as the email template                                                                                                                                                                                                                                                                    |
+| auth_email_subject        | the subject of the welcome email                                                                                                                                                                                                                                                                                                |
+| auth_email_smtp_namespace | namespace in site metafields used to store your SMTP settings. Default: smtp\ See explanation [here](/guides/custom-smtp-server).                                                                                                                                                                                               |
 
 **Global liquid variables**
 
-| Name                 | Description                                                                                         |
-| :------------------- | :-------------------------------------------------------------------------------------------------- |
-| auth_entry          | the content entry only if the form is invalid. This liquid drop includes all the validation errors. |
+| Name               | Description                                                                                         |
+| :----------------- | :-------------------------------------------------------------------------------------------------- |
+| auth_entry         | the content entry only if the form is invalid. This liquid drop includes all the validation errors. |
 | auth_invalid_entry | not null if the form is invalid.                                                                    |
 
 **Example**
 
 {% code title="sign_up.liquid" %}
 {% raw %}
+
 ```liquid
 ---
 title: Sign up
@@ -81,11 +81,12 @@ handle: sign_up
     {% if auth_entry.errors.password_confirmation.size > 0 %}
       {{ auth_entry.errors.password_confirmation.first }}
     {% endif %}
-    
+
     <button type="submit">Sign up</button>
   </form>
 {% endif %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -97,30 +98,31 @@ If a "user" is found based on the auth_id and auth_password values, then the aut
 
 If the liquid variable is null, it means there is no authenticated user.
 
-If no user has been found, the page specified by the action attribute of the form will be rendered. 
+If no user has been found, the page specified by the action attribute of the form will be rendered.
 
 **Form parameters**
 
-| Name                  | Description                                                           |
-| :-------------------- | :-------------------------------------------------------------------- |
-| auth_action          | **sign_in** (cannot be changed for Locomotive CMS hosting customers) |
-| auth_content_type   | the slug of your "users" content type with one password type field    |
-| auth_id_field       | name of your field used to identify the user.                         |
-| auth_password_field | name of your password type field                                      |
-| auth_callback        | path to the page once the user has been authenticated with success.   |
-| auth_id              | id typed by the user                                                  |
-| auth_password        | password typed by the user                                            |
+| Name                | Description                                                          |
+| :------------------ | :------------------------------------------------------------------- |
+| auth_action         | **sign_in** (cannot be changed for Locomotive CMS hosting customers) |
+| auth_content_type   | the slug of your "users" content type with one password type field   |
+| auth_id_field       | name of your field used to identify the user.                        |
+| auth_password_field | name of your password type field                                     |
+| auth_callback       | path to the page once the user has been authenticated with success.  |
+| auth_id             | id typed by the user                                                 |
+| auth_password       | password typed by the user                                           |
 
 **Global liquid variables**
 
-| Name                     | Description                                                             |
-| :----------------------- | :---------------------------------------------------------------------- |
+| Name                   | Description                                                             |
+| :--------------------- | :---------------------------------------------------------------------- |
 | auth_wrong_credentials | Wrong id and/or password. Empty if the form has not been submitted yet. |
 
 **Example**
 
 {% code title="auth/sign_in.liquid" %}
 {% raw %}
+
 ```liquid
 ---
 title: Sign in
@@ -132,18 +134,19 @@ handle: sign_in
   <input type="hidden" name="auth_id_field" value="email" />
   <input type="hidden" name="auth_password_field" value="password" />
   <input type="hidden" name="auth_callback" value="{% path_to me %}" />
-  
+
   {% if auth_wrong_credentials %}Wrong credentials!{% endif %}
-  
+
   <label for="auth-email">Your E-mail</label>
   <input type="email" class="form-control" id="auth-email" placeholder="Email" name="auth_id" value="{{ params.auth_id }}">
-  
+
   <label for="auth-password">Password</label>
   <input type="password" class="form-control" id="auth-password" placeholder="Password" name="auth_password" value="">
-          
+
   <button type="submit">Sign in</button>
 </form>
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -153,20 +156,21 @@ Remove the current authenticated user from the current session. Once submitted, 
 
 **Form parameters**
 
-| Name                | Description                                                            |
-| :------------------ | :--------------------------------------------------------------------- |
-| auth_action        | **sign_out** (cannot be changed for Locomotive CMS hosting customers) |
-| auth_content_type | the slug of your "users" content type                                  |
+| Name              | Description                                                           |
+| :---------------- | :-------------------------------------------------------------------- |
+| auth_action       | **sign_out** (cannot be changed for Locomotive CMS hosting customers) |
+| auth_content_type | the slug of your "users" content type                                 |
 
 **Global liquid variables**
 
-| Name              | Description                            |
-| :---------------- | :------------------------------------- |
+| Name            | Description                            |
+| :-------------- | :------------------------------------- |
 | auth_signed_out | True once the user has been signed out |
 
 **Example**
 
 {% raw %}
+
 ```liquid
 <form action="{% path_to 'sign_in' %}" method="POST">
   <input type="hidden" name="auth_action" value="sign_out" />
@@ -174,6 +178,7 @@ Remove the current authenticated user from the current session. Once submitted, 
   <input type="submit" value="Sign out" />
 </form>
 ```
+
 {% endraw %}
 
 ## Forgot password
@@ -182,32 +187,33 @@ Send instructions about how to reset a forgotten password.
 
 **Form parameters**
 
-| Name                                 | Description                                                                              |
-| :----------------------------------- | :--------------------------------------------------------------------------------------- |
-| auth_action                         | **forgot_password** (cannot be changed for Locomotive CMS hosting customers)            |
-| auth_content_type                  | the slug of your "users" content type                                                    |
-| auth_id_field                      | name of your field used to identify the user.                                            |
-| auth_password_field                | name of your password type field                                                         |
-| auth_id                             | id typed by the user                                                                     |
-| auth_reset_password_url           | the **absolute** url of the reset password page. This url will be inserted in the email. |
-| auth_email_handle                  | the handle of the Locomotive page used as the email template                             |
-| auth_email_smtp_namespace         | name of the site metafields namespace used to store your SMTP settings. Default: smtp    |
-| auth_email_smtp_address_alias    | name of the address property in the site metafields namespace. Default: address          |
-| auth_email_smtp_port_alias       | name of the port property in the site metafields namespace. Default: port                |
-| auth_email_smtp_user_name_alias | name of the user_name property in the site metafields namespace. Default: user_name    |
-| auth_email_smtp_password_alias   | name of the user_name property in the site metafields namespace. Default: password      |
+| Name                            | Description                                                                              |
+| :------------------------------ | :--------------------------------------------------------------------------------------- |
+| auth_action                     | **forgot_password** (cannot be changed for Locomotive CMS hosting customers)             |
+| auth_content_type               | the slug of your "users" content type                                                    |
+| auth_id_field                   | name of your field used to identify the user.                                            |
+| auth_password_field             | name of your password type field                                                         |
+| auth_id                         | id typed by the user                                                                     |
+| auth_reset_password_url         | the **absolute** url of the reset password page. This url will be inserted in the email. |
+| auth_email_handle               | the handle of the Locomotive page used as the email template                             |
+| auth_email_smtp_namespace       | name of the site metafields namespace used to store your SMTP settings. Default: smtp    |
+| auth_email_smtp_address_alias   | name of the address property in the site metafields namespace. Default: address          |
+| auth_email_smtp_port_alias      | name of the port property in the site metafields namespace. Default: port                |
+| auth_email_smtp_user_name_alias | name of the user_name property in the site metafields namespace. Default: user_name      |
+| auth_email_smtp_password_alias  | name of the user_name property in the site metafields namespace. Default: password       |
 
 **Global liquid variables**
 
-| Name                                                      | Description                                  |
-| :-------------------------------------------------------- | :------------------------------------------- |
-| auth_reset_\<auth_password_field>_instructions_sent | True if the email has been successfully sent |
-| auth_wrong_\<auth_id_field>                           | True if no user was found                    |
+| Name                                                 | Description                                  |
+| :--------------------------------------------------- | :------------------------------------------- |
+| auth*reset*\<auth_password_field>\_instructions_sent | True if the email has been successfully sent |
+| auth*wrong*\<auth_id_field>                          | True if no user was found                    |
 
 **Example**
 
 {% code title="/app/views/pages/auth/reset_password.liquid" %}
 {% raw %}
+
 ```liquid
 ---
 title: Reset password
@@ -228,11 +234,12 @@ handle: forgot_password
 
 		<label for="auth-email">Your E-mail</label>
 		<input type="email" id="auth-email" placeholder="Email" name="auth_id" value="{{ params.auth_id }}">
-   
+
     <button type="submit">Submit</button>
   </form>
 {% endif %}
 ```
+
 {% endraw %}
 {% endcode %}
 
@@ -244,26 +251,27 @@ The link is protected by a token only valid for **2 hours**. You can add `{% raw
 
 **Form parameters**
 
-| Name                  | Description                                                                  |
-| :-------------------- | :--------------------------------------------------------------------------- |
-| auth_action          | **reset_password** (cannot be changed for Locomotive CMS hosting customers) |
-| auth_content_type   | the slug of your "users" content type                                        |
-| auth_password_field | name of your password type field                                             |
-| auth_password        | password typed by the user                                                   |
-| auth_reset_token    | `{% raw %}{{ params.auth_reset_token }}{% endraw %}`                                              |
-| auth_callback        | path to the page once the password has been updated with success             |
+| Name                | Description                                                                 |
+| :------------------ | :-------------------------------------------------------------------------- |
+| auth_action         | **reset_password** (cannot be changed for Locomotive CMS hosting customers) |
+| auth_content_type   | the slug of your "users" content type                                       |
+| auth_password_field | name of your password type field                                            |
+| auth_password       | password typed by the user                                                  |
+| auth_reset_token    | `{% raw %}{{ params.auth_reset_token }}{% endraw %}`                        |
+| auth_callback       | path to the page once the password has been updated with success            |
 
 **Global liquid variables**
 
-| Name                                       | Description                                           |
-| :----------------------------------------- | :---------------------------------------------------- |
-| auth_invalid_token                       | True if the token is invalid or has expired           |
-| auth_\<auth_password_field>_too_short | True if the password length is less than 6 characters |
+| Name                                    | Description                                           |
+| :-------------------------------------- | :---------------------------------------------------- |
+| auth_invalid_token                      | True if the token is invalid or has expired           |
+| auth\_\<auth_password_field>\_too_short | True if the password length is less than 6 characters |
 
 **Example**
 
 {% code title="/app/views/pages/auth/reset_password.liquid" %}
 {% raw %}
+
 ```liquid
 ---
 title: Reset password
@@ -286,9 +294,10 @@ handle: reset_password
 
   <label for="auth-password">Your new password</label>
   <input type="password" id="auth-password" placeholder="Password" name="auth_password">
-  
+
   <button type="submit">Submit</button>
 </form>
 ```
+
 {% endraw %}
 {% endcode %}

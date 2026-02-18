@@ -40,7 +40,7 @@ class ApplicationMarkdown < MarkdownRails::Renderer::Rails
   # about at https://github.com/vmg/redcarpet#and-its-like-really-simple-to-use
   # Make sure you know what you're doing if you're using this to render user inputs.
   def enable
-    [:fenced_code_blocks, :tables, :hard_wrap]
+    [:fenced_code_blocks, :tables, :hard_wrap, :no_intra_emphasis]
   end
 
   def block_code(code, language)

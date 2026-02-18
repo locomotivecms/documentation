@@ -1,16 +1,29 @@
-<nav class="sticky top-16 hidden max-h-[calc(100dvh-(--spacing(16)))] w-48 shrink-0 overflow-y-auto pt-10 pb-16 lg:block" data-controller="sidebar">
+<nav class="sticky top-16 hidden max-h-[calc(100dvh-(--spacing(16)))] w-56 shrink-0 overflow-y-auto pt-10 pb-16 lg:block" data-controller="sidebar">
   <ul role="list">
     <% pages.each do |page| %>
-      <li class="<%= page.children? ? '' : '' %>">
+      <li>
         <% if !page.children? %>
           <%= link_to_if_current page.title, page.resource, class: 'flex items-center gap-x-3 py-1.5 text-sm/6 font-medium text-zinc-700 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white', active_class: 'flex items-center gap-x-3 py-1.5 text-sm/6 font-semibold text-zinc-950 dark:text-white' %>
         <% else %>
           <div class="text-sm/6 font-medium text-zinc-950 dark:text-white">
             <div class="sticky -top-12 bg-white dark:bg-zinc-900 z-10 pt-6 pb-4 font-semibold"><%= page.title %></div>
-             <ul role="list" class="mb-4 space-y-3.5 border-l border-zinc-200 dark:border-zinc-800">
+            <ul role="list" class="mb-4 space-y-3.5 border-l border-zinc-200 dark:border-zinc-800">
               <% page.children.each do |child| %>
                 <li>
-                  <%= link_to_if_current child.title, child.resource, class: 'relative flex gap-2 pl-4 text-sm/6 font-medium text-zinc-950 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white', active_class: 'relative flex gap-2 pl-4 text-sm/6 before:absolute before:inset-y-0 before:left-[-1.5px] before:w-[2px] before:rounded-full before:bg-zinc-950 dark:before:bg-white font-semibold text-zinc-950 hover:text-zinc-950 dark:text-white dark:hover:text-white' %>
+                  <% if child.children? %>
+                    <div class="relative pl-4">
+                      <%= link_to_if_current child.title, child.resource, class: 'text-sm/6 font-medium text-zinc-950 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white', active_class: 'text-sm/6 font-semibold text-zinc-950 dark:text-white' %>
+                      <ul role="list" class="mt-2 space-y-2 border-l border-zinc-200 dark:border-zinc-800 ml-0.5">
+                        <% child.children.each do |grandchild| %>
+                          <li>
+                            <%= link_to_if_current grandchild.title, grandchild.resource, class: 'relative flex gap-2 pl-3 text-sm/6 font-medium text-zinc-500 hover:text-zinc-950 dark:text-zinc-500 dark:hover:text-white', active_class: 'relative flex gap-2 pl-3 text-sm/6 before:absolute before:inset-y-0 before:left-[-1.5px] before:w-[2px] before:rounded-full before:bg-zinc-950 dark:before:bg-white font-semibold text-zinc-950 dark:text-white' %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% else %>
+                    <%= link_to_if_current child.title, child.resource, class: 'relative flex gap-2 pl-4 text-sm/6 font-medium text-zinc-950 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white', active_class: 'relative flex gap-2 pl-4 text-sm/6 before:absolute before:inset-y-0 before:left-[-1.5px] before:w-[2px] before:rounded-full before:bg-zinc-950 dark:before:bg-white font-semibold text-zinc-950 hover:text-zinc-950 dark:text-white dark:hover:text-white' %>
+                  <% end %>
                 </li>
               <% end %>
             </ul>

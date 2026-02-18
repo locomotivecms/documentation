@@ -11,7 +11,6 @@ When listing content entries in a page, you might want to filter entries or crea
 as described [here](/content-types/define-a-content-type).
 {% endhint %}
 
-
 ## Add a category field to the event content type
 
 In your **app/content_types/events.yml**, add a block:
@@ -34,11 +33,12 @@ Edit **data/events.yml** and add a field category for each entry.
 
 ## Filter entries by category
 
-You will use \``with_scope` liquid tag to filter the entries.
+You will use `with_scope` liquid tag to filter the entries.
 
 In a page, type:
 
 {% raw %}
+
 ```liquid
 <ul>
 {% with_scope category: 'foo' %}
@@ -48,6 +48,7 @@ In a page, type:
 {% endwith_scope %}
 </ul>
 ```
+
 {% endraw %}
 
 ## Accessing related content types within a forloop
@@ -57,6 +58,7 @@ At times you may wish to access a content type inside the forloop of another rel
 Building on the previous exemple, let's say that you have defined the events content type and the speakers content type and that each event has many speakers. Check [here](/content-types/relate-two-content-types) for more details on how to create such a relationship between two content types.
 
 {% raw %}
+
 ```liquid
 <ul>
 {% with_scope category: 'foo' %}
@@ -74,6 +76,7 @@ Building on the previous exemple, let's say that you have defined the events con
 {% endwith_scope %}
 </ul>
 ```
+
 {% endraw %}
 
 {% hint style="warning" %}
@@ -82,12 +85,12 @@ Building on the previous exemple, let's say that you have defined the events con
 Please note that for the code proposed in this section to work, you need to have a version of steam above version with commit [dfa638b38d7579ab0193341e20a4ef3345846e51](https://github.com/locomotivecms/steam/commit/dfa638b38d7579ab0193341e20a4ef3345846e51) installed.
 {% endhint %}
 
-
 ## Reverse the entries
 
 Add the reversed option to the for tag:
 
 {% raw %}
+
 ```liquid
 <ul>
 {% for event in contents.events reversed %}
@@ -95,6 +98,7 @@ Add the reversed option to the for tag:
 {% endfor %}
 </ul>
 ```
+
 {% endraw %}
 
 ## Pagination
@@ -102,6 +106,7 @@ Add the reversed option to the for tag:
 You can easily create a navigation element with previous and next buttons.
 
 {% raw %}
+
 ```liquid
 {% paginate contents.events by 2 %}
 <ul>
@@ -115,21 +120,24 @@ You can easily create a navigation element with previous and next buttons.
 </div>
 {% endpaginate %}
 ```
+
 {% endraw %}
 
 Alternatively, you can use the default paginate filter:
 
 {% raw %}
+
 ```liquid
 {{ paginate | default_pagination }}
 ```
+
 {% endraw %}
 
 Learn more:
 
-* [with_scope tag documentation](/liquid-api/tags#with_scope)
-* [paginate tag documentation](/liquid-api/tags#paginate)
-* [default pagination filter](/liquid-api/filters#default_pagination)
+- [with_scope tag documentation](/liquid-api/tags#with_scope)
+- [paginate tag documentation](/liquid-api/tags#paginate)
+- [default pagination filter](/liquid-api/filters#default_pagination)
 
 {% hint style="info" %}
 **with_scope and pagination**

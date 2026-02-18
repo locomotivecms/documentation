@@ -73,7 +73,7 @@ class ApplicationMarkdown < MarkdownRails::Renderer::Rails
     liquid_template = Liquid::Template.parse(full_document, environment: liquid_environment, error_mode: :lax)
     result = liquid_template.render({},
       registers: {
-        markdown_renderer: self.renderer,
+        markdown_renderer: content_renderer,
         tabs_html: tabs_html
       }
     )
@@ -85,13 +85,18 @@ class ApplicationMarkdown < MarkdownRails::Renderer::Rails
     tabs_html.each_with_index do |html, index|
       full_document.gsub!("<!-- tabs##{index} -->", html)
     end
-    # Add data-controller="copy-code" to all <code> tags
     full_document.gsub!(/<code(?![^>]*data-controller)/, '<code data-controller="copy-code"')
     full_document
   end
 
-  def renderer
-    ::Redcarpet::Markdown.new(self.class.new(**features), **features)
+  # Renderer for content inside Liquid tags ({% hint %}, {% code %}, etc.).
+  # Uses the same Redcarpet callbacks (Rouge highlighting, etc.) but skips
+  # Liquid preprocessing to avoid double-processing already-rendered content.
+  def content_renderer
+    inner = self.class.new(**features)
+    def inner.preprocess(doc) = doc
+    def inner.postprocess(doc) = doc
+    ::Redcarpet::Markdown.new(inner, **features)
   end
 
   private

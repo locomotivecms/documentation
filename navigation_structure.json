@@ -1,0 +1,79 @@
+[
+  {
+    "version": "latest",
+    "url": "https://doc.locomotivecms.com/docs",
+    "error": "undefined method 'ancestors' for #<Object:0x0000000122b88058>",
+    "sidebar_links": [],
+    "page_count": 0
+  },
+  {
+    "version": "4.0",
+    "url": "https://doc.locomotivecms.com/v4.0/docs",
+    "error": "undefined method 'ancestors' for #<Object:0x0000000122b8b1b8>",
+    "sidebar_links": [],
+    "page_count": 0
+  },
+  {
+    "version": "3.3",
+    "url": "https://doc.locomotivecms.com/v3.3/docs",
+    "error": "undefined method 'ancestors' for #<Object:0x0000000122d31490>",
+    "sidebar_links": [],
+    "page_count": 0
+  },
+  {
+    "version": "unknown",
+    "url": "https://doc.locomotivecms.com/docs/content-types",
+    "error": "404 Not Found",
+    "sidebar_links": [],
+    "page_count": 0
+  },
+  {
+    "version": "unknown",
+    "url": "https://doc.locomotivecms.com/docs/templates",
+    "error": "404 Not Found",
+    "sidebar_links": [],
+    "page_count": 0
+  },
+  {
+    "version": "unknown",
+    "url": "https://doc.locomotivecms.com/docs/section-introduction",
+    "error": "undefined method 'ancestors' for #<Object:0x0000000122dd4000>",
+    "sidebar_links": [],
+    "page_count": 0
+  },
+  {
+    "version": "unknown",
+    "url": "https://doc.locomotivecms.com/docs/how-to-display-sections",
+    "error": "undefined method 'ancestors' for #<Object:0x0000000122e8df28>",
+    "sidebar_links": [],
+    "page_count": 0
+  },
+  {
+    "version": "unknown",
+    "url": "https://doc.locomotivecms.com/docs/events",
+    "error": "undefined method 'ancestors' for #<Object:0x0000000122ec7b88>",
+    "sidebar_links": [],
+    "page_count": 0
+  },
+  {
+    "version": "unknown",
+    "url": "https://doc.locomotivecms.com/docs/deploy",
+    "error": "undefined method 'ancestors' for #<Object:0x0000000122f01c20>",
+    "sidebar_links": [],
+    "page_count": 0
+  },
+  {
+    "version": "unknown",
+    "url": "https://doc.locomotivecms.com/docs/liquid-syntax",
+    "error": "404 Not Found",
+    "sidebar_links": [],
+    "page_count": 0
+  },
+  {
+    "version": "unknown",
+    "url": "https://doc.locomotivecms.com/docs/liquid-tags",
+    "error": "404 Not Found",
+    "sidebar_links": [],
+    "page_count": 0
+  }
+]

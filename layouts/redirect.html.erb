@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href="<%= current_page.data.fetch('redirect_to') %>" />
     <meta http-equiv="refresh" content="0; url=<%= current_page.data.fetch('redirect_to') %>" />
   </head>
   <body>
     <h1>Redirecting...</h1>
+    <p>
+      If you are not redirected automatically,
+      <a href="<%= current_page.data.fetch('redirect_to') %>">continue here</a>.
+    </p>
   </body>
 </html>

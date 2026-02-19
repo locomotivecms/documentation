@@ -1,12 +1,8 @@
 # My TODO List
 
-x host to Github
-
-! create the S3 bucket in AWS
-! setup the BunnyCDN domain
-
+- [x] host to Github
 - [x] publish to Github pages
 - [x] setup the Plausible handle
 - [x] first deployment
-- [ ] update DNS
-- [ ] shutdown README.com
+- [x] update DNS
+- [x] shutdown README.com

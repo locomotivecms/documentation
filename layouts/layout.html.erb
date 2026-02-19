@@ -55,7 +55,9 @@
         <i class="fa-brands fa-github"></i><span class="ml-2">Source Code</span>
       <% end %>
 
-      <h1><%= current_page.data.fetch("title", File.basename(current_page.request_path)) %></h1>
+      <% unless current_page.data['no_title'] == true %>
+        <h1><%= current_page.data.fetch("title", File.basename(current_page.request_path)) %></h1>
+      <% end %>
 
       <%= yield %>
     <% end %>

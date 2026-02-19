@@ -12,6 +12,14 @@ export default class extends Controller {
     this.loadFlexSearch().then(() => this.loadIndex())
     this.handleDocumentClick = this.handleDocumentClick.bind(this)
     this.handleEscape = this.handleEscape.bind(this)
+    this.handleShortcut = this.handleShortcut.bind(this)
+    document.addEventListener('keydown', this.handleShortcut)
+  }
+
+  disconnect() {
+    document.removeEventListener('keydown', this.handleShortcut)
+    document.removeEventListener('mousedown', this.handleDocumentClick)
+    document.removeEventListener('keydown', this.handleEscape)
   }
 
   async loadFlexSearch() {
@@ -101,33 +109,59 @@ export default class extends Controller {
   }
 
   toggleDropdown() {
-    this.dropdownOpen = !this.dropdownOpen
-    this.dropdownTarget.classList.toggle('hidden', !this.dropdownOpen)
     if (this.dropdownOpen) {
-      setTimeout(() => this.inputTarget.focus(), 10)
-      document.addEventListener('mousedown', this.handleDocumentClick)
-      document.addEventListener('keydown', this.handleEscape)
-    } else {
-      document.removeEventListener('mousedown', this.handleDocumentClick)
-      document.removeEventListener('keydown', this.handleEscape)
+      this.closeDropdown()
+      return
     }
+
+    this.openDropdown()
+  }
+
+  handleShortcut(event) {
+    const isShortcut =
+      (event.metaKey || event.ctrlKey) &&
+      !event.shiftKey &&
+      !event.altKey &&
+      event.key.toLowerCase() === 'k'
+
+    if (!isShortcut) return
+
+    const target = event.target
+    const isEditableTarget =
+      target?.isContentEditable ||
+      ['INPUT', 'TEXTAREA', 'SELECT'].includes(target?.tagName)
+
+    if (isEditableTarget && !this.element.contains(target)) return
+
+    event.preventDefault()
+    this.openDropdown()
+    this.inputTarget.select()
+  }
+
+  openDropdown() {
+    this.dropdownOpen = true
+    this.dropdownTarget.classList.remove('hidden')
+    setTimeout(() => this.inputTarget.focus(), 10)
+    document.addEventListener('mousedown', this.handleDocumentClick)
+    document.addEventListener('keydown', this.handleEscape)
+  }
+
+  closeDropdown() {
+    this.dropdownOpen = false
+    this.dropdownTarget.classList.add('hidden')
+    document.removeEventListener('mousedown', this.handleDocumentClick)
+    document.removeEventListener('keydown', this.handleEscape)
   }
 
   handleDocumentClick(event) {
     if (!this.element.contains(event.target)) {
-      this.dropdownOpen = false
-      this.dropdownTarget.classList.add('hidden')
-      document.removeEventListener('mousedown', this.handleDocumentClick)
-      document.removeEventListener('keydown', this.handleEscape)
+      this.closeDropdown()
     }
   }
 
   handleEscape(event) {
     if (event.key === 'Escape') {
-      this.dropdownOpen = false
-      this.dropdownTarget.classList.add('hidden')
-      document.removeEventListener('mousedown', this.handleDocumentClick)
-      document.removeEventListener('keydown', this.handleEscape)
+      this.closeDropdown()
     }
   }
 }

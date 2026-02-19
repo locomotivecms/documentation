@@ -1,7 +1,12 @@
-- host to Github
-- create the S3 bucket in AWS
+# My TODO List
+
+x host to Github
+
+! create the S3 bucket in AWS
+! setup the BunnyCDN domain
+
+- publish to Github pages
 - setup the Plausible handle
-- setup the BunnyCDN domain
-- fisrt deployment
+- first deployment
 - update DNS
 - shutdown README.com

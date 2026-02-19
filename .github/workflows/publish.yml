@@ -1,16 +1,29 @@
-name: Publish website
+name: Deploy website
 
 on:
   push:
     branches: main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  publish:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '24'
     - name: Install yarn
@@ -24,15 +37,16 @@ jobs:
       run: |
         bundle install
         yarn install
-    - name: Install AWS CLI
-      uses: unfor19/install-aws-cli-action@v1
-    - name: Build and publish website
-      run: bundle exec rake
+    - name: Build website
+      run: bundle exec rake compile
       env:
-          AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
-          BUNNYCDN_ACCESS_KEY: ${{ secrets.BUNNYCDN_ACCESS_KEY }}
-          BUNNYCDN_ZONE_ID: ${{ secrets.BUNNYCDN_ZONE_ID }}
-          SITE_BASE_URL: ${{ secrets.SITE_BASE_URL }}
+        SITE_BASE_URL: ${{ secrets.SITE_BASE_URL }}
+    - name: Setup GitHub Pages
+      uses: actions/configure-pages@v5
+    - name: Upload static artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./build
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

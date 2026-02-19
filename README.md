@@ -59,6 +59,12 @@ gem install foreman
    ```
    The static site will be built in the `./build` directory.
 
+## Deployment
+
+The site is deployed with GitHub Pages via `.github/workflows/publish.yml`.
+On pushes to `main`, the workflow runs `bundle exec rake compile` and publishes `./build`.
+Set the `SITE_BASE_URL` repository secret to your docs custom domain so the sitemap is generated with the correct URLs.
+
 ## Contributing
 
 - Follow the established structure for new guides, concepts, or integrations.
